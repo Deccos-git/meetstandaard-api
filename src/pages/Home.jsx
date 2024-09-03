@@ -2,9 +2,10 @@ import { useFirestore, useFirestoreOne } from "../firebase/useFirestore"
 import { useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
+import ArrowDropDownCircleOutlinedIcon from '@mui/icons-material/ArrowDropDownCircleOutlined';
 import Modal from 'react-modal';
 import { db } from "../firebase/config";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, updateDoc, doc } from "firebase/firestore";
 
 const Home = () => {
   // State
@@ -47,10 +48,48 @@ const Home = () => {
       name: newCategorie,
       position: categories.length + 1,
     });
-
-
-
+    setIsOpen(!isOpen)
   }
+
+  // Add effect
+  const addEffect = async () => {
+    await addDoc(collection(db, "effects"), {
+      id: uuidv4(),
+      name: 'Nieuw effect',
+      categorie: categorie,
+      position: effects.length + 1,
+    });
+  }
+
+
+  // Update effect
+  const updateEffect = async (e) => {
+    const docid = e.target.dataset.docid
+
+    await updateDoc(doc(db, "effects", docid), {
+      name: e.target.value
+    });
+  }
+
+  // Add question
+  const addQuestion = async () => {
+    await addDoc(collection(db, "questions"), {
+      id: uuidv4(),
+      name: 'Nieuwe vraag',
+      effectId: effectId,
+      position: questions.length + 1,
+    });
+  }
+
+  // Update question
+  const updateQuestion = async (e) => {
+    const docid = e.target.dataset.docid
+
+    await updateDoc(doc(db, "questions", docid), {
+      name: e.target.value
+    });
+  }
+
 
   return (
     <div>
@@ -69,15 +108,21 @@ const Home = () => {
         <AddCircleOutlineOutlinedIcon onClick={() => setIsOpen(!isOpen)} />
       </div>
       <div className='table-container'>
-          
+          <AddCircleOutlineOutlinedIcon onClick={addEffect}/>
               {effects && effects.map((effect, index) => (
 
                   <div key={uuidv4()}>
-                      <p onClick={() => setEffectId(effect.id)}>{effect.name}</p>
-                      <div>
+                      <div id='effect-container'>
+                        <p>{effect.position}</p>
+                        <input type="text" defaultValue={effect.name} data-docid={effect.docid} onChange={updateEffect} />
+                        <ArrowDropDownCircleOutlinedIcon onClick={() => setEffectId(effect.id)}/>
+                      </div>
+                      <div id='questions-container'>
+                        <AddCircleOutlineOutlinedIcon onClick={addQuestion}/>
                         {questions && questions.map((question, index) => (
-                          <div key={uuidv4()}>
-                            <p>{question.name}</p>
+                          <div id='question-container' key={uuidv4()}>
+                            <p>{question.position}</p>
+                            <input type="text" defaultValue={question.name} data-docid={effect.docid} onChange={updateQuestion} />
                           </div>
                         ))}
                       </div>

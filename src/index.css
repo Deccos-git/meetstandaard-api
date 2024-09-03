@@ -57,7 +57,7 @@ main{
 .tab-container{
     display: flex;
     justify-content: flex-start;
-    margin: 20px 0;
+    margin: 20px 0px 0px 0px;
     align-items: center;
 }
 
@@ -87,4 +87,36 @@ main{
     border-top-right-radius: 5px;
     border: none;
     cursor: pointer;
+}
+
+#effect-container{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 20px 0;
+}
+
+#effect-container input{
+    margin: 0px 10px;
+}
+
+#question-container{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 20px 0;
+}
+
+#question-container input{
+    margin: 0px 10px;
+}
+
+.table-container{
+    padding: 30px;
+    border: 1px solid #e7e7e7;
+}
+
+#questions-container{
+    margin: 20px;
+    border: 1px solid #e7e7e7;
 }
