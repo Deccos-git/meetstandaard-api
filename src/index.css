@@ -1,0 +1,90 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: "interstate", sans-serif;
+}
+
+#page-container{
+    min-height: 100vh;
+}
+
+main{
+    min-height: 70vh;
+    padding: 20px;
+}
+
+#logo-topbar {
+  height: 130px;
+  display: block;
+}
+
+#topbar-container{
+    background-color: #f9b03b;
+    border-bottom: 1px solid #e7e7e7;
+    padding: 10px;
+    margin: 0;
+    width: 100%;
+    height: 130px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#login-button-container{
+    margin-right: 20px;
+    padding: 0px 20px;
+    border-radius: 25px;
+    background-color: white;
+    cursor: pointer;
+}
+
+#login-button-container p{
+    font-size: 20px;
+}
+
+#footer-container{
+    background-color: #f9b03b;
+    border-top: 1px solid #e7e7e7;
+    padding: 10px;
+    margin: 0;
+    width: 100%;
+    height: 130px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tab-container{
+    display: flex;
+    justify-content: flex-start;
+    margin: 20px 0;
+    align-items: center;
+}
+
+.tablinks{
+    margin-right: 10px;
+    padding: 10px 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border: none;
+    background-color: #f4f4f4;
+    cursor: pointer;
+}
+
+.tab-container input{
+    background-color: transparent;
+    border: none;
+    width: 170px;
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+.active{
+    background-color: #f9b03b !important;
+    margin-right: 10px;
+    padding: 10px 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
