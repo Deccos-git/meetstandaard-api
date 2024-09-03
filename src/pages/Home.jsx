@@ -122,7 +122,7 @@ const Home = () => {
                         {questions && questions.map((question, index) => (
                           <div id='question-container' key={uuidv4()}>
                             <p>{question.position}</p>
-                            <input type="text" defaultValue={question.name} data-docid={effect.docid} onChange={updateQuestion} />
+                            <input type="text" defaultValue={question.name} data-docid={question.docid} onChange={updateQuestion} />
                           </div>
                         ))}
                       </div>
