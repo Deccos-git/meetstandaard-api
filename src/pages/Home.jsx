@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 import { db, auth } from "../firebase/config";
-import { addDoc, collection, updateDoc, doc } from "firebase/firestore";
+import { addDoc, collection, updateDoc, doc, deleteDoc } from "firebase/firestore";
 import Effects from "../components/home/Effects";
 import Tooltip from "../components/common/Tooltip";
 import MoreVertOutlinedIcon from '@mui/icons-material/MoreVertOutlined';
@@ -14,9 +14,9 @@ import ReactModal from "../components/common/ReactModal";
 const Home = () => {
   // State
   const [categoryId, setCategoryId] = useState(null);
-  const [showOptions, setShowOptions] = useState(null);
   const [editCategory, setEditCategory] = useState(null);
-  const [deleteModal, setDeleteModal] = useState(false); // Fix typo in modal state
+  const [deleteModal, setDeleteModal] = useState(false); 
+  const [deleteDocid, setDeleteDocid] = useState('')
 
   // Firestore
   const categories = useFirestore('categories', 'position', 'asc');
@@ -46,6 +46,16 @@ const Home = () => {
     });
   };
 
+  // Delete category
+  const deleteCategory = async (e) => {
+
+    console.log(deleteDocid)
+
+    await deleteDoc(doc(db, "categories", deleteDocid))
+
+    setDeleteModal(false)
+  }
+
   return (
     <div>
       <h1>Admin</h1>
@@ -74,7 +84,10 @@ const Home = () => {
                       onClick={() => (editCategory === cat.id ? setEditCategory(null) : setEditCategory(cat.id))}
                     />
                     <DeleteOutlineOutlinedIcon
-                      onClick={() => setDeleteModal(true)} // Open modal on delete
+                      onClick={() => {
+                        setDeleteModal(true);
+                        setDeleteDocid(cat.docid);
+                      }} // Open modal on delete
                     />
                   </div>
                 </div>
@@ -89,6 +102,7 @@ const Home = () => {
       <ReactModal
         open={deleteModal}
         setOpen={setDeleteModal}
+        deleteFunction={deleteCategory}
         title="Weet je zeker dat je deze categorie wilt verwijderen?"
         text="Deze actie kan niet ongedaan worden gemaakt."
       />

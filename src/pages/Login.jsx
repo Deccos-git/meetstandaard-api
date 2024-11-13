@@ -42,11 +42,11 @@ const Login = () => {
     <div>
         <h1>Login</h1>
 
-        <form>
+        <form id='login-form'>
             <label htmlFor="email">Email</label>
             <input type="text" id="email" name="email" onChange={emailHandler}/>
 
-            <label htmlFor="password">Password</label>
+            <label htmlFor="password">Paswoord</label>
             <input type="password" id="password" name="password" onChange={passwordHandler}/>
 
             <button onClick={loginHandler}>Login</button>

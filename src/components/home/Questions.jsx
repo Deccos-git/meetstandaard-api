@@ -1,6 +1,6 @@
 import { useFirestoreOneOrderBy } from "../../firebase/useFirestore"
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
-import { addDoc, collection, updateDoc, doc } from "firebase/firestore";
+import { addDoc, collection, updateDoc, doc, deleteDoc } from "firebase/firestore";
 import { db } from "../../firebase/config";
 import { v4 as uuidv4 } from 'uuid';
 import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined';
@@ -13,6 +13,7 @@ const Questions = ({effectId}) => {
     const [deleteModal, setDeleteModal] = useState(false);
     const [questionId, setQuestionId] = useState(null);
     const [editQuestion, setEditQuestion] = useState(null);
+    const [deleteDocid, setDeleteDocid] = useState('');
 
     // Firestore
     const questions = useFirestoreOneOrderBy('questions', 'effectId', effectId ? effectId : '', 'position', 'asc')
@@ -36,6 +37,14 @@ const Questions = ({effectId}) => {
     });
   }
 
+  // Delete question
+  const deleteQuestion = async (e) => {
+
+    await deleteDoc(doc(db, "questions", deleteDocid))
+
+    setDeleteModal(false)
+  }
+
   return (
     <div id='questions-container'>
         {questions && questions.map((question, index) => (
@@ -56,7 +65,10 @@ const Questions = ({effectId}) => {
                 onClick={() => (editQuestion === question.id ? setEditQuestion(null) : setEditQuestion(question.id))}
               />
               <DeleteOutlineOutlinedIcon
-                onClick={() => setDeleteModal(true)}
+                onClick={() => {
+                  setDeleteModal(true);
+                  setDeleteDocid(question.docid);
+                }} // Open modal on delete
               />
             </div>
         </div>
@@ -67,6 +79,7 @@ const Questions = ({effectId}) => {
         <ReactModal
         open={deleteModal}
         setOpen={setDeleteModal}
+        deleteFunction={deleteQuestion}
         title="Weet je zeker dat je deze vraag wilt verwijderen?"
         text="Deze actie kan niet ongedaan worden gemaakt."
       />

@@ -30,11 +30,15 @@ const corsHandler = cors({
 export const database = functions.https.onRequest((request, response) => {
   corsHandler(request, response, async () => {
     try {
+      // Controleer of het verzoek een GET-verzoek is
+      if (request.method !== 'GET') {
+        return response.status(405).send('Method Not Allowed');
+      }
 
-      // Get all categories from Firestore
+      // Functie om alle categorieën op te halen
       const getCategories = async () => {
         const categoriesSnapshot = await firestore.collection('categories').get();
-        const categoriesPromises = categoriesSnapshot.docs.map(async doc => {
+        const categoriesPromises = categoriesSnapshot.docs.map(async (doc) => {
           const effects = await getEffects(doc.data().id);
           return {
             id: doc.data().id,
@@ -46,7 +50,7 @@ export const database = functions.https.onRequest((request, response) => {
         return categories;
       };
 
-      // Get all effects from Firestore
+      // Functie om alle effecten op te halen
       const getEffects = async (categoryId) => {
         const effectsSnapshot = await firestore.collection('effects').where('categorie', '==', categoryId).get();
       
@@ -65,29 +69,28 @@ export const database = functions.https.onRequest((request, response) => {
         return effectsArray;
       };
 
-      // Get all questions from Firestore
+      // Functie om alle vragen op te halen
       const getQuestions = async (effectId) => {
         const questionsSnapshot = await firestore.collection('questions').where('effectId', '==', effectId).get();
 
         const questionsArray = await Promise.all(
-        questionsSnapshot.docs.map(doc => {
+          questionsSnapshot.docs.map(doc => {
 
             return {
-                id: doc.data().id,
-                name: doc.data().name,
-                scale: '1-5'
-                };
-            })
+              id: doc.data().id,
+              name: doc.data().name,
+              scale: '1-5'
+            };
+          })
         );
         console.log('questionsArray', questionsArray);
         return questionsArray;
+      };
 
-    };
-
-      // Await getCategories result
+      // Haal de categorieën op
       const categories = await getCategories();
 
-      // Return the data
+      // Stuur de data terug
       response.status(200).json(categories);
     } catch (error) {
       console.log(error);

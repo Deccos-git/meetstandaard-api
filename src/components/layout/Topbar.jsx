@@ -7,11 +7,18 @@ const Topbar = () => {
   // Hooks
   const navigate = useNavigate();
 
+  const logout = async () => {
+    await auth.signOut()
+    navigate(`/login`)
+  }
+
+  console.log(auth.currentUser)
+
   return (
     <div id='topbar-container'>
         <img id='logo-topbar' src={Logo} alt='logo meetstandaard'/>
         {auth.currentUser ? 
-          <div id='login-button-container' onClick={() => auth.signOut()}>
+          <div id='login-button-container' onClick={logout}>
               <p>Logout</p>
           </div>
         :

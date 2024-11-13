@@ -1,4 +1,4 @@
-import { onSnapshot, query, where, collection, orderBy, addDoc, updateDoc, doc } from "firebase/firestore";
+import { onSnapshot, query, where, collection, orderBy, addDoc, updateDoc, doc, deleteDoc } from "firebase/firestore";
 import { db } from "../../firebase/config";
 import { useState, useEffect } from "react";
 import { v4 as uuidv4 } from 'uuid';
@@ -17,6 +17,7 @@ const Effects = ({ categoryId }) => {
   const [effectId, setEffectId] = useState(null);
   const [editEffect, setEditEffect] = useState(null);
   const [deleteModal, setDeleteModal] = useState(false);
+  const [deleteDocid, setDeleteDocid] = useState('')
 
   // Real-time listener for effects
   useEffect(() => {
@@ -57,6 +58,14 @@ const Effects = ({ categoryId }) => {
     });
   };
 
+  // Delete effect
+  const deleteEffect = async (e) => {
+
+    await deleteDoc(doc(db, "effects", deleteDocid))
+
+    setDeleteModal(false)
+  }
+
   // Toggle the display of questions for the specific effect
   const toggleQuestions = (effectId) => {
     setDisplayQuestions((prevEffectId) =>
@@ -94,7 +103,10 @@ const Effects = ({ categoryId }) => {
                 onClick={() => (editEffect === effect.id ? setEditEffect(null) : setEditEffect(effect.id))}
               />
               <DeleteOutlineOutlinedIcon
-                onClick={() => setDeleteModal(true)}
+                 onClick={() => {
+                  setDeleteModal(true);
+                  setDeleteDocid(effect.docid);
+                }} // Open modal on delete
               />
             </div>
           </div>
@@ -102,11 +114,12 @@ const Effects = ({ categoryId }) => {
         </div>
       ))}
       <Tooltip content='Voeg een nieuw effect toe' width='200px' top='-40px' left='0px'>
-        <AddCircleOutlineOutlinedIcon className="plus-button" onClick={addEffect} />
+        <AddCircleOutlineOutlinedIcon className="plus-button plus-button-effects" onClick={addEffect} />
       </Tooltip>
       <ReactModal
         open={deleteModal}
         setOpen={setDeleteModal}
+        deleteFunction={deleteEffect}
         title="Weet je zeker dat je dit effect wilt verwijderen?"
         text="Deze actie kan niet ongedaan worden gemaakt."
       />

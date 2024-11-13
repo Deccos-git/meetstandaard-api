@@ -1,6 +1,6 @@
 import Modal from 'react-modal';
 
-const ReactModal = ({ open, setOpen, title, text }) => {
+const ReactModal = ({ open, setOpen, title, text, deleteFunction }) => {
 
     Modal.setAppElement('#root');
 
@@ -28,8 +28,9 @@ const ReactModal = ({ open, setOpen, title, text }) => {
         >
             <h2>{title}</h2>
             <p>{text}</p>
-            <div>
+            <div id='modal-buttons-container'>
                 <button onClick={closeModal}>Close</button>
+                <button onClick={deleteFunction}>Delete</button>
             </div>
         </Modal>
     )
