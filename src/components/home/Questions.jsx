@@ -37,6 +37,15 @@ const Questions = ({effectId}) => {
     });
   }
 
+  // Positive or negative handler
+  const posNegHandler = async (e) => {
+    const docid = e.target.dataset.docid
+
+    await updateDoc(doc(db, "questions", docid), {
+      posNeg: e.target.value
+    });
+  }
+
   // Delete question
   const deleteQuestion = async (e) => {
 
@@ -60,6 +69,12 @@ const Questions = ({effectId}) => {
               :
               <p className="effect-name-p">{question.name}</p>
             }
+            <div>
+              <select name="" id="" data-docid={question.docid} value={question.posNeg} onChange={posNegHandler}>
+                <option value="positive">Positief</option>
+                <option value="negative">Negatief</option>
+              </select>
+            </div>
             <div className="catergory-options-container" style={{ display: questionId === question.id ? 'flex' : 'none' }}>
               <ModeEditOutlineOutlinedIcon
                 onClick={() => (editQuestion === question.id ? setEditQuestion(null) : setEditQuestion(question.id))}

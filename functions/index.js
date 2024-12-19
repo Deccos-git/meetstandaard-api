@@ -79,7 +79,8 @@ export const database = functions.https.onRequest((request, response) => {
             return {
               id: doc.data().id,
               name: doc.data().name,
-              scale: '1-5'
+              scale: '1-5',
+              posNeg: doc.data().posNeg
             };
           })
         );

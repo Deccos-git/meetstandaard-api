@@ -12,8 +12,6 @@ const Topbar = () => {
     navigate(`/login`)
   }
 
-  console.log(auth.currentUser)
-
   return (
     <div id='topbar-container'>
         <img id='logo-topbar' src={Logo} alt='logo meetstandaard'/>
