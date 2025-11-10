@@ -265,3 +265,14 @@ main{
     color: white;
     font-size: 15px;
   }
+
+  #navigation-links{
+    display: flex;
+    gap: 20px;
+    cursor: pointer;
+  }
+
+  #navigation-links p{
+    font-size: 18px;
+    color: white;
+  }

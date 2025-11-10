@@ -1,4 +1,4 @@
-import 'dotenv/config';  // You don't need to import anything from dotenv, just load it
+import 'dotenv/config'; 
 import functions from "firebase-functions";
 import admin from 'firebase-admin';
 import cors from 'cors';
@@ -19,9 +19,11 @@ const corsHandler = cors({
   origin: [
     'http://localhost:3000',
     'http://localhost:3001',
+    'http://localhost:5173',
     'http://impactdashboard.deccos.nl',
     'http://staging.deccos.nl',
     'http://deccos.nl',
+    'https://alexanderimpactdashboard.nl',
     /\.deccos\.nl$/,
   ]
 });
