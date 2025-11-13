@@ -276,3 +276,7 @@ main{
     font-size: 18px;
     color: white;
   }
+
+  .data-effects-container{
+    margin-left: 20px;
+  }

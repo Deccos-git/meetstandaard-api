@@ -22,6 +22,7 @@ const corsHandler = cors({
     'http://localhost:5173',
     'http://impactdashboard.deccos.nl',
     'http://staging.deccos.nl',
+    'http://app.deccos.nl',
     'http://deccos.nl',
     'https://alexanderimpactdashboard.nl',
     /\.deccos\.nl$/,
