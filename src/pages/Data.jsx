@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import {
   addDoc,
   collection,
@@ -9,7 +9,9 @@ import {
   getDocs,
 } from 'firebase/firestore';
 import { useFirestore } from '../firebase/useFirestore';
-import { db } from '../firebase/config'; // adjust path if needed
+import { db } from '../firebase/config'; // Meetstandaard Firestore
+import { dbDeccos } from '../firebase/configDeccos';
+import { useFirestoreOrderBy } from '../firebase/useFirestoreDeccos';
 
 // ---------- Firestore Timestamp helpers ----------
 const isFsTs = v =>
@@ -39,49 +41,21 @@ const cellText = v => {
   return String(v);
 };
 
-const L = x => (Array.isArray(x) ? x : []);
-
-const latestByTime = (arr = []) => {
-  if (!arr.length) return null;
-  return [...arr]
-    .map(r => ({
-      ...r,
-      __t: tsToMillis(r.Timestamp || r.createdAt || r.updatedAt),
-    }))
-    .sort((a, b) => b.__t - a.__t)[0];
-};
-
 // =============== Component ===============
 const Data = () => {
-  const [data, setData] = useState([]);
+  const [selectedBenchmark, setSelectedBenchmark] = useState(null); // metadata from Deccos
+  const [rows, setRows] = useState([]); // table rows built from Deccos/Rows
+  const [dynamicCols, setDynamicCols] = useState([]); // columns from Deccos/Indicators
   const [loading, setLoading] = useState(false);
   const [saving, setSaving] = useState(false);
   const [err, setErr] = useState('');
 
-  // Firestore: existing datasets (for position + overview table)
+  // Firestore: existing datasets (for position + overview table) – Meetstandaard side
   const datasets = useFirestore('dataSets', 'position', 'asc') || [];
 
-  // Fetch data from Deccos Cloud Function
-  const fetchData = async () => {
-    setLoading(true);
-    setErr('');
-    try {
-      const res = await fetch(
-        'https://us-central1-deccos-app.cloudfunctions.net/benchmarkEndpoint',
-        {
-          headers: { Accept: 'application/json' },
-        }
-      );
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const json = await res.json();
-      setData(Array.isArray(json) ? json : []);
-    } catch (e) {
-      console.error(e);
-      setErr('Kon data niet ophalen.');
-    } finally {
-      setLoading(false);
-    }
-  };
+  // Firestore: Deccos Benchmarks (metadata)
+  const datasetsDeccos =
+    useFirestoreOrderBy('Benchmarks', 'position', 'asc') || [];
 
   // Left columns
   const fixedCols = [
@@ -92,83 +66,71 @@ const Data = () => {
     { key: 'Meetstandaard versie', label: 'Meetstandaard versie' },
   ];
 
-  // Build dynamic columns: for each effect, up to 4 indicators → header "Effect X → Vraag Y"
-  const dynamicCols = useMemo(() => {
-    const cols = [];
-    data.forEach(cat => {
-      L(cat.effects).forEach(effect => {
-        const inds = L(effect.indicators).slice(0, 4); // cap at 4
-        const padded = [...inds];
-        // pad to 4 for stable layout
-        for (let i = inds.length; i < 4; i++) {
-          padded.push({
-            id: `__dummy_${effect.id}_${i}`,
-            question: `Vraag ${i + 1}`,
-            __dummy: true,
-          });
-        }
-        padded.forEach((ind, i) => {
-          cols.push({
-            effectId: effect.id,
-            indicatorId: ind.id,
-            label: `${effect.name || 'Effect'} → ${
-              ind.question || `Vraag ${i + 1}`
-            }`,
-            __dummy: ind.__dummy,
-          });
-        });
-      });
-    });
-    return cols;
-  }, [data]);
+  // -------- Fetch benchmark data from Deccos Firestore --------
+  const fetchData = async () => {
+    setLoading(true);
+    setErr('');
 
-  // Build rows: one row per response instance (PersonaID + OrganisatieID + Timestamp + Meetmoment)
-  const rows = useMemo(() => {
-    const map = new Map();
-
-    const pushResp = (ind, r) => {
-      if (!r) return;
-
-      const personaId = r.Persona ?? r.PersonaID ?? '';
-      const orgId = r.CompagnyID ?? r.OrganisatieID ?? '';
-      const timestampRaw = r.Timestamp ?? r.createdAt ?? r.updatedAt ?? '';
-      const meetmoment = r.MomentPosition ?? r.MomentMeta ?? '';
-
-      const key = [personaId, orgId, tsToMillis(timestampRaw), meetmoment].join(
-        '|'
-      );
-
-      if (!map.has(key)) {
-        map.set(key, {
-          PersonaID: personaId,
-          OrganisatieID: orgId,
-          Timestamp: formatTs(timestampRaw),
-          TimestampRaw: timestampRaw, // for saving
-          Meetmoment: meetmoment,
-          'Meetstandaard versie':
-            r.MeetstandaardVersie ?? r.StandardVersion ?? 1,
-          cells: new Map(), // indicatorId -> value
-        });
+    try {
+      if (!datasetsDeccos || datasetsDeccos.length === 0) {
+        throw new Error('Geen benchmarks gevonden in Deccos database.');
       }
 
-      const row = map.get(key);
-      const prev = row.cells.get(ind?.id);
-      const cand = latestByTime([prev, r].filter(Boolean));
-      row.cells.set(ind?.id, cand?.Input ?? cand?.Value ?? '');
-    };
+      // 1) Pak de laatste benchmark
+      const latestBenchmark = datasetsDeccos[datasetsDeccos.length - 1];
+      setSelectedBenchmark(latestBenchmark);
 
-    data.forEach(cat => {
-      L(cat.effects).forEach(effect => {
-        L(effect.indicators).forEach(ind => {
-          L(ind.responses).forEach(r => pushResp(ind, r));
-        });
+      const benchmarkId = latestBenchmark.id;
+      if (!benchmarkId) throw new Error('Benchmark heeft geen ID.');
+
+      // 2) Haal rows op uit Deccos: Benchmarks/{id}/Rows
+      const rowsSnap = await getDocs(
+        collection(dbDeccos, 'Benchmarks', benchmarkId, 'Rows')
+      );
+      const rawRows = rowsSnap.docs.map(d => d.data());
+
+      // 3) Haal indicatoren op uit Deccos: Benchmarks/{id}/Indicators
+      const indSnap = await getDocs(
+        collection(dbDeccos, 'Benchmarks', benchmarkId, 'Indicators')
+      );
+      const indicators = indSnap.docs.map(d => d.data());
+
+      // 4) Bouw dynamicCols
+      const dynCols = indicators.map(ind => ({
+        effectId: ind.effectId,
+        indicatorId: ind.indicatorId,
+        label: ind.label,
+        __dummy: !!ind.isDummy,
+      }));
+      setDynamicCols(dynCols);
+
+      // 5) Bouw rows in het formaat dat de tabel / CSV verwacht
+      const tableRows = rawRows.map(r => {
+        const ts = r.timestamp;
+        const tsDate =
+          ts && typeof ts.toDate === 'function' ? ts.toDate() : ts || null;
+
+        return {
+          PersonaID: r.personaId || '',
+          OrganisatieID: r.orgId || '',
+          TimestampRaw: tsDate,
+          Timestamp: tsDate ? formatTs(tsDate) : '',
+          Meetmoment: r.meetmoment || '',
+          'Meetstandaard versie': r.meetstandardVersion || '',
+          cells: new Map(Object.entries(r.values || {})), // indicatorId -> value
+        };
       });
-    });
 
-    return [...map.values()];
-  }, [data]);
+      setRows(tableRows);
+    } catch (e) {
+      console.error(e);
+      setErr('Data ophalen is mislukt.');
+    } finally {
+      setLoading(false);
+    }
+  };
 
-  // Save data to Firestore: parent dataset doc + rows + indicators
+  // -------- Save data into Meetstandaard dataSets --------
   const saveData = async () => {
     if (!rows.length) return;
 
@@ -234,7 +196,7 @@ const Data = () => {
   const formatDatasetTimestamp = ds =>
     formatTs(ds.createdAt || ds.timestamp || ds.timstamp);
 
-  // Download CSV for a SAVED dataset (from Firestore)
+  // -------- Download CSV for a SAVED dataset (Meetstandaard dataSets) --------
   const downloadSavedDatasetCsv = async datasetId => {
     try {
       // Fetch rows
@@ -315,7 +277,7 @@ const Data = () => {
     <div>
       <h1>Datasets</h1>
 
-      {/* ===== Overview of saved datasets ===== */}
+      {/* ===== Overview of saved datasets (Meetstandaard dataSets) ===== */}
       <section style={{ marginBottom: 24 }}>
         <h2>Opgeslagen datasets</h2>
         {(!datasets || datasets.length === 0) ? (
@@ -407,20 +369,20 @@ const Data = () => {
       </section>
 
       {/* ===== Controls for fetching & saving current dataset ===== */}
-      {data.length === 0 && !loading && !err && (
+      {rows.length === 0 && !loading && !err && (
         <button onClick={fetchData}>Data ophalen</button>
       )}
       {loading && <p>Data ophalen…</p>}
       {err && <p style={{ color: 'crimson' }}>{err}</p>}
 
-      {data.length > 0 && !loading && !err && (
+      {rows.length > 0 && !loading && !err && (
         <button onClick={saveData} disabled={saving}>
           {saving ? 'Data opslaan…' : 'Data opslaan'}
         </button>
       )}
 
-      {/* ===== Current dataset table ===== */}
-      {data.length > 0 && (
+      {/* ===== Current dataset table (from Deccos Benchmarks) ===== */}
+      {rows.length > 0 && (
         <div
           style={{
             marginTop: 16,

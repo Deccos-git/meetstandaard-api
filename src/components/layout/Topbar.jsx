@@ -21,8 +21,6 @@ const Topbar = () => {
     await auth.signOut()
     navigate(`/login`)
   }
-  
-  console.log(auth.currentUser);
 
   return (
     <div id='topbar-container'>
