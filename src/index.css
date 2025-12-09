@@ -280,3 +280,7 @@ main{
   .data-effects-container{
     margin-left: 20px;
   }
+
+  #home-container h1{
+    text-align: center;
+  }

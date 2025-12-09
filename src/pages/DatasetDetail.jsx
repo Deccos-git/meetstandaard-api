@@ -100,91 +100,106 @@ const DataSetDetail = () => {
       }));
   }, [indicators]);
 
-  // === Benchmarks per effect: growth between first & last meetmoment ===
-  const effectBenchmarks = useMemo(() => {
-    if (!rows.length || !indicators.length) return [];
+  // === Benchmarks per effect: growth between first & last meetmoment (5-puntsschaal) ===
+const effectBenchmarks = useMemo(() => {
+  if (!rows.length || !indicators.length) return [];
 
-    // Map: effectId -> { effectId, effectName, indicatorIds: [] }
-    const effectMap = new Map();
+  const SCALE_MIN = 1;
+  const SCALE_MAX = 5;
+  const SCALE_RANGE = SCALE_MAX - SCALE_MIN; // 4
 
-    indicators.forEach(ind => {
-      if (ind.isDummy) return;
-      const effectId = ind.effectId;
-      if (!effectId) return;
+  const clampToScale = v =>
+    Math.min(SCALE_MAX, Math.max(SCALE_MIN, v));
 
-      // Try to derive effectName from label: "Effectnaam → Vraag ..."
-      let effectName = effectId;
-      if (ind.label && typeof ind.label === 'string') {
-        const parts = ind.label.split('→');
-        if (parts.length > 1) {
-          effectName = parts[0].trim();
-        }
+  // Map: effectId -> { effectId, effectName, indicatorIds: [] }
+  const effectMap = new Map();
+
+  indicators.forEach(ind => {
+    if (ind.isDummy) return;
+    const effectId = ind.effectId;
+    if (!effectId) return;
+
+    // Try to derive effectName from label: "Effectnaam → Vraag ..."
+    let effectName = effectId;
+    if (ind.label && typeof ind.label === 'string') {
+      const parts = ind.label.split('→');
+      if (parts.length > 1) {
+        effectName = parts[0].trim();
       }
-
-      if (!effectMap.has(effectId)) {
-        effectMap.set(effectId, {
-          effectId,
-          effectName,
-          indicatorIds: [],
-        });
-      }
-      effectMap.get(effectId).indicatorIds.push(ind.indicatorId);
-    });
-
-    const results = [];
-
-    for (const eff of effectMap.values()) {
-      const byMoment = new Map(); // moment -> [values]
-
-      rows.forEach(row => {
-        const mRaw = row.meetmoment;
-        if (mRaw == null) return;
-        const m = Number(mRaw);
-        if (Number.isNaN(m)) return;
-
-        eff.indicatorIds.forEach(indId => {
-          const raw = row.values?.[indId];
-          if (raw == null || raw === '') return;
-
-          const num = Number(raw);
-          if (Number.isNaN(num)) return;
-
-          if (!byMoment.has(m)) byMoment.set(m, []);
-          byMoment.get(m).push(num);
-        });
-      });
-
-      if (byMoment.size === 0) continue;
-
-      const moments = [...byMoment.keys()].sort((a, b) => a - b);
-      const firstMoment = moments[0];
-      const lastMoment = moments[moments.length - 1];
-
-      const avg = arr =>
-        !arr || !arr.length
-          ? 0
-          : arr.reduce((sum, v) => sum + v, 0) / arr.length;
-
-      const firstVal = avg(byMoment.get(firstMoment));
-      const lastVal = avg(byMoment.get(lastMoment));
-      const growthAbs = lastVal - firstVal;
-      const growthPct =
-        firstVal === 0 ? null : (growthAbs / Math.abs(firstVal)) * 100;
-
-      results.push({
-        effectId: eff.effectId,
-        effectName: eff.effectName,
-        firstMoment,
-        lastMoment,
-        firstVal,
-        lastVal,
-        growthAbs,
-        growthPct,
-      });
     }
 
-    return results;
-  }, [rows, indicators]);
+    if (!effectMap.has(effectId)) {
+      effectMap.set(effectId, {
+        effectId,
+        effectName,
+        indicatorIds: [],
+      });
+    }
+    effectMap.get(effectId).indicatorIds.push(ind.indicatorId);
+  });
+
+  const results = [];
+
+  for (const eff of effectMap.values()) {
+    const byMoment = new Map(); // moment -> [values on 1–5 scale]
+
+    rows.forEach(row => {
+      const mRaw = row.meetmoment;
+      if (mRaw == null) return;
+      const m = Number(mRaw);
+      if (Number.isNaN(m)) return;
+
+      eff.indicatorIds.forEach(indId => {
+        const raw = row.values?.[indId];
+        if (raw == null || raw === '') return;
+
+        const num = Number(raw);
+        if (Number.isNaN(num)) return;
+
+        // 👉 enforce 5-puntsschaal hier
+        const scaled = clampToScale(num);
+
+        if (!byMoment.has(m)) byMoment.set(m, []);
+        byMoment.get(m).push(scaled);
+      });
+    });
+
+    if (byMoment.size === 0) continue;
+
+    const moments = [...byMoment.keys()].sort((a, b) => a - b);
+    const firstMoment = moments[0];
+    const lastMoment = moments[moments.length - 1];
+
+    const avg = arr =>
+      !arr || !arr.length
+        ? 0
+        : arr.reduce((sum, v) => sum + v, 0) / arr.length;
+
+    const firstVal = avg(byMoment.get(firstMoment));
+    const lastVal = avg(byMoment.get(lastMoment));
+    const growthAbs = lastVal - firstVal;
+
+    // 👉 Groei als % van de volledige 5-puntsschaal (1 → 5 = 100%)
+    const growthPct =
+      SCALE_RANGE <= 0
+        ? null
+        : (growthAbs / SCALE_RANGE) * 100;
+
+    results.push({
+      effectId: eff.effectId,
+      effectName: eff.effectName,
+      firstMoment,
+      lastMoment,
+      firstVal,
+      lastVal,
+      growthAbs,
+      growthPct,
+    });
+  }
+
+  return results;
+}, [rows, indicators]);
+
 
   if (loading) return <p>Dataset wordt geladen…</p>;
   if (err) return <p style={{ color: 'crimson' }}>{err}</p>;

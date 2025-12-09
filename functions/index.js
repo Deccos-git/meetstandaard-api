@@ -3,6 +3,7 @@ import functions from "firebase-functions";
 import admin from 'firebase-admin';
 import cors from 'cors';
 import serviceAccount from './serviceAcountSecretKey.json' assert { type: 'json' };
+import benchmarks from './benchmarks.js';
 
 // Initialize firebase
 admin.initializeApp({
@@ -99,6 +100,28 @@ export const database = functions.https.onRequest((request, response) => {
     } catch (error) {
       console.log(error);
       response.status(500).send('Error fetching data');
+    }
+  });
+});
+
+// Benchmark endpoint
+export const benchmark = functions.https.onRequest((request, response) => {
+  corsHandler(request, response, async () => {
+    try {
+      if (request.method !== 'GET') {
+        return response.status(405).send('Method Not Allowed');
+      }
+
+      const benchmarksData = await benchmarks({ firestore });
+
+      if (!benchmarksData) {
+        return response.status(404).json({ error: 'No datasets found' });
+      }
+
+      return response.status(200).json(benchmarksData);
+    } catch (error) {
+      console.error('Error fetching benchmarks:', error);
+      return response.status(500).send('Error fetching data');
     }
   });
 });

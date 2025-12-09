@@ -1,8 +1,18 @@
 import Logo from '../../assets/logo-meetstandaard-alt.svg'
 import { useNavigate } from "react-router-dom";
 import { auth } from '../../firebase/config';
+import { useEffect, useState } from 'react';
 
 const Topbar = () => {
+  const [isAuth, setIsAuth] = useState(false);
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      setIsAuth(!!user);
+    });
+
+    return () => unsubscribe();
+  }, [auth]);
 
   // Hooks
   const navigate = useNavigate();
@@ -11,6 +21,8 @@ const Topbar = () => {
     await auth.signOut()
     navigate(`/login`)
   }
+  
+  console.log(auth.currentUser);
 
   return (
     <div id='topbar-container'>
