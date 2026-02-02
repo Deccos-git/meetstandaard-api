@@ -284,3 +284,113 @@ main{
   #home-container h1{
     text-align: center;
   }
+
+  /* ---------------- MultiSelectDropdown (Questions) ---------------- */
+
+.ms-root{
+  position: relative;
+  width: 100%;
+}
+
+.ms-trigger{
+  width: 100%;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 0px 10px;            /* match #questions-container select margin */
+  font-size: 14px;              /* match selects */
+  font-family: "interstate", sans-serif;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 22px;
+}
+
+.ms-trigger:focus{
+  outline: none;
+}
+
+.ms-placeholder{
+  opacity: 0.6;
+}
+
+.ms-value{
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.ms-chip{
+  font-size: 12px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid #e7e7e7;
+  background: #f4f4f4;
+}
+
+.ms-more{
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+.ms-actions{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ms-clear{
+  font-size: 12px;
+  opacity: 0.8;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.ms-caret{
+  opacity: 0.7;
+  font-size: 12px;
+}
+
+.ms-panel{
+  position: absolute;
+  z-index: 999;
+  top: calc(100% + 8px);
+  left: 10px;                    /* aligns with trigger padding */
+  right: 10px;                   /* aligns with trigger padding */
+  background: white;
+  border: 1px solid #e7e7e7;
+  border-radius: 5px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.10);
+  max-height: 260px;
+  overflow: auto;
+  padding: 6px;
+  width: 200px;
+}
+
+.ms-option{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 8px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.ms-option:hover{
+  background: #f4f4f4;
+}
+
+.ms-option input{
+  margin: 0;
+  width: 15px !important;
+}
+
+.ms-option-checked{
+  background: rgba(249, 176, 59, 0.18); /* accent tint */
+}
+
+.ms-option-checked:hover{
+  background: rgba(249, 176, 59, 0.24);
+}
+

@@ -87,7 +87,7 @@ const Standard = () => {
                       onClick={() => {
                         setDeleteModal(true);
                         setDeleteDocid(cat.docid);
-                      }} // Open modal on delete
+                      }}
                     />
                   </div>
                 </div>
