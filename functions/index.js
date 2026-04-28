@@ -70,6 +70,7 @@ export const database = functions.https.onRequest((request, response) => {
             return {
               id: effectData.id,
               name: effectData.name,
+              description: effectData.description || "",
 
               // ✅ include sectors on effect-level (multiselect)
               sectors: Array.isArray(effectData.sectors) ? effectData.sectors : [],

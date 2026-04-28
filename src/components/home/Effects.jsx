@@ -61,6 +61,7 @@ const Effects = ({ categoryId }) => {
     await addDoc(collection(db, "effects"), {
       id: uuidv4(),
       name: "Nieuw effect",
+      description: "",
       categorie: categoryId,
       position: effects.length + 1,
       sectors: [], // ✅ sector multiselect lives here
@@ -73,6 +74,15 @@ const Effects = ({ categoryId }) => {
 
     await updateDoc(doc(db, "effects", docid), {
       name: e.target.value,
+    });
+  };
+
+  // Update effect description
+  const updateEffectDescription = async (e) => {
+    const docid = e.target.dataset.docid;
+
+    await updateDoc(doc(db, "effects", docid), {
+      description: e.target.value,
     });
   };
 
@@ -115,6 +125,21 @@ const Effects = ({ categoryId }) => {
               ) : (
                 <p className="effect-name-p">{effect.name}</p>
               )}
+
+              {/* ✅ Description column */}
+              <div
+                style={{ width: "100%", marginRight: 10 }}
+                onClick={(e) => e.stopPropagation()}
+              >
+                <textarea
+                  className="effect-description-textarea"
+                  defaultValue={effect.description || ""}
+                  data-docid={effect.docid}
+                  onBlur={updateEffectDescription}
+                  placeholder="Beschrijving"
+                  rows={2}
+                />
+              </div>
 
               {/* ✅ Sectoren on effect-level (only dropdown) */}
               <div style={{ width: "100%" }} onClick={(e) => e.stopPropagation()}>
