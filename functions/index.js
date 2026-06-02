@@ -4,6 +4,7 @@ import admin from "firebase-admin";
 import cors from "cors";
 import serviceAccount from "./serviceAcountSecretKey.json" assert { type: "json" };
 import benchmarks from "./benchmarks.js";
+import { handleArbeidsparticipatie } from "./arbeidsparticipatie.js";
 
 // Initialize firebase
 admin.initializeApp({
@@ -116,6 +117,32 @@ export const database = functions.https.onRequest((request, response) => {
       return response.status(200).json(categories);
     } catch (error) {
       console.log(error);
+      return response.status(500).send("Error fetching data");
+    }
+  });
+});
+
+// Open CORS for the public, read-only reference-data endpoint. No credentials are
+// involved, so `*` is safe and avoids app-origin whitelist gaps (e.g. apex domains).
+// This guarantees Access-Control-Allow-Origin is present on the actual GET response,
+// not just the OPTIONS preflight.
+const publicCorsHandler = cors({ origin: "*" });
+
+// Arbeidsparticipatie (participatieladder) parameters endpoint.
+// Read-only, public, versioned reference data. Routes:
+//   GET .../api/v1/arbeidsparticipatie/parameters            (latest)
+//   GET .../api/v1/arbeidsparticipatie/parameters/{version}  (pinned)
+//   GET .../api/v1/arbeidsparticipatie/versions              (list)
+export const arbeidsparticipatie = functions.https.onRequest((request, response) => {
+  publicCorsHandler(request, response, async () => {
+    try {
+      if (request.method !== "GET") {
+        return response.status(405).send("Method Not Allowed");
+      }
+
+      await handleArbeidsparticipatie(firestore, request, response);
+    } catch (error) {
+      console.error("Error fetching arbeidsparticipatie parameters:", error);
       return response.status(500).send("Error fetching data");
     }
   });

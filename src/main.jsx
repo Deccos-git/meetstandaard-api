@@ -8,6 +8,7 @@ import Login from './pages/Login';
 import Standard from './pages/Standard';
 import Data from './pages/Data';
 import DataSetDetail from './pages/DataSetDetail';
+import Participatieladder from './pages/Participatieladder';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -18,6 +19,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path="login" element={<Login />} />
           <Route path="standard" element={<Standard />} />
           <Route path="data" element={<Data />} />
+          <Route path="participatieladder" element={<Participatieladder />} />
           <Route path="datasets/:datasetId" element={<DataSetDetail />} />
         </Route>
       </Routes>

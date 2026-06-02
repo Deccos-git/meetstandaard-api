@@ -26,7 +26,8 @@ const Topbar = () => {
     <div id='topbar-container'>
         <img id='logo-topbar' src={Logo} alt='logo meetstandaard'/>
         <div id='navigation-links'>
-          <p onClick={() => navigate(`/standard`)}>Standaard</p>
+          <p onClick={() => navigate(`/standard`)}>Effecten</p>
+          <p onClick={() => navigate(`/participatieladder`)}>Participatieladder</p>
           <p onClick={() => navigate(`/data`)}>Datasets</p>
         </div>
         {auth.currentUser ? 
