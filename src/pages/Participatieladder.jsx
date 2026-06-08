@@ -37,6 +37,7 @@ const tableWrap = {
   overflowX: 'auto',
 };
 const tableStyle = { width: '100%', borderCollapse: 'collapse' };
+const srcNote = { color: '#555', fontSize: 13, margin: '4px 0 0' };
 
 const Participatieladder = () => {
   const [params, setParams] = useState(null);
@@ -67,6 +68,26 @@ const Participatieladder = () => {
   if (!params) return null;
 
   const bands = params.options?.hoursBand || [];
+  const bronnenById = params.bronnen || {};
+
+  // Render a list of bron-id's as a comma-separated set of links (or plain text
+  // when a bron has no public URL).
+  const bronLinks = ids => {
+    const items = (ids || []).map(id => bronnenById[id]).filter(Boolean);
+    if (items.length === 0) return null;
+    return items.map((b, i) => (
+      <span key={b.id}>
+        {i > 0 && ', '}
+        {b.url ? (
+          <a href={b.url} target="_blank" rel="noopener noreferrer">
+            {b.publisher}
+          </a>
+        ) : (
+          <span title={b.note || ''}>{b.publisher}</span>
+        )}
+      </span>
+    ));
+  };
 
   return (
     <div>
@@ -78,21 +99,32 @@ const Participatieladder = () => {
         Bron: {params.meta?.source}. Bijgewerkt: {params.meta?.updatedAt}.
       </p>
 
-      {/* Ladder labels */}
+      {/* Ladder levels with valuation + bronnen */}
       <h2>Treden van de participatieladder</h2>
       <div style={tableWrap}>
         <table style={tableStyle}>
           <thead>
             <tr>
               <th style={th}>Trede</th>
+              <th style={th}>Niveau</th>
               <th style={th}>Omschrijving</th>
+              <th style={{ ...th, textAlign: 'right' }}>Waardering / jaar</th>
+              <th style={th}>Bronnen</th>
             </tr>
           </thead>
           <tbody>
-            {Object.entries(params.ladderLabels || {}).map(([k, v]) => (
-              <tr key={k}>
-                <td style={td}>{k}</td>
-                <td style={td}>{v}</td>
+            {(params.ladderLevels || []).map(lvl => (
+              <tr key={lvl.trede}>
+                <td style={td}>{lvl.trede}</td>
+                <td style={td}>{lvl.label}</td>
+                <td style={td}>
+                  {lvl.description}
+                  {lvl.rationale && (
+                    <div style={{ color: '#666', fontSize: 13, marginTop: 4 }}>{lvl.rationale}</div>
+                  )}
+                </td>
+                <td style={tdNum}>{euro(lvl.valuePerYear)}</td>
+                <td style={td}>{bronLinks(lvl.sources)}</td>
               </tr>
             ))}
           </tbody>
@@ -101,6 +133,7 @@ const Participatieladder = () => {
 
       {/* Income table */}
       <h2>Bruto jaarinkomen per opleiding en uren per week</h2>
+      <p style={srcNote}>Bron: {bronLinks(params.sourceRefs?.incomeByEducationAndHoursBand)}</p>
       <div style={tableWrap}>
         <table style={tableStyle}>
           <thead>
@@ -153,6 +186,7 @@ const Participatieladder = () => {
             <tr>
               <th style={th}>Post</th>
               <th style={{ ...th, textAlign: 'right' }}>Bedrag</th>
+              <th style={th}>Bron</th>
             </tr>
           </thead>
           <tbody>
@@ -160,19 +194,23 @@ const Participatieladder = () => {
               <tr key={k}>
                 <td style={td}>{k}</td>
                 <td style={tdNum}>{euro(v)}</td>
+                <td style={td}>{bronLinks(params.sourceRefs?.benefitAmountPerYear?.[k])}</td>
               </tr>
             ))}
             <tr>
               <td style={td}>Uitvoeringskosten bijstand</td>
               <td style={tdNum}>{euro(params.bijstandUitvoeringskostenPerYear)}</td>
+              <td style={td}>{bronLinks(params.sourceRefs?.bijstandUitvoeringskostenPerYear)}</td>
             </tr>
             <tr>
               <td style={td}>Vrijwilligerswaarde per uur</td>
               <td style={tdNum}>{euro(params.volunteerValuePerHour)}</td>
+              <td style={td} />
             </tr>
             <tr>
               <td style={td}>Weken per jaar</td>
               <td style={tdNum}>{params.weeksPerYear}</td>
+              <td style={td} />
             </tr>
           </tbody>
         </table>
@@ -205,15 +243,29 @@ const Participatieladder = () => {
         <table style={tableStyle}>
           <thead>
             <tr>
-              <th style={th}>Onderwerp</th>
               <th style={th}>Bron</th>
+              <th style={th}>Uitgever</th>
+              <th style={th}>Jaar</th>
+              <th style={th}>Link</th>
             </tr>
           </thead>
           <tbody>
-            {Object.entries(params.sources || {}).map(([k, v]) => (
-              <tr key={k}>
-                <td style={td}>{k}</td>
-                <td style={td}>{v}</td>
+            {Object.values(bronnenById).map(b => (
+              <tr key={b.id}>
+                <td style={td}>
+                  {b.title}
+                  {b.dataset && <span style={{ color: '#888' }}> (dataset {b.dataset})</span>}
+                  {b.note && <div style={{ color: '#888', fontSize: 13 }}>{b.note}</div>}
+                </td>
+                <td style={td}>{b.publisher}</td>
+                <td style={td}>{b.year || ''}</td>
+                <td style={td}>
+                  {b.url ? (
+                    <a href={b.url} target="_blank" rel="noopener noreferrer">Open</a>
+                  ) : (
+                    '—'
+                  )}
+                </td>
               </tr>
             ))}
           </tbody>

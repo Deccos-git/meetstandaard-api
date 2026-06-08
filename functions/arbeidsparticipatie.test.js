@@ -73,3 +73,34 @@ test("contract key strings match exactly", () => {
   assert.ok(p.bijstandUitvoeringskostenPerYear < 0);
   assert.equal(p.taxBrackets[p.taxBrackets.length - 1].upTo, null);
 });
+
+// Every bron reference must resolve to a defined entry in `bronnen`, otherwise a
+// frontend would render dangling citations.
+test("every bron reference resolves to a bronnen entry", () => {
+  const p = PARAMETERS_2026_1;
+  const known = new Set(Object.keys(p.bronnen));
+
+  // bronnen entries are self-consistent (key === id).
+  for (const [key, b] of Object.entries(p.bronnen)) {
+    assert.equal(key, b.id, `bronnen key ${key} must match its id`);
+  }
+
+  const refs = [];
+  for (const lvl of p.ladderLevels) refs.push(...lvl.sources);
+  refs.push(...p.sourceRefs.incomeByEducationAndHoursBand);
+  refs.push(...p.sourceRefs.bijstandUitvoeringskostenPerYear);
+  for (const ids of Object.values(p.sourceRefs.benefitAmountPerYear)) refs.push(...ids);
+
+  for (const id of refs) {
+    assert.ok(known.has(id), `unknown bron id referenced: ${id}`);
+  }
+});
+
+// Ladder breakdowns, when present, must sum to the stated valuation.
+test("ladder breakdowns sum to the trede valuation", () => {
+  for (const lvl of PARAMETERS_2026_1.ladderLevels) {
+    if (!lvl.breakdown) continue;
+    const sum = Object.values(lvl.breakdown).reduce((a, b) => a + b, 0);
+    assert.equal(sum, lvl.valuePerYear, `trede ${lvl.trede} breakdown must sum to valuePerYear`);
+  }
+});

@@ -2,7 +2,7 @@ import { useFirestore } from "../firebase/useFirestore";
 import { useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
-import { db, auth } from "../firebase/config";
+import { db } from "../firebase/config";
 import { addDoc, collection, updateDoc, doc, deleteDoc } from "firebase/firestore";
 import Effects from "../components/home/Effects";
 import Tooltip from "../components/common/Tooltip";
@@ -59,46 +59,42 @@ const Standard = () => {
   return (
     <div>
       <h1>Standaard</h1>
-      {auth.currentUser && (
-        <>
-          <div className="tab-container">
-            {categories &&
-              categories.map((cat, index) => (
-                <div
-                  key={index}
-                  className={`${categoryId === cat.id ? "active" : "tablinks"}`}
-                  onClick={() => setCategoryId(cat.id)}
-                >
-                  {editCategory === cat.id ? (
-                    <input
-                      type="text"
-                      defaultValue={cat.name}
-                      data-docid={cat.docid}
-                      onChange={updateCategory}
-                    />
-                  ) : (
-                    <p>{cat.name}</p>
-                  )}
-                  <div className="catergory-options-container" style={{ display: categoryId === cat.id ? 'flex' : 'none' }}>
-                    <ModeEditOutlineOutlinedIcon
-                      onClick={() => (editCategory === cat.id ? setEditCategory(null) : setEditCategory(cat.id))}
-                    />
-                    <DeleteOutlineOutlinedIcon
-                      onClick={() => {
-                        setDeleteModal(true);
-                        setDeleteDocid(cat.docid);
-                      }}
-                    />
-                  </div>
-                </div>
-              ))}
-            <Tooltip content="Voeg een nieuwe categorie toe" width="200px" top="-40px" left="0px">
-              <AddCircleOutlineOutlinedIcon className="plus-button" onClick={addCategory} />
-            </Tooltip>
-          </div>
-          <Effects categoryId={categoryId} />
-        </>
-      )}
+      <div className="tab-container">
+        {categories &&
+          categories.map((cat, index) => (
+            <div
+              key={index}
+              className={`${categoryId === cat.id ? "active" : "tablinks"}`}
+              onClick={() => setCategoryId(cat.id)}
+            >
+              {editCategory === cat.id ? (
+                <input
+                  type="text"
+                  defaultValue={cat.name}
+                  data-docid={cat.docid}
+                  onChange={updateCategory}
+                />
+              ) : (
+                <p>{cat.name}</p>
+              )}
+              <div className="catergory-options-container" style={{ display: categoryId === cat.id ? 'flex' : 'none' }}>
+                <ModeEditOutlineOutlinedIcon
+                  onClick={() => (editCategory === cat.id ? setEditCategory(null) : setEditCategory(cat.id))}
+                />
+                <DeleteOutlineOutlinedIcon
+                  onClick={() => {
+                    setDeleteModal(true);
+                    setDeleteDocid(cat.docid);
+                  }}
+                />
+              </div>
+            </div>
+          ))}
+        <Tooltip content="Voeg een nieuwe categorie toe" width="200px" top="-40px" left="0px">
+          <AddCircleOutlineOutlinedIcon className="plus-button" onClick={addCategory} />
+        </Tooltip>
+      </div>
+      <Effects categoryId={categoryId} />
       <ReactModal
         open={deleteModal}
         setOpen={setDeleteModal}

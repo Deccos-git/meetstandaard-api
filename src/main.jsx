@@ -9,18 +9,21 @@ import Standard from './pages/Standard';
 import Data from './pages/Data';
 import DataSetDetail from './pages/DataSetDetail';
 import Participatieladder from './pages/Participatieladder';
+import ProtectedRoute from './components/auth/ProtectedRoute';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Router>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
           <Route path="login" element={<Login />} />
-          <Route path="standard" element={<Standard />} />
-          <Route path="data" element={<Data />} />
-          <Route path="participatieladder" element={<Participatieladder />} />
-          <Route path="datasets/:datasetId" element={<DataSetDetail />} />
+          <Route element={<ProtectedRoute />}>
+            <Route index element={<Home />} />
+            <Route path="standard" element={<Standard />} />
+            <Route path="data" element={<Data />} />
+            <Route path="participatieladder" element={<Participatieladder />} />
+            <Route path="datasets/:datasetId" element={<DataSetDetail />} />
+          </Route>
         </Route>
       </Routes>
     </Router>
