@@ -189,6 +189,56 @@ main{
     border-right: 1px solid #f9b03b;
 }
 
+#scores-container{
+    margin: 0px 0px 20px 30px;
+    border-bottom: 1px solid #e7e7e7;
+    border-left: 1px solid #e7e7e7;
+    border-right: 1px solid #e7e7e7;
+}
+
+.scores-header,
+#score-row{
+    display: grid;
+    grid-template-columns: 40px 2fr 110px 2fr;
+    gap: 10px;
+    align-items: start;
+    padding: 10px 20px;
+    border-bottom: 1px solid #f4f4f4;
+}
+
+.scores-header{
+    background: #f9f9f9;
+}
+
+.scores-header p{
+    font-size: 12px;
+    font-weight: bold;
+    margin: 0px;
+}
+
+.score-number{
+    font-size: 14px;
+    margin: 0px;
+    padding-top: 6px;
+}
+
+.score-situation-textarea,
+.score-onderbouwing-textarea,
+.score-monetary-input{
+    width: 100%;
+    padding: 6px 8px;
+    font-family: "interstate", sans-serif;
+    font-size: 13px;
+    border: 1px solid #e7e7e7;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.score-situation-textarea,
+.score-onderbouwing-textarea{
+    resize: vertical;
+}
+
 .tooltip-container {
     position: relative;
     display: inline-block;

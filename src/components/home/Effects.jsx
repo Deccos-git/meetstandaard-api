@@ -13,8 +13,10 @@ import { db } from "../../firebase/config";
 import { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import Questions from "./Questions";
+import Scores from "./Scores";
 import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
 import ArrowDropDownCircleOutlinedIcon from "@mui/icons-material/ArrowDropDownCircleOutlined";
+import EuroOutlinedIcon from "@mui/icons-material/EuroOutlined";
 import Tooltip from "../common/Tooltip";
 import ModeEditOutlineOutlinedIcon from "@mui/icons-material/ModeEditOutlineOutlined";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
@@ -30,6 +32,7 @@ const Effects = ({ categoryId }) => {
   // State
   const [effects, setEffects] = useState([]);
   const [displayQuestions, setDisplayQuestions] = useState(null);
+  const [displayScores, setDisplayScores] = useState(null);
   const [effectId, setEffectId] = useState(null);
   const [editEffect, setEditEffect] = useState(null);
   const [deleteModal, setDeleteModal] = useState(false);
@@ -65,6 +68,7 @@ const Effects = ({ categoryId }) => {
       categorie: categoryId,
       position: effects.length + 1,
       sectors: [], // ✅ sector multiselect lives here
+      scores: [], // ✅ per-score monetarisering rows (filled via Scores editor)
     });
   };
 
@@ -102,6 +106,11 @@ const Effects = ({ categoryId }) => {
   // Toggle the display of questions for the specific effect
   const toggleQuestions = (id) => {
     setDisplayQuestions((prev) => (prev === id ? null : id));
+  };
+
+  // Toggle the display of monetarisering scores for the specific effect
+  const toggleScores = (id) => {
+    setDisplayScores((prev) => (prev === id ? null : id));
   };
 
   return (
@@ -157,6 +166,9 @@ const Effects = ({ categoryId }) => {
                 onClick={(e) => e.stopPropagation()}
               >
                 <ArrowDropDownCircleOutlinedIcon onClick={() => toggleQuestions(effect.id)} />
+                <Tooltip content="Monetarisering / scores" width="200px" top="-40px" left="0px">
+                  <EuroOutlinedIcon onClick={() => toggleScores(effect.id)} />
+                </Tooltip>
                 <ModeEditOutlineOutlinedIcon
                   onClick={() =>
                     editEffect === effect.id ? setEditEffect(null) : setEditEffect(effect.id)
@@ -170,6 +182,10 @@ const Effects = ({ categoryId }) => {
                 />
               </div>
             </div>
+
+            {displayScores === effect.id && (
+              <Scores docid={effect.docid} scores={effect.scores} />
+            )}
 
             {displayQuestions === effect.id && <Questions effectId={effect.id} />}
           </div>

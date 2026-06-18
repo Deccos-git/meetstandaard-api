@@ -76,6 +76,11 @@ export const database = functions.https.onRequest((request, response) => {
               // ✅ include sectors on effect-level (multiselect)
               sectors: Array.isArray(effectData.sectors) ? effectData.sectors : [],
 
+              // ✅ monetarisering: per-score situation + monetary value
+              // (columns "Score afgerond", "Situatieomschrijving per score",
+              //  "Monetaire waarde", "Onderbouwing monetarisering")
+              scores: Array.isArray(effectData.scores) ? effectData.scores : [],
+
               questions,
             };
           })
