@@ -5,6 +5,7 @@ import cors from "cors";
 import serviceAccount from "./serviceAcountSecretKey.json" assert { type: "json" };
 import benchmarks from "./benchmarks.js";
 import { handleArbeidsparticipatie } from "./arbeidsparticipatie.js";
+import { handleMonetarisering } from "./monetarisering.js";
 
 // Initialize firebase
 admin.initializeApp({
@@ -148,6 +149,28 @@ export const arbeidsparticipatie = functions.https.onRequest((request, response)
       await handleArbeidsparticipatie(firestore, request, response);
     } catch (error) {
       console.error("Error fetching arbeidsparticipatie parameters:", error);
+      return response.status(500).send("Error fetching data");
+    }
+  });
+});
+
+// Monetarisering onderbouwing endpoint.
+// Read-only, public, versioned reference data: per effect en per score de
+// volledige onderbouwing van de monetaire waardering (literatuur, financiële
+// opbouw per kostencomponent, aannames en bronnen). Routes:
+//   GET .../api/v1/monetarisering/onderbouwing            (latest)
+//   GET .../api/v1/monetarisering/onderbouwing/{version}  (pinned)
+//   GET .../api/v1/monetarisering/versions                (list)
+export const monetarisering = functions.https.onRequest((request, response) => {
+  publicCorsHandler(request, response, async () => {
+    try {
+      if (request.method !== "GET") {
+        return response.status(405).send("Method Not Allowed");
+      }
+
+      await handleMonetarisering(firestore, request, response);
+    } catch (error) {
+      console.error("Error fetching monetarisering onderbouwing:", error);
       return response.status(500).send("Error fetching data");
     }
   });
