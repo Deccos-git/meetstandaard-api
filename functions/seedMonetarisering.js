@@ -13,7 +13,7 @@
  */
 
 import admin from "firebase-admin";
-import serviceAccount from "./serviceAcountSecretKey.json" assert { type: "json" };
+import serviceAccount from "./serviceAcountSecretKey.json" with { type: "json" };
 import { MONETARISERING_1_0 } from "./monetarisering.js";
 
 admin.initializeApp({

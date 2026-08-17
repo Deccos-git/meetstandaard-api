@@ -1,6 +1,6 @@
 import { handleVersionedResource, sendCached, sendError } from "./versionedResource.js";
-import energiearmoede09 from "./data/meetstandaard-energiearmoede-0.9.json" assert { type: "json" };
-import milieuCirculariteit09 from "./data/interventiebibliotheek-milieu-circulariteit-0.9.json" assert { type: "json" };
+import energiearmoede09 from "./data/meetstandaard-energiearmoede-0.9.json" with { type: "json" };
+import milieuCirculariteit09 from "./data/interventiebibliotheek-milieu-circulariteit-0.9.json" with { type: "json" };
 
 // The published standaarden, each served as one versioned document per version.
 //

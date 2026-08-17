@@ -2,7 +2,7 @@ import "dotenv/config";
 import functions from "firebase-functions";
 import admin from "firebase-admin";
 import cors from "cors";
-import serviceAccount from "./serviceAcountSecretKey.json" assert { type: "json" };
+import serviceAccount from "./serviceAcountSecretKey.json" with { type: "json" };
 import benchmarks from "./benchmarks.js";
 import { handleArbeidsparticipatie } from "./arbeidsparticipatie.js";
 import { handleMonetarisering } from "./monetarisering.js";

@@ -152,6 +152,33 @@ The workbook is the source of truth. `functions/data/*.json` is generated, and t
 
 ---
 
+## deploy-import-assertions-break-on-node-22
+
+**Trigger:** raising the Cloud Functions runtime, or any Node major upgrade.
+
+**Incident (2026-08-17):** the deploy warned that Node.js 20 is decommissioned on 2026-10-30, so `engines.node` went to `22`. Node 22 does not deprecate `import x from "./y.json" assert { type: "json" }` — it **removed** it. The old syntax is a hard `SyntaxError` at module load, so every function would have failed to start. Eight files used it, `meetstandaard.js` among them.
+
+Node 20 only *warns* about it, which is exactly why it survived that long:
+
+```
+(node:79824) V8: 'assert' is deprecated in import statements ... use 'with' instead
+```
+
+✅ The fix is a one-word swap, and `with` works on Node 18.20+, 20 and 22 — so it is safe to make before the runtime moves:
+```js
+import doc from "./data/document.json" with { type: "json" };
+```
+
+**The lesson is the verification order.** A runtime bump is not done when the deploy succeeds — the container builds fine and fails at *load*, per request. Run the suite on the target runtime **before** deploying:
+```bash
+"$HOME/.nvm/versions/node/v22.14.0/bin/node" --test
+```
+That is what caught this: 78 tests passed on Node 18 and 20, and the same suite collapsed to 41 on Node 22.
+
+After deploying, confirm the runtime actually changed rather than trusting the CLI's summary — `npx firebase functions:log` shows `"runtime":"nodejs22"` in the UpdateFunction audit entry.
+
+---
+
 ## versioning-reseeding-strands-cached-clients
 
 **Trigger:** re-seeding a version that has already been served.

@@ -35,8 +35,10 @@ npx eslint src/                 # Lint (see pitfalls: prop-types noise is the ho
 cd functions && node --test     # Backend tests (node:test, no framework)
 cd functions && node seedMeetstandaard.js   # Publish generated documents to Firestore
 
-# Firebase CLI needs Node ≥20; the default here is 18:
+# Firebase CLI needs Node ≥20; the default here is 18. The deployed runtime is
+# Node 22 — run the suite against it before any deploy that touches functions/:
 export PATH="$HOME/.nvm/versions/node/v20.19.0/bin:$PATH"
+"$HOME/.nvm/versions/node/v22.14.0/bin/node" --test     # from functions/
 npx firebase deploy --only functions:meetstandaard
 npx firebase deploy --only firestore:rules      # read Deploy safety first
 ```
@@ -62,6 +64,7 @@ Read the linked entry in `docs/pitfalls.md` **before** writing code that matches
 | Verify anything in the admin panel | `#verify-panel-is-behind-auth` |
 | "Fix" a lint error in a React file | `#lint-prop-types-is-the-house-style` |
 | Say two effects are comparable across sectors | `#analysis-cross-sector-means-identical-questions` |
+| Raise the Node runtime, or upgrade a functions dependency | `#deploy-import-assertions-break-on-node-22` |
 
 ## Style rules
 
