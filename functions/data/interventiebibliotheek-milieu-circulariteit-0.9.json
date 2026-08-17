@@ -930,16 +930,16 @@
       "nietCo2Monetair": null,
       "wikipagina": "interventie-apparaten-nachttarief.md",
       "kengetallen": {
-        "gasM3PerJaar": 0,
-        "elektraKwhPerJaar": 0,
-        "waterM3PerJaar": 0,
+        "gasM3PerJaar": null,
+        "elektraKwhPerJaar": null,
+        "waterM3PerJaar": null,
         "bestendiging": 1,
         "co2ePerEenheid": null,
         "co2ePerEenheidTekst": null
       },
       "berekend": {
-        "besparingEurPerJaar": 0,
-        "co2eKgPerJaar": 0,
+        "besparingEurPerJaar": null,
+        "co2eKgPerJaar": null,
         "monetairCo2EurPerEenheid": null
       }
     },
@@ -3528,6 +3528,12 @@
     "toelichting": "Automatische controles op deze versie. `zonderKengetal` bevat interventies waarvoor geen berekenbaar CO2-kengetal beschikbaar is (needs verification, casusgebonden of enabler); die leveren geen getal op en mogen niet als nul worden gelezen. `statusGenormaliseerd` toont statuswaarden die in de bron inconsistent geschreven waren en hier zijn gelijkgetrokken.",
     "aantalInterventies": 95,
     "zonderKengetal": [
+      {
+        "id": "EG11",
+        "interventie": "Apparaten op nachttarief",
+        "domein": "Klimaat & Energie",
+        "tekst": null
+      },
       {
         "id": "ET19",
         "interventie": "Deursluiter interne deur (zonering)",

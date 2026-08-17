@@ -286,11 +286,11 @@ test("recomputed jaarcijfers match the workbook formula", () => {
     );
     checked += 1;
   }
-  // Pinned so a regeneration cannot silently stop recomputing rows. 40, not the
-  // 49 in that domein: three rows had their consumption blanked in the workbook
-  // because their statusKengetal says the figure is not established, and six
-  // carry no physical consumption at all.
-  assert.equal(checked, 40, "expected the Klimaat & Energie rows to be recomputed");
+  // Pinned so a regeneration cannot silently stop recomputing rows. 39, not the
+  // 49 in that domein: four rows had their consumption blanked in the workbook
+  // because a literal 0 there asserted "no impact" where nothing was actually
+  // established, and six carry no physical consumption at all.
+  assert.equal(checked, 39, "expected the Klimaat & Energie rows to be recomputed");
 });
 
 test("CO2 monetisation uses the shadow price from aannames", () => {

@@ -103,6 +103,6 @@ Publish the uncertainty as data. Every generated document carries a `controle` b
 ### Consequences
 
 - `controle.somAfwijkingen` names two energiearmoede niveaus whose stated total disagrees with the sum of their proxies — a source defect, surfaced rather than reconciled.
-- `controle.zonderKengetal` names 40 of 95 interventions with no usable CO₂ figure.
+- `controle.zonderKengetal` names 41 of 95 interventions with no usable CO₂ figure.
 - Consumers must handle `null` and must not render it as `0`. The handoff docs say so explicitly.
 - This follows the workbooks' own rule — *geen kengetallen verzinnen* — and is the whole point of a transparency standard: a figure you cannot trace is worse than a gap you can see.
