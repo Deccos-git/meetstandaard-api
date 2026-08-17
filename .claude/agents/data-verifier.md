@@ -66,8 +66,10 @@ Anything computed rather than read must be re-checked against its formula — th
 
 | Document | Invariant |
 |---|---|
-| interventiebibliotheek | `besparingEurPerJaar` and `co2eKgPerJaar` follow from the `aannames` prices and emission factors × `bestendiging` |
-| interventiebibliotheek | `monetairCo2EurPerEenheid` = `co2ePerEenheid` × CO₂ shadow price |
+| interventiebibliotheek | `besparingHuishoudenEurPerJaar` and `co2eKgPerJaar` follow from the `aannames` prices and emission factors × `bestendiging` — electricity at the **weighted** price (`elektriciteitsprijs-gewogen-incl-groenestroomopslag`), not the bare one |
+| interventiebibliotheek | `maatschappelijkeBesparingEurPerJaar` = `co2eKgPerJaar` × CO₂ shadow price; `totaleWaardeEurPerJaar` = the two euro figures summed |
+| interventiebibliotheek | `maatschappelijkeBesparingEurPerEenheid` = `co2ePerEenheid` × CO₂ shadow price |
+| interventiebibliotheek | `bestendiging` is never `null` on a row that has a recomputed figure — a `null` there means the `=Aannames!$B$8` reference was not resolved and the figure is 25% too high (`docs/pitfalls.md#xlsx-formula-columns-have-no-cached-value`) |
 | meetstandaard | every proxy `bedrag` has the sign of its `bedragTekst` |
 | meetstandaard | each niveau total equals the sum of its proxies, **except** where `controle.somAfwijkingen` declares otherwise |
 

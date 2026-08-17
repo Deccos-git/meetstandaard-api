@@ -25,7 +25,7 @@ Published today:
 | Standaard | Version | Content |
 |---|---|---|
 | `energiearmoede` | 0.9 | 13 effecten, 198 traceable proxyregels |
-| `milieu-circulariteit` | 0.9 | 95 interventies across three domeinen |
+| `milieu-circulariteit` | 0.9 | 114 interventies across three domeinen |
 
 ```bash
 BASE=https://us-central1-meetstandaard-api.cloudfunctions.net/meetstandaard/api/v1/meetstandaard

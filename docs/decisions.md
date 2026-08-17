@@ -103,7 +103,7 @@ Publish the uncertainty as data. Every generated document carries a `controle` b
 ### Consequences
 
 - `controle.somAfwijkingen` names two energiearmoede niveaus whose stated total disagrees with the sum of their proxies — a source defect, surfaced rather than reconciled.
-- `controle.zonderKengetal` names 41 of 95 interventions with no usable CO₂ figure.
+- `controle.zonderKengetal` names 42 of 114 interventions with no usable CO₂ figure.
 - Consumers must handle `null` and must not render it as `0`. The handoff docs say so explicitly.
 - This follows the workbooks' own rule — *geen kengetallen verzinnen* — and is the whole point of a transparency standard: a figure you cannot trace is worse than a gap you can see.
 
@@ -135,3 +135,30 @@ Blank the consumption cells so both figures parse to `null`, and let `EG11` join
 - **Valuing this properly requires a second electricity tariff in `aannames`** (and a way to express which share of consumption shifts). That is a modelling decision for the workbook, not something to infer in the generator.
 - The CO₂ figure was lost along with the euro figure, because the two are computed from the same consumption cells. Accepted: a correct `0 kg` alongside a wrong `€0` still ships a wrong row, and the pair cannot currently be separated.
 - Generalises beyond this row: a literal `0` in a source is indistinguishable from a measured zero, so where the model *cannot represent* the effect, blank the cell. See `docs/pitfalls.md#data-never-invent-a-kengetal`.
+
+---
+
+## ADR-007: Publish the workbook's three uitkomsten, total included, with the components beside it
+
+**Date:** 2026-08-17 · **Status:** Accepted
+
+### Context
+
+The interventiebibliotheek workbook was restructured into three named outcomes per intervention — 1. energiebesparing (kWh), 2. besparing huishouden (EUR), 3. maatschappelijke besparing (EUR) — plus `Totale waarde = 2 + 3`.
+
+That total conflicts with what the handoff doc previously told consumers: *"`besparingEurPerJaar` is cash; `monetairCo2` is societal value. Adding them together mixes two different things."* The warning was right about the arithmetic and wrong about the conclusion: adding a private benefit to a societal one is standard MKBA practice, and refusing to publish the sum only means every consumer computes it themselves, unlabelled.
+
+The same restructuring introduced a second electricity price. Households on a green contract pay a GvO surcharge, so the savings column now bills electricity at a weighted price (`=B2+B10*B11` = €0,25585/kWh) instead of the bare €0,25.
+
+### Decision
+
+Mirror the workbook: publish all three outcomes and the total in `berekend`, name them for what they measure (`besparingHuishoudenEurPerJaar`, `maatschappelijkeBesparingEurPerJaar`, `totaleWaardeEurPerJaar`), and ship the caveat *as data* in `berekening.waarschuwing` rather than only in prose a consumer may not read.
+
+Bill electricity savings at the weighted price. Leave the emission factor location-based: a green contract is a contractual instrument, it does not change the physical netmix. The workbook decided this on 2026-07-24 and the generator does not second-guess it.
+
+### Consequences
+
+- `berekend` renamed its fields; `monetairCo2EurPerEenheid` became `maatschappelijkeBesparingEurPerEenheid`. Version 0.9 was not yet in use by any consumer, so this shipped as an in-place correction rather than 0.10. Any later rename needs a new version.
+- The admin panel shows the total in bold with both components in the columns beside it, and renders `berekening.waarschuwing` under the table. The total never appears alone.
+- Two prices now exist in `aannames` and they are not interchangeable. `elektriciteitsprijs` is an input to the derived one; only `elektriciteitsprijs-gewogen-incl-groenestroomopslag` is used in a savings figure. A test pins which one the published numbers follow.
+- The derived aanname carries `afgeleid: true` and its verbatim `formule`, so a consumer can re-derive it rather than trust it.

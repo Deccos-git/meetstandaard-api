@@ -84,10 +84,25 @@ wf = openpyxl.load_workbook(P, data_only=False)  # formulas
 
 ✅ Recompute from the source parameters rather than depending on whether someone opened Excel, and publish the inputs so the arithmetic is checkable:
 ```
-besparingEurPerJaar = (gas × gasprijs + kWh × elektriciteitsprijs + m³ × waterprijs) × bestendiging
+besparingHuishoudenEurPerJaar = (gas × gasprijs + kWh × elektriciteitsprijs_gewogen + m³ × waterprijs) × bestendiging
 ```
 
 Then **pin it with a test** against the same formula, so changing a price cannot silently change an output.
+
+**The second incident (2026-08-17, same workbook): an *input* column was a formula too.** `Bestendiging` held `=Aannames!$B$8` on the 13 behaviour measures — same empty cache, so `to_number()` returned `None`, and the recomputation's `factor = 1 if bestendiging is None else bestendiging` treated "I could not read it" as "no factor applies". Every one of those interventions was published **25% too high**. The `or 0` / `if None` fallbacks that make a formula robust are exactly what makes this silent.
+
+Two rules follow, and both are now in `build-interventiebibliotheek.py`:
+
+1. **A None you did not expect is an error, not a default.** Resolve the reference or `raise SystemExit` — never fall back to a neutral value.
+```python
+if isinstance(waarde, str) and waarde.startswith("="):
+    if waarde.replace(" ", "") != "=Aannames!$B$8":
+        raise SystemExit(f"unknown bestendiging formula: {waarde}")
+    return aannames["bestendigingsfactor"]
+```
+2. **Compare the formula you re-implement against the formula in the cell**, per row, and fail the build on a mismatch (`controleer_formules()`). This is what catches a workbook that starts multiplying by a different Aannames row — which is exactly what happened when the weighted electricity price (B12) replaced the bare one (B2) in the savings column.
+
+Load the workbook with `data_only=False` when you need this: formulas are the thing worth reading in a file that has no cached values at all.
 
 ---
 
@@ -117,7 +132,7 @@ Parsing lives in `tools/xlsx_common.py`. It is deliberately strict: anything tha
 **Rule, from the standards themselves:** *geen kengetallen verzinnen*. Where no reliable source exists there is no number — not `0`, not an average, not an estimate.
 
 - Parse to `null`, keep the verbatim source text (`"needs verification"`, `"PM"`, `"n.v.t."`, `"+4,6% tot +12,3%"`).
-- Publish the list in a `controle` block so consumers see what is unquantified. In milieu-circulariteit 0.9 that is **41 of 95** interventions.
+- Publish the list in a `controle` block so consumers see what is unquantified. In milieu-circulariteit 0.9 that is **42 of 114** interventions.
 - A literal `0` in the source is the same trap wearing a disguise: if the status says the figure is not established, blank the cell so it parses to `null`. `0` claims no impact; `null` says not quantified.
 - Render as `—`, never `0`. Zero claims a measure has no impact; `null` says it has not been quantified. Those are completely different statements.
 
