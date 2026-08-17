@@ -25,3 +25,6 @@ dist-ssr
 
 # Firebase deploy artefacts
 .firebase/
+
+# Claude Code: share agents/commands/launch config, keep local settings out
+.claude/settings.local.json
