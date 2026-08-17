@@ -16,14 +16,14 @@ Base: `https://us-central1-meetstandaard-api.cloudfunctions.net/monetarisering`
 |---|---|
 | `GET {base}/api/v1/monetarisering/onderbouwing` | Latest version (full document) |
 | `GET {base}/api/v1/monetarisering/onderbouwing/{version}` | Pinned version, e.g. `/1.0` (404 if unknown) |
-| `GET {base}/api/v1/monetarisering/versions` | `{ "versions": ["1.0", ...] }` (sorted ascending) |
+| `GET {base}/api/v1/monetarisering/versions` | `{ "versions": ["1.0", ...], "latest": "1.0" }` |
 
-All responses are JSON, `Cache-Control: public, max-age=86400`, with an `ETag`. Send `If-None-Match` to get `304`. Only `GET` is allowed (anything else → `405`).
+All responses are JSON, `Cache-Control: public, max-age=86400`, with an `ETag`. Send `If-None-Match` to get `304`. Only `GET` is allowed (anything else → `405`). The version you received is in `meta.version` and in the `X-Meetstandaard-Version` header.
 
-**Versioning policy:** documents are immutable per version. New/updated content arrives as a new version (e.g. `1.1`), so:
+**Versioning policy:** see [versionering.md](versionering.md) for the contract all versioned endpoints share. In short: a published version is immutable and keeps being served, corrections arrive as a new version, and nothing upgrades on its own. So:
 
-- For **display of current methodology**, fetch the latest (`.../onderbouwing`).
-- When you **store or report on measurements**, persist `meta.version` alongside them so historic results stay explainable against the exact methodology they were valued with (`.../onderbouwing/{version}`).
+- **Pin a version** (`.../onderbouwing/{version}`) and persist `meta.version` next to any measurement you store, so historic results stay explainable against the exact methodology they were valued with.
+- Moving to a new version is a deliberate step: fetch it, check what changed, then switch.
 
 The companion endpoint `https://us-central1-meetstandaard-api.cloudfunctions.net/arbeidsparticipatie/api/v1/arbeidsparticipatie/parameters` (same conventions) serves the detailed parameter set for the Participatieladder (incomes per education level/hours band, tax brackets, benefit amounts). The Participatieladder entry in this document points to it in its `methodiek`.
 
@@ -35,7 +35,7 @@ The companion endpoint `https://us-central1-meetstandaard-api.cloudfunctions.net
     "version": "1.0",
     "source": "Meetstandaard Social Impact v1.0",
     "updatedAt": "2026-07-14",
-    "status": "demo",           // top-level lifecycle flag, see §5
+    "status": "demo",           // maturity of this document's content, see §5
     "toelichting": "…"          // human-readable note about this version — show it
   },
 
@@ -144,7 +144,8 @@ For aggregate views (e.g. total impact across participants), the honest framing 
 
 ## 7. Practical notes
 
-- **Caching:** the payload is ~50 KB and changes rarely. Fetch once per session or cache with the ETag; the 24h `max-age` is safe.
+- **Caching:** the payload is ~50 KB and changes rarely. Fetch once per session or cache with the ETag.
+- **Rate limit:** 60 requests/minute per client; over that, `429` with `Retry-After`. Cache the response (see above) rather than refetching per page view.
 - **Locale:** all content is Dutch. Format amounts as Dutch euros (`€ 15.000`, minus sign for costs — or render costs/benefits with color + sign convention, but keep the sign semantics of §4).
 - **Error handling:** 404 on a pinned version means it doesn't exist (check `/versions`); treat network failure as "onderbouwing temporarily unavailable" — never block the display of the impact values themselves.
 - **No write API.** Content corrections happen upstream in the Meetstandaard repo and arrive as new versions.

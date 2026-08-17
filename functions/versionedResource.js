@@ -1,35 +1,57 @@
 import crypto from "crypto";
 
-// Shared plumbing for public, read-only, versioned reference-data endpoints
-// (arbeidsparticipatie parameters, monetarisering onderbouwing). Documents live
-// in a Firestore collection keyed by version string; the endpoint serves the
-// latest or a pinned version with cache headers.
+// Shared plumbing for the public, read-only, versioned reference-data endpoints
+// (meetstandaard per sector, monetarisering onderbouwing, arbeidsparticipatie
+// parameters). Documents live in a Firestore collection keyed by version string.
+//
+// The contract is deliberately small:
+// - A published version is immutable and keeps being served. Corrections ship as
+//   a new version; nothing is ever removed, so an old version never stops working.
+// - Consumers pin a version and upgrade by hand. Nothing migrates on its own,
+//   so there is no deprecation machinery here.
+// - Every response states its own version, in `meta.version` and in the
+//   X-Meetstandaard-Version header, so it is always visible which one you are on.
 
-// Numeric-aware compare so "2026.10" sorts after "2026.2".
+// Version ids are dot-separated numbers ("0.9", "1.0", "2026.1"). Validating
+// against this before touching Firestore keeps a hand-typed or hostile segment
+// from reaching doc(): "%2F.." decodes to a path Firestore rejects by throwing,
+// which would surface as a 500 instead of an honest 404. It also matches what
+// compareVersions can actually order.
+const VERSION_FORMAT = /^\d+(\.\d+)*$/;
+
+// Numeric-aware compare so "2026.10" sorts after "2026.2", and "0.9" before "1.0".
 export const compareVersions = (a, b) => {
   const pa = String(a).split(".").map(Number);
   const pb = String(b).split(".").map(Number);
-  const len = Math.max(pa.length, pb.length);
-  for (let i = 0; i < len; i++) {
-    const da = pa[i] || 0;
-    const db = pb[i] || 0;
-    if (da !== db) return da - db;
+
+  for (let i = 0; i < Math.max(pa.length, pb.length); i++) {
+    const diff = (pa[i] || 0) - (pb[i] || 0);
+    if (diff !== 0) return diff;
   }
-  return 0;
+  // "1" and "1.0" are the same version; break the tie so the published list
+  // cannot reorder between calls.
+  return String(a) < String(b) ? -1 : String(a) > String(b) ? 1 : 0;
 };
 
+// Only the document ids are needed, and a meetstandaard document is ~200 KB, so
+// project the query down to nothing rather than reading every version in full.
+// (An argument-less select() is Firestore's ids-only query.)
 const listVersions = async (firestore, collection) => {
-  const snap = await firestore.collection(collection).get();
-  return snap.docs.map((d) => d.id).sort(compareVersions);
+  const ref = firestore.collection(collection);
+  const snapshot = await (ref.select ? ref.select() : ref).get();
+  return snapshot.docs.map((doc) => doc.id).sort(compareVersions);
 };
 
-// Send JSON with caching headers + ETag / If-None-Match handling.
-export const sendCached = (request, response, payload) => {
+// Send JSON with caching headers + ETag / If-None-Match handling. `version` is
+// echoed in a header so a client that did not pin can still see, and log, which
+// version it actually received.
+export const sendCached = (request, response, payload, version) => {
   const body = JSON.stringify(payload);
   const etag = `"${crypto.createHash("sha1").update(body).digest("hex")}"`;
 
   response.set("Cache-Control", "public, max-age=86400");
   response.set("ETag", etag);
+  if (version) response.set("X-Meetstandaard-Version", version);
 
   if (request.headers["if-none-match"] === etag) {
     return response.status(304).end();
@@ -39,29 +61,25 @@ export const sendCached = (request, response, payload) => {
   return response.status(200).send(body);
 };
 
-export const sendError = (response, status, message) =>
-  response.status(status).json({ error: message });
+export const sendError = (response, status, body) =>
+  response.status(status).json(typeof body === "string" ? { error: body } : body);
 
-const sendLatest = async (firestore, collection, request, response) => {
-  const versions = await listVersions(firestore, collection);
-  if (versions.length === 0) {
-    return sendError(response, 404, "No versions available");
+const sendVersion = async (firestore, collection, request, response, version, versions) => {
+  if (!VERSION_FORMAT.test(version)) {
+    return sendError(response, 404, { error: `Unknown version: ${version}`, versions });
   }
-  const doc = await firestore.collection(collection).doc(versions[versions.length - 1]).get();
-  return sendCached(request, response, doc.data());
-};
 
-const sendVersion = async (firestore, collection, request, response, version) => {
   const doc = await firestore.collection(collection).doc(version).get();
   if (!doc.exists) {
-    return sendError(response, 404, `Unknown version: ${version}`);
+    // List what does exist, so picking the right version takes one request.
+    return sendError(response, 404, { error: `Unknown version: ${version}`, versions });
   }
-  return sendCached(request, response, doc.data());
+  return sendCached(request, response, doc.data(), version);
 };
 
 // Routing matches the trailing path segments, so it works regardless of how the
 // request arrives (bare function URL, emulator, or hosting rewrite):
-//   GET .../versions                    -> { versions: [...] }
+//   GET .../versions                    -> { versions: [...], latest }
 //   GET .../{resourceSegment}           -> latest version body
 //   GET .../{resourceSegment}/{version} -> pinned version body (404 if unknown)
 export const handleVersionedResource = async ({
@@ -75,18 +93,25 @@ export const handleVersionedResource = async ({
   const last = segments[segments.length - 1];
   const prev = segments[segments.length - 2];
 
-  if (last === "versions") {
-    const versions = await listVersions(firestore, collection);
-    return sendCached(request, response, { versions });
+  const isIndex = last === "versions";
+  const isResource = last === resourceSegment;
+  const isPinned = prev === resourceSegment;
+
+  if (!isIndex && !isResource && !isPinned) {
+    return sendError(response, 404, "Not found");
   }
 
-  if (last === resourceSegment) {
-    return sendLatest(firestore, collection, request, response);
+  const versions = await listVersions(firestore, collection);
+  const latest = versions[versions.length - 1] ?? null;
+
+  if (isIndex) {
+    return sendCached(request, response, { versions, latest });
   }
 
-  if (prev === resourceSegment) {
-    return sendVersion(firestore, collection, request, response, decodeURIComponent(last));
+  if (!latest) {
+    return sendError(response, 404, "No versions available");
   }
 
-  return sendError(response, 404, "Not found");
+  const version = isResource ? latest : decodeURIComponent(last);
+  return sendVersion(firestore, collection, request, response, version, versions);
 };

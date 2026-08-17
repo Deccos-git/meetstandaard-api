@@ -1,9 +1,36 @@
 rules_version = '2';
 
+// These rules apply to clients using the Firebase SDK (the admin UI in src/).
+// The Cloud Functions in functions/ authenticate with a service account and use
+// the Admin SDK, which bypasses rules entirely — so locking things down here
+// does not affect the public API endpoints at all.
 service cloud.firestore {
   match /databases/{database}/documents {
+
+    // The published meetstandaard versions. Written only by the seed scripts via
+    // the Admin SDK, and served to the public through the Cloud Functions. The
+    // admin UI reads MeetstandaardParameters (Participatieladder page), so reads
+    // stay open to signed-in users, but no client may ever write them: a
+    // published version must not be changeable from a browser.
+    match /MeetstandaardParameters/{document=**} {
+      allow read: if request.auth != null;
+      allow write: if false;
+    }
+    match /MeetstandaardMonetarisering/{document=**} {
+      allow read: if request.auth != null;
+      allow write: if false;
+    }
+    match /MeetstandaardEnergiearmoede/{document=**} {
+      allow read: if request.auth != null;
+      allow write: if false;
+    }
+
+    // Everything else (categories, effects, questions, dataSets) is the admin
+    // UI's working data. Every page that touches it already sits behind
+    // ProtectedRoute, so requiring a signed-in user changes nothing functionally
+    // — it just makes the check real instead of cosmetic.
     match /{document=**} {
-      allow read, write: if true;
+      allow read, write: if request.auth != null;
     }
   }
 }

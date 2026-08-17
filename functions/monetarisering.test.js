@@ -96,7 +96,9 @@ const fakeFirestore = (docsById) => ({
   collection: (name) => {
     assert.equal(name, "MeetstandaardMonetarisering");
     return {
-      get: async () => ({ docs: Object.keys(docsById).map((id) => ({ id })) }),
+      get: async () => ({
+        docs: Object.entries(docsById).map(([id, data]) => ({ id, data: () => data })),
+      }),
       doc: (id) => ({
         get: async () => ({
           exists: id in docsById,
@@ -141,7 +143,7 @@ test("GET .../versions lists versions in order", async () => {
   const res = fakeResponse();
   await handleMonetarisering(fakeFirestore(docs), { path: "/api/v1/monetarisering/versions", headers: {} }, res);
   assert.equal(res.statusCode, 200);
-  assert.deepEqual(JSON.parse(res.body), { versions: ["1.0", "1.1"] });
+  assert.deepEqual(JSON.parse(res.body), { versions: ["1.0", "1.1"], latest: "1.1" });
 });
 
 test("GET .../onderbouwing serves the latest version with cache headers", async () => {
