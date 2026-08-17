@@ -1,9 +1,102 @@
-# React + Vite
+# Meetstandaard API
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Public, read-only API serving versioned meetstandaarden for social impact measurement, plus a small admin panel that displays them.
 
-Currently, two official plugins are available:
+A meetstandaard defines what to measure, how to score it, and what a score is worth in societal terms — with the calculation, the assumptions and the source visible behind every figure. The API exists so those figures can be cited and re-checked years later, not just consulted today.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-# meetstandaard-api
+## The API
+
+No authentication, no API key, CORS `*`. Base:
+
+```
+https://us-central1-meetstandaard-api.cloudfunctions.net
+```
+
+| Endpoint | Serves |
+|---|---|
+| `/meetstandaard/api/v1/meetstandaard` | Index of published standaarden |
+| `/meetstandaard/api/v1/meetstandaard/{sector}/{version}` | A standaard, pinned |
+| `/monetarisering/api/v1/monetarisering/onderbouwing` | Monetarisation substantiation |
+| `/arbeidsparticipatie/api/v1/arbeidsparticipatie/parameters` | Participatieladder parameters |
+| `/database` · `/benchmark` | Panel data and dataset benchmarks |
+
+Published today:
+
+| Standaard | Version | Content |
+|---|---|---|
+| `energiearmoede` | 0.9 | 13 effecten, 198 traceable proxyregels |
+| `milieu-circulariteit` | 0.9 | 95 interventies across three domeinen |
+
+```bash
+BASE=https://us-central1-meetstandaard-api.cloudfunctions.net/meetstandaard/api/v1/meetstandaard
+curl -s "$BASE" | jq '.sectoren'
+curl -s "$BASE/energiearmoede/0.9" | jq '.meta'
+```
+
+**Pin the version.** A published version is immutable and served indefinitely, so a measurement stays explainable against the exact methodology it was valued with. Store `meta.version` next to anything you record. Details in [docs/versionering.md](docs/versionering.md).
+
+## Integrating
+
+Start with the handoff for the standaard you need — each covers the document shape, the join keys, and the ways the data can be misread:
+
+- [handoff-meetstandaard-integratie.md](docs/handoff-meetstandaard-integratie.md) — effect-based standaarden
+- [handoff-interventiebibliotheek.md](docs/handoff-interventiebibliotheek.md) — interventions and their impact factors
+- [handoff-onderbouwing-integratie.md](docs/handoff-onderbouwing-integratie.md) — monetarisation substantiation
+
+Two things bite everyone at least once: a missing figure is `null` and **must not be rendered as `0`**, and proxy amounts **cannot be summed across effects** without applying the overlap correction first. Both handoffs say so at length.
+
+## Development
+
+```bash
+npm install
+npm run dev                     # Vite dev server
+npm run build                   # → dist/
+
+cd functions && npm install
+cd functions && node --test     # backend tests
+```
+
+Firebase CLI needs Node ≥20; deploying only when code changes:
+
+```bash
+npx firebase deploy --only functions
+npx firebase deploy --only firestore:rules   # read docs/pitfalls.md first — a deploy replaces the whole ruleset
+```
+
+## How a standaard gets published
+
+```
+workbook.xlsx  →  tools/build-*.py  →  functions/data/*.json  →  seed  →  Firestore  →  API
+   authoring         generation           committed, diffable                    versioned
+```
+
+The workbook is the source of truth; the JSON is generated and must never be hand-edited. Publishing a **new version** needs no deploy — versions are resolved per request.
+
+```bash
+python3 tools/build-meetstandaard.py --xlsx "path/to/meetstandaard.xlsx" \
+  --sector energiearmoede --version 1.0 --released-at 2026-11-01 \
+  --out functions/data/meetstandaard-energiearmoede-1.0.json
+
+cd functions && node seedMeetstandaard.js
+```
+
+## Layout
+
+```
+src/          React admin panel — read-only, one authenticated page
+functions/    Cloud Functions + the generated documents they serve
+tools/        Workbook → JSON generators
+docs/         Architecture, decisions, pitfalls, integration handoffs
+```
+
+## Documentation
+
+| | |
+|---|---|
+| [architecture.md](docs/architecture.md) | The two pipelines and where code belongs |
+| [versionering.md](docs/versionering.md) | The versioning contract |
+| [decisions.md](docs/decisions.md) | Why things are the way they are |
+| [pitfalls.md](docs/pitfalls.md) | Things that have actually gone wrong here |
+| [migratie-standaarden.md](docs/migratie-standaarden.md) | Moving the two unversioned standaarden onto the pipeline |
+
+[CLAUDE.md](CLAUDE.md) holds the working rules for AI agents on this repo.
