@@ -28,3 +28,6 @@ dist-ssr
 
 # Claude Code: share agents/commands/launch config, keep local settings out
 .claude/settings.local.json
+
+# Python bytecode from the tools/ generators
+__pycache__/

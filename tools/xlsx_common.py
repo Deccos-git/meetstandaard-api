@@ -11,14 +11,25 @@ import unicodedata
 from collections import OrderedDict
 
 
-def rows(ws):
-    """Yield sheet rows as dicts keyed by the header row, skipping blank rows."""
+def numbered_rows(ws):
+    """Yield (sheet row number, dict keyed by the header row), skipping blanks.
+
+    The row number is what lets a generator go back to the cell — to read the
+    formula behind a computed column, say. Counting yielded rows instead would
+    drift the moment someone leaves a blank line in the workbook.
+    """
     it = ws.iter_rows(values_only=True)
     header = [clean(c) for c in next(it)]
-    for row in it:
+    for nummer, row in enumerate(it, start=2):
         if all(c is None or str(c).strip() == "" for c in row):
             continue
-        yield OrderedDict(zip(header, [clean(c) for c in row]))
+        yield nummer, OrderedDict(zip(header, [clean(c) for c in row]))
+
+
+def rows(ws):
+    """Yield sheet rows as dicts keyed by the header row, skipping blank rows."""
+    for _, row in numbered_rows(ws):
+        yield row
 
 
 def clean(value):
