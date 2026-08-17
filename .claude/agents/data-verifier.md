@@ -10,11 +10,25 @@ This repo's specific failure mode is drift between three copies of the same data
 
 ### 1. Repo matches workbook
 
-For each document in `functions/data/`, regenerate it from its source workbook into a temp file and diff.
+For each document in `functions/data/`, regenerate it from its source workbook into a temp file and diff. Run from the repo root — the scripts import `xlsx_common` from their own directory.
+
+The workbooks live **outside this repo**:
+
+| Document | Workbook | Generator |
+|---|---|---|
+| `meetstandaard-energiearmoede-*.json` | `~/Documents/MSI Energiearmoede/output/meetstandaard.xlsx` | `build-meetstandaard.py` |
+| `interventiebibliotheek-milieu-circulariteit-*.json` | `~/Documents/Biodiversiteit & circuliairiteit/interventiebibliotheek.xlsx` | `build-interventiebibliotheek.py` |
+
+The two generators take **different flags**:
 
 ```bash
 python3 tools/build-meetstandaard.py --xlsx "<path>" \
-  --sector <sector> --version <v> --released-at <date> --out /tmp/check.json
+  --sector energiearmoede --version 0.9 --released-at 2026-08-17 --out /tmp/check.json
+
+python3 tools/build-interventiebibliotheek.py --xlsx "<path>" \
+  --standaard milieu-circulariteit --label "Milieu & circulariteit" \
+  --version 0.9 --released-at 2026-08-17 --out /tmp/check.json
+
 diff /tmp/check.json functions/data/<file>.json
 ```
 
@@ -31,8 +45,20 @@ Read each `Meetstandaard*/{version}` with the Admin SDK and compare against the 
 JSON.stringify(live) === JSON.stringify(committed)
 ```
 
-- **Differs** → unseeded, or written by something other than the seed script. The latter matters: nothing but `seedMeetstandaard.js` should ever write these.
+- **Differs** → unseeded, or written by something other than the seed script. The latter matters: nothing but a seed script should ever write these.
 - Also list versions present in one place but not the other. A committed document with no Firestore version is unpublished; a Firestore version with no committed document has no source and is the more serious finding.
+
+**The seed scripts transform before writing**, so a naive comparison reports false mismatches:
+
+| Collection | Transform |
+|---|---|
+| `MeetstandaardEnergiearmoede` | `seedMeetstandaard.js` sets `effectId: null` on every effect |
+| `MeetstandaardMonetarisering` | `seedMonetarisering.js` **injects** `effectId`, resolved from the `effects` collection — absent in the in-repo constant |
+| `MeetstandaardMilieuCirculariteit`, `MeetstandaardParameters` | none |
+
+Compare modulo those, and report anything else.
+
+**Two collections have no workbook.** `MeetstandaardMonetarisering` and `MeetstandaardParameters` are generated from hand-maintained JS constants (`monetarisering.js`, `arbeidsparticipatie.js`), so step 1 does not apply — do repo → Firestore only, and say so.
 
 ### 3. Derived numbers still follow from their inputs
 
@@ -50,6 +76,10 @@ Anything computed rather than read must be re-checked against its formula — th
 ### 4. `controle` still describes reality
 
 `zonderKengetal`, `nietGemonetariseerd` and `somAfwijkingen` must match what is actually in the document. A shrinking count is as suspicious as a growing one — it can mean a value was invented to fill a gap (`docs/pitfalls.md#data-never-invent-a-kengetal`).
+
+**Check identity, not just length.** The test suite compares counts; two sets can have the same size and different members. Match on the full key (`effectId`+`niveau`+`proxy`, or the interventie `id`) in both directions.
+
+`controle` keys on a `null` value, so it cannot see a figure that is *present but unearned*. Also check the other direction: an interventie whose `statusKengetal` says the figure is not established (`needs verification`, `casusgebonden / vergelijkend`, `enabler / output`) but which still publishes a number — including `0`. A hard `0` reads as "no impact" when the truth is "not quantified", and it reaches the document through the workbook rather than the code, so no test catches it.
 
 ## Rules
 
