@@ -10,9 +10,17 @@ import MoreVertOutlinedIcon from '@mui/icons-material/MoreVertOutlined';
 import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import ReactModal from "../components/common/ReactModal";
+import SectorMeetstandaard from "../components/home/SectorMeetstandaard";
+
+// The cross-sector standard is edited here; a sector meetstandaard is a
+// published, immutable version and is shown read-only.
+const SECTOREN = [
+  { key: 'energiearmoede', label: 'Energiearmoede', collection: 'MeetstandaardEnergiearmoede' },
+];
 
 const Standard = () => {
   // State
+  const [sector, setSector] = useState(null); // null = the editable cross-sector standard
   const [categoryId, setCategoryId] = useState(null);
   const [editCategory, setEditCategory] = useState(null);
   const [deleteModal, setDeleteModal] = useState(false); 
@@ -59,42 +67,67 @@ const Standard = () => {
   return (
     <div>
       <h1>Standaard</h1>
+
       <div className="tab-container">
-        {categories &&
-          categories.map((cat, index) => (
-            <div
-              key={index}
-              className={`${categoryId === cat.id ? "active" : "tablinks"}`}
-              onClick={() => setCategoryId(cat.id)}
-            >
-              {editCategory === cat.id ? (
-                <input
-                  type="text"
-                  defaultValue={cat.name}
-                  data-docid={cat.docid}
-                  onChange={updateCategory}
-                />
-              ) : (
-                <p>{cat.name}</p>
-              )}
-              <div className="catergory-options-container" style={{ display: categoryId === cat.id ? 'flex' : 'none' }}>
-                <ModeEditOutlineOutlinedIcon
-                  onClick={() => (editCategory === cat.id ? setEditCategory(null) : setEditCategory(cat.id))}
-                />
-                <DeleteOutlineOutlinedIcon
-                  onClick={() => {
-                    setDeleteModal(true);
-                    setDeleteDocid(cat.docid);
-                  }}
-                />
-              </div>
-            </div>
-          ))}
-        <Tooltip content="Voeg een nieuwe categorie toe" width="200px" top="-40px" left="0px">
-          <AddCircleOutlineOutlinedIcon className="plus-button" onClick={addCategory} />
-        </Tooltip>
+        <div className={sector === null ? 'active' : 'tablinks'} onClick={() => setSector(null)}>
+          <p>Meetstandaard</p>
+        </div>
+        {SECTOREN.map((s) => (
+          <div
+            key={s.key}
+            className={sector === s.key ? 'active' : 'tablinks'}
+            onClick={() => setSector(s.key)}
+          >
+            <p>{s.label}</p>
+          </div>
+        ))}
       </div>
-      <Effects categoryId={categoryId} />
+
+      {sector !== null ? (
+        <SectorMeetstandaard
+          collectionName={SECTOREN.find((s) => s.key === sector).collection}
+        />
+      ) : (
+        <>
+        <div className="tab-container">
+          {categories &&
+            categories.map((cat, index) => (
+              <div
+                key={index}
+                className={`${categoryId === cat.id ? "active" : "tablinks"}`}
+                onClick={() => setCategoryId(cat.id)}
+              >
+                {editCategory === cat.id ? (
+                  <input
+                    type="text"
+                    defaultValue={cat.name}
+                    data-docid={cat.docid}
+                    onChange={updateCategory}
+                  />
+                ) : (
+                  <p>{cat.name}</p>
+                )}
+                <div className="catergory-options-container" style={{ display: categoryId === cat.id ? 'flex' : 'none' }}>
+                  <ModeEditOutlineOutlinedIcon
+                    onClick={() => (editCategory === cat.id ? setEditCategory(null) : setEditCategory(cat.id))}
+                  />
+                  <DeleteOutlineOutlinedIcon
+                    onClick={() => {
+                      setDeleteModal(true);
+                      setDeleteDocid(cat.docid);
+                    }}
+                  />
+                </div>
+              </div>
+            ))}
+          <Tooltip content="Voeg een nieuwe categorie toe" width="200px" top="-40px" left="0px">
+            <AddCircleOutlineOutlinedIcon className="plus-button" onClick={addCategory} />
+          </Tooltip>
+        </div>
+        <Effects categoryId={categoryId} />
+        </>
+      )}
+
       <ReactModal
         open={deleteModal}
         setOpen={setDeleteModal}
