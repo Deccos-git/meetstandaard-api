@@ -1,10 +1,10 @@
 import { useMemo, useState } from 'react';
 import { euro } from '../../standaarden';
-import { badge, note, tableStyle, tableWrap, td, tdNum, th } from './SharedStyles';
+import { badge, note, subNote, tableStyle, tableWrap, td, tdNum, th } from './SharedStyles';
 
 // Read-only view of an interventiebibliotheek. Unlike the effect-based
 // standaarden this is a catalogue you scan and compare, so it renders as a table
-// per domein rather than a list-and-detail pane: with 95 interventies the point
+// per domein rather than a list-and-detail pane: with 114 interventies the point
 // is seeing them side by side. Detail opens inline on the row you care about.
 
 // The workbook's own confidence vocabulary, worth colouring: much of this
@@ -15,6 +15,15 @@ const bewijsColor = value =>
 
 const number = n => (typeof n === 'number' ? n.toLocaleString('nl-NL') : null);
 
+// Aannames run from 2,71 down to 0,0075, and the default three digits would
+// round the smallest ones into each other.
+const parameter = n => (typeof n === 'number' ? n.toLocaleString('nl-NL', { maximumFractionDigits: 6 }) : null);
+
+// A missing figure is a real state here ("geen kengetallen verzinnen"), so an
+// empty cell must read as unquantified rather than as zero.
+const leeg = <span style={{ color: '#777' }}>—</span>;
+const getal = (value, render) => (value === null || value === undefined ? leeg : render(value));
+
 const InterventiesStandaard = ({ doc }) => {
   const [domein, setDomein] = useState(doc.domeinen[0]);
   const [open, setOpen] = useState(null);
@@ -24,9 +33,10 @@ const InterventiesStandaard = ({ doc }) => {
     [doc, domein]
   );
 
-  // Only the Klimaat & Energie rows carry per-year consumption, so the two
-  // year columns would be entirely empty for the other domeinen.
+  // Only the Klimaat & Energie rows carry per-year consumption, so the year
+  // columns would be entirely empty for the other domeinen.
   const showsJaarcijfers = interventies.some(i => i.berekend.co2eKgPerJaar !== null);
+  const colSpan = showsJaarcijfers ? 9 : 6;
 
   return (
     <div>
@@ -50,13 +60,17 @@ const InterventiesStandaard = ({ doc }) => {
               <th style={th}>Eenheid</th>
               {showsJaarcijfers ? (
                 <>
-                  <th style={{ ...th, textAlign: 'right' }}>Besparing / jaar</th>
+                  {/* The workbook's three uitkomsten, in its own numbering. */}
+                  <th style={{ ...th, textAlign: 'right' }}>1. Energie / jaar</th>
                   <th style={{ ...th, textAlign: 'right' }}>CO₂e / jaar</th>
+                  <th style={{ ...th, textAlign: 'right' }}>2. Besparing huishouden</th>
+                  <th style={{ ...th, textAlign: 'right' }}>3. Maatschappelijk</th>
+                  <th style={{ ...th, textAlign: 'right' }}>Totale waarde</th>
                 </>
               ) : (
                 <>
                   <th style={{ ...th, textAlign: 'right' }}>CO₂e / eenheid</th>
-                  <th style={{ ...th, textAlign: 'right' }}>Monetair CO₂</th>
+                  <th style={{ ...th, textAlign: 'right' }}>3. Maatschappelijk / eenheid</th>
                 </>
               )}
               <th style={th}>Bewijs</th>
@@ -66,6 +80,7 @@ const InterventiesStandaard = ({ doc }) => {
           <tbody>
             {interventies.map(i => {
               const isOpen = open === i.slug;
+              const b = i.berekend;
               return [
                 <tr
                   key={i.slug}
@@ -74,7 +89,7 @@ const InterventiesStandaard = ({ doc }) => {
                 >
                   <td style={td}>
                     {i.interventie}
-                    <span style={{ ...note, display: 'block', marginTop: 2 }}>
+                    <span style={{ ...subNote, marginTop: 2 }}>
                       {i.activiteitstype}
                       {i.code && ` · ${i.code}`}
                     </span>
@@ -82,27 +97,18 @@ const InterventiesStandaard = ({ doc }) => {
                   <td style={td}>{i.eenheid}</td>
                   {showsJaarcijfers ? (
                     <>
-                      <td style={tdNum}>{i.berekend.besparingEurPerJaar !== null ? euro(i.berekend.besparingEurPerJaar) : '—'}</td>
-                      <td style={tdNum}>
-                        {i.berekend.co2eKgPerJaar !== null ? `${number(i.berekend.co2eKgPerJaar)} kg` : '—'}
-                      </td>
+                      <td style={tdNum}>{getal(i.kengetallen.elektraKwhPerJaar, v => `${number(v)} kWh`)}</td>
+                      <td style={tdNum}>{getal(b.co2eKgPerJaar, v => `${number(v)} kg`)}</td>
+                      <td style={tdNum}>{getal(b.besparingHuishoudenEurPerJaar, euro)}</td>
+                      <td style={tdNum}>{getal(b.maatschappelijkeBesparingEurPerJaar, euro)}</td>
+                      <td style={{ ...tdNum, fontWeight: 600 }}>{getal(b.totaleWaardeEurPerJaar, euro)}</td>
                     </>
                   ) : (
                     <>
-                      {/* A missing kengetal is a real state here ("geen
-                          kengetallen verzinnen"), so show why rather than 0. */}
-                      <td style={tdNum}>
-                        {i.kengetallen.co2ePerEenheid !== null ? (
-                          `${number(i.kengetallen.co2ePerEenheid)} kg`
-                        ) : (
-                          <span style={{ color: '#777' }} title={i.kengetallen.co2ePerEenheidTekst || ''}>
-                            —
-                          </span>
-                        )}
+                      <td style={tdNum} title={i.kengetallen.co2ePerEenheidTekst || ''}>
+                        {getal(i.kengetallen.co2ePerEenheid, v => `${number(v)} kg`)}
                       </td>
-                      <td style={tdNum}>
-                        {i.berekend.monetairCo2EurPerEenheid !== null ? euro(i.berekend.monetairCo2EurPerEenheid) : '—'}
-                      </td>
+                      <td style={tdNum}>{getal(b.maatschappelijkeBesparingEurPerEenheid, euro)}</td>
                     </>
                   )}
                   <td style={td}>
@@ -115,7 +121,7 @@ const InterventiesStandaard = ({ doc }) => {
 
                 isOpen && (
                   <tr key={`${i.slug}-detail`}>
-                    <td style={{ ...td, background: '#fffaf2' }} colSpan={6}>
+                    <td style={{ ...td, background: '#fffaf2' }} colSpan={colSpan}>
                       <dl style={{ margin: 0, maxWidth: 1000 }}>
                         {[
                           ['Primaire effecten', i.primaireEffecten],
@@ -124,6 +130,9 @@ const InterventiesStandaard = ({ doc }) => {
                           ['Onderbouwing', i.onderbouwing],
                           ['Afbakening / overlap', i.afbakening],
                           ['Niet-CO₂ monetair (laag C)', i.nietCo2Monetair],
+                          // The persistence factor is a methodological choice on
+                          // top of the source figure, so it belongs with it.
+                          ['Bestendigingsfactor', i.kengetallen.bestendiging !== 1 && parameter(i.kengetallen.bestendiging)],
                           ['Wikipagina', i.wikipagina],
                         ]
                           .filter(([, v]) => v)
@@ -143,6 +152,10 @@ const InterventiesStandaard = ({ doc }) => {
         </table>
       </div>
 
+      {showsJaarcijfers && doc.berekening && (
+        <p style={{ ...note, maxWidth: 900 }}>{doc.berekening.waarschuwing}</p>
+      )}
+
       <h3>Aannames</h3>
       <p style={note}>
         Laag B: de centrale prijzen en emissiefactoren waarmee de cijfers hierboven zijn berekend. Eén
@@ -161,8 +174,12 @@ const InterventiesStandaard = ({ doc }) => {
           <tbody>
             {doc.aannames.map(a => (
               <tr key={a.id}>
-                <td style={td}>{a.parameter}</td>
-                <td style={tdNum}>{number(a.waarde)}</td>
+                <td style={td}>
+                  {a.parameter}
+                  {/* A derived parameter must show its derivation, not just a number. */}
+                  {a.afgeleid && <span style={subNote}>afgeleid: {a.formule}</span>}
+                </td>
+                <td style={tdNum}>{parameter(a.waarde)}</td>
                 <td style={td}>{a.eenheid}</td>
                 <td style={{ ...td, fontSize: 13, color: a.geverifieerd ? '#555' : '#a15c00' }}>{a.bron}</td>
               </tr>
