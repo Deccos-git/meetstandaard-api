@@ -5,10 +5,6 @@ import React from 'react';
 import Layout from './components/layout/Layout';
 import './index.css';
 import Login from './pages/Login';
-import Standard from './pages/Standard';
-import Data from './pages/Data';
-import DataSetDetail from './pages/DataSetDetail';
-import Participatieladder from './pages/Participatieladder';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -18,11 +14,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/" element={<Layout />}>
           <Route path="login" element={<Login />} />
           <Route element={<ProtectedRoute />}>
+            {/* Home is the panel: every standaard is a tab there. */}
             <Route index element={<Home />} />
-            <Route path="standard" element={<Standard />} />
-            <Route path="data" element={<Data />} />
-            <Route path="participatieladder" element={<Participatieladder />} />
-            <Route path="datasets/:datasetId" element={<DataSetDetail />} />
           </Route>
         </Route>
       </Routes>
