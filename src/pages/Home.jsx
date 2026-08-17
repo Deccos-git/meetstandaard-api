@@ -4,6 +4,7 @@ import { useVersionedStandaard } from '../firebase/useVersionedStandaard';
 import EffectenStandaard from '../components/standaard/EffectenStandaard';
 import PublishedStandaard from '../components/standaard/PublishedStandaard';
 import ParametersStandaard from '../components/standaard/ParametersStandaard';
+import InterventiesStandaard from '../components/standaard/InterventiesStandaard';
 import { badge, note, versionBar } from '../components/standaard/SharedStyles';
 
 // A published standaard loads its versions from Firestore and offers them in a
@@ -34,7 +35,13 @@ const Published = ({ standaard }) => {
         <span style={badge}>alleen-lezen</span>
       </div>
 
-      {standaard.render === 'parameters' ? <ParametersStandaard doc={doc} /> : <PublishedStandaard doc={doc} />}
+      {standaard.render === 'parameters' ? (
+        <ParametersStandaard doc={doc} />
+      ) : standaard.render === 'interventies' ? (
+        <InterventiesStandaard doc={doc} />
+      ) : (
+        <PublishedStandaard doc={doc} />
+      )}
     </>
   );
 };

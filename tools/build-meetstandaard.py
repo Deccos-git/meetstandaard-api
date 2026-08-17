@@ -22,10 +22,11 @@ Cloud Functions — the generated JSON is committed and imported directly.
 import argparse
 import json
 import re
-import unicodedata
 from collections import OrderedDict, defaultdict
 
 import openpyxl
+
+from xlsx_common import clean, rows, slugify, split_list, to_int, to_number
 
 SHEETS = {
     "effecten": "1-Effecten",
@@ -43,83 +44,11 @@ SHEETS = {
 SECTOR_LABELS = {"energiearmoede": "Energiearmoede"}
 
 
-def rows(ws):
-    """Yield sheet rows as dicts keyed by the header row, skipping blank rows."""
-    it = ws.iter_rows(values_only=True)
-    header = [clean(c) for c in next(it)]
-    for row in it:
-        if all(c is None or str(c).strip() == "" for c in row):
-            continue
-        yield OrderedDict(zip(header, [clean(c) for c in row]))
-
-
-def clean(value):
-    """Normalise a cell to str/number/None; collapse whitespace, drop empties."""
-    if value is None:
-        return None
-    if isinstance(value, (int, float)):
-        return value
-    text = re.sub(r"\s+", " ", str(value)).strip()
-    if text in ("", "-", "—", "–"):
-        return None
-    return text
-
-
-def slugify(value):
-    ascii_text = unicodedata.normalize("NFKD", value or "").encode("ascii", "ignore").decode()
-    return re.sub(r"-+", "-", re.sub(r"[^a-z0-9]+", "-", ascii_text.lower())).strip("-")
-
-
 def slug_from_path(path, fallback):
     """'wiki/effecten/fysieke-gezondheid.md' -> 'fysieke-gezondheid'."""
     if path and path.endswith(".md"):
         return path.rsplit("/", 1)[-1][: -len(".md")]
     return slugify(fallback)
-
-
-# The workbook mixes hyphen-minus with the typographic minus and dashes; treat
-# them all as a sign, otherwise negative amounts silently invert into benefits.
-SIGNS = str.maketrans({"−": "-", "–": "-", "—": "-"})
-
-GROUPED = re.compile(r"[-+]?\d{1,3}(?:\.\d{3})+(?:,\d+)?")  # 1.430 / -4.224,60
-DECIMAL_COMMA = re.compile(r"[-+]?\d+(?:,\d+)?")  # 0,5 / +92,61
-DECIMAL_POINT = re.compile(r"[-+]?\d+(?:\.\d+)?")  # 4.6 / 39.88
-
-
-def to_number(value):
-    """Parse a Dutch-formatted amount ('-4.224,60', '€ 50.000', '30%') to a number.
-
-    Deliberately strict: anything that is not a single unambiguous number
-    ('PM', 'n.v.t.', 'wettelijke norm', '+4,6% tot +12,3%') returns None, so the
-    caller keeps the verbatim text instead of a value we invented.
-    """
-    if value is None or isinstance(value, (int, float)):
-        return value
-    text = str(value).translate(SIGNS).strip()
-    if text.startswith("€"):
-        text = text[1:].strip()
-    percent = text.endswith("%")
-    if percent:
-        text = text[:-1].strip()
-
-    if GROUPED.fullmatch(text):
-        normalised = text.replace(".", "").replace(",", ".")
-    elif DECIMAL_COMMA.fullmatch(text):
-        normalised = text.replace(",", ".")
-    elif DECIMAL_POINT.fullmatch(text):
-        normalised = text
-    else:
-        return None
-
-    number = float(normalised)
-    if percent:
-        number /= 100
-    return int(number) if number == int(number) else number
-
-
-def to_int(value):
-    number = to_number(value)
-    return int(number) if number is not None else None
 
 
 def score_of(niveau):
@@ -129,10 +58,6 @@ def score_of(niveau):
     if isinstance(niveau, (int, float)):
         return int(niveau)
     return int(niveau) if re.fullmatch(r"\d+", str(niveau).strip()) else None
-
-
-def split_list(value):
-    return [part.strip() for part in re.split(r"[;,]", value)] if value else []
 
 
 def build_effecten(wb):

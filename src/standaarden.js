@@ -36,6 +36,13 @@ export const STANDAARDEN = [
     collection: 'MeetstandaardEnergiearmoede',
   },
   {
+    key: 'milieu-circulariteit',
+    label: 'Milieu & circulariteit',
+    source: 'published',
+    collection: 'MeetstandaardMilieuCirculariteit',
+    render: 'interventies',
+  },
+  {
     key: 'participatieladder',
     label: 'Participatieladder',
     source: 'published',

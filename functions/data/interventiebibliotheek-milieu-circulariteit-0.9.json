@@ -1,0 +1,3772 @@
+{
+  "meta": {
+    "version": "0.9",
+    "standaard": "milieu-circulariteit",
+    "label": "Milieu & circulariteit",
+    "kind": "interventiebibliotheek",
+    "releasedAt": "2026-08-17",
+    "source": "Interventiebibliotheek maatschappelijke impact (interventiebibliotheek.xlsx)",
+    "generatedBy": "tools/build-interventiebibliotheek.py",
+    "toelichting": "Bibliotheek van interventies met hun fysieke effect per eenheid. Drie lagen: laag A het kengetal per interventie, laag B omrekening via de centrale prijzen en emissiefactoren in `aannames`, laag C monetarisering van CO2 tegen de milieuprijs. De besparings- en CO2-kolommen zijn hier herberekend uit `aannames` — pas een prijs daar aan en alles schuift mee. Niet elk kengetal is hard: zie `bewijssterkte` en `statusKengetal` per interventie en het `controle`-blok. Tel binnen een overlapcluster niet op zonder de regels in `afbakening` toe te passen."
+  },
+  "domeinen": [
+    "Klimaat & Energie",
+    "Biodiversiteit & Natuur",
+    "Circulariteit"
+  ],
+  "interventies": [
+    {
+      "id": "ET01",
+      "slug": "radiatorfolie-plaatsen",
+      "code": "ET01",
+      "domein": "Klimaat & Energie",
+      "activiteitstype": "Energie besparen",
+      "interventie": "Radiatorfolie plaatsen",
+      "eenheid": "m2 folie",
+      "primaireEffecten": "Gasbesparing -> CO2-reductie",
+      "rekenmodel": "Effectcode ET01; fysiek kengetal x factoren (Aannames). Voorwaarde ongeisoleerde buitenmuur. Overlap ruimteverwarming.",
+      "monetarisatiebron": "Energieprijzen huishouden (Aannames); CO2 maatschappelijk: Milieuprijzen 2023 EUR0,13/kg.",
+      "onderbouwing": "GEVERIFIEERD: Milieu Centraal (10-11 m3 gas/m2)",
+      "bewijssterkte": "Hoog",
+      "statusKengetal": "direct brongetal",
+      "statusKengetalBron": "direct brongetal",
+      "afbakening": "Overlapgroep ruimteverwarming — cap per woning, niet optellen (regel 11)",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-radiatorfolie.md",
+      "kengetallen": {
+        "gasM3PerJaar": 10,
+        "elektraKwhPerJaar": 0,
+        "waterM3PerJaar": 0,
+        "bestendiging": 1,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": null
+      },
+      "berekend": {
+        "besparingEurPerJaar": 13.5,
+        "co2eKgPerJaar": 21.34,
+        "monetairCo2EurPerEenheid": null
+      }
+    },
+    {
+      "id": "ET02",
+      "slug": "led-lamp-i-p-v-gloei-halogeen",
+      "code": "ET02",
+      "domein": "Klimaat & Energie",
+      "activiteitstype": "Energie besparen",
+      "interventie": "LED-lamp i.p.v. gloei/halogeen",
+      "eenheid": "per lamp",
+      "primaireEffecten": "Elektriciteitsbesparing -> CO2-reductie",
+      "rekenmodel": "Effectcode ET02; fysiek kengetal x factoren (Aannames). ~45W x ~3u/dag.",
+      "monetarisatiebron": "Energieprijzen huishouden (Aannames); CO2 maatschappelijk: Milieuprijzen 2023 EUR0,13/kg.",
+      "onderbouwing": "Milieu Centraal",
+      "bewijssterkte": "Hoog",
+      "statusKengetal": "direct brongetal",
+      "statusKengetalBron": "direct brongetal",
+      "afbakening": "Cluster verlichting — niet stapelen per lichtpunt (regel 12)",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-led-verlichting.md",
+      "kengetallen": {
+        "gasM3PerJaar": 0,
+        "elektraKwhPerJaar": 45,
+        "waterM3PerJaar": 0,
+        "bestendiging": 1,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": null
+      },
+      "berekend": {
+        "besparingEurPerJaar": 11.25,
+        "co2eKgPerJaar": 10.98,
+        "monetairCo2EurPerEenheid": null
+      }
+    },
+    {
+      "id": "ET03",
+      "slug": "kierdichting",
+      "code": "ET03",
+      "domein": "Klimaat & Energie",
+      "activiteitstype": "Energie besparen",
+      "interventie": "Kierdichting",
+      "eenheid": "strekkende meter",
+      "primaireEffecten": "Gasbesparing -> CO2-reductie",
+      "rekenmodel": "Effectcode ET03; fysiek kengetal x factoren (Aannames). Overlap ruimteverwarming; cap ~70 m3.",
+      "monetarisatiebron": "Energieprijzen huishouden (Aannames); CO2 maatschappelijk: Milieuprijzen 2023 EUR0,13/kg.",
+      "onderbouwing": "GEVERIFIEERD: Milieu Centraal (50-70 m3/woning)",
+      "bewijssterkte": "Hoog",
+      "statusKengetal": "direct brongetal",
+      "statusKengetalBron": "direct brongetal",
+      "afbakening": "Overlapgroep ruimteverwarming — cap per woning, niet optellen (regel 11)",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-kierdichting.md",
+      "kengetallen": {
+        "gasM3PerJaar": 3,
+        "elektraKwhPerJaar": 0,
+        "waterM3PerJaar": 0,
+        "bestendiging": 1,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": null
+      },
+      "berekend": {
+        "besparingEurPerJaar": 4.05,
+        "co2eKgPerJaar": 6.4,
+        "monetairCo2EurPerEenheid": null
+      }
+    },
+    {
+      "id": "ET04",
+      "slug": "isolerende-gordijnen",
+      "code": "ET04",
+      "domein": "Klimaat & Energie",
+      "activiteitstype": "Energie besparen",
+      "interventie": "Isolerende gordijnen",
+      "eenheid": "m2 raam",
+      "primaireEffecten": "Gasbesparing -> CO2-reductie",
+      "rekenmodel": "Effectcode ET04; fysiek kengetal x factoren (Aannames). Afhankelijk van glastype.",
+      "monetarisatiebron": "Energieprijzen huishouden (Aannames); CO2 maatschappelijk: Milieuprijzen 2023 EUR0,13/kg.",
+      "onderbouwing": "Weinig gevalideerd",
+      "bewijssterkte": "Laag",
+      "statusKengetal": "direct brongetal",
+      "statusKengetalBron": "direct brongetal",
+      "afbakening": "Overlapgroep ruimteverwarming — cap per woning, niet optellen (regel 11)",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-isolerende-gordijnen.md",
+      "kengetallen": {
+        "gasM3PerJaar": 3,
+        "elektraKwhPerJaar": 0,
+        "waterM3PerJaar": 0,
+        "bestendiging": 1,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": null
+      },
+      "berekend": {
+        "besparingEurPerJaar": 4.05,
+        "co2eKgPerJaar": 6.4,
+        "monetairCo2EurPerEenheid": null
+      }
+    },
+    {
+      "id": "ET05",
+      "slug": "klokthermostaat",
+      "code": "ET05",
+      "domein": "Klimaat & Energie",
+      "activiteitstype": "Energie besparen",
+      "interventie": "Klokthermostaat",
+      "eenheid": "per woning",
+      "primaireEffecten": "Gasbesparing -> CO2-reductie",
+      "rekenmodel": "Effectcode ET05; fysiek kengetal x factoren (Aannames). Overlap ruimteverwarming.",
+      "monetarisatiebron": "Energieprijzen huishouden (Aannames); CO2 maatschappelijk: Milieuprijzen 2023 EUR0,13/kg.",
+      "onderbouwing": "Milieu Centraal",
+      "bewijssterkte": "Middel",
+      "statusKengetal": "direct brongetal",
+      "statusKengetalBron": "direct brongetal",
+      "afbakening": "Overlapgroep ruimteverwarming — cap per woning, niet optellen (regel 11)",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-klokthermostaat.md",
+      "kengetallen": {
+        "gasM3PerJaar": 50,
+        "elektraKwhPerJaar": 0,
+        "waterM3PerJaar": 0,
+        "bestendiging": 1,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": null
+      },
+      "berekend": {
+        "besparingEurPerJaar": 67.5,
+        "co2eKgPerJaar": 106.7,
+        "monetairCo2EurPerEenheid": null
+      }
+    },
+    {
+      "id": "ET06",
+      "slug": "thermostatische-radiatorkraan",
+      "code": "ET06",
+      "domein": "Klimaat & Energie",
+      "activiteitstype": "Energie besparen",
+      "interventie": "Thermostatische radiatorkraan",
+      "eenheid": "per ruimte",
+      "primaireEffecten": "Gasbesparing -> CO2-reductie",
+      "rekenmodel": "Effectcode ET06; fysiek kengetal x factoren (Aannames). Weinig gebruikte ruimtes.",
+      "monetarisatiebron": "Energieprijzen huishouden (Aannames); CO2 maatschappelijk: Milieuprijzen 2023 EUR0,13/kg.",
+      "onderbouwing": "Verifieren",
+      "bewijssterkte": "Laag",
+      "statusKengetal": "direct brongetal",
+      "statusKengetalBron": "direct brongetal",
+      "afbakening": "Overlapgroep ruimteverwarming — cap per woning, niet optellen (regel 11)",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-thermostatische-radiatorkraan.md",
+      "kengetallen": {
+        "gasM3PerJaar": 20,
+        "elektraKwhPerJaar": 0,
+        "waterM3PerJaar": 0,
+        "bestendiging": 1,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": null
+      },
+      "berekend": {
+        "besparingEurPerJaar": 27,
+        "co2eKgPerJaar": 42.68,
+        "monetairCo2EurPerEenheid": null
+      }
+    },
+    {
+      "id": "ET07",
+      "slug": "waterbesparende-douchekop",
+      "code": "ET07",
+      "domein": "Klimaat & Energie",
+      "activiteitstype": "Energie besparen",
+      "interventie": "Waterbesparende douchekop",
+      "eenheid": "per bewoner",
+      "primaireEffecten": "Gasbesparing (warm water) + waterbesparing -> CO2-reductie",
+      "rekenmodel": "Effectcode ET07; fysiek kengetal x factoren (Aannames). Elektrische boiler -> kWh.",
+      "monetarisatiebron": "Energieprijzen huishouden (Aannames); CO2 maatschappelijk: Milieuprijzen 2023 EUR0,13/kg.",
+      "onderbouwing": "GEVERIFIEERD: Milieu Centraal (~EUR25 p.p.)",
+      "bewijssterkte": "Hoog",
+      "statusKengetal": "direct brongetal",
+      "statusKengetalBron": "direct brongetal",
+      "afbakening": "Cluster warm water — gedeelde fysieke basis, cappen (regel 7)",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-waterbesparende-douchekop.md",
+      "kengetallen": {
+        "gasM3PerJaar": 10,
+        "elektraKwhPerJaar": 0,
+        "waterM3PerJaar": 7,
+        "bestendiging": 1,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": null
+      },
+      "berekend": {
+        "besparingEurPerJaar": 32.47,
+        "co2eKgPerJaar": 23.44,
+        "monetairCo2EurPerEenheid": null
+      }
+    },
+    {
+      "id": "ET08",
+      "slug": "radiatorpijp-isoleren",
+      "code": "ET08",
+      "domein": "Klimaat & Energie",
+      "activiteitstype": "Energie besparen",
+      "interventie": "Radiatorpijp isoleren",
+      "eenheid": "strekkende meter",
+      "primaireEffecten": "Gasbesparing -> CO2-reductie",
+      "rekenmodel": "Effectcode ET08; fysiek kengetal x factoren (Aannames). Onverwarmde ruimtes.",
+      "monetarisatiebron": "Energieprijzen huishouden (Aannames); CO2 maatschappelijk: Milieuprijzen 2023 EUR0,13/kg.",
+      "onderbouwing": "GEVERIFIEERD-indicatief: ~EUR4/m",
+      "bewijssterkte": "Middel",
+      "statusKengetal": "direct brongetal",
+      "statusKengetalBron": "direct brongetal",
+      "afbakening": "Overlapgroep ruimteverwarming — cap per woning, niet optellen (regel 11)",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-radiatorpijp-isoleren.md",
+      "kengetallen": {
+        "gasM3PerJaar": 3,
+        "elektraKwhPerJaar": 0,
+        "waterM3PerJaar": 0,
+        "bestendiging": 1,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": null
+      },
+      "berekend": {
+        "besparingEurPerJaar": 4.05,
+        "co2eKgPerJaar": 6.4,
+        "monetairCo2EurPerEenheid": null
+      }
+    },
+    {
+      "id": "ET09",
+      "slug": "douchetimer-5-min",
+      "code": "ET09",
+      "domein": "Klimaat & Energie",
+      "activiteitstype": "Energie besparen",
+      "interventie": "Douchetimer (5 min)",
+      "eenheid": "per bewoner",
+      "primaireEffecten": "Gasbesparing (warm water) + waterbesparing -> CO2-reductie",
+      "rekenmodel": "Effectcode ET09; fysiek kengetal x factoren (Aannames). Zelfde basis als EG01, geen 0,8.",
+      "monetarisatiebron": "Energieprijzen huishouden (Aannames); CO2 maatschappelijk: Milieuprijzen 2023 EUR0,13/kg.",
+      "onderbouwing": "GEVERIFIEERD: Milieu Centraal",
+      "bewijssterkte": "Hoog",
+      "statusKengetal": "direct brongetal",
+      "statusKengetalBron": "direct brongetal",
+      "afbakening": "Cluster warm water — gedeelde fysieke basis, cappen (regel 7)",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-douchetimer.md",
+      "kengetallen": {
+        "gasM3PerJaar": 7,
+        "elektraKwhPerJaar": 0,
+        "waterM3PerJaar": 2.5,
+        "bestendiging": 1,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": null
+      },
+      "berekend": {
+        "besparingEurPerJaar": 16.23,
+        "co2eKgPerJaar": 15.69,
+        "monetairCo2EurPerEenheid": null
+      }
+    },
+    {
+      "id": "ET10",
+      "slug": "radiatorventilator",
+      "code": "ET10",
+      "domein": "Klimaat & Energie",
+      "activiteitstype": "Energie besparen",
+      "interventie": "Radiatorventilator",
+      "eenheid": "per woning",
+      "primaireEffecten": "Gasbesparing -> CO2-reductie",
+      "rekenmodel": "Effectcode ET10; fysiek kengetal x factoren (Aannames). Onzeker.",
+      "monetarisatiebron": "Energieprijzen huishouden (Aannames); CO2 maatschappelijk: Milieuprijzen 2023 EUR0,13/kg.",
+      "onderbouwing": "Leverancierclaims",
+      "bewijssterkte": "Laag",
+      "statusKengetal": "direct brongetal",
+      "statusKengetalBron": "direct brongetal",
+      "afbakening": "Overlapgroep ruimteverwarming — cap per woning, niet optellen (regel 11)",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-radiatorventilator.md",
+      "kengetallen": {
+        "gasM3PerJaar": 30,
+        "elektraKwhPerJaar": 0,
+        "waterM3PerJaar": 0,
+        "bestendiging": 1,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": null
+      },
+      "berekend": {
+        "besparingEurPerJaar": 40.5,
+        "co2eKgPerJaar": 64.02,
+        "monetairCo2EurPerEenheid": null
+      }
+    },
+    {
+      "id": "ET11",
+      "slug": "thermostatische-mengkraan",
+      "code": "ET11",
+      "domein": "Klimaat & Energie",
+      "activiteitstype": "Energie besparen",
+      "interventie": "Thermostatische mengkraan",
+      "eenheid": "per badkamer",
+      "primaireEffecten": "Gasbesparing -> CO2-reductie",
+      "rekenmodel": "Effectcode ET11; fysiek kengetal x factoren (Aannames). Vooral comfort/veiligheid.",
+      "monetarisatiebron": "Energieprijzen huishouden (Aannames); CO2 maatschappelijk: Milieuprijzen 2023 EUR0,13/kg.",
+      "onderbouwing": "Verifieren",
+      "bewijssterkte": "Laag",
+      "statusKengetal": "direct brongetal",
+      "statusKengetalBron": "direct brongetal",
+      "afbakening": "Cluster warm water — gedeelde fysieke basis, cappen (regel 7)",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-thermostatische-mengkraan.md",
+      "kengetallen": {
+        "gasM3PerJaar": 5,
+        "elektraKwhPerJaar": 0,
+        "waterM3PerJaar": 0,
+        "bestendiging": 1,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": null
+      },
+      "berekend": {
+        "besparingEurPerJaar": 6.75,
+        "co2eKgPerJaar": 10.67,
+        "monetairCo2EurPerEenheid": null
+      }
+    },
+    {
+      "id": "ET12",
+      "slug": "waterzijdig-inregelen-cv",
+      "code": "ET12",
+      "domein": "Klimaat & Energie",
+      "activiteitstype": "Energie besparen",
+      "interventie": "Waterzijdig inregelen cv",
+      "eenheid": "per woning",
+      "primaireEffecten": "Gasbesparing -> CO2-reductie",
+      "rekenmodel": "Effectcode ET12; fysiek kengetal x factoren (Aannames). Niet bij reeds ingeregeld. Overlap.",
+      "monetarisatiebron": "Energieprijzen huishouden (Aannames); CO2 maatschappelijk: Milieuprijzen 2023 EUR0,13/kg.",
+      "onderbouwing": "GEVERIFIEERD: HIER (10-15%)",
+      "bewijssterkte": "Middel",
+      "statusKengetal": "direct brongetal",
+      "statusKengetalBron": "direct brongetal",
+      "afbakening": "Overlapgroep ruimteverwarming — cap per woning, niet optellen (regel 11)",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-waterzijdig-inregelen-cv.md",
+      "kengetallen": {
+        "gasM3PerJaar": 85,
+        "elektraKwhPerJaar": 0,
+        "waterM3PerJaar": 0,
+        "bestendiging": 1,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": null
+      },
+      "berekend": {
+        "besparingEurPerJaar": 114.75,
+        "co2eKgPerJaar": 181.39,
+        "monetairCo2EurPerEenheid": null
+      }
+    },
+    {
+      "id": "ET13",
+      "slug": "cv-optimalisatie-60c-pompstand",
+      "code": "ET13",
+      "domein": "Klimaat & Energie",
+      "activiteitstype": "Energie besparen",
+      "interventie": "CV-optimalisatie (60C, pompstand)",
+      "eenheid": "per woning",
+      "primaireEffecten": "Gasbesparing -> CO2-reductie",
+      "rekenmodel": "Effectcode ET13; fysiek kengetal x factoren (Aannames). Alleen HR-ketel. Overlap.",
+      "monetarisatiebron": "Energieprijzen huishouden (Aannames); CO2 maatschappelijk: Milieuprijzen 2023 EUR0,13/kg.",
+      "onderbouwing": "DEELS GEVERIFIEERD (MC 15 m3 + aanname)",
+      "bewijssterkte": "Middel",
+      "statusKengetal": "direct brongetal",
+      "statusKengetalBron": "direct brongetal",
+      "afbakening": "Overlapgroep ruimteverwarming — cap per woning, niet optellen (regel 11)",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-cv-optimalisatie.md",
+      "kengetallen": {
+        "gasM3PerJaar": 50,
+        "elektraKwhPerJaar": 0,
+        "waterM3PerJaar": 0,
+        "bestendiging": 1,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": null
+      },
+      "berekend": {
+        "besparingEurPerJaar": 67.5,
+        "co2eKgPerJaar": 106.7,
+        "monetairCo2EurPerEenheid": null
+      }
+    },
+    {
+      "id": "ET14",
+      "slug": "perlator-doorstroombegrenzer",
+      "code": "ET14",
+      "domein": "Klimaat & Energie",
+      "activiteitstype": "Energie besparen",
+      "interventie": "Perlator/doorstroombegrenzer",
+      "eenheid": "per kraan",
+      "primaireEffecten": "Gasbesparing (warm water) + waterbesparing -> CO2-reductie",
+      "rekenmodel": "Effectcode ET14; fysiek kengetal x factoren (Aannames). Klein effect.",
+      "monetarisatiebron": "Energieprijzen huishouden (Aannames); CO2 maatschappelijk: Milieuprijzen 2023 EUR0,13/kg.",
+      "onderbouwing": "MC - verifieren",
+      "bewijssterkte": "Laag",
+      "statusKengetal": "direct brongetal",
+      "statusKengetalBron": "direct brongetal",
+      "afbakening": "Cluster warm water — gedeelde fysieke basis, cappen (regel 7)",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-perlator.md",
+      "kengetallen": {
+        "gasM3PerJaar": 1,
+        "elektraKwhPerJaar": 0,
+        "waterM3PerJaar": 1.5,
+        "bestendiging": 1,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": null
+      },
+      "berekend": {
+        "besparingEurPerJaar": 5.41,
+        "co2eKgPerJaar": 2.58,
+        "monetairCo2EurPerEenheid": null
+      }
+    },
+    {
+      "id": "ET15",
+      "slug": "kozijnfolie-op-enkel-glas",
+      "code": "ET15",
+      "domein": "Klimaat & Energie",
+      "activiteitstype": "Energie besparen",
+      "interventie": "Kozijnfolie op enkel glas",
+      "eenheid": "m2 glas",
+      "primaireEffecten": "Gasbesparing -> CO2-reductie",
+      "rekenmodel": "Effectcode ET15; kozijnfolie (folie over kozijn -> luchtspouw). Kengetal 6,5 m3 gas/m2/jr (Milieu Centraal, geverifieerd; was 8 m3). Alleen enkel glas; niet dubbel tellen met glasfolie/raamfolie.",
+      "monetarisatiebron": "Energieprijzen huishouden (Aannames); CO2 maatschappelijk: Milieuprijzen 2023 EUR0,13/kg.",
+      "onderbouwing": "GEVERIFIEERD: Milieu Centraal (kozijnfolie enkel glas 6,5 m3/m2); blogclaims 13-15 m3 weerlegd (deep-research 2026-07-24)",
+      "bewijssterkte": "Middel-Hoog",
+      "statusKengetal": "direct brongetal",
+      "statusKengetalBron": "direct brongetal",
+      "afbakening": "Overlapgroep ruimteverwarming + folietype: op hetzelfde glas óf kozijnfolie óf glasfolie (regels 10 & 11)",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-raamfolie.md",
+      "kengetallen": {
+        "gasM3PerJaar": 6.5,
+        "elektraKwhPerJaar": 0,
+        "waterM3PerJaar": 0,
+        "bestendiging": 1,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": null
+      },
+      "berekend": {
+        "besparingEurPerJaar": 8.78,
+        "co2eKgPerJaar": 13.87,
+        "monetairCo2EurPerEenheid": null
+      }
+    },
+    {
+      "id": "ET16",
+      "slug": "brievenbusborstel-klep",
+      "code": "ET16",
+      "domein": "Klimaat & Energie",
+      "activiteitstype": "Energie besparen",
+      "interventie": "Brievenbusborstel/-klep",
+      "eenheid": "per stuk",
+      "primaireEffecten": "Gasbesparing -> CO2-reductie",
+      "rekenmodel": "Effectcode ET16; fysiek kengetal x factoren (Aannames). NIEUW v0.2.",
+      "monetarisatiebron": "Energieprijzen huishouden (Aannames); CO2 maatschappelijk: Milieuprijzen 2023 EUR0,13/kg.",
+      "onderbouwing": "Afgeleid kierdichting",
+      "bewijssterkte": "Laag",
+      "statusKengetal": "direct brongetal",
+      "statusKengetalBron": "direct brongetal",
+      "afbakening": "Overlapgroep ruimteverwarming — cap per woning, niet optellen (regel 11)",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-brievenbusborstel.md",
+      "kengetallen": {
+        "gasM3PerJaar": 2,
+        "elektraKwhPerJaar": 0,
+        "waterM3PerJaar": 0,
+        "bestendiging": 1,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": null
+      },
+      "berekend": {
+        "besparingEurPerJaar": 2.7,
+        "co2eKgPerJaar": 4.27,
+        "monetairCo2EurPerEenheid": null
+      }
+    },
+    {
+      "id": "ET17",
+      "slug": "tijdschakelaar-sensor",
+      "code": "ET17",
+      "domein": "Klimaat & Energie",
+      "activiteitstype": "Energie besparen",
+      "interventie": "Tijdschakelaar/sensor",
+      "eenheid": "per stuk",
+      "primaireEffecten": "Elektriciteitsbesparing -> CO2-reductie",
+      "rekenmodel": "Effectcode ET17; fysiek kengetal x factoren (Aannames). Gebruiksafhankelijk.",
+      "monetarisatiebron": "Energieprijzen huishouden (Aannames); CO2 maatschappelijk: Milieuprijzen 2023 EUR0,13/kg.",
+      "onderbouwing": "Verifieren",
+      "bewijssterkte": "Laag",
+      "statusKengetal": "direct brongetal",
+      "statusKengetalBron": "direct brongetal",
+      "afbakening": "Cluster verlichting — niet stapelen per lichtpunt (regel 12)",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-tijdschakelaar.md",
+      "kengetallen": {
+        "gasM3PerJaar": 0,
+        "elektraKwhPerJaar": 15,
+        "waterM3PerJaar": 0,
+        "bestendiging": 1,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": null
+      },
+      "berekend": {
+        "besparingEurPerJaar": 3.75,
+        "co2eKgPerJaar": 3.66,
+        "monetairCo2EurPerEenheid": null
+      }
+    },
+    {
+      "id": "ET18",
+      "slug": "vensterbankrooster",
+      "code": "ET18",
+      "domein": "Klimaat & Energie",
+      "activiteitstype": "Energie besparen",
+      "interventie": "Vensterbankrooster",
+      "eenheid": "per stuk",
+      "primaireEffecten": "Gasbesparing -> CO2-reductie",
+      "rekenmodel": "Effectcode ET18; fysiek kengetal x factoren (Aannames). Zwakste kengetal.",
+      "monetarisatiebron": "Energieprijzen huishouden (Aannames); CO2 maatschappelijk: Milieuprijzen 2023 EUR0,13/kg.",
+      "onderbouwing": "Nauwelijks bronnen",
+      "bewijssterkte": "Laag",
+      "statusKengetal": "direct brongetal",
+      "statusKengetalBron": "direct brongetal",
+      "afbakening": "Overlapgroep ruimteverwarming — cap per woning, niet optellen (regel 11)",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-vensterbankrooster.md",
+      "kengetallen": {
+        "gasM3PerJaar": 2,
+        "elektraKwhPerJaar": 0,
+        "waterM3PerJaar": 0,
+        "bestendiging": 1,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": null
+      },
+      "berekend": {
+        "besparingEurPerJaar": 2.7,
+        "co2eKgPerJaar": 4.27,
+        "monetairCo2EurPerEenheid": null
+      }
+    },
+    {
+      "id": "EG01",
+      "slug": "korter-douchen-per-min-p-p",
+      "code": "EG01",
+      "domein": "Klimaat & Energie",
+      "activiteitstype": "Energie besparen",
+      "interventie": "Korter douchen (per min p.p.)",
+      "eenheid": "per persoon per minuut",
+      "primaireEffecten": "Gasbesparing (warm water) + waterbesparing -> CO2-reductie",
+      "rekenmodel": "Effectcode EG01; fysiek kengetal x factoren (Aannames). Energiecoaching. Incl. 0,8.",
+      "monetarisatiebron": "Energieprijzen huishouden (Aannames); CO2 maatschappelijk: Milieuprijzen 2023 EUR0,13/kg.",
+      "onderbouwing": "GEVERIFIEERD: Milieu Centraal",
+      "bewijssterkte": "Hoog",
+      "statusKengetal": "direct brongetal",
+      "statusKengetalBron": "direct brongetal",
+      "afbakening": "Cluster warm water — gedeelde fysieke basis, cappen (regel 7)",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-korter-douchen.md",
+      "kengetallen": {
+        "gasM3PerJaar": 7,
+        "elektraKwhPerJaar": 0,
+        "waterM3PerJaar": 2.5,
+        "bestendiging": null,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": null
+      },
+      "berekend": {
+        "besparingEurPerJaar": 16.23,
+        "co2eKgPerJaar": 15.69,
+        "monetairCo2EurPerEenheid": null
+      }
+    },
+    {
+      "id": "EG02",
+      "slug": "stand-by-uit",
+      "code": "EG02",
+      "domein": "Klimaat & Energie",
+      "activiteitstype": "Energie besparen",
+      "interventie": "Stand-by uit",
+      "eenheid": "per huishouden",
+      "primaireEffecten": "Elektriciteitsbesparing -> CO2-reductie",
+      "rekenmodel": "Effectcode EG02; fysiek kengetal x factoren (Aannames). Incl. 0,8.",
+      "monetarisatiebron": "Energieprijzen huishouden (Aannames); CO2 maatschappelijk: Milieuprijzen 2023 EUR0,13/kg.",
+      "onderbouwing": "Milieu Centraal",
+      "bewijssterkte": "Middel",
+      "statusKengetal": "direct brongetal",
+      "statusKengetalBron": "direct brongetal",
+      "afbakening": "Zelfstandig (sluipverbruik elektra); geen bekende dubbeltelling",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-standby-uit.md",
+      "kengetallen": {
+        "gasM3PerJaar": 0,
+        "elektraKwhPerJaar": 20,
+        "waterM3PerJaar": 0,
+        "bestendiging": null,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": null
+      },
+      "berekend": {
+        "besparingEurPerJaar": 5,
+        "co2eKgPerJaar": 4.88,
+        "monetairCo2EurPerEenheid": null
+      }
+    },
+    {
+      "id": "EG03",
+      "slug": "pc-s-nachts-uit",
+      "code": "EG03",
+      "domein": "Klimaat & Energie",
+      "activiteitstype": "Energie besparen",
+      "interventie": "PC 's nachts uit",
+      "eenheid": "per huishouden",
+      "primaireEffecten": "Elektriciteitsbesparing -> CO2-reductie",
+      "rekenmodel": "Effectcode EG03; fysiek kengetal x factoren (Aannames). Incl. 0,8.",
+      "monetarisatiebron": "Energieprijzen huishouden (Aannames); CO2 maatschappelijk: Milieuprijzen 2023 EUR0,13/kg.",
+      "onderbouwing": "Apparaatafhankelijk",
+      "bewijssterkte": "Laag",
+      "statusKengetal": "direct brongetal",
+      "statusKengetalBron": "direct brongetal",
+      "afbakening": "Zelfstandig (apparaatgedrag)",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-pc-nachts-uit.md",
+      "kengetallen": {
+        "gasM3PerJaar": 0,
+        "elektraKwhPerJaar": 80,
+        "waterM3PerJaar": 0,
+        "bestendiging": null,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": null
+      },
+      "berekend": {
+        "besparingEurPerJaar": 20,
+        "co2eKgPerJaar": 19.52,
+        "monetairCo2EurPerEenheid": null
+      }
+    },
+    {
+      "id": "EG04",
+      "slug": "thermostaat-1c-lager-overdag",
+      "code": "EG04",
+      "domein": "Klimaat & Energie",
+      "activiteitstype": "Energie besparen",
+      "interventie": "Thermostaat 1C lager overdag",
+      "eenheid": "per huishouden",
+      "primaireEffecten": "Gasbesparing -> CO2-reductie",
+      "rekenmodel": "Effectcode EG04; fysiek kengetal x factoren (Aannames). Overlap. Incl. 0,8.",
+      "monetarisatiebron": "Energieprijzen huishouden (Aannames); CO2 maatschappelijk: Milieuprijzen 2023 EUR0,13/kg.",
+      "onderbouwing": "GEVERIFIEERD: Milieu Centraal",
+      "bewijssterkte": "Hoog",
+      "statusKengetal": "direct brongetal",
+      "statusKengetalBron": "direct brongetal",
+      "afbakening": "Overlapgroep ruimteverwarming — cap per woning, niet optellen (regel 11)",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-thermostaat-lager.md",
+      "kengetallen": {
+        "gasM3PerJaar": 70,
+        "elektraKwhPerJaar": 0,
+        "waterM3PerJaar": 0,
+        "bestendiging": null,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": null
+      },
+      "berekend": {
+        "besparingEurPerJaar": 94.5,
+        "co2eKgPerJaar": 149.38,
+        "monetairCo2EurPerEenheid": null
+      }
+    },
+    {
+      "id": "EG05",
+      "slug": "thermostaat-s-nachts-15c",
+      "code": "EG05",
+      "domein": "Klimaat & Energie",
+      "activiteitstype": "Energie besparen",
+      "interventie": "Thermostaat 's nachts 15C",
+      "eenheid": "per huishouden",
+      "primaireEffecten": "Gasbesparing -> CO2-reductie",
+      "rekenmodel": "Effectcode EG05; fysiek kengetal x factoren (Aannames). Overlap. Incl. 0,8.",
+      "monetarisatiebron": "Energieprijzen huishouden (Aannames); CO2 maatschappelijk: Milieuprijzen 2023 EUR0,13/kg.",
+      "onderbouwing": "Milieu Centraal",
+      "bewijssterkte": "Middel",
+      "statusKengetal": "direct brongetal",
+      "statusKengetalBron": "direct brongetal",
+      "afbakening": "Overlapgroep ruimteverwarming — cap per woning, niet optellen (regel 11)",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-thermostaat-nacht-15.md",
+      "kengetallen": {
+        "gasM3PerJaar": 100,
+        "elektraKwhPerJaar": 0,
+        "waterM3PerJaar": 0,
+        "bestendiging": null,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": null
+      },
+      "berekend": {
+        "besparingEurPerJaar": 135,
+        "co2eKgPerJaar": 213.4,
+        "monetairCo2EurPerEenheid": null
+      }
+    },
+    {
+      "id": "EG06",
+      "slug": "wasmachine-vol-draaien",
+      "code": "EG06",
+      "domein": "Klimaat & Energie",
+      "activiteitstype": "Energie besparen",
+      "interventie": "Wasmachine vol draaien",
+      "eenheid": "per huishouden",
+      "primaireEffecten": "Elektriciteitsbesparing -> CO2-reductie",
+      "rekenmodel": "Effectcode EG06; fysiek kengetal x factoren (Aannames). Incl. 0,8.",
+      "monetarisatiebron": "Energieprijzen huishouden (Aannames); CO2 maatschappelijk: Milieuprijzen 2023 EUR0,13/kg.",
+      "onderbouwing": "Milieu Centraal",
+      "bewijssterkte": "Middel",
+      "statusKengetal": "direct brongetal",
+      "statusKengetalBron": "direct brongetal",
+      "afbakening": "Apparaatgedrag wassen — niet stapelen met EG09 (zelfde wasbeurten)",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-wasmachine-vol.md",
+      "kengetallen": {
+        "gasM3PerJaar": 0,
+        "elektraKwhPerJaar": 15,
+        "waterM3PerJaar": 0,
+        "bestendiging": null,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": null
+      },
+      "berekend": {
+        "besparingEurPerJaar": 3.75,
+        "co2eKgPerJaar": 3.66,
+        "monetairCo2EurPerEenheid": null
+      }
+    },
+    {
+      "id": "EG07",
+      "slug": "vaatwasser-vol-draaien",
+      "code": "EG07",
+      "domein": "Klimaat & Energie",
+      "activiteitstype": "Energie besparen",
+      "interventie": "Vaatwasser vol draaien",
+      "eenheid": "per huishouden",
+      "primaireEffecten": "Elektriciteitsbesparing -> CO2-reductie",
+      "rekenmodel": "Effectcode EG07; fysiek kengetal x factoren (Aannames). Incl. 0,8.",
+      "monetarisatiebron": "Energieprijzen huishouden (Aannames); CO2 maatschappelijk: Milieuprijzen 2023 EUR0,13/kg.",
+      "onderbouwing": "Milieu Centraal",
+      "bewijssterkte": "Middel",
+      "statusKengetal": "direct brongetal",
+      "statusKengetalBron": "direct brongetal",
+      "afbakening": "Apparaatgedrag vaatwasser — niet stapelen met EG14 (zelfde apparaat)",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-vaatwasser-vol.md",
+      "kengetallen": {
+        "gasM3PerJaar": 0,
+        "elektraKwhPerJaar": 15,
+        "waterM3PerJaar": 0,
+        "bestendiging": null,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": null
+      },
+      "berekend": {
+        "besparingEurPerJaar": 3.75,
+        "co2eKgPerJaar": 3.66,
+        "monetairCo2EurPerEenheid": null
+      }
+    },
+    {
+      "id": "EG08",
+      "slug": "droger-vol-draaien",
+      "code": "EG08",
+      "domein": "Klimaat & Energie",
+      "activiteitstype": "Energie besparen",
+      "interventie": "Droger vol draaien",
+      "eenheid": "per huishouden",
+      "primaireEffecten": "Elektriciteitsbesparing -> CO2-reductie",
+      "rekenmodel": "Effectcode EG08; fysiek kengetal x factoren (Aannames). Incl. 0,8.",
+      "monetarisatiebron": "Energieprijzen huishouden (Aannames); CO2 maatschappelijk: Milieuprijzen 2023 EUR0,13/kg.",
+      "onderbouwing": "Milieu Centraal",
+      "bewijssterkte": "Middel",
+      "statusKengetal": "direct brongetal",
+      "statusKengetalBron": "direct brongetal",
+      "afbakening": "Apparaatgedrag drogen — niet stapelen met EG10 (was ophangen)",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-droger-vol.md",
+      "kengetallen": {
+        "gasM3PerJaar": 0,
+        "elektraKwhPerJaar": 25,
+        "waterM3PerJaar": 0,
+        "bestendiging": null,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": null
+      },
+      "berekend": {
+        "besparingEurPerJaar": 6.25,
+        "co2eKgPerJaar": 6.1,
+        "monetairCo2EurPerEenheid": null
+      }
+    },
+    {
+      "id": "EG09",
+      "slug": "wassen-30-40c-eco",
+      "code": "EG09",
+      "domein": "Klimaat & Energie",
+      "activiteitstype": "Energie besparen",
+      "interventie": "Wassen 30-40C / eco",
+      "eenheid": "per huishouden",
+      "primaireEffecten": "Elektriciteitsbesparing -> CO2-reductie",
+      "rekenmodel": "Effectcode EG09; fysiek kengetal x factoren (Aannames). Incl. 0,8.",
+      "monetarisatiebron": "Energieprijzen huishouden (Aannames); CO2 maatschappelijk: Milieuprijzen 2023 EUR0,13/kg.",
+      "onderbouwing": "Milieu Centraal",
+      "bewijssterkte": "Middel",
+      "statusKengetal": "direct brongetal",
+      "statusKengetalBron": "direct brongetal",
+      "afbakening": "Apparaatgedrag wassen — niet stapelen met EG06 (zelfde wasbeurten)",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-wassen-30-40.md",
+      "kengetallen": {
+        "gasM3PerJaar": 0,
+        "elektraKwhPerJaar": 18,
+        "waterM3PerJaar": 0,
+        "bestendiging": null,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": null
+      },
+      "berekend": {
+        "besparingEurPerJaar": 4.5,
+        "co2eKgPerJaar": 4.39,
+        "monetairCo2EurPerEenheid": null
+      }
+    },
+    {
+      "id": "EG10",
+      "slug": "was-ophangen-i-p-v-droger",
+      "code": "EG10",
+      "domein": "Klimaat & Energie",
+      "activiteitstype": "Energie besparen",
+      "interventie": "Was ophangen i.p.v. droger",
+      "eenheid": "per cyclus/week",
+      "primaireEffecten": "Elektriciteitsbesparing -> CO2-reductie",
+      "rekenmodel": "Effectcode EG10; fysiek kengetal x factoren (Aannames). Incl. 0,8.",
+      "monetarisatiebron": "Energieprijzen huishouden (Aannames); CO2 maatschappelijk: Milieuprijzen 2023 EUR0,13/kg.",
+      "onderbouwing": "~2,5 kWh/cyclus x 52",
+      "bewijssterkte": "Hoog",
+      "statusKengetal": "direct brongetal",
+      "statusKengetalBron": "direct brongetal",
+      "afbakening": "Apparaatgedrag drogen — niet stapelen met EG08 (droger vol)",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-was-ophangen.md",
+      "kengetallen": {
+        "gasM3PerJaar": 0,
+        "elektraKwhPerJaar": 130,
+        "waterM3PerJaar": 0,
+        "bestendiging": null,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": null
+      },
+      "berekend": {
+        "besparingEurPerJaar": 32.5,
+        "co2eKgPerJaar": 31.72,
+        "monetairCo2EurPerEenheid": null
+      }
+    },
+    {
+      "id": "EG11",
+      "slug": "apparaten-op-nachttarief",
+      "code": "EG11",
+      "domein": "Klimaat & Energie",
+      "activiteitstype": "Energie besparen",
+      "interventie": "Apparaten op nachttarief",
+      "eenheid": "per huishouden",
+      "primaireEffecten": "Financieel voordeel via nachttarief (geen energie/CO2)",
+      "rekenmodel": "Effectcode EG11; fysiek kengetal x factoren (Aannames). GEEN energie/CO2; alleen dubbeltarief.",
+      "monetarisatiebron": "Energieprijzen huishouden (Aannames); CO2 maatschappelijk: Milieuprijzen 2023 EUR0,13/kg.",
+      "onderbouwing": "Alleen EUR via nachttarief",
+      "bewijssterkte": "Hoog",
+      "statusKengetal": "direct brongetal",
+      "statusKengetalBron": "direct brongetal",
+      "afbakening": "Zelfstandig (alleen EUR-effect, nachttarief)",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-apparaten-nachttarief.md",
+      "kengetallen": {
+        "gasM3PerJaar": 0,
+        "elektraKwhPerJaar": 0,
+        "waterM3PerJaar": 0,
+        "bestendiging": 1,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": null
+      },
+      "berekend": {
+        "besparingEurPerJaar": 0,
+        "co2eKgPerJaar": 0,
+        "monetairCo2EurPerEenheid": null
+      }
+    },
+    {
+      "id": "EG12",
+      "slug": "vriezer-ontdooien",
+      "code": "EG12",
+      "domein": "Klimaat & Energie",
+      "activiteitstype": "Energie besparen",
+      "interventie": "Vriezer ontdooien",
+      "eenheid": "per huishouden",
+      "primaireEffecten": "Elektriciteitsbesparing -> CO2-reductie",
+      "rekenmodel": "Effectcode EG12; fysiek kengetal x factoren (Aannames). No-frost 0. Incl. 0,8.",
+      "monetarisatiebron": "Energieprijzen huishouden (Aannames); CO2 maatschappelijk: Milieuprijzen 2023 EUR0,13/kg.",
+      "onderbouwing": "Verifieren",
+      "bewijssterkte": "Laag",
+      "statusKengetal": "direct brongetal",
+      "statusKengetalBron": "direct brongetal",
+      "afbakening": "Zelfstandig (apparaatgedrag)",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-vriezer-ontdooien.md",
+      "kengetallen": {
+        "gasM3PerJaar": 0,
+        "elektraKwhPerJaar": 20,
+        "waterM3PerJaar": 0,
+        "bestendiging": null,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": null
+      },
+      "berekend": {
+        "besparingEurPerJaar": 5,
+        "co2eKgPerJaar": 4.88,
+        "monetairCo2EurPerEenheid": null
+      }
+    },
+    {
+      "id": "EG13",
+      "slug": "ramen-korter-open-stookseizoen",
+      "code": "EG13",
+      "domein": "Klimaat & Energie",
+      "activiteitstype": "Energie besparen",
+      "interventie": "Ramen korter open (stookseizoen)",
+      "eenheid": "per huishouden",
+      "primaireEffecten": "Gasbesparing -> CO2-reductie",
+      "rekenmodel": "Effectcode EG13; fysiek kengetal x factoren (Aannames). Spanning met ventileren. Incl. 0,8.",
+      "monetarisatiebron": "Energieprijzen huishouden (Aannames); CO2 maatschappelijk: Milieuprijzen 2023 EUR0,13/kg.",
+      "onderbouwing": "Verifieren",
+      "bewijssterkte": "Laag",
+      "statusKengetal": "direct brongetal",
+      "statusKengetalBron": "direct brongetal",
+      "afbakening": "Overlapgroep ruimteverwarming — cap per woning, niet optellen (regel 11)",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-ramen-korter-open.md",
+      "kengetallen": {
+        "gasM3PerJaar": 30,
+        "elektraKwhPerJaar": 0,
+        "waterM3PerJaar": 0,
+        "bestendiging": null,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": null
+      },
+      "berekend": {
+        "besparingEurPerJaar": 40.5,
+        "co2eKgPerJaar": 64.02,
+        "monetairCo2EurPerEenheid": null
+      }
+    },
+    {
+      "id": "EG14",
+      "slug": "vaatwasser-eco-stand",
+      "code": "EG14",
+      "domein": "Klimaat & Energie",
+      "activiteitstype": "Energie besparen",
+      "interventie": "Vaatwasser eco-stand",
+      "eenheid": "per huishouden",
+      "primaireEffecten": "Elektriciteitsbesparing -> CO2-reductie",
+      "rekenmodel": "Effectcode EG14; fysiek kengetal x factoren (Aannames). Incl. 0,8.",
+      "monetarisatiebron": "Energieprijzen huishouden (Aannames); CO2 maatschappelijk: Milieuprijzen 2023 EUR0,13/kg.",
+      "onderbouwing": "Milieu Centraal",
+      "bewijssterkte": "Middel",
+      "statusKengetal": "direct brongetal",
+      "statusKengetalBron": "direct brongetal",
+      "afbakening": "Apparaatgedrag vaatwasser — niet stapelen met EG07 (zelfde apparaat)",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-vaatwasser-eco.md",
+      "kengetallen": {
+        "gasM3PerJaar": 0,
+        "elektraKwhPerJaar": 20,
+        "waterM3PerJaar": 0,
+        "bestendiging": null,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": null
+      },
+      "berekend": {
+        "besparingEurPerJaar": 5,
+        "co2eKgPerJaar": 4.88,
+        "monetairCo2EurPerEenheid": null
+      }
+    },
+    {
+      "id": "ISO",
+      "slug": "isolatie-aanbrengen-spouwmuur",
+      "code": "ISO",
+      "domein": "Klimaat & Energie",
+      "activiteitstype": "Energie besparen",
+      "interventie": "Isolatie aanbrengen (spouwmuur)",
+      "eenheid": "m2",
+      "primaireEffecten": "Gasbesparing -> CO2-reductie",
+      "rekenmodel": "Effectcode ISO; fysiek kengetal x factoren (Aannames). Per type verschillend; uitgangs-Rd bepaalt besparing.",
+      "monetarisatiebron": "Energieprijzen huishouden (Aannames); CO2 maatschappelijk: Milieuprijzen 2023 EUR0,13/kg.",
+      "onderbouwing": "GEVERIFIEERD: Milieu Centraal spouwmuur ~4,5 m3 gas/m2 (afgeleid)",
+      "bewijssterkte": "Middel",
+      "statusKengetal": "direct brongetal",
+      "statusKengetalBron": "direct brongetal",
+      "afbakening": "Overlapgroep ruimteverwarming — cap per woning, niet optellen (regel 11); bouwdelen (spouw/dak/vloer/bodem) apart telbaar per object",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-isolatie.md",
+      "kengetallen": {
+        "gasM3PerJaar": 4.5,
+        "elektraKwhPerJaar": 0,
+        "waterM3PerJaar": 0,
+        "bestendiging": 1,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": null
+      },
+      "berekend": {
+        "besparingEurPerJaar": 6.08,
+        "co2eKgPerJaar": 9.6,
+        "monetairCo2EurPerEenheid": null
+      }
+    },
+    {
+      "id": "ISD",
+      "slug": "dakisolatie-geen-goed",
+      "code": "ISD",
+      "domein": "Klimaat & Energie",
+      "activiteitstype": "Energie besparen",
+      "interventie": "Dakisolatie (geen->goed)",
+      "eenheid": "m2",
+      "primaireEffecten": "Gasbesparing -> CO2-reductie",
+      "rekenmodel": "Effectcode ISD; fysiek kengetal x factoren (Aannames). Sector noemt ~10 m3/m2; matig->goed ~1,3; afh. van uitgangs-Rd.",
+      "monetarisatiebron": "Energieprijzen huishouden (Aannames); CO2 maatschappelijk: Milieuprijzen 2023 EUR0,13/kg.",
+      "onderbouwing": "Herleid uit Milieu Centraal/RVO (overheid, conservatief)",
+      "bewijssterkte": "Middel",
+      "statusKengetal": "herleidbare omrekening",
+      "statusKengetalBron": "herleidbare omrekening",
+      "afbakening": "Overlapgroep ruimteverwarming — cap per woning, niet optellen (regel 11); bouwdelen apart telbaar per object",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-isolatie.md",
+      "kengetallen": {
+        "gasM3PerJaar": 6.1,
+        "elektraKwhPerJaar": 0,
+        "waterM3PerJaar": 0,
+        "bestendiging": 1,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": null
+      },
+      "berekend": {
+        "besparingEurPerJaar": 8.23,
+        "co2eKgPerJaar": 13.02,
+        "monetairCo2EurPerEenheid": null
+      }
+    },
+    {
+      "id": "ISV",
+      "slug": "vloerisolatie-geen-goed",
+      "code": "ISV",
+      "domein": "Klimaat & Energie",
+      "activiteitstype": "Energie besparen",
+      "interventie": "Vloerisolatie (geen->goed)",
+      "eenheid": "m2",
+      "primaireEffecten": "Gasbesparing -> CO2-reductie",
+      "rekenmodel": "Effectcode ISV; fysiek kengetal x factoren (Aannames). Sector noemt 5-7 m3/m2; matig->goed ~0,9.",
+      "monetarisatiebron": "Energieprijzen huishouden (Aannames); CO2 maatschappelijk: Milieuprijzen 2023 EUR0,13/kg.",
+      "onderbouwing": "Herleid uit Milieu Centraal (50 m2 voorbeeld)",
+      "bewijssterkte": "Middel",
+      "statusKengetal": "herleidbare omrekening",
+      "statusKengetalBron": "herleidbare omrekening",
+      "afbakening": "Overlapgroep ruimteverwarming — cap per woning, niet optellen (regel 11); bouwdelen apart telbaar per object",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-isolatie.md",
+      "kengetallen": {
+        "gasM3PerJaar": 2.6,
+        "elektraKwhPerJaar": 0,
+        "waterM3PerJaar": 0,
+        "bestendiging": 1,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": null
+      },
+      "berekend": {
+        "besparingEurPerJaar": 3.51,
+        "co2eKgPerJaar": 5.55,
+        "monetairCo2EurPerEenheid": null
+      }
+    },
+    {
+      "id": "ISB",
+      "slug": "bodemisolatie-kruipruimte",
+      "code": "ISB",
+      "domein": "Klimaat & Energie",
+      "activiteitstype": "Energie besparen",
+      "interventie": "Bodemisolatie kruipruimte",
+      "eenheid": "m2",
+      "primaireEffecten": "Gasbesparing -> CO2-reductie",
+      "rekenmodel": "Effectcode ISB; fysiek kengetal x factoren (Aannames). Sector noemt ~3 m3/m2.",
+      "monetarisatiebron": "Energieprijzen huishouden (Aannames); CO2 maatschappelijk: Milieuprijzen 2023 EUR0,13/kg.",
+      "onderbouwing": "Herleid uit Milieu Centraal (~50 m2)",
+      "bewijssterkte": "Middel",
+      "statusKengetal": "herleidbare omrekening",
+      "statusKengetalBron": "herleidbare omrekening",
+      "afbakening": "Overlapgroep ruimteverwarming — cap per woning, niet optellen (regel 11); bouwdelen apart telbaar per object",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-isolatie.md",
+      "kengetallen": {
+        "gasM3PerJaar": 1.6,
+        "elektraKwhPerJaar": 0,
+        "waterM3PerJaar": 0,
+        "bestendiging": 1,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": null
+      },
+      "berekend": {
+        "besparingEurPerJaar": 2.16,
+        "co2eKgPerJaar": 3.41,
+        "monetairCo2EurPerEenheid": null
+      }
+    },
+    {
+      "id": "ZON",
+      "slug": "zonnepanelen-installeren",
+      "code": "ZON",
+      "domein": "Klimaat & Energie",
+      "activiteitstype": "Energie opwekken",
+      "interventie": "Zonnepanelen installeren",
+      "eenheid": "kWp",
+      "primaireEffecten": "Hernieuwbare elektriciteitsopwekking -> vermeden CO2",
+      "rekenmodel": "Effectcode ZON; fysiek kengetal x factoren (Aannames). Vermeden CO2 bij 0,244 kg/kWh; EUR = vermeden inkoop.",
+      "monetarisatiebron": "Energieprijzen huishouden (Aannames); CO2 maatschappelijk: Milieuprijzen 2023 EUR0,13/kg.",
+      "onderbouwing": "Milieu Centraal/RVO ~850 kWh/kWp/jr (conservatief)",
+      "bewijssterkte": "Middel",
+      "statusKengetal": "direct brongetal",
+      "statusKengetalBron": "direct brongetal",
+      "afbakening": "Cluster zonne-energie — kies één registratie per kWp (regel 6)",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-zonnepanelen.md",
+      "kengetallen": {
+        "gasM3PerJaar": 0,
+        "elektraKwhPerJaar": 850,
+        "waterM3PerJaar": 0,
+        "bestendiging": 1,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": null
+      },
+      "berekend": {
+        "besparingEurPerJaar": 212.5,
+        "co2eKgPerJaar": 207.4,
+        "monetairCo2EurPerEenheid": null
+      }
+    },
+    {
+      "id": "WP",
+      "slug": "warmtepomp-hybride-installeren",
+      "code": "WP",
+      "domein": "Klimaat & Energie",
+      "activiteitstype": "Energie besparen",
+      "interventie": "Warmtepomp (hybride) installeren",
+      "eenheid": "per woning",
+      "primaireEffecten": "Gasbesparing minus extra elektra -> netto CO2-reductie",
+      "rekenmodel": "Effectcode WP; fysiek kengetal x factoren (Aannames). Netto: 680 m3 gas bespaard MIN 1.615 kWh extra elektra.",
+      "monetarisatiebron": "Energieprijzen huishouden (Aannames); CO2 maatschappelijk: Milieuprijzen 2023 EUR0,13/kg.",
+      "onderbouwing": "GEVERIFIEERD: Milieu Centraal hybride, referentie-hoekwoning",
+      "bewijssterkte": "Hoog",
+      "statusKengetal": "herleidbare omrekening",
+      "statusKengetalBron": "herleidbare omrekening",
+      "afbakening": "Systeemmaatregel ruimteverwarming — niet met losse gasmaatregelen (ET01/03/12/13, EG04/05) stapelen",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-warmtepomp.md",
+      "kengetallen": {
+        "gasM3PerJaar": 680,
+        "elektraKwhPerJaar": -1615,
+        "waterM3PerJaar": 0,
+        "bestendiging": 1,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": null
+      },
+      "berekend": {
+        "besparingEurPerJaar": 514.25,
+        "co2eKgPerJaar": 1057.06,
+        "monetairCo2EurPerEenheid": null
+      }
+    },
+    {
+      "id": "ZDK",
+      "slug": "collectief-zonnedak-per-kwp",
+      "code": "ZDK",
+      "domein": "Klimaat & Energie",
+      "activiteitstype": "Energie opwekken",
+      "interventie": "Collectief zonnedak (per kWp)",
+      "eenheid": "kWp",
+      "primaireEffecten": "Elektriciteitsbesparing -> CO2-reductie",
+      "rekenmodel": "Effectcode ZDK; fysiek kengetal x factoren (Aannames). Vermeden CO2 bij 0,244 kg/kWh; EUR = vermeden inkoop.",
+      "monetarisatiebron": "Energieprijzen huishouden (Aannames); CO2 maatschappelijk: Milieuprijzen 2023 EUR0,13/kg.",
+      "onderbouwing": "Milieu Centraal ~850 kWh/kWp/jr (conservatief); collectief/postcoderoos",
+      "bewijssterkte": "Middel",
+      "statusKengetal": "direct brongetal",
+      "statusKengetalBron": "direct brongetal",
+      "afbakening": "Cluster zonne-energie — kies één registratie per kWp (regel 6)",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-collectief-zonnedak.md",
+      "kengetallen": {
+        "gasM3PerJaar": 0,
+        "elektraKwhPerJaar": 850,
+        "waterM3PerJaar": 0,
+        "bestendiging": 1,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": null
+      },
+      "berekend": {
+        "besparingEurPerJaar": 212.5,
+        "co2eKgPerJaar": 207.4,
+        "monetairCo2EurPerEenheid": null
+      }
+    },
+    {
+      "id": "ET15b",
+      "slug": "glasfolie-raamfolie-op-enkel-glas",
+      "code": "ET15b",
+      "domein": "Klimaat & Energie",
+      "activiteitstype": "Energie besparen",
+      "interventie": "Glasfolie/raamfolie op enkel glas",
+      "eenheid": "m2 glas",
+      "primaireEffecten": "Gasbesparing -> CO2-reductie",
+      "rekenmodel": "Effectcode ET15 (variant glasfolie, folie direct op glas). Kengetal 3,4 m3 gas/m2/jr (Milieu Centraal, geverifieerd). Lager dan kozijnfolie (6,5). Niet dubbel tellen met kozijnfolie.",
+      "monetarisatiebron": "Energieprijzen huishouden (Aannames); CO2 maatschappelijk: Milieuprijzen 2023 EUR0,13/kg.",
+      "onderbouwing": "GEVERIFIEERD: Milieu Centraal (glasfolie enkel glas 3,4 m3/m2) (deep-research 2026-07-24)",
+      "bewijssterkte": "Middel-Hoog",
+      "statusKengetal": "direct brongetal",
+      "statusKengetalBron": "direct brongetal",
+      "afbakening": "Overlapgroep ruimteverwarming + folietype: op hetzelfde glas óf kozijnfolie óf glasfolie (regels 10 & 11)",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-raamfolie.md",
+      "kengetallen": {
+        "gasM3PerJaar": 3.4,
+        "elektraKwhPerJaar": 0,
+        "waterM3PerJaar": 0,
+        "bestendiging": 1,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": null
+      },
+      "berekend": {
+        "besparingEurPerJaar": 4.59,
+        "co2eKgPerJaar": 7.26,
+        "monetairCo2EurPerEenheid": null
+      }
+    },
+    {
+      "id": "ET19",
+      "slug": "deursluiter-interne-deur-zonering",
+      "code": "ET19",
+      "domein": "Klimaat & Energie",
+      "activiteitstype": "Energie besparen",
+      "interventie": "Deursluiter interne deur (zonering)",
+      "eenheid": "stuks",
+      "primaireEffecten": "Gasbesparing (zonering) -> CO2-reductie",
+      "rekenmodel": "Effectcode ET19 (nieuw). GEEN NL-kengetal; enkel Britse proxy 3,5-20% zonering. Milieu Centraal: bovenverdieping niet verwarmen ~EUR80/jr (niet per deur). Overlap ruimteverwarming.",
+      "monetarisatiebron": "Energieprijzen huishouden (Aannames); CO2 maatschappelijk: Milieuprijzen 2023 EUR0,13/kg.",
+      "onderbouwing": "needs verification: geen gezaghebbend NL-kengetal; effectrichting onderbouwd (MC + UK-studies) (deep-research 2026-07-24)",
+      "bewijssterkte": "Laag",
+      "statusKengetal": "needs verification",
+      "statusKengetalBron": "needs verification",
+      "afbakening": "Overlapgroep ruimteverwarming — cap per woning, niet optellen (regel 11)",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-deursluiter.md",
+      "kengetallen": {
+        "gasM3PerJaar": 0,
+        "elektraKwhPerJaar": 0,
+        "waterM3PerJaar": 0,
+        "bestendiging": 1,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": null
+      },
+      "berekend": {
+        "besparingEurPerJaar": 0,
+        "co2eKgPerJaar": 0,
+        "monetairCo2EurPerEenheid": null
+      }
+    },
+    {
+      "id": "ET20",
+      "slug": "bewegingssensor-verlichting",
+      "code": "ET20",
+      "domein": "Klimaat & Energie",
+      "activiteitstype": "Energie besparen",
+      "interventie": "Bewegingssensor verlichting",
+      "eenheid": "stuks",
+      "primaireEffecten": "Elektriciteitsbesparing -> CO2-reductie",
+      "rekenmodel": "Effectcode ET20 (nieuw). 10-90% van verlichtingsverbruik, ruimteafhankelijk (Stimular); geen hard kWh/sensor -> casusgebonden. Ref. 267 kWh/jr huishoudverlichting (Milieu Centraal).",
+      "monetarisatiebron": "Energieprijzen huishouden (Aannames); CO2 maatschappelijk: Milieuprijzen 2023 EUR0,13/kg.",
+      "onderbouwing": "Laag-Middel: percentageband Stimular + referentiebasis Milieu Centraal; hard kWh/sensor needs verification (deep-research 2026-07-24)",
+      "bewijssterkte": "Laag-Middel",
+      "statusKengetal": "casusgebonden / vergelijkend",
+      "statusKengetalBron": "casusgebonden",
+      "afbakening": "Cluster verlichting — niet stapelen per lichtpunt (regel 12)",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-bewegingssensor.md",
+      "kengetallen": {
+        "gasM3PerJaar": 0,
+        "elektraKwhPerJaar": 0,
+        "waterM3PerJaar": 0,
+        "bestendiging": 1,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": null
+      },
+      "berekend": {
+        "besparingEurPerJaar": 0,
+        "co2eKgPerJaar": 0,
+        "monetairCo2EurPerEenheid": null
+      }
+    },
+    {
+      "id": "warme-sokken-kleding-comfort-enabler",
+      "slug": "warme-sokken-kleding-comfort-enabler",
+      "code": null,
+      "domein": "Klimaat & Energie",
+      "activiteitstype": "Energie besparen",
+      "interventie": "Warme sokken/kleding (comfort-enabler)",
+      "eenheid": "paar",
+      "primaireEffecten": "Indirect: gasbesparing via lagere thermostaat",
+      "rekenmodel": "Geen eigen kengetal; comfort-enabler. Besparing loopt via EG04 (thermostaat lager, ~10%/graad). Niet apart optellen -> dubbeltelling met EG04.",
+      "monetarisatiebron": "n.v.t. (besparing via EG04)",
+      "onderbouwing": "GEVERIFIEERD: Milieu Centraal bundelt kleding met thermostaat-tip; geen zelfstandige toeschrijving (deep-research 2026-07-24)",
+      "bewijssterkte": "Laag",
+      "statusKengetal": "enabler / output",
+      "statusKengetalBron": "enabler-output",
+      "afbakening": "Comfort-enabler — telt via EG04, niet apart (regel 13)",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-sokken.md",
+      "kengetallen": {
+        "gasM3PerJaar": 0,
+        "elektraKwhPerJaar": 0,
+        "waterM3PerJaar": 0,
+        "bestendiging": 1,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": null
+      },
+      "berekend": {
+        "besparingEurPerJaar": 0,
+        "co2eKgPerJaar": 0,
+        "monetairCo2EurPerEenheid": null
+      }
+    },
+    {
+      "id": "lokale-energiecooperatie-energiegemeenschap",
+      "slug": "lokale-energiecooperatie-energiegemeenschap",
+      "code": null,
+      "domein": "Klimaat & Energie",
+      "activiteitstype": "Energie opwekken faciliteren",
+      "interventie": "Lokale energiecooperatie / energiegemeenschap",
+      "eenheid": "deelnemer/lid (output)",
+      "primaireEffecten": "Faciliteert lokale opwek + besparing; sociale cohesie (buiten scope)",
+      "rekenmodel": "Enabler/organisatievorm. LEM 2024: 702 cooperaties, 139.000 leden, 404 MWp zon. Causaal CO2/deelnemer needs verification.",
+      "monetarisatiebron": "CO2 EUR0,13/kg zodra kengetal bekend; opwek valt onder zonnedak/zonnepanelen.",
+      "onderbouwing": "Indirect effect; geen causaal per-deelnemer-kengetal (RVO/HIER LEM 2024).",
+      "bewijssterkte": "Laag",
+      "statusKengetal": "enabler / output",
+      "statusKengetalBron": "enabler / output",
+      "afbakening": "Enabler — impact via gefaciliteerde opwek/besparing",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-energiecooperatie.md",
+      "kengetallen": {
+        "gasM3PerJaar": null,
+        "elektraKwhPerJaar": null,
+        "waterM3PerJaar": null,
+        "bestendiging": null,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": "needs verification"
+      },
+      "berekend": {
+        "besparingEurPerJaar": null,
+        "co2eKgPerJaar": null,
+        "monetairCo2EurPerEenheid": null
+      }
+    },
+    {
+      "id": "batterij-opslag-lokale-hernieuwbare-energie",
+      "slug": "batterij-opslag-lokale-hernieuwbare-energie",
+      "code": null,
+      "domein": "Klimaat & Energie",
+      "activiteitstype": "Energie opslaan",
+      "interventie": "Batterij/opslag lokale hernieuwbare energie",
+      "eenheid": "per kWh opslagcapaciteit",
+      "primaireEffecten": "Meer eigen verbruik zon/wind; peak shaving; minder curtailment",
+      "rekenmodel": "Indirect; ~85% round-trip efficiency (~15% verlies). Netto CO2 beperkt en mogelijk negatief door productie-emissies (CE Delft 2023). needs verification.",
+      "monetarisatiebron": "CO2 EUR0,13/kg; netto-effect onzeker.",
+      "onderbouwing": "Netto kg CO2/kWh opslag + productie-LCA needs verification.",
+      "bewijssterkte": "Laag",
+      "statusKengetal": "enabler / output",
+      "statusKengetalBron": "enabler / output",
+      "afbakening": "Zelfstandig (netto-effect onzeker); niet als opwek tellen",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-batterijopslag.md",
+      "kengetallen": {
+        "gasM3PerJaar": null,
+        "elektraKwhPerJaar": null,
+        "waterM3PerJaar": null,
+        "bestendiging": null,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": "needs verification"
+      },
+      "berekend": {
+        "besparingEurPerJaar": null,
+        "co2eKgPerJaar": null,
+        "monetairCo2EurPerEenheid": null
+      }
+    },
+    {
+      "id": "deelfiets-fietsdeelsysteem-exploiteren",
+      "slug": "deelfiets-fietsdeelsysteem-exploiteren",
+      "code": null,
+      "domein": "Klimaat & Energie",
+      "activiteitstype": "Duurzame mobiliteit",
+      "interventie": "Deelfiets-/fietsdeelsysteem exploiteren",
+      "eenheid": "rit",
+      "primaireEffecten": "Vermeden auto-km; CO2-reductie (substitutie-afhankelijk)",
+      "rekenmodel": "Substitutie-afhankelijk: deelfiets vervangt vooral OV/lopen/eigen fiets, beperkt auto (KiM/RWS). Auto-EF 191 g/km WTW. kg CO2/rit needs verification.",
+      "monetarisatiebron": "CO2 EUR0,13/kg; bredere mobiliteitsbaten via MKBA-leidraad.",
+      "onderbouwing": "Substitutiegraad onzeker -> kg CO2/rit needs verification.",
+      "bewijssterkte": "Laag",
+      "statusKengetal": "enabler / output",
+      "statusKengetalBron": "enabler / output",
+      "afbakening": "Substitutie-afhankelijk — per rit/km één keer",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-deelfiets.md",
+      "kengetallen": {
+        "gasM3PerJaar": null,
+        "elektraKwhPerJaar": null,
+        "waterM3PerJaar": null,
+        "bestendiging": null,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": "needs verification"
+      },
+      "berekend": {
+        "besparingEurPerJaar": null,
+        "co2eKgPerJaar": null,
+        "monetairCo2EurPerEenheid": null
+      }
+    },
+    {
+      "id": "zero-emissie-stadslogistiek-uitvoeren",
+      "slug": "zero-emissie-stadslogistiek-uitvoeren",
+      "code": null,
+      "domein": "Klimaat & Energie",
+      "activiteitstype": "Duurzame mobiliteit",
+      "interventie": "Zero-emissie stadslogistiek uitvoeren",
+      "eenheid": "per km",
+      "primaireEffecten": "Vermeden diesel-CO2 in stedelijke logistiek",
+      "rekenmodel": "Diesel-bestelauto 0,282 kg CO2/km (WTW, co2emissiefactoren.nl). E-bestelbus op groene stroom ~0,282 vermeden/km; grijs/markt lager (kWh/km needs verification).",
+      "monetarisatiebron": "CO2 EUR0,13/kg.",
+      "onderbouwing": "Diesel-EF geverifieerd; e-verbruik kWh/km en stroom-EF needs verification.",
+      "bewijssterkte": "Middel",
+      "statusKengetal": "casusgebonden / vergelijkend",
+      "statusKengetalBron": "casusgebonden / vergelijkend",
+      "afbakening": "Substitutie-afhankelijk — per km één keer",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-zero-emissie-stadslogistiek.md",
+      "kengetallen": {
+        "gasM3PerJaar": null,
+        "elektraKwhPerJaar": null,
+        "waterM3PerJaar": null,
+        "bestendiging": null,
+        "co2ePerEenheid": 0.282,
+        "co2ePerEenheidTekst": 0.282
+      },
+      "berekend": {
+        "besparingEurPerJaar": null,
+        "co2eKgPerJaar": null,
+        "monetairCo2EurPerEenheid": 0.04
+      }
+    },
+    {
+      "id": "plantaardige-vegetarische-maaltijd-leveren",
+      "slug": "plantaardige-vegetarische-maaltijd-leveren",
+      "code": null,
+      "domein": "Klimaat & Energie",
+      "activiteitstype": "Duurzame voeding",
+      "interventie": "Plantaardige/vegetarische maaltijd leveren",
+      "eenheid": "maaltijd",
+      "primaireEffecten": "Vermeden CO2 (plantaardig i.p.v. vlees)",
+      "rekenmodel": "Vlees vervangen op 1 dag ~26% (~1,35 kg) lager (WUR); productniveau rund ~26,3 vs vega ~3,4 kg/kg. Per-maaltijd afgeleid (~1,35 kg), needs verification.",
+      "monetarisatiebron": "CO2 EUR0,13/kg.",
+      "onderbouwing": "Afgeleid van WUR/RIVM; per-maaltijd needs verification.",
+      "bewijssterkte": "Middel",
+      "statusKengetal": "casusgebonden / vergelijkend",
+      "statusKengetalBron": "casusgebonden / vergelijkend",
+      "afbakening": "Cluster voedsel — op productstroom afbakenen (regel 9)",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-plantaardige-maaltijd.md",
+      "kengetallen": {
+        "gasM3PerJaar": null,
+        "elektraKwhPerJaar": null,
+        "waterM3PerJaar": null,
+        "bestendiging": null,
+        "co2ePerEenheid": 1.35,
+        "co2ePerEenheidTekst": 1.35
+      },
+      "berekend": {
+        "besparingEurPerJaar": null,
+        "co2eKgPerJaar": null,
+        "monetairCo2EurPerEenheid": 0.18
+      }
+    },
+    {
+      "id": "gezonde-schoollunch-aanbieden",
+      "slug": "gezonde-schoollunch-aanbieden",
+      "code": null,
+      "domein": "Klimaat & Energie",
+      "activiteitstype": "Duurzame voeding",
+      "interventie": "Gezonde schoollunch aanbieden",
+      "eenheid": "maaltijd",
+      "primaireEffecten": "Milieu: alleen indien plantaardig/lokaal",
+      "rekenmodel": "Kerneffect gezondheid/sociaal = BUITEN SCOPE. Milieueffect grotendeels needs verification.",
+      "monetarisatiebron": "CO2 EUR0,13/kg (alleen milieudeel).",
+      "onderbouwing": "Sociaal kerneffect buiten scope; milieukengetal needs verification.",
+      "bewijssterkte": "Laag",
+      "statusKengetal": "enabler / output",
+      "statusKengetalBron": "enabler / output",
+      "afbakening": "Enabler / kerneffect buiten scope",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-gezonde-schoollunch.md",
+      "kengetallen": {
+        "gasM3PerJaar": null,
+        "elektraKwhPerJaar": null,
+        "waterM3PerJaar": null,
+        "bestendiging": null,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": "needs verification"
+      },
+      "berekend": {
+        "besparingEurPerJaar": null,
+        "co2eKgPerJaar": null,
+        "monetairCo2EurPerEenheid": null
+      }
+    },
+    {
+      "id": "boom-planten",
+      "slug": "boom-planten",
+      "code": null,
+      "domein": "Biodiversiteit & Natuur",
+      "activiteitstype": "Habitat creeren",
+      "interventie": "Boom planten",
+      "eenheid": "stuk",
+      "primaireEffecten": "CO2-opslag; biodiversiteit; waterberging; verkoeling; luchtkwaliteit",
+      "rekenmodel": "CO2 ~10 kg/boom/jr conservatief (range 10-40; i-Tree/Probos/WUR). Biodiversiteit: geen NL stuk-metric, via oppervlakte (natuurpunten).",
+      "monetarisatiebron": "CO2 EUR0,13/kg (Milieuprijzen); regenwater ~EUR1,90/m3 (i-Tree); biodiversiteit via niet-co2-monetarisatie.",
+      "onderbouwing": "CO2-kengetal onderbouwd (i-Tree/Probos/WUR); biodiversity units bestaan niet op stukniveau.",
+      "bewijssterkte": "Middel",
+      "statusKengetal": "direct brongetal",
+      "statusKengetalBron": "direct brongetal",
+      "afbakening": "Per fysiek object één keer; CO2 en biodiversiteit niet dubbel monetariseren",
+      "nietCo2Monetair": "Regenwaterafvang EUR1,90/m3 (i-Tree); m3/boom needs verification. Verkoeling/biodiv: needs verification",
+      "wikipagina": "interventie-boom-planten.md",
+      "kengetallen": {
+        "gasM3PerJaar": null,
+        "elektraKwhPerJaar": null,
+        "waterM3PerJaar": null,
+        "bestendiging": null,
+        "co2ePerEenheid": 10,
+        "co2ePerEenheidTekst": 10
+      },
+      "berekend": {
+        "besparingEurPerJaar": null,
+        "co2eKgPerJaar": null,
+        "monetairCo2EurPerEenheid": 1.3
+      }
+    },
+    {
+      "id": "tegel-vervangen-door-beplanting",
+      "slug": "tegel-vervangen-door-beplanting",
+      "code": null,
+      "domein": "Biodiversiteit & Natuur",
+      "activiteitstype": "Habitat creeren",
+      "interventie": "Tegel vervangen door beplanting",
+      "eenheid": "m2",
+      "primaireEffecten": "Waterberging; verkoeling (5-10 C); biodiversiteit",
+      "rekenmodel": "Waterberging/infiltratie 20-60 l/m2 (Kennisportaal Klimaatadaptatie/RIONED); verkoeling 5-10 C (NK Tegelwippen).",
+      "monetarisatiebron": "Ecosysteemdiensten SEEA EA / Defra ENCA; EUR/m2 needs verification.",
+      "onderbouwing": "Waterberging via overheidskennisbron; verkoeling geverifieerd.",
+      "bewijssterkte": "Middel",
+      "statusKengetal": "casusgebonden / vergelijkend",
+      "statusKengetalBron": "casusgebonden / vergelijkend",
+      "afbakening": "Oppervlakte-gebonden — per m² één keer; niet met groendak op zelfde m² stapelen",
+      "nietCo2Monetair": "Waterberging ~EUR0,64-1,62/m2/jr (0,85 m3 x EUR0,75-1,90/m3). Verkoeling: needs verification",
+      "wikipagina": "interventie-tegel-vervangen.md",
+      "kengetallen": {
+        "gasM3PerJaar": null,
+        "elektraKwhPerJaar": null,
+        "waterM3PerJaar": null,
+        "bestendiging": null,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": "needs verification"
+      },
+      "berekend": {
+        "besparingEurPerJaar": null,
+        "co2eKgPerJaar": null,
+        "monetairCo2EurPerEenheid": null
+      }
+    },
+    {
+      "id": "groendak-aanleggen",
+      "slug": "groendak-aanleggen",
+      "code": null,
+      "domein": "Biodiversiteit & Natuur",
+      "activiteitstype": "Habitat creeren",
+      "interventie": "Groendak aanleggen",
+      "eenheid": "m2",
+      "primaireEffecten": "Waterberging (10-30 l/m2 extensief); verkoeling; biodiversiteit; dakbescherming",
+      "rekenmodel": "Waterberging 10-30 l/m2 extensief (tot 100 groenblauw), Kennisportaal Klimaatadaptatie/STOWA; verkoeling <=35 C vs >70 C gewoon dak.",
+      "monetarisatiebron": "Subsidienormen; EUR/m2 en energie-effect needs verification.",
+      "onderbouwing": "Waterberging+verkoeling via overheidskennisbron; energie-effect needs verification.",
+      "bewijssterkte": "Middel",
+      "statusKengetal": "casusgebonden / vergelijkend",
+      "statusKengetalBron": "casusgebonden / vergelijkend",
+      "afbakening": "Oppervlakte-gebonden — per m² één keer",
+      "nietCo2Monetair": "Waterberging ~EUR0,32-0,81/m2/jr (0,43 m3 retentie). Verkoeling: needs verification",
+      "wikipagina": "interventie-groendak.md",
+      "kengetallen": {
+        "gasM3PerJaar": null,
+        "elektraKwhPerJaar": null,
+        "waterM3PerJaar": null,
+        "bestendiging": null,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": "needs verification"
+      },
+      "berekend": {
+        "besparingEurPerJaar": null,
+        "co2eKgPerJaar": null,
+        "monetairCo2EurPerEenheid": null
+      }
+    },
+    {
+      "id": "inheemse-plant-plaatsen",
+      "slug": "inheemse-plant-plaatsen",
+      "code": null,
+      "domein": "Biodiversiteit & Natuur",
+      "activiteitstype": "Habitat verbeteren",
+      "interventie": "Inheemse plant plaatsen",
+      "eenheid": "stuk",
+      "primaireEffecten": "Biodiversiteit (waardplant voor insecten)",
+      "rekenmodel": "Indicatief: zomereik 450 vs Amerikaanse eik 13 insectensoorten; per-plant kengetal needs verification.",
+      "monetarisatiebron": "Ecosysteemdienst-/biodiversiteitswaardering needs verification.",
+      "onderbouwing": "Effectrichting onderbouwd; hard per-plant kengetal needs verification.",
+      "bewijssterkte": "Laag",
+      "statusKengetal": "casusgebonden / vergelijkend",
+      "statusKengetalBron": "casusgebonden / vergelijkend",
+      "afbakening": "Per fysiek object één keer (route via natuurpunten)",
+      "nietCo2Monetair": "Biodiversiteit: geen per-unit prijs -> natuurpunten + Werkwijzer Natuur (needs verification)",
+      "wikipagina": "interventie-inheemse-plant.md",
+      "kengetallen": {
+        "gasM3PerJaar": null,
+        "elektraKwhPerJaar": null,
+        "waterM3PerJaar": null,
+        "bestendiging": null,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": "needs verification"
+      },
+      "berekend": {
+        "besparingEurPerJaar": null,
+        "co2eKgPerJaar": null,
+        "monetairCo2EurPerEenheid": null
+      }
+    },
+    {
+      "id": "bloemstrook-aanleggen",
+      "slug": "bloemstrook-aanleggen",
+      "code": null,
+      "domein": "Biodiversiteit & Natuur",
+      "activiteitstype": "Habitat creeren",
+      "interventie": "Bloemstrook aanleggen",
+      "eenheid": "m2",
+      "primaireEffecten": "Bestuivers/insecten; biodiversiteit",
+      "rekenmodel": "Effectrichting geverifieerd (WUR); per-m2 kengetal needs verification; effect tijdelijk 3-4 jr, landschapsafhankelijk.",
+      "monetarisatiebron": "Bestuivingsdienst-waardering needs verification.",
+      "onderbouwing": "Effectrichting Middel; hard kengetal per m2 needs verification.",
+      "bewijssterkte": "Middel",
+      "statusKengetal": "casusgebonden / vergelijkend",
+      "statusKengetalBron": "casusgebonden / vergelijkend",
+      "afbakening": "Oppervlakte-gebonden — per m² één keer",
+      "nietCo2Monetair": "Biodiversiteit: geen per-unit prijs -> natuurpunten + Werkwijzer Natuur (needs verification)",
+      "wikipagina": "interventie-bloemstrook.md",
+      "kengetallen": {
+        "gasM3PerJaar": null,
+        "elektraKwhPerJaar": null,
+        "waterM3PerJaar": null,
+        "bestendiging": null,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": "needs verification"
+      },
+      "berekend": {
+        "besparingEurPerJaar": null,
+        "co2eKgPerJaar": null,
+        "monetairCo2EurPerEenheid": null
+      }
+    },
+    {
+      "id": "bijenhotel-plaatsen",
+      "slug": "bijenhotel-plaatsen",
+      "code": null,
+      "domein": "Biodiversiteit & Natuur",
+      "activiteitstype": "Habitat creeren",
+      "interventie": "Bijenhotel plaatsen",
+      "eenheid": "stuk",
+      "primaireEffecten": "Solitaire bijen (holtenestelaars)",
+      "rekenmodel": "Bedient enkele tientallen van >300 NL-soorten; meeste bijen nestelen ondergronds; kengetal per hotel needs verification.",
+      "monetarisatiebron": "Geen isoleerbare EUR-waarde (needs verification).",
+      "onderbouwing": "Effect beperkt en lokaal; kwantificering needs verification.",
+      "bewijssterkte": "Laag",
+      "statusKengetal": "casusgebonden / vergelijkend",
+      "statusKengetalBron": "casusgebonden / vergelijkend",
+      "afbakening": "Per fysiek object één keer",
+      "nietCo2Monetair": "Biodiversiteit: geen per-unit prijs -> natuurpunten + Werkwijzer Natuur (needs verification)",
+      "wikipagina": "interventie-bijenhotel.md",
+      "kengetallen": {
+        "gasM3PerJaar": null,
+        "elektraKwhPerJaar": null,
+        "waterM3PerJaar": null,
+        "bestendiging": null,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": "needs verification"
+      },
+      "berekend": {
+        "besparingEurPerJaar": null,
+        "co2eKgPerJaar": null,
+        "monetairCo2EurPerEenheid": null
+      }
+    },
+    {
+      "id": "voedselbos-aanleggen",
+      "slug": "voedselbos-aanleggen",
+      "code": null,
+      "domein": "Biodiversiteit & Natuur",
+      "activiteitstype": "Habitat creeren",
+      "interventie": "Voedselbos aanleggen",
+      "eenheid": "hectare",
+      "primaireEffecten": "CO2-vastlegging (>=6 t/ha/jr); biodiversiteit; bodem",
+      "rekenmodel": "Min. 6 ton CO2/ha/jr conservatief (NMVB 2023, ~20 voedselbossen); biodiversiteit-kengetal needs verification.",
+      "monetarisatiebron": "CO2 EUR0,13/kg; overige ecosysteemdiensten needs verification.",
+      "onderbouwing": "CO2-kengetal geverifieerd (Middel); biodiversiteit needs verification.",
+      "bewijssterkte": "Middel",
+      "statusKengetal": "direct brongetal",
+      "statusKengetalBron": "direct brongetal",
+      "afbakening": "Oppervlakte-gebonden — per ha één keer",
+      "nietCo2Monetair": "Biodiversiteit: geen per-unit prijs -> natuurpunten + Werkwijzer Natuur (needs verification)",
+      "wikipagina": "interventie-voedselbos.md",
+      "kengetallen": {
+        "gasM3PerJaar": null,
+        "elektraKwhPerJaar": null,
+        "waterM3PerJaar": null,
+        "bestendiging": null,
+        "co2ePerEenheid": 6000,
+        "co2ePerEenheidTekst": 6000
+      },
+      "berekend": {
+        "besparingEurPerJaar": null,
+        "co2eKgPerJaar": null,
+        "monetairCo2EurPerEenheid": 780
+      }
+    },
+    {
+      "id": "heg-houtwal-aanplanten",
+      "slug": "heg-houtwal-aanplanten",
+      "code": null,
+      "domein": "Biodiversiteit & Natuur",
+      "activiteitstype": "Habitat creeren",
+      "interventie": "Heg / houtwal aanplanten",
+      "eenheid": "strekkende meter",
+      "primaireEffecten": "CO2-vastlegging; biodiversiteit (corridor)",
+      "rekenmodel": "~6,3 kg CO2/m/jr bomenrij (>=10 jr, VBNE/Klimaatslim Bos); houtwal 9,1 t CO2/ha/jr. Biodiversiteit-corridor per meter needs verification.",
+      "monetarisatiebron": "CO2 EUR0,13/kg; biodiversiteit via niet-co2-monetarisatie.",
+      "onderbouwing": "CO2-kengetal geverifieerd (VBNE); biodiversiteit needs verification.",
+      "bewijssterkte": "Middel",
+      "statusKengetal": "direct brongetal",
+      "statusKengetalBron": "direct brongetal",
+      "afbakening": "Lengte-gebonden — per strekkende meter één keer",
+      "nietCo2Monetair": "Biodiversiteit: geen per-unit prijs -> natuurpunten + Werkwijzer Natuur (needs verification)",
+      "wikipagina": "interventie-heg-houtwal.md",
+      "kengetallen": {
+        "gasM3PerJaar": null,
+        "elektraKwhPerJaar": null,
+        "waterM3PerJaar": null,
+        "bestendiging": null,
+        "co2ePerEenheid": 6.3,
+        "co2ePerEenheidTekst": 6.3
+      },
+      "berekend": {
+        "besparingEurPerJaar": null,
+        "co2eKgPerJaar": null,
+        "monetairCo2EurPerEenheid": 0.82
+      }
+    },
+    {
+      "id": "kruidenrijk-grasland-akkerrand-beheren",
+      "slug": "kruidenrijk-grasland-akkerrand-beheren",
+      "code": null,
+      "domein": "Biodiversiteit & Natuur",
+      "activiteitstype": "Habitat verbeteren",
+      "interventie": "Kruidenrijk grasland / akkerrand beheren",
+      "eenheid": "m2",
+      "primaireEffecten": "Bestuivers/insecten; biodiversiteit",
+      "rekenmodel": "Beheerdoel >=15 soorten/25 m2 (BoerenNatuur/WUR); CO2 geen primair effect; jaarkengetal per m2 needs verification.",
+      "monetarisatiebron": "Biodiversiteit via niet-co2-monetarisatie / natuurpunten.",
+      "onderbouwing": "Effectrichting + beheerdoel onderbouwd; per-m2 kengetal needs verification.",
+      "bewijssterkte": "Middel",
+      "statusKengetal": "casusgebonden / vergelijkend",
+      "statusKengetalBron": "casusgebonden / vergelijkend",
+      "afbakening": "Oppervlakte-gebonden — per m²/ha één keer",
+      "nietCo2Monetair": "Biodiversiteit: geen per-unit prijs -> natuurpunten + Werkwijzer Natuur (needs verification)",
+      "wikipagina": "interventie-kruidenrijk-grasland.md",
+      "kengetallen": {
+        "gasM3PerJaar": null,
+        "elektraKwhPerJaar": null,
+        "waterM3PerJaar": null,
+        "bestendiging": null,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": "needs verification"
+      },
+      "berekend": {
+        "besparingEurPerJaar": null,
+        "co2eKgPerJaar": null,
+        "monetairCo2EurPerEenheid": null
+      }
+    },
+    {
+      "id": "lokale-inheemse-gewassen-telen",
+      "slug": "lokale-inheemse-gewassen-telen",
+      "code": null,
+      "domein": "Biodiversiteit & Natuur",
+      "activiteitstype": "Habitat verbeteren",
+      "interventie": "Lokale/inheemse gewassen telen",
+      "eenheid": "ha",
+      "primaireEffecten": "Agrobiodiversiteit; vermeden transport (klein)",
+      "rekenmodel": "Food miles ~5-6% van voedselvoetafdruk; agrobiodiversiteit-richting (WUR). Hard kengetal needs verification.",
+      "monetarisatiebron": "CO2 EUR0,13/kg; biodiversiteit via niet-co2-monetarisatie.",
+      "onderbouwing": "Effectrichting onderbouwd; per-eenheid kengetal needs verification.",
+      "bewijssterkte": "Laag",
+      "statusKengetal": "casusgebonden / vergelijkend",
+      "statusKengetalBron": "casusgebonden / vergelijkend",
+      "afbakening": "Oppervlakte-/productstroom — per eenheid één keer",
+      "nietCo2Monetair": "Biodiversiteit: geen per-unit prijs -> natuurpunten + Werkwijzer Natuur (needs verification)",
+      "wikipagina": "interventie-lokale-gewassen.md",
+      "kengetallen": {
+        "gasM3PerJaar": null,
+        "elektraKwhPerJaar": null,
+        "waterM3PerJaar": null,
+        "bestendiging": null,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": "needs verification"
+      },
+      "berekend": {
+        "besparingEurPerJaar": null,
+        "co2eKgPerJaar": null,
+        "monetairCo2EurPerEenheid": null
+      }
+    },
+    {
+      "id": "poel-aanleggen",
+      "slug": "poel-aanleggen",
+      "code": null,
+      "domein": "Biodiversiteit & Natuur",
+      "activiteitstype": "Habitat creeren",
+      "interventie": "Poel aanleggen",
+      "eenheid": "m2",
+      "primaireEffecten": "Biodiversiteit (amfibieen/libellen); water",
+      "rekenmodel": "Effectrichting amfibieen/libellen (RAVON/Ecopedia); geen CO2-baat (mogelijk methaan). Kengetal per m2 needs verification.",
+      "monetarisatiebron": "Biodiversiteit via niet-co2-monetarisatie.",
+      "onderbouwing": "Effectrichting onderbouwd; kwantitatief kengetal needs verification.",
+      "bewijssterkte": "Laag",
+      "statusKengetal": "casusgebonden / vergelijkend",
+      "statusKengetalBron": "casusgebonden / vergelijkend",
+      "afbakening": "Per fysiek object/oppervlak één keer",
+      "nietCo2Monetair": "Water EUR0,75-1,90/m3; volume/poel needs verification. Biodiv: needs verification",
+      "wikipagina": "interventie-poel.md",
+      "kengetallen": {
+        "gasM3PerJaar": null,
+        "elektraKwhPerJaar": null,
+        "waterM3PerJaar": null,
+        "bestendiging": null,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": "needs verification"
+      },
+      "berekend": {
+        "besparingEurPerJaar": null,
+        "co2eKgPerJaar": null,
+        "monetairCo2EurPerEenheid": null
+      }
+    },
+    {
+      "id": "natuurvriendelijke-oever-aanleggen",
+      "slug": "natuurvriendelijke-oever-aanleggen",
+      "code": null,
+      "domein": "Biodiversiteit & Natuur",
+      "activiteitstype": "Habitat creeren",
+      "interventie": "Natuurvriendelijke oever aanleggen",
+      "eenheid": "strekkende meter",
+      "primaireEffecten": "Biodiversiteit (oever/water); waterkwaliteit",
+      "rekenmodel": "Effectrichting biodiversiteit/waterkwaliteit (STOWA/waterschappen); geen primair CO2-effect; kengetal per meter needs verification.",
+      "monetarisatiebron": "Biodiversiteit via niet-co2-monetarisatie.",
+      "onderbouwing": "FLORON 2022: +11 plantensoorten (1,4x, p<0,001), 2-6x bredere oeverzone (per oever; per-meter needs verification)",
+      "bewijssterkte": "Middel",
+      "statusKengetal": "casusgebonden / vergelijkend",
+      "statusKengetalBron": "casusgebonden / vergelijkend",
+      "afbakening": "Lengte-gebonden — per strekkende meter één keer",
+      "nietCo2Monetair": "Water EUR0,75-1,90/m3; volume/meter needs verification. Biodiv (+11 soorten fysiek) geen EUR-waarde: needs verification",
+      "wikipagina": "interventie-natuurvriendelijke-oever.md",
+      "kengetallen": {
+        "gasM3PerJaar": null,
+        "elektraKwhPerJaar": null,
+        "waterM3PerJaar": null,
+        "bestendiging": null,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": "needs verification"
+      },
+      "berekend": {
+        "besparingEurPerJaar": null,
+        "co2eKgPerJaar": null,
+        "monetairCo2EurPerEenheid": null
+      }
+    },
+    {
+      "id": "invasieve-exoten-verwijderen",
+      "slug": "invasieve-exoten-verwijderen",
+      "code": null,
+      "domein": "Biodiversiteit & Natuur",
+      "activiteitstype": "Habitat verbeteren",
+      "interventie": "Invasieve exoten verwijderen",
+      "eenheid": "m2",
+      "primaireEffecten": "Biodiversiteitsherstel (vermeden verdringing)",
+      "rekenmodel": "Verdringing inheemse soorten geverifieerd (EU 1143/2014); biodiversiteitskengetal per oppervlakte needs verification.",
+      "monetarisatiebron": "Biodiversiteit via niet-co2-monetarisatie.",
+      "onderbouwing": "Vermeden-verliesmaatregel; kengetal needs verification.",
+      "bewijssterkte": "Laag",
+      "statusKengetal": "casusgebonden / vergelijkend",
+      "statusKengetalBron": "casusgebonden / vergelijkend",
+      "afbakening": "Oppervlakte-gebonden — vermeden-verlies, per m²/ha één keer",
+      "nietCo2Monetair": "Biodiversiteit: geen per-unit prijs -> natuurpunten + Werkwijzer Natuur (needs verification)",
+      "wikipagina": "interventie-invasieve-exoten.md",
+      "kengetallen": {
+        "gasM3PerJaar": null,
+        "elektraKwhPerJaar": null,
+        "waterM3PerJaar": null,
+        "bestendiging": null,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": "needs verification"
+      },
+      "berekend": {
+        "besparingEurPerJaar": null,
+        "co2eKgPerJaar": null,
+        "monetairCo2EurPerEenheid": null
+      }
+    },
+    {
+      "id": "nestkast-vleermuiskast-plaatsen",
+      "slug": "nestkast-vleermuiskast-plaatsen",
+      "code": null,
+      "domein": "Biodiversiteit & Natuur",
+      "activiteitstype": "Habitat creeren",
+      "interventie": "Nestkast / vleermuiskast plaatsen",
+      "eenheid": "kast",
+      "primaireEffecten": "Biodiversiteit (vogels/vleermuizen)",
+      "rekenmodel": "Gemiddelde bezetting ~82,6% (NESTKAST); populatie-effect per kast needs verification. Geen CO2-effect.",
+      "monetarisatiebron": "Biodiversiteit via niet-co2-monetarisatie.",
+      "onderbouwing": "Sovon NESTKAST 2025: 69,7% bezet, ~3,8 uitgevlogen jongen/kast (ruw steekproefgem., GEEN netto populatie-effect); populatie-effect alleen waar nestgelegenheid limiterend",
+      "bewijssterkte": "Laag",
+      "statusKengetal": "casusgebonden / vergelijkend",
+      "statusKengetalBron": "casusgebonden / vergelijkend",
+      "afbakening": "Per fysiek object één keer",
+      "nietCo2Monetair": "Biodiversiteit: geen per-unit prijs -> natuurpunten + Werkwijzer Natuur (needs verification)",
+      "wikipagina": "interventie-nestkast.md",
+      "kengetallen": {
+        "gasM3PerJaar": null,
+        "elektraKwhPerJaar": null,
+        "waterM3PerJaar": null,
+        "bestendiging": null,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": "needs verification"
+      },
+      "berekend": {
+        "besparingEurPerJaar": null,
+        "co2eKgPerJaar": null,
+        "monetairCo2EurPerEenheid": null
+      }
+    },
+    {
+      "id": "pesticidevrij-biologisch-planten-kweken",
+      "slug": "pesticidevrij-biologisch-planten-kweken",
+      "code": null,
+      "domein": "Biodiversiteit & Natuur",
+      "activiteitstype": "Habitat verbeteren",
+      "interventie": "Pesticidevrij/biologisch planten kweken",
+      "eenheid": "m2 teelt",
+      "primaireEffecten": "Biodiversiteit (bodemleven/bestuivers); vermeden pesticiden",
+      "rekenmodel": "Systeem ~+30% soortenrijkdom (Tuck et al. 2014); per-plant/m2 kengetal needs verification. CO2 geen primair effect.",
+      "monetarisatiebron": "Biodiversiteit via niet-co2-monetarisatie.",
+      "onderbouwing": "Systeemkengetal geverifieerd; per-eenheid needs verification.",
+      "bewijssterkte": "Laag",
+      "statusKengetal": "casusgebonden / vergelijkend",
+      "statusKengetalBron": "casusgebonden / vergelijkend",
+      "afbakening": "Per plant/m² teelt één keer",
+      "nietCo2Monetair": "Biodiversiteit: geen per-unit prijs -> natuurpunten + Werkwijzer Natuur (needs verification)",
+      "wikipagina": "interventie-biologisch-kweken.md",
+      "kengetallen": {
+        "gasM3PerJaar": null,
+        "elektraKwhPerJaar": null,
+        "waterM3PerJaar": null,
+        "bestendiging": null,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": "needs verification"
+      },
+      "berekend": {
+        "besparingEurPerJaar": null,
+        "co2eKgPerJaar": null,
+        "monetairCo2EurPerEenheid": null
+      }
+    },
+    {
+      "id": "koffiedik-hergebruiken",
+      "slug": "koffiedik-hergebruiken",
+      "code": null,
+      "domein": "Circulariteit",
+      "activiteitstype": "Reststromen benutten",
+      "interventie": "Koffiedik hergebruiken",
+      "eenheid": "kg",
+      "primaireEffecten": "Afvalreductie; CO2-reductie",
+      "rekenmodel": "Route-afhankelijk (Schmidt Rivera 2020, per ton): vergisting -6,2 / biodiesel -4,3 / land -1,3 / verbranding -0,435 kg/kg; compost +30,7; storten +525 kg/ton. Stimular 0,8 vs commercieel ~4 = noemerverschil.",
+      "monetarisatiebron": "CO2 EUR0,13/kg (Milieuprijzen).",
+      "onderbouwing": "Peer-reviewed routevergelijking; single getal route-afhankelijk.",
+      "bewijssterkte": "Middel",
+      "statusKengetal": "casusgebonden / vergelijkend",
+      "statusKengetalBron": "casusgebonden / vergelijkend",
+      "afbakening": "Reststroom — één verwerkingsroute per kilo",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-koffiedik-hergebruiken.md",
+      "kengetallen": {
+        "gasM3PerJaar": null,
+        "elektraKwhPerJaar": null,
+        "waterM3PerJaar": null,
+        "bestendiging": null,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": "needs verification"
+      },
+      "berekend": {
+        "besparingEurPerJaar": null,
+        "co2eKgPerJaar": null,
+        "monetairCo2EurPerEenheid": null
+      }
+    },
+    {
+      "id": "textiel-hergebruiken",
+      "slug": "textiel-hergebruiken",
+      "code": null,
+      "domein": "Circulariteit",
+      "activiteitstype": "Productlevensduur verlengen",
+      "interventie": "Textiel hergebruiken",
+      "eenheid": "stuk",
+      "primaireEffecten": "Afvalreductie; CO2-reductie",
+      "rekenmodel": "~3 kg CO2/hergebruikt kledingstuk (LCA 2023); per-kg en substitutiegraad needs verification.",
+      "monetarisatiebron": "CO2 EUR0,13/kg.",
+      "onderbouwing": "Branche-LCA (opdrachtgever textielsector).",
+      "bewijssterkte": "Middel",
+      "statusKengetal": "casusgebonden / vergelijkend",
+      "statusKengetalBron": "casusgebonden / vergelijkend",
+      "afbakening": "Cluster textiel/kleding — één route per stuk (regel 1)",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-textiel-hergebruiken.md",
+      "kengetallen": {
+        "gasM3PerJaar": null,
+        "elektraKwhPerJaar": null,
+        "waterM3PerJaar": null,
+        "bestendiging": null,
+        "co2ePerEenheid": 3,
+        "co2ePerEenheidTekst": 3
+      },
+      "berekend": {
+        "besparingEurPerJaar": null,
+        "co2eKgPerJaar": null,
+        "monetairCo2EurPerEenheid": 0.39
+      }
+    },
+    {
+      "id": "textiel-repareren",
+      "slug": "textiel-repareren",
+      "code": null,
+      "domein": "Circulariteit",
+      "activiteitstype": "Productlevensduur verlengen",
+      "interventie": "Textiel repareren",
+      "eenheid": "stuk",
+      "primaireEffecten": "Levensduurverlenging; CO2-reductie",
+      "rekenmodel": "~7,5 kg CO2/katoenen T-shirt (WRAP 2025); IVL 2025 ~9,25 kg/stuk (mix). Displacement-afhankelijk; ook relatief 20-30% (WRAP).",
+      "monetarisatiebron": "CO2 EUR0,13/kg.",
+      "onderbouwing": "Absolute kengetallen (WRAP/IVL); categorisch per kledingtype.",
+      "bewijssterkte": "Middel",
+      "statusKengetal": "casusgebonden / vergelijkend",
+      "statusKengetalBron": "casusgebonden / vergelijkend",
+      "afbakening": "Cluster textiel/kleding — één route per stuk (regel 1)",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-textiel-repareren.md",
+      "kengetallen": {
+        "gasM3PerJaar": null,
+        "elektraKwhPerJaar": null,
+        "waterM3PerJaar": null,
+        "bestendiging": null,
+        "co2ePerEenheid": 7.5,
+        "co2ePerEenheidTekst": 7.5
+      },
+      "berekend": {
+        "besparingEurPerJaar": null,
+        "co2eKgPerJaar": null,
+        "monetairCo2EurPerEenheid": 0.98
+      }
+    },
+    {
+      "id": "voedselverspilling-voorkomen",
+      "slug": "voedselverspilling-voorkomen",
+      "code": null,
+      "domein": "Circulariteit",
+      "activiteitstype": "Afval voorkomen",
+      "interventie": "Voedselverspilling voorkomen",
+      "eenheid": "kg",
+      "primaireEffecten": "Afvalreductie; CO2-reductie",
+      "rekenmodel": "~3 kg CO2/kg ketenbreed (Samen Tegen Voedselverspilling/WUR); 2,3 kg/kg consument-thuis (Voedingscentrum); scopeverschil.",
+      "monetarisatiebron": "CO2 EUR0,13/kg.",
+      "onderbouwing": "Samen Tegen Voedselverspilling (WUR) als voorkeur; scope expliciet.",
+      "bewijssterkte": "Middel",
+      "statusKengetal": "casusgebonden / vergelijkend",
+      "statusKengetalBron": "casusgebonden / vergelijkend",
+      "afbakening": "Cluster voedsel — overkoepelend; deelgevallen niet apart (regel 9)",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-voedselverspilling-voorkomen.md",
+      "kengetallen": {
+        "gasM3PerJaar": null,
+        "elektraKwhPerJaar": null,
+        "waterM3PerJaar": null,
+        "bestendiging": null,
+        "co2ePerEenheid": 3,
+        "co2ePerEenheidTekst": 3
+      },
+      "berekend": {
+        "besparingEurPerJaar": null,
+        "co2eKgPerJaar": null,
+        "monetairCo2EurPerEenheid": 0.39
+      }
+    },
+    {
+      "id": "elektronica-repareren",
+      "slug": "elektronica-repareren",
+      "code": null,
+      "domein": "Circulariteit",
+      "activiteitstype": "Productlevensduur verlengen",
+      "interventie": "Elektronica repareren",
+      "eenheid": "stuk",
+      "primaireEffecten": "Levensduurverlenging; afvalreductie; CO2",
+      "rekenmodel": "~11,5 kg CO2/apparaat (Foenix, NL); tot 24 kg (Repair Cafe/Surrey); sterk apparaatafhankelijk.",
+      "monetarisatiebron": "CO2 EUR0,13/kg.",
+      "onderbouwing": "Praktijk-/branchecijfers; apparaatspecifiek needs verification.",
+      "bewijssterkte": "Middel",
+      "statusKengetal": "casusgebonden / vergelijkend",
+      "statusKengetalBron": "casusgebonden / vergelijkend",
+      "afbakening": "Cluster elektronica — niet met IT-refurbishen dubbel per apparaat (regel 4)",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-elektronica-repareren.md",
+      "kengetallen": {
+        "gasM3PerJaar": null,
+        "elektraKwhPerJaar": null,
+        "waterM3PerJaar": null,
+        "bestendiging": null,
+        "co2ePerEenheid": 11.5,
+        "co2ePerEenheidTekst": 11.5
+      },
+      "berekend": {
+        "besparingEurPerJaar": null,
+        "co2eKgPerJaar": null,
+        "monetairCo2EurPerEenheid": 1.5
+      }
+    },
+    {
+      "id": "meubel-hergebruiken",
+      "slug": "meubel-hergebruiken",
+      "code": null,
+      "domein": "Circulariteit",
+      "activiteitstype": "Productlevensduur verlengen",
+      "interventie": "Meubel hergebruiken",
+      "eenheid": "kg",
+      "primaireEffecten": "Afvalreductie; CO2-reductie",
+      "rekenmodel": "~1 kg CO2/kg vuistregel (TNO/BKN; ~1 ton/ton); meubelspecifieke LCA needs verification.",
+      "monetarisatiebron": "CO2 EUR0,13/kg.",
+      "onderbouwing": "Vuistregel/brancheconsensus; coefficienten niet openbaar.",
+      "bewijssterkte": "Laag-Middel",
+      "statusKengetal": "casusgebonden / vergelijkend",
+      "statusKengetalBron": "casusgebonden / vergelijkend",
+      "afbakening": "Cluster meubel — meubelstuk één keer (regel 2)",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-meubel-hergebruiken.md",
+      "kengetallen": {
+        "gasM3PerJaar": null,
+        "elektraKwhPerJaar": null,
+        "waterM3PerJaar": null,
+        "bestendiging": null,
+        "co2ePerEenheid": 1,
+        "co2ePerEenheidTekst": 1
+      },
+      "berekend": {
+        "besparingEurPerJaar": null,
+        "co2eKgPerJaar": null,
+        "monetairCo2EurPerEenheid": 0.13
+      }
+    },
+    {
+      "id": "bouwmateriaal-hergebruiken",
+      "slug": "bouwmateriaal-hergebruiken",
+      "code": null,
+      "domein": "Circulariteit",
+      "activiteitstype": "Productlevensduur verlengen",
+      "interventie": "Bouwmateriaal hergebruiken",
+      "eenheid": "kg",
+      "primaireEffecten": "Materiaalbesparing; CO2; lagere MKI",
+      "rekenmodel": "Baksteengevelwerk MKI ~EUR2,88/m2 (KNB/NMD, 75 jr); constructiestaal ~1,2-3,3 kg CO2/kg (NMD, niet-herleidbaar) needs verification.",
+      "monetarisatiebron": "MKI via NMD/DuboCalc (Rijkswaterstaat); CO2 EUR0,13/kg.",
+      "onderbouwing": "Baksteen-MKI herleidbaar; kg CO2/kg per materiaal needs verification.",
+      "bewijssterkte": "Middel",
+      "statusKengetal": "casusgebonden / vergelijkend",
+      "statusKengetalBron": "casusgebonden / vergelijkend",
+      "afbakening": "Cluster bouwmateriaal — vermeden-productiebaat bij toepassing (regel 3)",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-bouwmateriaal-hergebruiken.md",
+      "kengetallen": {
+        "gasM3PerJaar": null,
+        "elektraKwhPerJaar": null,
+        "waterM3PerJaar": null,
+        "bestendiging": null,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": "needs verification"
+      },
+      "berekend": {
+        "besparingEurPerJaar": null,
+        "co2eKgPerJaar": null,
+        "monetairCo2EurPerEenheid": null
+      }
+    },
+    {
+      "id": "restbrood-verwerken-tot-nieuw-voedselproduct",
+      "slug": "restbrood-verwerken-tot-nieuw-voedselproduct",
+      "code": null,
+      "domein": "Circulariteit",
+      "activiteitstype": "Reststromen benutten",
+      "interventie": "Restbrood verwerken tot nieuw voedselproduct",
+      "eenheid": "kg restbrood",
+      "primaireEffecten": "Afvalreductie; CO2-reductie",
+      "rekenmodel": "Broodproductie ~1,1 kg CO2/kg (NBC/RIVM); substitutie/verwerkingsroute needs verification.",
+      "monetarisatiebron": "CO2 EUR0,13/kg.",
+      "onderbouwing": "Productie-CO2 brood onderbouwd; netto needs verification.",
+      "bewijssterkte": "Middel",
+      "statusKengetal": "direct brongetal",
+      "statusKengetalBron": "direct brongetal",
+      "afbakening": "Cluster voedsel — deelgeval van voedselverspilling (regel 9)",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-restbrood-verwerken.md",
+      "kengetallen": {
+        "gasM3PerJaar": null,
+        "elektraKwhPerJaar": null,
+        "waterM3PerJaar": null,
+        "bestendiging": null,
+        "co2ePerEenheid": 1.1,
+        "co2ePerEenheidTekst": 1.1
+      },
+      "berekend": {
+        "besparingEurPerJaar": null,
+        "co2eKgPerJaar": null,
+        "monetairCo2EurPerEenheid": 0.14
+      }
+    },
+    {
+      "id": "geredde-groenten-tot-maaltijd-product",
+      "slug": "geredde-groenten-tot-maaltijd-product",
+      "code": null,
+      "domein": "Circulariteit",
+      "activiteitstype": "Reststromen benutten",
+      "interventie": "Geredde groenten tot maaltijd/product",
+      "eenheid": "kg groenten",
+      "primaireEffecten": "Afvalreductie; CO2-reductie",
+      "rekenmodel": "Groente-specifiek kengetal needs verification; mix-gemiddelde overschat groente.",
+      "monetarisatiebron": "CO2 EUR0,13/kg.",
+      "onderbouwing": "Effectrichting onderbouwd; kengetal needs verification.",
+      "bewijssterkte": "Laag",
+      "statusKengetal": "casusgebonden / vergelijkend",
+      "statusKengetalBron": "casusgebonden / vergelijkend",
+      "afbakening": "Cluster voedsel — deelgeval van voedselverspilling (regel 9)",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-geredde-groenten.md",
+      "kengetallen": {
+        "gasM3PerJaar": null,
+        "elektraKwhPerJaar": null,
+        "waterM3PerJaar": null,
+        "bestendiging": null,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": "needs verification"
+      },
+      "berekend": {
+        "besparingEurPerJaar": null,
+        "co2eKgPerJaar": null,
+        "monetairCo2EurPerEenheid": null
+      }
+    },
+    {
+      "id": "lokaal-voedselproductieproces-realiseren",
+      "slug": "lokaal-voedselproductieproces-realiseren",
+      "code": null,
+      "domein": "Circulariteit",
+      "activiteitstype": "Reststromen benutten",
+      "interventie": "Lokaal voedselproductieproces realiseren",
+      "eenheid": "kg voedsel",
+      "primaireEffecten": "Vermeden transport; CO2 (nuance)",
+      "rekenmodel": "'Lokaal' niet automatisch lager-CO2 (food miles klein t.o.v. productie); kengetal needs verification.",
+      "monetarisatiebron": "CO2 EUR0,13/kg.",
+      "onderbouwing": "Nuance benoemd; kengetal needs verification.",
+      "bewijssterkte": "Laag",
+      "statusKengetal": "casusgebonden / vergelijkend",
+      "statusKengetalBron": "casusgebonden / vergelijkend",
+      "afbakening": "Cluster voedsel — op productstroom afbakenen (regel 9)",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-lokaal-voedselproductieproces.md",
+      "kengetallen": {
+        "gasM3PerJaar": null,
+        "elektraKwhPerJaar": null,
+        "waterM3PerJaar": null,
+        "bestendiging": null,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": "needs verification"
+      },
+      "berekend": {
+        "besparingEurPerJaar": null,
+        "co2eKgPerJaar": null,
+        "monetairCo2EurPerEenheid": null
+      }
+    },
+    {
+      "id": "herbruikbaar-bekersysteem-exploiteren",
+      "slug": "herbruikbaar-bekersysteem-exploiteren",
+      "code": null,
+      "domein": "Circulariteit",
+      "activiteitstype": "Productlevensduur verlengen",
+      "interventie": "Herbruikbaar bekersysteem exploiteren",
+      "eenheid": "beker-cyclus",
+      "primaireEffecten": "Afvalreductie; CO2 (substitutie wegwerp)",
+      "rekenmodel": "Break-even ~3-4 gebruiken (LCA); retour 80-90% vereist. Kengetal per cyclus needs verification.",
+      "monetarisatiebron": "CO2 EUR0,13/kg.",
+      "onderbouwing": "CE Delft 2023: break-even 10-100x hergebruik (wasmethode-afhankelijk); eerdere ~3-4x achterhaald. Per-cyclus kengetal needs verification",
+      "bewijssterkte": "Laag",
+      "statusKengetal": "enabler / output",
+      "statusKengetalBron": "enabler / output",
+      "afbakening": "Cluster bekers/verpakking — bekersysteem één keer (regel 8)",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-herbruikbare-bekers.md",
+      "kengetallen": {
+        "gasM3PerJaar": null,
+        "elektraKwhPerJaar": null,
+        "waterM3PerJaar": null,
+        "bestendiging": null,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": "needs verification"
+      },
+      "berekend": {
+        "besparingEurPerJaar": null,
+        "co2eKgPerJaar": null,
+        "monetairCo2EurPerEenheid": null
+      }
+    },
+    {
+      "id": "bekerwas-en-retoursysteem-uitvoeren",
+      "slug": "bekerwas-en-retoursysteem-uitvoeren",
+      "code": null,
+      "domein": "Circulariteit",
+      "activiteitstype": "Productlevensduur verlengen",
+      "interventie": "Bekerwas- en retoursysteem uitvoeren",
+      "eenheid": "wasbeurt",
+      "primaireEffecten": "Mogelijk maken hergebruik bekers",
+      "rekenmodel": "Wassen (water/energie) bepaalt break-even; per-wasbeurt kengetal needs verification.",
+      "monetarisatiebron": "CO2 EUR0,13/kg.",
+      "onderbouwing": "Onderdeel van bekersysteem; kengetal needs verification.",
+      "bewijssterkte": "Laag",
+      "statusKengetal": "enabler / output",
+      "statusKengetalBron": "enabler / output",
+      "afbakening": "Cluster bekers/verpakking — sub-proces, niet bovenop (regel 8)",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-bekerwassysteem.md",
+      "kengetallen": {
+        "gasM3PerJaar": null,
+        "elektraKwhPerJaar": null,
+        "waterM3PerJaar": null,
+        "bestendiging": null,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": "needs verification"
+      },
+      "berekend": {
+        "besparingEurPerJaar": null,
+        "co2eKgPerJaar": null,
+        "monetairCo2EurPerEenheid": null
+      }
+    },
+    {
+      "id": "statiegeldpot-verpakking-opnieuw-inzetten",
+      "slug": "statiegeldpot-verpakking-opnieuw-inzetten",
+      "code": null,
+      "domein": "Circulariteit",
+      "activiteitstype": "Productlevensduur verlengen",
+      "interventie": "Statiegeldpot/verpakking opnieuw inzetten",
+      "eenheid": "pot-cyclus",
+      "primaireEffecten": "Afvalreductie; CO2 (substitutie wegwerp)",
+      "rekenmodel": "Break-even ~6 gebruiken (LCA herbruikbare verpakking); kengetal per cyclus needs verification.",
+      "monetarisatiebron": "CO2 EUR0,13/kg.",
+      "onderbouwing": "Break-even onderbouwd; per-cyclus kengetal needs verification.",
+      "bewijssterkte": "Laag",
+      "statusKengetal": "enabler / output",
+      "statusKengetalBron": "enabler / output",
+      "afbakening": "Cluster bekers/verpakking — potsysteem één keer (regel 8)",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-herbruikbare-verpakking.md",
+      "kengetallen": {
+        "gasM3PerJaar": null,
+        "elektraKwhPerJaar": null,
+        "waterM3PerJaar": null,
+        "bestendiging": null,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": "needs verification"
+      },
+      "berekend": {
+        "besparingEurPerJaar": null,
+        "co2eKgPerJaar": null,
+        "monetairCo2EurPerEenheid": null
+      }
+    },
+    {
+      "id": "productverhuur-product-as-a-service",
+      "slug": "productverhuur-product-as-a-service",
+      "code": null,
+      "domein": "Circulariteit",
+      "activiteitstype": "Productlevensduur verlengen",
+      "interventie": "Productverhuur / Product-as-a-Service",
+      "eenheid": "product-maand",
+      "primaireEffecten": "Hogere benutting; levensduurverlenging",
+      "rekenmodel": "Businessmodel; CO2-effect sterk productafhankelijk needs verification.",
+      "monetarisatiebron": "CO2 EUR0,13/kg.",
+      "onderbouwing": "Productspecifiek; geen generiek kengetal.",
+      "bewijssterkte": "Laag",
+      "statusKengetal": "enabler / output",
+      "statusKengetalBron": "enabler / output",
+      "afbakening": "Enabler / servicemodel — output, geen apart kengetal",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-product-as-a-service.md",
+      "kengetallen": {
+        "gasM3PerJaar": null,
+        "elektraKwhPerJaar": null,
+        "waterM3PerJaar": null,
+        "bestendiging": null,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": "needs verification"
+      },
+      "berekend": {
+        "besparingEurPerJaar": null,
+        "co2eKgPerJaar": null,
+        "monetairCo2EurPerEenheid": null
+      }
+    },
+    {
+      "id": "spullenbibliotheek-exploiteren",
+      "slug": "spullenbibliotheek-exploiteren",
+      "code": null,
+      "domein": "Circulariteit",
+      "activiteitstype": "Productlevensduur verlengen",
+      "interventie": "Spullenbibliotheek exploiteren",
+      "eenheid": "uitlening",
+      "primaireEffecten": "Vermeden aankoop; afvalreductie",
+      "rekenmodel": "Methodiek gewicht x materiaalfactor (bv. 6,17 kg CO2/kg snoerloos gereedschap); per-uitlening needs verification.",
+      "monetarisatiebron": "CO2 EUR0,13/kg.",
+      "onderbouwing": "Methodiek beschikbaar; per-uitlening kengetal needs verification.",
+      "bewijssterkte": "Laag",
+      "statusKengetal": "enabler / output",
+      "statusKengetalBron": "enabler / output",
+      "afbakening": "Enabler / servicemodel — output, geen apart kengetal",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-spullenbibliotheek.md",
+      "kengetallen": {
+        "gasM3PerJaar": null,
+        "elektraKwhPerJaar": null,
+        "waterM3PerJaar": null,
+        "bestendiging": null,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": "needs verification"
+      },
+      "berekend": {
+        "besparingEurPerJaar": null,
+        "co2eKgPerJaar": null,
+        "monetairCo2EurPerEenheid": null
+      }
+    },
+    {
+      "id": "kledingbibliotheek-kleding-leasen",
+      "slug": "kledingbibliotheek-kleding-leasen",
+      "code": null,
+      "domein": "Circulariteit",
+      "activiteitstype": "Productlevensduur verlengen",
+      "interventie": "Kledingbibliotheek / kleding leasen",
+      "eenheid": "kledingstuk-maand",
+      "primaireEffecten": "Levensduurverlenging kleding",
+      "rekenmodel": "Rebound (transport+wassen) kan baat omkeren (LCA's); netto needs verification.",
+      "monetarisatiebron": "CO2 EUR0,13/kg.",
+      "onderbouwing": "Reboundrisico; netto-effect needs verification.",
+      "bewijssterkte": "Laag",
+      "statusKengetal": "enabler / output",
+      "statusKengetalBron": "enabler / output",
+      "afbakening": "Apart servicemodel (gebruiksfase), geen hergebruikstroom (regel 1)",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-kledingbibliotheek.md",
+      "kengetallen": {
+        "gasM3PerJaar": null,
+        "elektraKwhPerJaar": null,
+        "waterM3PerJaar": null,
+        "bestendiging": null,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": "needs verification"
+      },
+      "berekend": {
+        "besparingEurPerJaar": null,
+        "co2eKgPerJaar": null,
+        "monetairCo2EurPerEenheid": null
+      }
+    },
+    {
+      "id": "kledingruil-organiseren",
+      "slug": "kledingruil-organiseren",
+      "code": null,
+      "domein": "Circulariteit",
+      "activiteitstype": "Productlevensduur verlengen",
+      "interventie": "Kledingruil organiseren",
+      "eenheid": "geruild kledingstuk",
+      "primaireEffecten": "Afvalreductie; CO2 (vermeden nieuwe aankoop)",
+      "rekenmodel": "~3 kg CO2/hergebruikt kledingstuk; klein reboundrisico (geen logistiek).",
+      "monetarisatiebron": "CO2 EUR0,13/kg.",
+      "onderbouwing": "Sluit aan op textielhergebruik; Middel.",
+      "bewijssterkte": "Middel",
+      "statusKengetal": "casusgebonden / vergelijkend",
+      "statusKengetalBron": "casusgebonden / vergelijkend",
+      "afbakening": "Cluster textiel/kleding — één route per stuk (regel 1)",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-kledingruil.md",
+      "kengetallen": {
+        "gasM3PerJaar": null,
+        "elektraKwhPerJaar": null,
+        "waterM3PerJaar": null,
+        "bestendiging": null,
+        "co2ePerEenheid": 3,
+        "co2ePerEenheidTekst": 3
+      },
+      "berekend": {
+        "besparingEurPerJaar": null,
+        "co2eKgPerJaar": null,
+        "monetairCo2EurPerEenheid": 0.39
+      }
+    },
+    {
+      "id": "textiel-verwerken-tot-nieuw-product",
+      "slug": "textiel-verwerken-tot-nieuw-product",
+      "code": null,
+      "domein": "Circulariteit",
+      "activiteitstype": "Reststromen benutten",
+      "interventie": "Textiel verwerken tot nieuw product",
+      "eenheid": "kg textiel",
+      "primaireEffecten": "Afvalreductie; CO2-reductie",
+      "rekenmodel": "Referentie ~3 kg CO2/stuk hergebruik (bovengrens); verwerkingsproces needs verification.",
+      "monetarisatiebron": "CO2 EUR0,13/kg.",
+      "onderbouwing": "Referentiewaarde; proces needs verification.",
+      "bewijssterkte": "Laag",
+      "statusKengetal": "casusgebonden / vergelijkend",
+      "statusKengetalBron": "casusgebonden / vergelijkend",
+      "afbakening": "Cluster textiel/kleding — upcycling, niet stapelen (regel 1)",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-textiel-product.md",
+      "kengetallen": {
+        "gasM3PerJaar": null,
+        "elektraKwhPerJaar": null,
+        "waterM3PerJaar": null,
+        "bestendiging": null,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": "needs verification"
+      },
+      "berekend": {
+        "besparingEurPerJaar": null,
+        "co2eKgPerJaar": null,
+        "monetairCo2EurPerEenheid": null
+      }
+    },
+    {
+      "id": "leer-restleer-tot-nieuw-product",
+      "slug": "leer-restleer-tot-nieuw-product",
+      "code": null,
+      "domein": "Circulariteit",
+      "activiteitstype": "Reststromen benutten",
+      "interventie": "Leer/restleer tot nieuw product",
+      "eenheid": "kg leer",
+      "primaireEffecten": "Afvalreductie; CO2-reductie",
+      "rekenmodel": "Nieuw leer ~18,7-190 kg CO2/kg (allocatie-afhankelijk); restleer-baat needs verification.",
+      "monetarisatiebron": "CO2 EUR0,13/kg.",
+      "onderbouwing": "Sterk allocatie-afhankelijk; kengetal needs verification.",
+      "bewijssterkte": "Laag",
+      "statusKengetal": "casusgebonden / vergelijkend",
+      "statusKengetalBron": "casusgebonden / vergelijkend",
+      "afbakening": "Zelfstandig / casusgebonden (allocatie-afhankelijk)",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-leer-product.md",
+      "kengetallen": {
+        "gasM3PerJaar": null,
+        "elektraKwhPerJaar": null,
+        "waterM3PerJaar": null,
+        "bestendiging": null,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": "needs verification"
+      },
+      "berekend": {
+        "besparingEurPerJaar": null,
+        "co2eKgPerJaar": null,
+        "monetairCo2EurPerEenheid": null
+      }
+    },
+    {
+      "id": "meubel-refurbishen-opknappen",
+      "slug": "meubel-refurbishen-opknappen",
+      "code": null,
+      "domein": "Circulariteit",
+      "activiteitstype": "Productlevensduur verlengen",
+      "interventie": "Meubel refurbishen / opknappen",
+      "eenheid": "stuk",
+      "primaireEffecten": "Levensduurverlenging; afvalreductie",
+      "rekenmodel": "Gesegmenteerd (EEB): niet-gestoffeerd -2,60 / gestoffeerd -1,05 / hout -0,04 kg CO2/kg; refurbish-proces needs verification.",
+      "monetarisatiebron": "CO2 EUR0,13/kg.",
+      "onderbouwing": "Vermeden-emissiewaarden bekend; proces needs verification.",
+      "bewijssterkte": "Laag-Middel",
+      "statusKengetal": "casusgebonden / vergelijkend",
+      "statusKengetalBron": "casusgebonden / vergelijkend",
+      "afbakening": "Cluster meubel — refurbish = vorm van hergebruik, niet dubbel (regel 2)",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-meubel-refurbishen.md",
+      "kengetallen": {
+        "gasM3PerJaar": null,
+        "elektraKwhPerJaar": null,
+        "waterM3PerJaar": null,
+        "bestendiging": null,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": "needs verification"
+      },
+      "berekend": {
+        "besparingEurPerJaar": null,
+        "co2eKgPerJaar": null,
+        "monetairCo2EurPerEenheid": null
+      }
+    },
+    {
+      "id": "bouwmateriaal-oogsten-uit-sloop",
+      "slug": "bouwmateriaal-oogsten-uit-sloop",
+      "code": null,
+      "domein": "Circulariteit",
+      "activiteitstype": "Reststromen benutten",
+      "interventie": "Bouwmateriaal oogsten uit sloop",
+      "eenheid": "kg",
+      "primaireEffecten": "Materiaalbesparing; CO2; lagere MKI",
+      "rekenmodel": "Staal hergebruik ~0-100 kg CO2/ton; straatbaksteen MKI EUR0,94/m2; oogstproces needs verification.",
+      "monetarisatiebron": "MKI via NMD/DuboCalc; CO2 EUR0,13/kg.",
+      "onderbouwing": "NMD-ankers bekend; oogstproces needs verification.",
+      "bewijssterkte": "Laag-Middel",
+      "statusKengetal": "casusgebonden / vergelijkend",
+      "statusKengetalBron": "casusgebonden / vergelijkend",
+      "afbakening": "Cluster bouwmateriaal — upstream-stap; baat bij hergebruik, niet beide (regel 3)",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-bouwmateriaal-oogsten.md",
+      "kengetallen": {
+        "gasM3PerJaar": null,
+        "elektraKwhPerJaar": null,
+        "waterM3PerJaar": null,
+        "bestendiging": null,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": "needs verification"
+      },
+      "berekend": {
+        "besparingEurPerJaar": null,
+        "co2eKgPerJaar": null,
+        "monetairCo2EurPerEenheid": null
+      }
+    },
+    {
+      "id": "fiets-refurbishen",
+      "slug": "fiets-refurbishen",
+      "code": null,
+      "domein": "Circulariteit",
+      "activiteitstype": "Productlevensduur verlengen",
+      "interventie": "Fiets refurbishen",
+      "eenheid": "fiets",
+      "primaireEffecten": "Levensduurverlenging; vermeden productie",
+      "rekenmodel": "Productie stadsfiets ~96 kg CO2 (bovengrens vermeden); netto/proces needs verification.",
+      "monetarisatiebron": "CO2 EUR0,13/kg.",
+      "onderbouwing": "Vermeden productie onderbouwd; netto needs verification.",
+      "bewijssterkte": "Laag",
+      "statusKengetal": "herleidbare omrekening",
+      "statusKengetalBron": "herleidbare omrekening",
+      "afbakening": "Cluster fiets — één van beide per fiets (regel 5)",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-fiets-refurbishen.md",
+      "kengetallen": {
+        "gasM3PerJaar": null,
+        "elektraKwhPerJaar": null,
+        "waterM3PerJaar": null,
+        "bestendiging": null,
+        "co2ePerEenheid": 96,
+        "co2ePerEenheidTekst": 96
+      },
+      "berekend": {
+        "besparingEurPerJaar": null,
+        "co2eKgPerJaar": null,
+        "monetairCo2EurPerEenheid": 12.48
+      }
+    },
+    {
+      "id": "fietsframe-hergebruiken",
+      "slug": "fietsframe-hergebruiken",
+      "code": null,
+      "domein": "Circulariteit",
+      "activiteitstype": "Productlevensduur verlengen",
+      "interventie": "Fietsframe hergebruiken",
+      "eenheid": "frame",
+      "primaireEffecten": "Vermeden framemateriaal-productie",
+      "rekenmodel": "Staal ~1,9 / aluminium ~15,1 kg CO2/kg primair; framegewicht needs verification.",
+      "monetarisatiebron": "CO2 EUR0,13/kg.",
+      "onderbouwing": "Materiaalfactoren bekend; per-frame needs verification.",
+      "bewijssterkte": "Laag",
+      "statusKengetal": "casusgebonden / vergelijkend",
+      "statusKengetalBron": "casusgebonden / vergelijkend",
+      "afbakening": "Cluster fiets — subset van fiets-refurbishen (regel 5)",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-fietsframe-hergebruiken.md",
+      "kengetallen": {
+        "gasM3PerJaar": null,
+        "elektraKwhPerJaar": null,
+        "waterM3PerJaar": null,
+        "bestendiging": null,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": "needs verification"
+      },
+      "berekend": {
+        "besparingEurPerJaar": null,
+        "co2eKgPerJaar": null,
+        "monetairCo2EurPerEenheid": null
+      }
+    },
+    {
+      "id": "it-apparaat-refurbishen",
+      "slug": "it-apparaat-refurbishen",
+      "code": null,
+      "domein": "Circulariteit",
+      "activiteitstype": "Productlevensduur verlengen",
+      "interventie": "IT-apparaat refurbishen",
+      "eenheid": "apparaat",
+      "primaireEffecten": "Levensduurverlenging; vermeden productie",
+      "rekenmodel": "Laptop ~150-300 kg (gehanteerd ~220); smartphone ~50-78 kg vermeden productie-CO2.",
+      "monetarisatiebron": "CO2 EUR0,13/kg.",
+      "onderbouwing": "Vermeden productie onderbouwd (Middel).",
+      "bewijssterkte": "Middel",
+      "statusKengetal": "herleidbare omrekening",
+      "statusKengetalBron": "herleidbare omrekening",
+      "afbakening": "Cluster elektronica — niet met elektronica-repareren dubbel per apparaat (regel 4)",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-it-refurbishen.md",
+      "kengetallen": {
+        "gasM3PerJaar": null,
+        "elektraKwhPerJaar": null,
+        "waterM3PerJaar": null,
+        "bestendiging": null,
+        "co2ePerEenheid": 220,
+        "co2ePerEenheidTekst": 220
+      },
+      "berekend": {
+        "besparingEurPerJaar": null,
+        "co2eKgPerJaar": null,
+        "monetairCo2EurPerEenheid": 28.6
+      }
+    },
+    {
+      "id": "e-waste-inzamelen-en-recyclen",
+      "slug": "e-waste-inzamelen-en-recyclen",
+      "code": null,
+      "domein": "Circulariteit",
+      "activiteitstype": "Reststromen benutten",
+      "interventie": "E-waste inzamelen en recyclen",
+      "eenheid": "kg",
+      "primaireEffecten": "Materiaalterugwinning; CO2-reductie",
+      "rekenmodel": "Metaal vermeden: staal ~1,7 / aluminium ~9 / koper ~2,5-3 kg CO2/kg; gewogen per kg gemengd needs verification.",
+      "monetarisatiebron": "CO2 EUR0,13/kg.",
+      "onderbouwing": "Materiaalfactoren bekend; gewogen kengetal needs verification.",
+      "bewijssterkte": "Laag",
+      "statusKengetal": "casusgebonden / vergelijkend",
+      "statusKengetalBron": "casusgebonden / vergelijkend",
+      "afbakening": "End-of-life (andere systeemgrens) — mag apart van reparatie/refurbish (regel 4)",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-ewaste-recyclen.md",
+      "kengetallen": {
+        "gasM3PerJaar": null,
+        "elektraKwhPerJaar": null,
+        "waterM3PerJaar": null,
+        "bestendiging": null,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": "needs verification"
+      },
+      "berekend": {
+        "besparingEurPerJaar": null,
+        "co2eKgPerJaar": null,
+        "monetairCo2EurPerEenheid": null
+      }
+    },
+    {
+      "id": "glasfles-upcyclen-zonder-omsmelten",
+      "slug": "glasfles-upcyclen-zonder-omsmelten",
+      "code": null,
+      "domein": "Circulariteit",
+      "activiteitstype": "Productlevensduur verlengen",
+      "interventie": "Glasfles upcyclen zonder omsmelten",
+      "eenheid": "fles",
+      "primaireEffecten": "Vermeden glasproductie/omsmelten",
+      "rekenmodel": "Glasproductie ~0,75-0,8 kg CO2/kg; per fles needs verification.",
+      "monetarisatiebron": "CO2 EUR0,13/kg.",
+      "onderbouwing": "Materiaalfactor bekend; per-fles needs verification.",
+      "bewijssterkte": "Laag",
+      "statusKengetal": "casusgebonden / vergelijkend",
+      "statusKengetalBron": "casusgebonden / vergelijkend",
+      "afbakening": "Zelfstandig (upcycling per fles)",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-glasfles-upcyclen.md",
+      "kengetallen": {
+        "gasM3PerJaar": null,
+        "elektraKwhPerJaar": null,
+        "waterM3PerJaar": null,
+        "bestendiging": null,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": "needs verification"
+      },
+      "berekend": {
+        "besparingEurPerJaar": null,
+        "co2eKgPerJaar": null,
+        "monetairCo2EurPerEenheid": null
+      }
+    },
+    {
+      "id": "stadshout-hergebruiken",
+      "slug": "stadshout-hergebruiken",
+      "code": null,
+      "domein": "Circulariteit",
+      "activiteitstype": "Reststromen benutten",
+      "interventie": "Stadshout hergebruiken",
+      "eenheid": "m3 hout",
+      "primaireEffecten": "Koolstofopslag; vermeden nieuw hout/materiaal",
+      "rekenmodel": "CO2-effect sterk systeemgrens-afhankelijk (fossiel vs incl. biogeen); biogene opslag != substitutie. Geen enkel monetariseerbaar per-m3 getal tot primaire bron. Zie circulariteit-co2-kengetallen",
+      "monetarisatiebron": "CO2 EUR0,13/kg.",
+      "onderbouwing": "Substitutie ~1.100 kg/m3 WEERLEGD (deep-research 2026-07-25). CE Delft 2022 afvalhout: -768/+578 kg CO2/ton (systeemgrens!); biogeen ~900 kg/m3 opslag != vermeden. Onderzoek nodig",
+      "bewijssterkte": "Laag",
+      "statusKengetal": "casusgebonden / vergelijkend",
+      "statusKengetalBron": "casusgebonden / vergelijkend",
+      "afbakening": "Zelfstandig (reststroom hout)",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-stadshout-hergebruiken.md",
+      "kengetallen": {
+        "gasM3PerJaar": null,
+        "elektraKwhPerJaar": null,
+        "waterM3PerJaar": null,
+        "bestendiging": null,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": "needs verification"
+      },
+      "berekend": {
+        "besparingEurPerJaar": null,
+        "co2eKgPerJaar": null,
+        "monetairCo2EurPerEenheid": null
+      }
+    },
+    {
+      "id": "restmateriaal-tot-consumentenproduct",
+      "slug": "restmateriaal-tot-consumentenproduct",
+      "code": null,
+      "domein": "Circulariteit",
+      "activiteitstype": "Reststromen benutten",
+      "interventie": "Restmateriaal tot consumentenproduct",
+      "eenheid": "kg restmateriaal",
+      "primaireEffecten": "Afvalreductie; CO2-reductie",
+      "rekenmodel": "Generiek, sterk materiaalafhankelijk; per materiaal via Idemat/Ecoinvent needs verification.",
+      "monetarisatiebron": "CO2 EUR0,13/kg.",
+      "onderbouwing": "Materiaalafhankelijk; kengetal needs verification.",
+      "bewijssterkte": "Laag",
+      "statusKengetal": "casusgebonden / vergelijkend",
+      "statusKengetalBron": "casusgebonden / vergelijkend",
+      "afbakening": "Zelfstandig / casusgebonden per materiaalcombinatie",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-restmateriaal-product.md",
+      "kengetallen": {
+        "gasM3PerJaar": null,
+        "elektraKwhPerJaar": null,
+        "waterM3PerJaar": null,
+        "bestendiging": null,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": "needs verification"
+      },
+      "berekend": {
+        "besparingEurPerJaar": null,
+        "co2eKgPerJaar": null,
+        "monetairCo2EurPerEenheid": null
+      }
+    },
+    {
+      "id": "reparatiecampagne-repair-cafe-organiseren",
+      "slug": "reparatiecampagne-repair-cafe-organiseren",
+      "code": null,
+      "domein": "Circulariteit",
+      "activiteitstype": "Productlevensduur verlengen",
+      "interventie": "Reparatiecampagne / Repair-cafe organiseren",
+      "eenheid": "geslaagde reparatie",
+      "primaireEffecten": "Levensduurverlenging; afvalreductie",
+      "rekenmodel": "~24 kg CO2 per geslaagde reparatie (Repair Cafe).",
+      "monetarisatiebron": "CO2 EUR0,13/kg.",
+      "onderbouwing": "Repair Cafe-kengetal (Middel).",
+      "bewijssterkte": "Middel",
+      "statusKengetal": "direct brongetal",
+      "statusKengetalBron": "direct brongetal",
+      "afbakening": "Reparatiecluster — per geslaagde reparatie; niet met elektronica-repareren dubbel",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-repair-cafe.md",
+      "kengetallen": {
+        "gasM3PerJaar": null,
+        "elektraKwhPerJaar": null,
+        "waterM3PerJaar": null,
+        "bestendiging": null,
+        "co2ePerEenheid": 24,
+        "co2ePerEenheidTekst": 24
+      },
+      "berekend": {
+        "besparingEurPerJaar": null,
+        "co2eKgPerJaar": null,
+        "monetairCo2EurPerEenheid": 3.12
+      }
+    },
+    {
+      "id": "textielinzameling-via-campagne",
+      "slug": "textielinzameling-via-campagne",
+      "code": null,
+      "domein": "Circulariteit",
+      "activiteitstype": "Reststromen benutten",
+      "interventie": "Textielinzameling via campagne",
+      "eenheid": "kg textiel",
+      "primaireEffecten": "Mogelijk maken hergebruik/recycling",
+      "rekenmodel": "Hergebruikfase ~3 kg CO2/stuk; inzameling zelf needs verification.",
+      "monetarisatiebron": "CO2 EUR0,13/kg.",
+      "onderbouwing": "Enabler; downstream-kengetal bekend, inzameling needs verification.",
+      "bewijssterkte": "Laag",
+      "statusKengetal": "enabler / output",
+      "statusKengetalBron": "enabler / output",
+      "afbakening": "Cluster textiel/kleding — enabler/output; effect via vervolgroute (regel 1)",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-textielinzameling.md",
+      "kengetallen": {
+        "gasM3PerJaar": null,
+        "elektraKwhPerJaar": null,
+        "waterM3PerJaar": null,
+        "bestendiging": null,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": "needs verification"
+      },
+      "berekend": {
+        "besparingEurPerJaar": null,
+        "co2eKgPerJaar": null,
+        "monetairCo2EurPerEenheid": null
+      }
+    },
+    {
+      "id": "circulaire-school-wijkcampagne-uitvoeren",
+      "slug": "circulaire-school-wijkcampagne-uitvoeren",
+      "code": null,
+      "domein": "Circulariteit",
+      "activiteitstype": "Gedragsverandering",
+      "interventie": "Circulaire school-/wijkcampagne uitvoeren",
+      "eenheid": "campagne (output)",
+      "primaireEffecten": "Gedrag; mogelijk maken interventies",
+      "rekenmodel": "Enabler zonder direct CO2-kengetal; impact via gefaciliteerde interventies needs verification.",
+      "monetarisatiebron": "CO2 EUR0,13/kg via downstream.",
+      "onderbouwing": "Enabler; geen eigen per-eenheid kengetal.",
+      "bewijssterkte": "Laag",
+      "statusKengetal": "enabler / output",
+      "statusKengetalBron": "enabler / output",
+      "afbakening": "Enabler — impact via gefaciliteerde interventies",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-circulaire-campagne.md",
+      "kengetallen": {
+        "gasM3PerJaar": null,
+        "elektraKwhPerJaar": null,
+        "waterM3PerJaar": null,
+        "bestendiging": null,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": "needs verification"
+      },
+      "berekend": {
+        "besparingEurPerJaar": null,
+        "co2eKgPerJaar": null,
+        "monetairCo2EurPerEenheid": null
+      }
+    }
+  ],
+  "aannames": [
+    {
+      "id": "elektriciteitsprijs-variabel-incl-belasting",
+      "parameter": "Elektriciteitsprijs (variabel, incl. belasting)",
+      "waarde": 0.25,
+      "eenheid": "EUR/kWh",
+      "bron": "GEVERIFIEERD jun 2026; volatiel",
+      "geverifieerd": true
+    },
+    {
+      "id": "gasprijs-variabel-incl-belasting",
+      "parameter": "Gasprijs (variabel, incl. belasting)",
+      "waarde": 1.35,
+      "eenheid": "EUR/m3",
+      "bron": "GEVERIFIEERD jun 2026 (EUR1,30-1,37)",
+      "geverifieerd": true
+    },
+    {
+      "id": "waterprijs-incl-belastingen",
+      "parameter": "Waterprijs (incl. belastingen)",
+      "waarde": 2.71,
+      "eenheid": "EUR/m3",
+      "bron": "GEVERIFIEERD (Vewin 2026)",
+      "geverifieerd": true
+    },
+    {
+      "id": "emissiefactor-elektriciteit-location-based",
+      "parameter": "Emissiefactor elektriciteit (location-based)",
+      "waarde": 0.244,
+      "eenheid": "kg CO2e/kWh",
+      "bron": "GEVERIFIEERD 2026 — location-based (netmix), vintage 2026; methodekeuze BESLIST 2026-07-24: market-based (0,483/0,536) niet gebruiken (Scope-2-instrument). Jaarlijks actualiseren",
+      "geverifieerd": true
+    },
+    {
+      "id": "emissiefactor-aardgas-wtw",
+      "parameter": "Emissiefactor aardgas (WTW)",
+      "waarde": 2.134,
+      "eenheid": "kg CO2e/m3",
+      "bron": "GEVERIFIEERD; G-gas WTW",
+      "geverifieerd": true
+    },
+    {
+      "id": "emissiefactor-drinkwater",
+      "parameter": "Emissiefactor drinkwater",
+      "waarde": 0.3,
+      "eenheid": "kg CO2e/m3",
+      "bron": "NIET geverifieerd (klein effect)",
+      "geverifieerd": false
+    },
+    {
+      "id": "bestendigingsfactor-gedragsmaatregelen-jaar-1",
+      "parameter": "Bestendigingsfactor gedragsmaatregelen (jaar 1)",
+      "waarde": 0.8,
+      "eenheid": "factor",
+      "bron": "AANNAME",
+      "geverifieerd": false
+    },
+    {
+      "id": "co2-schaduwprijs-milieuprijs-centraal-2021",
+      "parameter": "CO2-schaduwprijs (milieuprijs, centraal, 2021)",
+      "waarde": 0.13,
+      "eenheid": "EUR/kg CO2e",
+      "bron": "Handboek Milieuprijzen 2023 (CE Delft): 130 EUR/ton",
+      "geverifieerd": false
+    }
+  ],
+  "bronnen": [
+    {
+      "id": "milieu-centraal-bespaartips",
+      "bron": "Milieu Centraal bespaartips",
+      "domein": "Klimaat & Energie",
+      "laag": "A",
+      "toegang": "Gratis",
+      "wikipagina": "milieucentraal-energiebesparing.md"
+    },
+    {
+      "id": "co2emissiefactoren-nl",
+      "bron": "CO2emissiefactoren.nl",
+      "domein": "Klimaat & Energie",
+      "laag": "B",
+      "toegang": "Gratis",
+      "wikipagina": "co2emissiefactoren-nl.md"
+    },
+    {
+      "id": "rvo-energiedragerlijst-nir",
+      "bron": "RVO energiedragerlijst (NIR)",
+      "domein": "Klimaat & Energie",
+      "laag": "B",
+      "toegang": "Gratis",
+      "wikipagina": "rvo-energiedragerlijst.md"
+    },
+    {
+      "id": "milieubarometer-stimular",
+      "bron": "Milieubarometer (Stimular)",
+      "domein": "Klimaat & Energie",
+      "laag": "B",
+      "toegang": "Gratis",
+      "wikipagina": "milieubarometer-co2-emissiefactoren.md"
+    },
+    {
+      "id": "kengetallen-energiearmoede-fixtool",
+      "bron": "Kengetallen energiearmoede (FIXtool)",
+      "domein": "Klimaat & Energie",
+      "laag": "A+B+C",
+      "toegang": "Intern",
+      "wikipagina": "kengetallen-energiearmoede.md"
+    },
+    {
+      "id": "uk-statutory-biodiversity-metric",
+      "bron": "UK Statutory Biodiversity Metric",
+      "domein": "Biodiversiteit & Natuur",
+      "laag": "A",
+      "toegang": "Gratis",
+      "wikipagina": "uk-biodiversity-metric.md"
+    },
+    {
+      "id": "invest-stanford",
+      "bron": "InVEST (Stanford)",
+      "domein": "Biodiversiteit & Natuur",
+      "laag": "A+C",
+      "toegang": "Gratis",
+      "wikipagina": "invest-ecosystem-services.md"
+    },
+    {
+      "id": "tnfd",
+      "bron": "TNFD",
+      "domein": "Biodiversiteit & Natuur",
+      "laag": "Kader",
+      "toegang": "Gratis",
+      "wikipagina": "tnfd.md"
+    },
+    {
+      "id": "sbtn",
+      "bron": "SBTN",
+      "domein": "Biodiversiteit & Natuur",
+      "laag": "Kader",
+      "toegang": "Gratis",
+      "wikipagina": "sbtn.md"
+    },
+    {
+      "id": "nl-biodiversiteitsmonitoring-lpi-nem",
+      "bron": "NL biodiversiteitsmonitoring (LPI/NEM)",
+      "domein": "Biodiversiteit & Natuur",
+      "laag": "Monitoring",
+      "toegang": "Gratis",
+      "wikipagina": "dutch-biodiversity-monitoring.md"
+    },
+    {
+      "id": "eu-biodiversiteitsstrategie-2030",
+      "bron": "EU Biodiversiteitsstrategie 2030",
+      "domein": "Biodiversiteit & Natuur",
+      "laag": "Beleid",
+      "toegang": "Gratis",
+      "wikipagina": "eu-biodiversity-strategy-2030.md"
+    },
+    {
+      "id": "material-circularity-indicator-mci",
+      "bron": "Material Circularity Indicator (MCI)",
+      "domein": "Circulariteit",
+      "laag": "A",
+      "toegang": "Gratis",
+      "wikipagina": "material-circularity-indicator.md"
+    },
+    {
+      "id": "circular-transition-indicators-cti",
+      "bron": "Circular Transition Indicators (CTI)",
+      "domein": "Circulariteit",
+      "laag": "A",
+      "toegang": "Gratis",
+      "wikipagina": "circular-transition-indicators.md"
+    },
+    {
+      "id": "pef",
+      "bron": "PEF",
+      "domein": "Circulariteit",
+      "laag": "Methode",
+      "toegang": "Gratis",
+      "wikipagina": "pef-method.md"
+    },
+    {
+      "id": "ecoinvent",
+      "bron": "Ecoinvent",
+      "domein": "Circulariteit",
+      "laag": "B",
+      "toegang": "Betaald",
+      "wikipagina": "ecoinvent.md"
+    },
+    {
+      "id": "idemat-eco-costs-tu-delft",
+      "bron": "Idemat / eco-costs (TU Delft)",
+      "domein": "Circulariteit",
+      "laag": "B+C",
+      "toegang": "Gratis (CC BY-NC)",
+      "wikipagina": "idemat-ecocosts.md"
+    },
+    {
+      "id": "pbl-icer-2025",
+      "bron": "PBL ICER 2025",
+      "domein": "Circulariteit",
+      "laag": "Monitoring",
+      "toegang": "Gratis",
+      "wikipagina": "pbl-icer-2025.md"
+    },
+    {
+      "id": "cbs-materiaalmonitor-2022",
+      "bron": "CBS Materiaalmonitor 2022",
+      "domein": "Circulariteit",
+      "laag": "A",
+      "toegang": "Gratis",
+      "wikipagina": "cbs-materiaalmonitor.md"
+    },
+    {
+      "id": "handboek-milieuprijzen-2023-ce-delft",
+      "bron": "Handboek Milieuprijzen 2023 (CE Delft)",
+      "domein": "Monetarisatie",
+      "laag": "C",
+      "toegang": "Gratis",
+      "wikipagina": "ce-delft-milieuprijzen-2023.md"
+    },
+    {
+      "id": "seea-ecosystem-accounting",
+      "bron": "SEEA Ecosystem Accounting",
+      "domein": "Monetarisatie",
+      "laag": "C",
+      "toegang": "Gratis",
+      "wikipagina": "seea-ecosystem-accounting.md"
+    },
+    {
+      "id": "defra-enca-green-book",
+      "bron": "Defra ENCA + Green Book",
+      "domein": "Monetarisatie",
+      "laag": "C",
+      "toegang": "Gratis",
+      "wikipagina": "defra-enca.md"
+    },
+    {
+      "id": "mkba-leidraad-cpb-pbl",
+      "bron": "MKBA-leidraad (CPB & PBL)",
+      "domein": "Monetarisatie",
+      "laag": "Methode",
+      "toegang": "Gratis",
+      "wikipagina": "mkba-leidraad.md"
+    },
+    {
+      "id": "natural-capital-protocol",
+      "bron": "Natural Capital Protocol",
+      "domein": "Monetarisatie",
+      "laag": "Methode",
+      "toegang": "Gratis",
+      "wikipagina": "natural-capital-protocol.md"
+    },
+    {
+      "id": "ghg-protocol",
+      "bron": "GHG Protocol",
+      "domein": "Cross-domein",
+      "laag": "Methode",
+      "toegang": "Gratis",
+      "wikipagina": "ghg-protocol.md"
+    },
+    {
+      "id": "iris-giin",
+      "bron": "IRIS+ (GIIN)",
+      "domein": "Cross-domein",
+      "laag": "Metrieken",
+      "toegang": "Gratis",
+      "wikipagina": "iris-plus.md"
+    },
+    {
+      "id": "eu-taxonomie-2020-852",
+      "bron": "EU Taxonomie (2020/852)",
+      "domein": "Cross-domein",
+      "laag": "Classificatie",
+      "toegang": "Gratis",
+      "wikipagina": "eu-taxonomy.md"
+    },
+    {
+      "id": "esrs-csrd",
+      "bron": "ESRS / CSRD",
+      "domein": "Cross-domein",
+      "laag": "Rapportage",
+      "toegang": "Gratis",
+      "wikipagina": "esrs-csrd.md"
+    },
+    {
+      "id": "iso-14040-44-08-64",
+      "bron": "ISO 14040/44/08/64",
+      "domein": "Cross-domein",
+      "laag": "Methode (ref)",
+      "toegang": "Betaald",
+      "wikipagina": "iso-standards.md"
+    },
+    {
+      "id": "recipe-2016-lcia-rivm",
+      "bron": "ReCiPe 2016 LCIA (RIVM)",
+      "domein": "Cross-domein",
+      "laag": "Methode (LCIA)",
+      "toegang": "Gratis",
+      "wikipagina": "recipe-2016-lcia.md"
+    },
+    {
+      "id": "co2-vertaling-gebruiksfase-deep-research-2026",
+      "bron": "CO2-vertaling gebruiksfase (deep-research 2026)",
+      "domein": "Klimaat & Energie",
+      "laag": "A+B",
+      "toegang": "Open",
+      "wikipagina": "co2-vertaling-gebruiksfase.md"
+    }
+  ],
+  "afbakening": [
+    {
+      "onderwerp": "Afbakening & dubbeltelling",
+      "toelichting": null
+    },
+    {
+      "onderwerp": "Doel",
+      "toelichting": "Tel binnen een cluster een fysieke stroom (kilo, stuk, m2, strekkende meter) maar EEN keer. Zie de wiki-pagina afbakening-dubbeltelling.md en audit-3-links-dubbeltelling-2026-07-24.md. Elke interventieregel heeft ook een kolom \"Afbakening / overlap\"."
+    },
+    {
+      "onderwerp": "Status kengetal (kolom in de domein-tabs)",
+      "toelichting": null
+    },
+    {
+      "onderwerp": "direct brongetal",
+      "toelichting": "Kengetal komt rechtstreeks uit een gezaghebbende bron."
+    },
+    {
+      "onderwerp": "herleidbare omrekening",
+      "toelichting": "Kengetal afgeleid uit broncijfers (bv. besparing per woning -> per m2)."
+    },
+    {
+      "onderwerp": "casusgebonden / vergelijkend",
+      "toelichting": "Kengetal bestaat maar is sterk casus-/systeemgrensafhankelijk; niet als universele standaard gebruiken."
+    },
+    {
+      "onderwerp": "enabler / output",
+      "toelichting": "Geen eigen effect-kengetal; impact loopt via gefaciliteerde interventies. Telt als output (aantal), niet als gekwantificeerd effect."
+    },
+    {
+      "onderwerp": "needs verification",
+      "toelichting": "Geen betrouwbare bron gevonden; kengetal = onderzoek nodig (waarde 0 tot verificatie)."
+    },
+    {
+      "onderwerp": "Afbakeningsregels per cluster (regels 1-13)",
+      "toelichting": null
+    },
+    {
+      "onderwerp": "1. Textiel/kleding",
+      "toelichting": "Een kledingstuk volgt EEN route: inzameling (enabler/output) -> daarna OF hergebruiken/kledingruil (~3 kg/stuk) OF repareren (~7,5 kg/T-shirt) OF upcycling. Niet stapelen. Kledingbibliotheek = apart servicemodel."
+    },
+    {
+      "onderwerp": "2. Meubel",
+      "toelichting": "Refurbishen is een vorm van hergebruiken; meubelstuk EEN keer tellen (refurbish = met bewerking)."
+    },
+    {
+      "onderwerp": "3. Bouwmateriaal",
+      "toelichting": "Oogsten uit sloop is upstream; de vermeden-productiebaat hoort bij hergebruiken (toepassing), niet bij beide."
+    },
+    {
+      "onderwerp": "4. Elektronica",
+      "toelichting": "Repareren en IT-refurbishen niet samen tellen voor hetzelfde apparaat. E-waste-recyclen is end-of-life (andere systeemgrens) en mag apart."
+    },
+    {
+      "onderwerp": "5. Fiets",
+      "toelichting": "Fietsframe-hergebruiken is subset van fiets-refurbishen; EEN van beide per fiets."
+    },
+    {
+      "onderwerp": "6. Zonne-energie",
+      "toelichting": "Zonnepanelen en collectief zonnedak delen het kengetal (~850 kWh/kWp); kies per kWp EEN registratie afhankelijk van eigenaarschap."
+    },
+    {
+      "onderwerp": "7. Warm water",
+      "toelichting": "Waterbesparende douchekop, douchetimer en korter douchen delen dezelfde fysieke basis; cappen conform kengetallen-energiearmoede."
+    },
+    {
+      "onderwerp": "8. Bekers/verpakking",
+      "toelichting": "Bekerwassysteem is sub-proces van het bekersysteem; niet bovenop tellen."
+    },
+    {
+      "onderwerp": "9. Voedsel",
+      "toelichting": "Restbrood en geredde groenten zijn deelgevallen van voedselverspilling voorkomen; lokaal/plantaardig op productstroom afbakenen."
+    },
+    {
+      "onderwerp": "10. Raam-/kozijnfolie (ET15)",
+      "toelichting": "Op hetzelfde m2 glas telt OF kozijnfolie (6,5 m3/m2) OF glasfolie/raamfolie (3,4 m3/m2), nooit beide. Registreer per venster EEN folietype."
+    },
+    {
+      "onderwerp": "11. Zonering / deursluiter (ET19)",
+      "toelichting": "Deursluiter hoort bij de overlapgroep ruimteverwarming (met ET01/ET03/ET12/ET13/ET15 en EG04/EG05). Niet onbeperkt optellen; cap per woning. Nu nog kengetal = needs verification."
+    },
+    {
+      "onderwerp": "12. Verlichting op EEN lichtpunt",
+      "toelichting": "Bewegingssensor (ET20), LED (ET02) en tijdschakelaar (ET17) niet stapelen voor dezelfde lamp; kies per lichtpunt de dominante maatregel."
+    },
+    {
+      "onderwerp": "13. Comfort-enablers",
+      "toelichting": "Warme sokken/kleding telt niet apart; besparing loopt via thermostaat lager (EG04). Registreren als output (aantal uitgereikt)."
+    },
+    {
+      "onderwerp": "Productlaag (materialenlijst-energiebox)",
+      "toelichting": null
+    },
+    {
+      "onderwerp": "Many-to-one",
+      "toelichting": "Meerdere producten wijzen naar EEN effectcode (bv. tochtband/kit/dorpel/kaderprofiel -> ET03). Tel het effect EEN keer per effectcode per woning, niet per product."
+    },
+    {
+      "onderwerp": "Eenheid omrekenen",
+      "toelichting": "Product-eenheid (koker, rol, stuks) omrekenen naar registratie-eenheid (strekkende meter, m2) VOOR de CO2-/EUR-berekening."
+    },
+    {
+      "onderwerp": "Kanttekeningen bij CO2-besparing & monetarisatie",
+      "toelichting": null
+    },
+    {
+      "onderwerp": "Per maatregel",
+      "toelichting": "CO2-besparing wordt per maatregel berekend (bespaarde m3 gas / kWh / m3 water x emissiefactor, tab Aannames). Rapporteer per maatregel, niet alleen een totaal."
+    },
+    {
+      "onderwerp": "Reboundeffect (gedrag)",
+      "toelichting": "Gedragsmaatregelen (EG) kennen rebound: een deel van de besparing valt weg doordat comfort/gebruik toeneemt. Daarom bestendigingsfactor 0,8 in jaar 1 (Aannames). Technische maatregelen (ET) krijgen deze factor niet."
+    },
+    {
+      "onderwerp": "Onzekerheid aantal bewoners",
+      "toelichting": "Persoonsgebonden kengetallen (douchekop ET07, douchetimer ET09, korter douchen EG01) schalen met het aantal bewoners. Leg het aantal bewoners per huishouden vast; anders is de besparing onzeker."
+    },
+    {
+      "onderwerp": "Referentiewoning",
+      "toelichting": "Kengetallen zijn gemiddelden voor een referentiewoning (matig geisoleerde hoekwoning). Werkelijke besparing varieert met woningtype, isolatiegraad en gedrag."
+    },
+    {
+      "onderwerp": "Schaduwprijs CO2 (EEN getal)",
+      "toelichting": "Voor maatschappelijke waardering EEN realistisch getal kiezen en de beperkingen expliciet rapporteren. Gekozen: EUR 0,13/kg CO2e (Handboek Milieuprijzen 2023, CE Delft, centrale waarde; tab Aannames B9). Alternatieven (lage/hoge milieuprijs, WTW vs TTW) bestaan -> rapporteer de keuze en de bandbreedte, monetariseer niet met meerdere prijzen tegelijk."
+    },
+    {
+      "onderwerp": "WTW vs TTW",
+      "toelichting": "CO2 wordt op WTW-basis (inclusief keten) gerekend: aardgas 2,134 kg/m3. TTW-alternatief (1,779) documenteren voor reconciliatie, niet dubbel toepassen."
+    },
+    {
+      "onderwerp": "Bron",
+      "toelichting": null
+    },
+    {
+      "onderwerp": "Wiki",
+      "toelichting": "afbakening-dubbeltelling.md · audit-3-links-dubbeltelling-2026-07-24.md · co2-vertaling-gebruiksfase.md · aannames-energiearmoede.md"
+    }
+  ],
+  "leeswijzer": [
+    "Interventiebibliotheek maatschappelijke impact",
+    "Gegenereerd uit de LLM-wiki — 2026-06-22; bijgewerkt 2026-07-24 (energiebox-materialen) (structuur conform CLAUDE.md)",
+    "Doel",
+    "Bestaande standaarden, rekenmodellen, kengetallen en monetariseringen verzamelen en vertalen naar één consistente interventiebibliotheek.",
+    "Domeinen",
+    "Klimaat & Energie · Biodiversiteit & Natuur · Circulariteit.",
+    "Drielaagsarchitectuur",
+    "Laag A interventie->fysiek effect (kengetal); Laag B conversie (tab Aannames); Laag C monetarisatie.",
+    "Tabbladen",
+    "Aannames — centrale prijzen en emissiefactoren (1 plek wijzigen werkt door in alle formules).",
+    "Klimaat & Energie — interventies, doorgerekend (kolommen Besparing/CO2e zijn formules; kolom Afbakening / overlap markeert het overlapcluster per regel).",
+    "Biodiversiteit & Natuur / Circulariteit — interventies met geverifieerd CO2-kengetal waar beschikbaar; CO2-waarde gemonetariseerd via milieuprijs.",
+    "Bronnen — gebruikte standaarden, methoden en datasets.",
+    "Afbakening — dubbeltellingsregels (clusters), status-kengetal-legenda, productlaag en kanttekeningen (rebound, aantal bewoners, schaduwprijs).",
+    "Belangrijkste regel (CLAUDE.md)",
+    "Geen kengetallen/monetariseringen verzinnen. Ontbreekt een betrouwbare bron: 'needs verification' (zie kolom Onderbouwing / Bewijssterkte).",
+    "CO2 maatschappelijk gewaardeerd tegen EUR0,13/kg (Handboek Milieuprijzen 2023, centrale waarde).",
+    "Omvang (bijgewerkt 2026-07-24)",
+    "91 interventiepagina's in de wiki. Doorgerekende interventieregels in dit bestand: Klimaat & Energie 43, Klimaat & Energie - overig 6, Biodiversiteit & Natuur 15, Circulariteit 31 (totaal 95 regels).",
+    "Regels > pagina's doordat enkele pagina's meerdere regels hebben (isolatie: spouw/dak/vloer/bodem; raamfolie: kozijnfolie 6,5 + glasfolie 3,4 m3/m2). Nieuw: ET19 deursluiter, ET20 bewegingssensor, sokken (needs verification)."
+  ],
+  "controle": {
+    "toelichting": "Automatische controles op deze versie. `zonderKengetal` bevat interventies waarvoor geen berekenbaar CO2-kengetal beschikbaar is (needs verification, casusgebonden of enabler); die leveren geen getal op en mogen niet als nul worden gelezen. `statusGenormaliseerd` toont statuswaarden die in de bron inconsistent geschreven waren en hier zijn gelijkgetrokken.",
+    "aantalInterventies": 95,
+    "zonderKengetal": [
+      {
+        "id": "lokale-energiecooperatie-energiegemeenschap",
+        "interventie": "Lokale energiecooperatie / energiegemeenschap",
+        "domein": "Klimaat & Energie",
+        "tekst": "needs verification"
+      },
+      {
+        "id": "batterij-opslag-lokale-hernieuwbare-energie",
+        "interventie": "Batterij/opslag lokale hernieuwbare energie",
+        "domein": "Klimaat & Energie",
+        "tekst": "needs verification"
+      },
+      {
+        "id": "deelfiets-fietsdeelsysteem-exploiteren",
+        "interventie": "Deelfiets-/fietsdeelsysteem exploiteren",
+        "domein": "Klimaat & Energie",
+        "tekst": "needs verification"
+      },
+      {
+        "id": "gezonde-schoollunch-aanbieden",
+        "interventie": "Gezonde schoollunch aanbieden",
+        "domein": "Klimaat & Energie",
+        "tekst": "needs verification"
+      },
+      {
+        "id": "tegel-vervangen-door-beplanting",
+        "interventie": "Tegel vervangen door beplanting",
+        "domein": "Biodiversiteit & Natuur",
+        "tekst": "needs verification"
+      },
+      {
+        "id": "groendak-aanleggen",
+        "interventie": "Groendak aanleggen",
+        "domein": "Biodiversiteit & Natuur",
+        "tekst": "needs verification"
+      },
+      {
+        "id": "inheemse-plant-plaatsen",
+        "interventie": "Inheemse plant plaatsen",
+        "domein": "Biodiversiteit & Natuur",
+        "tekst": "needs verification"
+      },
+      {
+        "id": "bloemstrook-aanleggen",
+        "interventie": "Bloemstrook aanleggen",
+        "domein": "Biodiversiteit & Natuur",
+        "tekst": "needs verification"
+      },
+      {
+        "id": "bijenhotel-plaatsen",
+        "interventie": "Bijenhotel plaatsen",
+        "domein": "Biodiversiteit & Natuur",
+        "tekst": "needs verification"
+      },
+      {
+        "id": "kruidenrijk-grasland-akkerrand-beheren",
+        "interventie": "Kruidenrijk grasland / akkerrand beheren",
+        "domein": "Biodiversiteit & Natuur",
+        "tekst": "needs verification"
+      },
+      {
+        "id": "lokale-inheemse-gewassen-telen",
+        "interventie": "Lokale/inheemse gewassen telen",
+        "domein": "Biodiversiteit & Natuur",
+        "tekst": "needs verification"
+      },
+      {
+        "id": "poel-aanleggen",
+        "interventie": "Poel aanleggen",
+        "domein": "Biodiversiteit & Natuur",
+        "tekst": "needs verification"
+      },
+      {
+        "id": "natuurvriendelijke-oever-aanleggen",
+        "interventie": "Natuurvriendelijke oever aanleggen",
+        "domein": "Biodiversiteit & Natuur",
+        "tekst": "needs verification"
+      },
+      {
+        "id": "invasieve-exoten-verwijderen",
+        "interventie": "Invasieve exoten verwijderen",
+        "domein": "Biodiversiteit & Natuur",
+        "tekst": "needs verification"
+      },
+      {
+        "id": "nestkast-vleermuiskast-plaatsen",
+        "interventie": "Nestkast / vleermuiskast plaatsen",
+        "domein": "Biodiversiteit & Natuur",
+        "tekst": "needs verification"
+      },
+      {
+        "id": "pesticidevrij-biologisch-planten-kweken",
+        "interventie": "Pesticidevrij/biologisch planten kweken",
+        "domein": "Biodiversiteit & Natuur",
+        "tekst": "needs verification"
+      },
+      {
+        "id": "koffiedik-hergebruiken",
+        "interventie": "Koffiedik hergebruiken",
+        "domein": "Circulariteit",
+        "tekst": "needs verification"
+      },
+      {
+        "id": "bouwmateriaal-hergebruiken",
+        "interventie": "Bouwmateriaal hergebruiken",
+        "domein": "Circulariteit",
+        "tekst": "needs verification"
+      },
+      {
+        "id": "geredde-groenten-tot-maaltijd-product",
+        "interventie": "Geredde groenten tot maaltijd/product",
+        "domein": "Circulariteit",
+        "tekst": "needs verification"
+      },
+      {
+        "id": "lokaal-voedselproductieproces-realiseren",
+        "interventie": "Lokaal voedselproductieproces realiseren",
+        "domein": "Circulariteit",
+        "tekst": "needs verification"
+      },
+      {
+        "id": "herbruikbaar-bekersysteem-exploiteren",
+        "interventie": "Herbruikbaar bekersysteem exploiteren",
+        "domein": "Circulariteit",
+        "tekst": "needs verification"
+      },
+      {
+        "id": "bekerwas-en-retoursysteem-uitvoeren",
+        "interventie": "Bekerwas- en retoursysteem uitvoeren",
+        "domein": "Circulariteit",
+        "tekst": "needs verification"
+      },
+      {
+        "id": "statiegeldpot-verpakking-opnieuw-inzetten",
+        "interventie": "Statiegeldpot/verpakking opnieuw inzetten",
+        "domein": "Circulariteit",
+        "tekst": "needs verification"
+      },
+      {
+        "id": "productverhuur-product-as-a-service",
+        "interventie": "Productverhuur / Product-as-a-Service",
+        "domein": "Circulariteit",
+        "tekst": "needs verification"
+      },
+      {
+        "id": "spullenbibliotheek-exploiteren",
+        "interventie": "Spullenbibliotheek exploiteren",
+        "domein": "Circulariteit",
+        "tekst": "needs verification"
+      },
+      {
+        "id": "kledingbibliotheek-kleding-leasen",
+        "interventie": "Kledingbibliotheek / kleding leasen",
+        "domein": "Circulariteit",
+        "tekst": "needs verification"
+      },
+      {
+        "id": "textiel-verwerken-tot-nieuw-product",
+        "interventie": "Textiel verwerken tot nieuw product",
+        "domein": "Circulariteit",
+        "tekst": "needs verification"
+      },
+      {
+        "id": "leer-restleer-tot-nieuw-product",
+        "interventie": "Leer/restleer tot nieuw product",
+        "domein": "Circulariteit",
+        "tekst": "needs verification"
+      },
+      {
+        "id": "meubel-refurbishen-opknappen",
+        "interventie": "Meubel refurbishen / opknappen",
+        "domein": "Circulariteit",
+        "tekst": "needs verification"
+      },
+      {
+        "id": "bouwmateriaal-oogsten-uit-sloop",
+        "interventie": "Bouwmateriaal oogsten uit sloop",
+        "domein": "Circulariteit",
+        "tekst": "needs verification"
+      },
+      {
+        "id": "fietsframe-hergebruiken",
+        "interventie": "Fietsframe hergebruiken",
+        "domein": "Circulariteit",
+        "tekst": "needs verification"
+      },
+      {
+        "id": "e-waste-inzamelen-en-recyclen",
+        "interventie": "E-waste inzamelen en recyclen",
+        "domein": "Circulariteit",
+        "tekst": "needs verification"
+      },
+      {
+        "id": "glasfles-upcyclen-zonder-omsmelten",
+        "interventie": "Glasfles upcyclen zonder omsmelten",
+        "domein": "Circulariteit",
+        "tekst": "needs verification"
+      },
+      {
+        "id": "stadshout-hergebruiken",
+        "interventie": "Stadshout hergebruiken",
+        "domein": "Circulariteit",
+        "tekst": "needs verification"
+      },
+      {
+        "id": "restmateriaal-tot-consumentenproduct",
+        "interventie": "Restmateriaal tot consumentenproduct",
+        "domein": "Circulariteit",
+        "tekst": "needs verification"
+      },
+      {
+        "id": "textielinzameling-via-campagne",
+        "interventie": "Textielinzameling via campagne",
+        "domein": "Circulariteit",
+        "tekst": "needs verification"
+      },
+      {
+        "id": "circulaire-school-wijkcampagne-uitvoeren",
+        "interventie": "Circulaire school-/wijkcampagne uitvoeren",
+        "domein": "Circulariteit",
+        "tekst": "needs verification"
+      }
+    ],
+    "statusGenormaliseerd": [
+      {
+        "id": "ET20",
+        "van": "casusgebonden",
+        "naar": "casusgebonden / vergelijkend"
+      },
+      {
+        "id": "warme-sokken-kleding-comfort-enabler",
+        "van": "enabler-output",
+        "naar": "enabler / output"
+      }
+    ],
+    "nietGeverifieerdeAannames": [
+      "Emissiefactor drinkwater",
+      "Bestendigingsfactor gedragsmaatregelen (jaar 1)",
+      "CO2-schaduwprijs (milieuprijs, centraal, 2021)"
+    ]
+  }
+}

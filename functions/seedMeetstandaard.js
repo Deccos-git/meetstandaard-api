@@ -6,12 +6,12 @@
  * data/. Safe to re-run: it overwrites the same doc per version.
  *
  * Run:  node seedMeetstandaard.js
- *       node seedMeetstandaard.js --sector energiearmoede
+ *       node seedMeetstandaard.js --sector milieu-circulariteit
  */
 
 import admin from "firebase-admin";
 import serviceAccount from "./serviceAcountSecretKey.json" assert { type: "json" };
-import { SECTOREN } from "./meetstandaard.js";
+import { STANDAARDEN } from "./meetstandaard.js";
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
@@ -23,7 +23,9 @@ const sectorFlag = process.argv.indexOf("--sector");
 const onlySector = sectorFlag === -1 ? null : process.argv[sectorFlag + 1];
 
 // `effectId` links an effect in this standard to a record in the dashboard's
-// `effects` collection. It is deliberately left null for every effect.
+// `effects` collection. It is deliberately left null for every effect. Only the
+// effect-based standaarden have `effecten` at all — an interventiebibliotheek
+// passes through untouched.
 //
 // That collection holds one record per (effect, sector), each with its own
 // question wording, and it has no energiearmoede records — so the only
@@ -38,12 +40,12 @@ const onlySector = sectorFlag === -1 ? null : process.argv[sectorFlag + 1];
 //
 // To restore the join, add energiearmoede records to the `effects` collection
 // and resolve against those — not by name against another sector's records.
-const withEffectIds = (document) => ({
-  ...document,
-  effecten: document.effecten.map((effect) => ({ ...effect, effectId: null })),
-});
+const withEffectIds = (document) =>
+  document.effecten
+    ? { ...document, effecten: document.effecten.map((effect) => ({ ...effect, effectId: null })) }
+    : document;
 
-for (const { sector, collection, documenten } of Object.values(SECTOREN)) {
+for (const { sector, collection, documenten } of Object.values(STANDAARDEN)) {
   if (onlySector && onlySector !== sector) continue;
 
   for (const document of documenten) {
@@ -51,7 +53,8 @@ for (const { sector, collection, documenten } of Object.values(SECTOREN)) {
     const payload = withEffectIds(document);
 
     await firestore.collection(collection).doc(version).set(payload);
-    console.log(`Seeded ${collection}/${version} — ${payload.effecten.length} effecten`);
+    const aantal = (payload.effecten || payload.interventies || []).length;
+    console.log(`Seeded ${collection}/${version} — ${aantal} ${payload.effecten ? "effecten" : "interventies"}`);
   }
 }
 

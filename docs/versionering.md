@@ -4,7 +4,7 @@ Applies to every versioned, read-only endpoint of the Meetstandaard API:
 
 | Endpoint | Resource | Firestore collection |
 |---|---|---|
-| `meetstandaard` | `/api/v1/meetstandaard/{sector}` | `MeetstandaardEnergiearmoede` (per sector) |
+| `meetstandaard` | `/api/v1/meetstandaard/{sector}` | one collection per standaard (`MeetstandaardEnergiearmoede`, `MeetstandaardMilieuCirculariteit`) |
 | `monetarisering` | `/api/v1/monetarisering/onderbouwing` | `MeetstandaardMonetarisering` |
 | `arbeidsparticipatie` | `/api/v1/arbeidsparticipatie/parameters` | `MeetstandaardParameters` |
 
@@ -48,7 +48,7 @@ A `404` on an unknown version lists the ones that do exist, so finding the right
 
 No code change and no redeploy: versions are read from Firestore at request time.
 
-1. Produce the document. For a sector meetstandaard, regenerate it from the workbook:
+1. Produce the document. For a sector meetstandaard, regenerate it from the workbook (an interventiebibliotheek uses `tools/build-interventiebibliotheek.py` instead — see [handoff-interventiebibliotheek.md](handoff-interventiebibliotheek.md)):
 
    ```bash
    python3 tools/build-meetstandaard.py \
@@ -57,7 +57,7 @@ No code change and no redeploy: versions are read from Firestore at request time
      --out functions/data/meetstandaard-energiearmoede-1.0.json
    ```
 
-2. Add it to the `documenten` array of that sector in [`functions/meetstandaard.js`](../functions/meetstandaard.js).
+2. Add it to the `documenten` array of that standaard in [`functions/meetstandaard.js`](../functions/meetstandaard.js). The endpoint serves two document kinds — an effect-based meetstandaard and an interventiebibliotheek — distinguished by `meta.kind`; versioning and routing are identical for both.
 3. Seed it: `cd functions && node seedMeetstandaard.js`. This writes one document per version and is safe to re-run.
 
    Nothing stops you overwriting an already-published version this way. That is fine while you are the only consumer and are still finishing `0.9`; once other organisations pin a version, republishing one in place silently changes numbers they have already reported, so from then on treat a published version as append-only and ship corrections as a new version.

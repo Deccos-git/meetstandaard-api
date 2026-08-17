@@ -1,6 +1,11 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { SECTOREN, MEETSTANDAARD_ENERGIEARMOEDE_0_9, handleMeetstandaard } from "./meetstandaard.js";
+import {
+  STANDAARDEN,
+  MEETSTANDAARD_ENERGIEARMOEDE_0_9,
+  INTERVENTIEBIBLIOTHEEK_MILIEU_CIRCULARITEIT_0_9,
+  handleMeetstandaard,
+} from "./meetstandaard.js";
 import { fakeFirestore, fakeResponse } from "./versionedResource.test.js";
 
 const doc = MEETSTANDAARD_ENERGIEARMOEDE_0_9;
@@ -143,7 +148,7 @@ test("parameters and bronnen have unique ids", () => {
 
 // --- HTTP handler routing ---
 
-const COLLECTION = SECTOREN.energiearmoede.collection;
+const COLLECTION = STANDAARDEN.energiearmoede.collection;
 const docs = { "0.9": { meta: { version: "0.9", releasedAt: "2026-08-17" } } };
 
 const get = async (path, headers = {}) => {
@@ -155,14 +160,16 @@ const get = async (path, headers = {}) => {
 test("GET /meetstandaard lists the available sectoren", async () => {
   const res = await get("/api/v1/meetstandaard");
   assert.equal(res.statusCode, 200);
-  assert.deepEqual(JSON.parse(res.body).sectoren, [
-    {
-      sector: "energiearmoede",
-      label: "Energiearmoede",
-      href: "/api/v1/meetstandaard/energiearmoede",
-      versions: "/api/v1/meetstandaard/energiearmoede/versions",
-    },
-  ]);
+  assert.deepEqual(
+    JSON.parse(res.body).sectoren.map((s) => s.sector),
+    ["energiearmoede", "milieu-circulariteit"]
+  );
+  assert.deepEqual(JSON.parse(res.body).sectoren[0], {
+    sector: "energiearmoede",
+    label: "Energiearmoede",
+    href: "/api/v1/meetstandaard/energiearmoede",
+    versions: "/api/v1/meetstandaard/energiearmoede/versions",
+  });
 });
 
 test("GET /meetstandaard/{sector} serves the latest version of that sector", async () => {
@@ -193,7 +200,7 @@ test("the bare function URL lists the sectoren", async () => {
   assert.equal(res.statusCode, 200);
   assert.deepEqual(
     JSON.parse(res.body).sectoren.map((s) => s.sector),
-    ["energiearmoede"]
+    ["energiearmoede", "milieu-circulariteit"]
   );
 });
 
@@ -209,6 +216,128 @@ test("an unknown sector 404s with the sectoren that do exist", async () => {
   assert.equal(res.body.error, "Unknown sector: warmtetransitie");
   assert.deepEqual(
     res.body.sectoren.map((s) => s.sector),
-    ["energiearmoede"]
+    ["energiearmoede", "milieu-circulariteit"]
   );
+});
+
+// --- Interventiebibliotheek (Milieu & circulariteit) ---
+
+const bib = INTERVENTIEBIBLIOTHEEK_MILIEU_CIRCULARITEIT_0_9;
+
+test("the interventiebibliotheek declares its own document kind", () => {
+  assert.equal(bib.meta.version, "0.9");
+  assert.equal(bib.meta.standaard, "milieu-circulariteit");
+  // A consumer must be able to tell the two document shapes apart without
+  // guessing from which keys happen to be present.
+  assert.equal(bib.meta.kind, "interventiebibliotheek");
+  assert.ok(bib.meta.toelichting);
+});
+
+test("all 95 interventies are present across the three domeinen", () => {
+  assert.equal(bib.interventies.length, 95);
+
+  const perDomein = bib.interventies.reduce((acc, i) => ({ ...acc, [i.domein]: (acc[i.domein] || 0) + 1 }), {});
+  assert.deepEqual(perDomein, {
+    "Klimaat & Energie": 49,
+    "Biodiversiteit & Natuur": 15,
+    Circulariteit: 31,
+  });
+
+  const slugs = bib.interventies.map((i) => i.slug);
+  assert.equal(new Set(slugs).size, slugs.length, "slugs must be unique — they are join keys");
+  for (const slug of slugs) assert.match(slug, /^[a-z0-9]+(-[a-z0-9]+)*$/, `slug not url-safe: ${slug}`);
+});
+
+test("every interventie says what it is and how firm it is", () => {
+  for (const i of bib.interventies) {
+    assert.ok(i.interventie, `${i.id} has no name`);
+    assert.ok(i.eenheid, `${i.id} has no eenheid — a kengetal is meaningless without one`);
+    assert.ok(i.bewijssterkte, `${i.id} has no bewijssterkte`);
+    assert.ok(i.statusKengetal, `${i.id} has no statusKengetal`);
+    assert.ok(i.onderbouwing, `${i.id} has no onderbouwing`);
+  }
+});
+
+// The workbook's savings/CO2 columns are Excel formulas with no cached values,
+// so these are recomputed here. Pin the arithmetic against the same formula the
+// workbook uses, or a silent change to a price would go unnoticed.
+test("recomputed jaarcijfers match the workbook formula", () => {
+  const a = Object.fromEntries(bib.aannames.map((x) => [x.id, x.waarde]));
+  const gasPrijs = a["gasprijs-variabel-incl-belasting"];
+  const elekPrijs = a["elektriciteitsprijs-variabel-incl-belasting"];
+  const waterPrijs = a["waterprijs-incl-belastingen"];
+  const efGas = a["emissiefactor-aardgas-wtw"];
+  const efElek = a["emissiefactor-elektriciteit-location-based"];
+  const efWater = a["emissiefactor-drinkwater"];
+
+  let checked = 0;
+  for (const i of bib.interventies) {
+    const { gasM3PerJaar: g, elektraKwhPerJaar: e, waterM3PerJaar: w, bestendiging } = i.kengetallen;
+    if (i.berekend.co2eKgPerJaar === null) continue;
+    const f = bestendiging === null ? 1 : bestendiging;
+
+    assert.ok(
+      Math.abs(((g || 0) * gasPrijs + (e || 0) * elekPrijs + (w || 0) * waterPrijs) * f - i.berekend.besparingEurPerJaar) <= 0.011,
+      `${i.id}: besparing does not follow from aannames`
+    );
+    assert.ok(
+      Math.abs(((g || 0) * efGas + (e || 0) * efElek + (w || 0) * efWater) * f - i.berekend.co2eKgPerJaar) <= 0.011,
+      `${i.id}: CO2e does not follow from aannames`
+    );
+    checked += 1;
+  }
+  assert.equal(checked, 43, "expected the Klimaat & Energie rows to be recomputed");
+});
+
+test("CO2 monetisation uses the shadow price from aannames", () => {
+  const schaduwprijs = bib.aannames.find((a) => a.id.startsWith("co2-schaduwprijs")).waarde;
+  assert.equal(schaduwprijs, 0.13);
+
+  for (const i of bib.interventies) {
+    if (i.kengetallen.co2ePerEenheid === null) {
+      assert.equal(i.berekend.monetairCo2EurPerEenheid, null, `${i.id} monetised without a kengetal`);
+      continue;
+    }
+    assert.ok(
+      Math.abs(i.kengetallen.co2ePerEenheid * schaduwprijs - i.berekend.monetairCo2EurPerEenheid) <= 0.011,
+      `${i.id}: monetary CO2 does not follow from the shadow price`
+    );
+  }
+});
+
+// "Geen kengetallen verzinnen" is the workbook's own rule; an unavailable figure
+// must stay unavailable rather than defaulting to zero.
+test("interventies without a kengetal are declared, not zeroed", () => {
+  const missing = bib.interventies.filter(
+    (i) => i.kengetallen.co2ePerEenheid === null && i.berekend.co2eKgPerJaar === null
+  );
+  assert.equal(bib.controle.zonderKengetal.length, missing.length);
+  assert.ok(missing.length > 0, "the workbook has needs-verification rows — expected them flagged");
+
+  for (const i of missing) {
+    assert.equal(i.berekend.monetairCo2EurPerEenheid, null, `${i.id} has a value it cannot justify`);
+  }
+});
+
+test("statusKengetal is normalised to a known vocabulary", () => {
+  const allowed = new Set([
+    "direct brongetal",
+    "herleidbare omrekening",
+    "casusgebonden / vergelijkend",
+    "enabler / output",
+    "needs verification",
+  ]);
+  for (const i of bib.interventies) {
+    assert.ok(allowed.has(i.statusKengetal), `${i.id} has unknown status "${i.statusKengetal}"`);
+  }
+  // The source spelled two of them inconsistently; the mapping is published.
+  assert.ok(bib.controle.statusGenormaliseerd.length > 0);
+});
+
+test("aannames and bronnen have unique ids", () => {
+  for (const list of [bib.aannames, bib.bronnen]) {
+    const ids = list.map((x) => x.id);
+    assert.equal(new Set(ids).size, ids.length);
+  }
+  assert.ok(bib.bronnen.length >= 25);
 });
