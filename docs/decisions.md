@@ -106,3 +106,32 @@ Publish the uncertainty as data. Every generated document carries a `controle` b
 - `controle.zonderKengetal` names 41 of 95 interventions with no usable CO₂ figure.
 - Consumers must handle `null` and must not render it as `0`. The handoff docs say so explicitly.
 - This follows the workbooks' own rule — *geen kengetallen verzinnen* — and is the whole point of a transparency standard: a figure you cannot trace is worse than a gap you can see.
+
+---
+
+## ADR-006: A tariff shift is not valued, because the model cannot express one
+
+**Date:** 2026-08-17 · **Status:** Accepted
+
+### Context
+
+`EG11` "Apparaten op nachttarief" carried a literal `0` for gas, elektra and water in the workbook, so the generator produced "€0 saved, 0 kg CO₂e per year".
+
+Both figures looked defensible for different reasons, and only one was:
+
+- **0 kg CO₂e is arguably right.** A night tariff moves consumption in time, not in volume, so total emissions genuinely do not change.
+- **€0 saved is not.** Saving money is the entire point of the intervention. But `aannames` holds a *single* electricity price, so a day/night tariff difference cannot be represented anywhere in the model.
+
+Its `statusKengetal` of `direct brongetal` made this worse rather than better: it lent a modelling gap the appearance of a sourced result.
+
+### Decision
+
+Blank the consumption cells so both figures parse to `null`, and let `EG11` join `controle.zonderKengetal`. Do not invent a tariff spread to produce a number.
+
+### Consequences
+
+- The document now states "not quantified" where it previously stated "no saving". Only the first is true.
+- No interventie in milieu-circulariteit 0.9 publishes a hard `0`.
+- **Valuing this properly requires a second electricity tariff in `aannames`** (and a way to express which share of consumption shifts). That is a modelling decision for the workbook, not something to infer in the generator.
+- The CO₂ figure was lost along with the euro figure, because the two are computed from the same consumption cells. Accepted: a correct `0 kg` alongside a wrong `€0` still ships a wrong row, and the pair cannot currently be separated.
+- Generalises beyond this row: a literal `0` in a source is indistinguishable from a measured zero, so where the model *cannot represent* the effect, blank the cell. See `docs/pitfalls.md#data-never-invent-a-kengetal`.

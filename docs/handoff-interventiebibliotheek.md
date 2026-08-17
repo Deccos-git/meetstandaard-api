@@ -107,6 +107,8 @@ Rendering those as `0` would silently claim a measure has no impact, when the tr
 
 `enabler / output` deserves care: counting an energy cooperative *and* the generation it facilitates double-counts.
 
+One row is `null` for a reason that is not about its evidence: `EG11` (Apparaten op nachttarief) is `direct brongetal`, but a tariff shift cannot be expressed with the single electricity price in `aannames`, so it is published as unquantified rather than as €0. See [decisions.md](decisions.md) ADR-006.
+
 `bewijssterkte` is a separate axis — **42 of 95 are `Laag`**, so present totals with that visible rather than as a precise figure.
 
 ## 6. Do not sum within an overlap cluster
