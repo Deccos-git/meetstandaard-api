@@ -91,7 +91,7 @@ This is the library's own governing rule: *geen kengetallen verzinnen*. Where no
 
 - `kengetallen.co2ePerEenheid` is `null` with the verbatim reason in `co2ePerEenheidTekst` (`"needs verification"`).
 - `berekend.*` stays `null` rather than defaulting to `0`.
-- `controle.zonderKengetal` lists every such intervention — **37 of 95** in this version.
+- `controle.zonderKengetal` lists every such intervention — **40 of 95** in this version.
 
 Rendering those as `0` would silently claim a measure has no impact, when the truth is that it has not been quantified.
 
@@ -133,5 +133,5 @@ curl -s "$BASE/milieu-circulariteit/0.9" \
         | {interventie, eenheid, kengetallen, berekend, onderbouwing}'
 
 # what is not quantified
-curl -s "$BASE/milieu-circulariteit/0.9" | jq '.controle.zonderKengetal | length'
+curl -s "$BASE/milieu-circulariteit/0.9" | jq '.controle.zonderKengetal | length'   # 40
 ```

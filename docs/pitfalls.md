@@ -117,7 +117,8 @@ Parsing lives in `tools/xlsx_common.py`. It is deliberately strict: anything tha
 **Rule, from the standards themselves:** *geen kengetallen verzinnen*. Where no reliable source exists there is no number — not `0`, not an average, not an estimate.
 
 - Parse to `null`, keep the verbatim source text (`"needs verification"`, `"PM"`, `"n.v.t."`, `"+4,6% tot +12,3%"`).
-- Publish the list in a `controle` block so consumers see what is unquantified. In milieu-circulariteit 0.9 that is **37 of 95** interventions.
+- Publish the list in a `controle` block so consumers see what is unquantified. In milieu-circulariteit 0.9 that is **40 of 95** interventions.
+- A literal `0` in the source is the same trap wearing a disguise: if the status says the figure is not established, blank the cell so it parses to `null`. `0` claims no impact; `null` says not quantified.
 - Render as `—`, never `0`. Zero claims a measure has no impact; `null` says it has not been quantified. Those are completely different statements.
 
 The same applies to inconsistencies: two niveau totals in energiearmoede 0.9 disagree with the sum of their proxies (a percentage totalled as euros). They are **published in `controle.somAfwijkingen`**, not silently reconciled.
