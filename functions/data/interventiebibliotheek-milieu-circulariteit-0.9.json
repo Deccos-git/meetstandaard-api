@@ -7,7 +7,7 @@
     "releasedAt": "2026-08-17",
     "source": "Interventiebibliotheek maatschappelijke impact (interventiebibliotheek.xlsx)",
     "generatedBy": "tools/build-interventiebibliotheek.py",
-    "toelichting": "Bibliotheek van interventies met hun fysieke effect per eenheid. Drie lagen: laag A het kengetal per interventie, laag B omrekening via de centrale prijzen en emissiefactoren in `aannames`, laag C monetarisering van CO2 tegen de milieuprijs. De besparings- en CO2-kolommen zijn hier herberekend uit `aannames` — pas een prijs daar aan en alles schuift mee. Niet elk kengetal is hard: zie `bewijssterkte` en `statusKengetal` per interventie en het `controle`-blok. Tel binnen een overlapcluster niet op zonder de regels in `afbakening` toe te passen."
+    "toelichting": "Bibliotheek van interventies met hun fysieke effect per eenheid. Drie lagen: laag A het kengetal per interventie, laag B omrekening via de centrale prijzen en emissiefactoren in `aannames`, laag C monetarisering van CO2 tegen de milieuprijs. Per interventie staan drie uitkomsten in `berekend`: 1 energiebesparing (kWh, het kengetal zelf), 2 besparing voor het huishouden in euro, 3 maatschappelijke besparing in euro; `totaleWaardeEurPerJaar` is 2 + 3. Die kolommen zijn hier herberekend uit `aannames` volgens `berekening` — pas een prijs daar aan en alles schuift mee. Niet elk kengetal is hard: zie `bewijssterkte` en `statusKengetal` per interventie en het `controle`-blok. Tel binnen een overlapcluster niet op zonder de regels in `afbakening` toe te passen."
   },
   "domeinen": [
     "Klimaat & Energie",
@@ -42,9 +42,11 @@
         "co2ePerEenheidTekst": null
       },
       "berekend": {
-        "besparingEurPerJaar": 13.5,
+        "besparingHuishoudenEurPerJaar": 13.5,
         "co2eKgPerJaar": 21.34,
-        "monetairCo2EurPerEenheid": null
+        "maatschappelijkeBesparingEurPerJaar": 2.77,
+        "totaleWaardeEurPerJaar": 16.27,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     },
     {
@@ -74,9 +76,11 @@
         "co2ePerEenheidTekst": null
       },
       "berekend": {
-        "besparingEurPerJaar": 11.25,
+        "besparingHuishoudenEurPerJaar": 11.51,
         "co2eKgPerJaar": 10.98,
-        "monetairCo2EurPerEenheid": null
+        "maatschappelijkeBesparingEurPerJaar": 1.43,
+        "totaleWaardeEurPerJaar": 12.94,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     },
     {
@@ -106,9 +110,11 @@
         "co2ePerEenheidTekst": null
       },
       "berekend": {
-        "besparingEurPerJaar": 4.05,
+        "besparingHuishoudenEurPerJaar": 4.05,
         "co2eKgPerJaar": 6.4,
-        "monetairCo2EurPerEenheid": null
+        "maatschappelijkeBesparingEurPerJaar": 0.83,
+        "totaleWaardeEurPerJaar": 4.88,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     },
     {
@@ -138,9 +144,11 @@
         "co2ePerEenheidTekst": null
       },
       "berekend": {
-        "besparingEurPerJaar": 4.05,
+        "besparingHuishoudenEurPerJaar": 4.05,
         "co2eKgPerJaar": 6.4,
-        "monetairCo2EurPerEenheid": null
+        "maatschappelijkeBesparingEurPerJaar": 0.83,
+        "totaleWaardeEurPerJaar": 4.88,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     },
     {
@@ -170,9 +178,11 @@
         "co2ePerEenheidTekst": null
       },
       "berekend": {
-        "besparingEurPerJaar": 67.5,
+        "besparingHuishoudenEurPerJaar": 67.5,
         "co2eKgPerJaar": 106.7,
-        "monetairCo2EurPerEenheid": null
+        "maatschappelijkeBesparingEurPerJaar": 13.87,
+        "totaleWaardeEurPerJaar": 81.37,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     },
     {
@@ -202,9 +212,11 @@
         "co2ePerEenheidTekst": null
       },
       "berekend": {
-        "besparingEurPerJaar": 27,
+        "besparingHuishoudenEurPerJaar": 27,
         "co2eKgPerJaar": 42.68,
-        "monetairCo2EurPerEenheid": null
+        "maatschappelijkeBesparingEurPerJaar": 5.55,
+        "totaleWaardeEurPerJaar": 32.55,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     },
     {
@@ -234,9 +246,11 @@
         "co2ePerEenheidTekst": null
       },
       "berekend": {
-        "besparingEurPerJaar": 32.47,
+        "besparingHuishoudenEurPerJaar": 32.47,
         "co2eKgPerJaar": 23.44,
-        "monetairCo2EurPerEenheid": null
+        "maatschappelijkeBesparingEurPerJaar": 3.05,
+        "totaleWaardeEurPerJaar": 35.52,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     },
     {
@@ -266,9 +280,11 @@
         "co2ePerEenheidTekst": null
       },
       "berekend": {
-        "besparingEurPerJaar": 4.05,
+        "besparingHuishoudenEurPerJaar": 4.05,
         "co2eKgPerJaar": 6.4,
-        "monetairCo2EurPerEenheid": null
+        "maatschappelijkeBesparingEurPerJaar": 0.83,
+        "totaleWaardeEurPerJaar": 4.88,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     },
     {
@@ -298,9 +314,11 @@
         "co2ePerEenheidTekst": null
       },
       "berekend": {
-        "besparingEurPerJaar": 16.23,
+        "besparingHuishoudenEurPerJaar": 16.23,
         "co2eKgPerJaar": 15.69,
-        "monetairCo2EurPerEenheid": null
+        "maatschappelijkeBesparingEurPerJaar": 2.04,
+        "totaleWaardeEurPerJaar": 18.27,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     },
     {
@@ -330,9 +348,11 @@
         "co2ePerEenheidTekst": null
       },
       "berekend": {
-        "besparingEurPerJaar": 40.5,
+        "besparingHuishoudenEurPerJaar": 40.5,
         "co2eKgPerJaar": 64.02,
-        "monetairCo2EurPerEenheid": null
+        "maatschappelijkeBesparingEurPerJaar": 8.32,
+        "totaleWaardeEurPerJaar": 48.82,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     },
     {
@@ -362,9 +382,11 @@
         "co2ePerEenheidTekst": null
       },
       "berekend": {
-        "besparingEurPerJaar": 6.75,
+        "besparingHuishoudenEurPerJaar": 6.75,
         "co2eKgPerJaar": 10.67,
-        "monetairCo2EurPerEenheid": null
+        "maatschappelijkeBesparingEurPerJaar": 1.39,
+        "totaleWaardeEurPerJaar": 8.14,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     },
     {
@@ -394,9 +416,11 @@
         "co2ePerEenheidTekst": null
       },
       "berekend": {
-        "besparingEurPerJaar": 114.75,
+        "besparingHuishoudenEurPerJaar": 114.75,
         "co2eKgPerJaar": 181.39,
-        "monetairCo2EurPerEenheid": null
+        "maatschappelijkeBesparingEurPerJaar": 23.58,
+        "totaleWaardeEurPerJaar": 138.33,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     },
     {
@@ -426,9 +450,11 @@
         "co2ePerEenheidTekst": null
       },
       "berekend": {
-        "besparingEurPerJaar": 67.5,
+        "besparingHuishoudenEurPerJaar": 67.5,
         "co2eKgPerJaar": 106.7,
-        "monetairCo2EurPerEenheid": null
+        "maatschappelijkeBesparingEurPerJaar": 13.87,
+        "totaleWaardeEurPerJaar": 81.37,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     },
     {
@@ -458,9 +484,11 @@
         "co2ePerEenheidTekst": null
       },
       "berekend": {
-        "besparingEurPerJaar": 5.41,
+        "besparingHuishoudenEurPerJaar": 5.41,
         "co2eKgPerJaar": 2.58,
-        "monetairCo2EurPerEenheid": null
+        "maatschappelijkeBesparingEurPerJaar": 0.34,
+        "totaleWaardeEurPerJaar": 5.75,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     },
     {
@@ -490,9 +518,11 @@
         "co2ePerEenheidTekst": null
       },
       "berekend": {
-        "besparingEurPerJaar": 8.78,
+        "besparingHuishoudenEurPerJaar": 8.78,
         "co2eKgPerJaar": 13.87,
-        "monetairCo2EurPerEenheid": null
+        "maatschappelijkeBesparingEurPerJaar": 1.8,
+        "totaleWaardeEurPerJaar": 10.58,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     },
     {
@@ -522,9 +552,11 @@
         "co2ePerEenheidTekst": null
       },
       "berekend": {
-        "besparingEurPerJaar": 2.7,
+        "besparingHuishoudenEurPerJaar": 2.7,
         "co2eKgPerJaar": 4.27,
-        "monetairCo2EurPerEenheid": null
+        "maatschappelijkeBesparingEurPerJaar": 0.56,
+        "totaleWaardeEurPerJaar": 3.26,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     },
     {
@@ -554,9 +586,11 @@
         "co2ePerEenheidTekst": null
       },
       "berekend": {
-        "besparingEurPerJaar": 3.75,
+        "besparingHuishoudenEurPerJaar": 3.84,
         "co2eKgPerJaar": 3.66,
-        "monetairCo2EurPerEenheid": null
+        "maatschappelijkeBesparingEurPerJaar": 0.48,
+        "totaleWaardeEurPerJaar": 4.32,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     },
     {
@@ -586,9 +620,11 @@
         "co2ePerEenheidTekst": null
       },
       "berekend": {
-        "besparingEurPerJaar": 2.7,
+        "besparingHuishoudenEurPerJaar": 2.7,
         "co2eKgPerJaar": 4.27,
-        "monetairCo2EurPerEenheid": null
+        "maatschappelijkeBesparingEurPerJaar": 0.56,
+        "totaleWaardeEurPerJaar": 3.26,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     },
     {
@@ -613,14 +649,16 @@
         "gasM3PerJaar": 7,
         "elektraKwhPerJaar": 0,
         "waterM3PerJaar": 2.5,
-        "bestendiging": null,
+        "bestendiging": 0.8,
         "co2ePerEenheid": null,
         "co2ePerEenheidTekst": null
       },
       "berekend": {
-        "besparingEurPerJaar": 16.23,
-        "co2eKgPerJaar": 15.69,
-        "monetairCo2EurPerEenheid": null
+        "besparingHuishoudenEurPerJaar": 12.98,
+        "co2eKgPerJaar": 12.55,
+        "maatschappelijkeBesparingEurPerJaar": 1.63,
+        "totaleWaardeEurPerJaar": 14.61,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     },
     {
@@ -645,14 +683,16 @@
         "gasM3PerJaar": 0,
         "elektraKwhPerJaar": 20,
         "waterM3PerJaar": 0,
-        "bestendiging": null,
+        "bestendiging": 0.8,
         "co2ePerEenheid": null,
         "co2ePerEenheidTekst": null
       },
       "berekend": {
-        "besparingEurPerJaar": 5,
-        "co2eKgPerJaar": 4.88,
-        "monetairCo2EurPerEenheid": null
+        "besparingHuishoudenEurPerJaar": 4.09,
+        "co2eKgPerJaar": 3.9,
+        "maatschappelijkeBesparingEurPerJaar": 0.51,
+        "totaleWaardeEurPerJaar": 4.6,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     },
     {
@@ -677,14 +717,16 @@
         "gasM3PerJaar": 0,
         "elektraKwhPerJaar": 80,
         "waterM3PerJaar": 0,
-        "bestendiging": null,
+        "bestendiging": 0.8,
         "co2ePerEenheid": null,
         "co2ePerEenheidTekst": null
       },
       "berekend": {
-        "besparingEurPerJaar": 20,
-        "co2eKgPerJaar": 19.52,
-        "monetairCo2EurPerEenheid": null
+        "besparingHuishoudenEurPerJaar": 16.37,
+        "co2eKgPerJaar": 15.62,
+        "maatschappelijkeBesparingEurPerJaar": 2.03,
+        "totaleWaardeEurPerJaar": 18.4,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     },
     {
@@ -709,14 +751,16 @@
         "gasM3PerJaar": 70,
         "elektraKwhPerJaar": 0,
         "waterM3PerJaar": 0,
-        "bestendiging": null,
+        "bestendiging": 0.8,
         "co2ePerEenheid": null,
         "co2ePerEenheidTekst": null
       },
       "berekend": {
-        "besparingEurPerJaar": 94.5,
-        "co2eKgPerJaar": 149.38,
-        "monetairCo2EurPerEenheid": null
+        "besparingHuishoudenEurPerJaar": 75.6,
+        "co2eKgPerJaar": 119.5,
+        "maatschappelijkeBesparingEurPerJaar": 15.54,
+        "totaleWaardeEurPerJaar": 91.14,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     },
     {
@@ -741,14 +785,16 @@
         "gasM3PerJaar": 100,
         "elektraKwhPerJaar": 0,
         "waterM3PerJaar": 0,
-        "bestendiging": null,
+        "bestendiging": 0.8,
         "co2ePerEenheid": null,
         "co2ePerEenheidTekst": null
       },
       "berekend": {
-        "besparingEurPerJaar": 135,
-        "co2eKgPerJaar": 213.4,
-        "monetairCo2EurPerEenheid": null
+        "besparingHuishoudenEurPerJaar": 108,
+        "co2eKgPerJaar": 170.72,
+        "maatschappelijkeBesparingEurPerJaar": 22.19,
+        "totaleWaardeEurPerJaar": 130.19,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     },
     {
@@ -773,14 +819,16 @@
         "gasM3PerJaar": 0,
         "elektraKwhPerJaar": 15,
         "waterM3PerJaar": 0,
-        "bestendiging": null,
+        "bestendiging": 0.8,
         "co2ePerEenheid": null,
         "co2ePerEenheidTekst": null
       },
       "berekend": {
-        "besparingEurPerJaar": 3.75,
-        "co2eKgPerJaar": 3.66,
-        "monetairCo2EurPerEenheid": null
+        "besparingHuishoudenEurPerJaar": 3.07,
+        "co2eKgPerJaar": 2.93,
+        "maatschappelijkeBesparingEurPerJaar": 0.38,
+        "totaleWaardeEurPerJaar": 3.45,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     },
     {
@@ -805,14 +853,16 @@
         "gasM3PerJaar": 0,
         "elektraKwhPerJaar": 15,
         "waterM3PerJaar": 0,
-        "bestendiging": null,
+        "bestendiging": 0.8,
         "co2ePerEenheid": null,
         "co2ePerEenheidTekst": null
       },
       "berekend": {
-        "besparingEurPerJaar": 3.75,
-        "co2eKgPerJaar": 3.66,
-        "monetairCo2EurPerEenheid": null
+        "besparingHuishoudenEurPerJaar": 3.07,
+        "co2eKgPerJaar": 2.93,
+        "maatschappelijkeBesparingEurPerJaar": 0.38,
+        "totaleWaardeEurPerJaar": 3.45,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     },
     {
@@ -837,14 +887,16 @@
         "gasM3PerJaar": 0,
         "elektraKwhPerJaar": 25,
         "waterM3PerJaar": 0,
-        "bestendiging": null,
+        "bestendiging": 0.8,
         "co2ePerEenheid": null,
         "co2ePerEenheidTekst": null
       },
       "berekend": {
-        "besparingEurPerJaar": 6.25,
-        "co2eKgPerJaar": 6.1,
-        "monetairCo2EurPerEenheid": null
+        "besparingHuishoudenEurPerJaar": 5.12,
+        "co2eKgPerJaar": 4.88,
+        "maatschappelijkeBesparingEurPerJaar": 0.63,
+        "totaleWaardeEurPerJaar": 5.75,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     },
     {
@@ -869,14 +921,16 @@
         "gasM3PerJaar": 0,
         "elektraKwhPerJaar": 18,
         "waterM3PerJaar": 0,
-        "bestendiging": null,
+        "bestendiging": 0.8,
         "co2ePerEenheid": null,
         "co2ePerEenheidTekst": null
       },
       "berekend": {
-        "besparingEurPerJaar": 4.5,
-        "co2eKgPerJaar": 4.39,
-        "monetairCo2EurPerEenheid": null
+        "besparingHuishoudenEurPerJaar": 3.68,
+        "co2eKgPerJaar": 3.51,
+        "maatschappelijkeBesparingEurPerJaar": 0.46,
+        "totaleWaardeEurPerJaar": 4.14,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     },
     {
@@ -901,14 +955,16 @@
         "gasM3PerJaar": 0,
         "elektraKwhPerJaar": 130,
         "waterM3PerJaar": 0,
-        "bestendiging": null,
+        "bestendiging": 0.8,
         "co2ePerEenheid": null,
         "co2ePerEenheidTekst": null
       },
       "berekend": {
-        "besparingEurPerJaar": 32.5,
-        "co2eKgPerJaar": 31.72,
-        "monetairCo2EurPerEenheid": null
+        "besparingHuishoudenEurPerJaar": 26.61,
+        "co2eKgPerJaar": 25.38,
+        "maatschappelijkeBesparingEurPerJaar": 3.3,
+        "totaleWaardeEurPerJaar": 29.91,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     },
     {
@@ -938,9 +994,11 @@
         "co2ePerEenheidTekst": null
       },
       "berekend": {
-        "besparingEurPerJaar": null,
+        "besparingHuishoudenEurPerJaar": null,
         "co2eKgPerJaar": null,
-        "monetairCo2EurPerEenheid": null
+        "maatschappelijkeBesparingEurPerJaar": null,
+        "totaleWaardeEurPerJaar": null,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     },
     {
@@ -965,14 +1023,16 @@
         "gasM3PerJaar": 0,
         "elektraKwhPerJaar": 20,
         "waterM3PerJaar": 0,
-        "bestendiging": null,
+        "bestendiging": 0.8,
         "co2ePerEenheid": null,
         "co2ePerEenheidTekst": null
       },
       "berekend": {
-        "besparingEurPerJaar": 5,
-        "co2eKgPerJaar": 4.88,
-        "monetairCo2EurPerEenheid": null
+        "besparingHuishoudenEurPerJaar": 4.09,
+        "co2eKgPerJaar": 3.9,
+        "maatschappelijkeBesparingEurPerJaar": 0.51,
+        "totaleWaardeEurPerJaar": 4.6,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     },
     {
@@ -997,14 +1057,16 @@
         "gasM3PerJaar": 30,
         "elektraKwhPerJaar": 0,
         "waterM3PerJaar": 0,
-        "bestendiging": null,
+        "bestendiging": 0.8,
         "co2ePerEenheid": null,
         "co2ePerEenheidTekst": null
       },
       "berekend": {
-        "besparingEurPerJaar": 40.5,
-        "co2eKgPerJaar": 64.02,
-        "monetairCo2EurPerEenheid": null
+        "besparingHuishoudenEurPerJaar": 32.4,
+        "co2eKgPerJaar": 51.22,
+        "maatschappelijkeBesparingEurPerJaar": 6.66,
+        "totaleWaardeEurPerJaar": 39.06,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     },
     {
@@ -1029,14 +1091,16 @@
         "gasM3PerJaar": 0,
         "elektraKwhPerJaar": 20,
         "waterM3PerJaar": 0,
-        "bestendiging": null,
+        "bestendiging": 0.8,
         "co2ePerEenheid": null,
         "co2ePerEenheidTekst": null
       },
       "berekend": {
-        "besparingEurPerJaar": 5,
-        "co2eKgPerJaar": 4.88,
-        "monetairCo2EurPerEenheid": null
+        "besparingHuishoudenEurPerJaar": 4.09,
+        "co2eKgPerJaar": 3.9,
+        "maatschappelijkeBesparingEurPerJaar": 0.51,
+        "totaleWaardeEurPerJaar": 4.6,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     },
     {
@@ -1066,9 +1130,11 @@
         "co2ePerEenheidTekst": null
       },
       "berekend": {
-        "besparingEurPerJaar": 6.08,
+        "besparingHuishoudenEurPerJaar": 6.08,
         "co2eKgPerJaar": 9.6,
-        "monetairCo2EurPerEenheid": null
+        "maatschappelijkeBesparingEurPerJaar": 1.25,
+        "totaleWaardeEurPerJaar": 7.33,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     },
     {
@@ -1098,9 +1164,11 @@
         "co2ePerEenheidTekst": null
       },
       "berekend": {
-        "besparingEurPerJaar": 8.23,
+        "besparingHuishoudenEurPerJaar": 8.23,
         "co2eKgPerJaar": 13.02,
-        "monetairCo2EurPerEenheid": null
+        "maatschappelijkeBesparingEurPerJaar": 1.69,
+        "totaleWaardeEurPerJaar": 9.92,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     },
     {
@@ -1130,9 +1198,11 @@
         "co2ePerEenheidTekst": null
       },
       "berekend": {
-        "besparingEurPerJaar": 3.51,
+        "besparingHuishoudenEurPerJaar": 3.51,
         "co2eKgPerJaar": 5.55,
-        "monetairCo2EurPerEenheid": null
+        "maatschappelijkeBesparingEurPerJaar": 0.72,
+        "totaleWaardeEurPerJaar": 4.23,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     },
     {
@@ -1162,9 +1232,11 @@
         "co2ePerEenheidTekst": null
       },
       "berekend": {
-        "besparingEurPerJaar": 2.16,
+        "besparingHuishoudenEurPerJaar": 2.16,
         "co2eKgPerJaar": 3.41,
-        "monetairCo2EurPerEenheid": null
+        "maatschappelijkeBesparingEurPerJaar": 0.44,
+        "totaleWaardeEurPerJaar": 2.6,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     },
     {
@@ -1194,9 +1266,11 @@
         "co2ePerEenheidTekst": null
       },
       "berekend": {
-        "besparingEurPerJaar": 212.5,
+        "besparingHuishoudenEurPerJaar": 217.47,
         "co2eKgPerJaar": 207.4,
-        "monetairCo2EurPerEenheid": null
+        "maatschappelijkeBesparingEurPerJaar": 26.96,
+        "totaleWaardeEurPerJaar": 244.43,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     },
     {
@@ -1226,9 +1300,11 @@
         "co2ePerEenheidTekst": null
       },
       "berekend": {
-        "besparingEurPerJaar": 514.25,
+        "besparingHuishoudenEurPerJaar": 504.8,
         "co2eKgPerJaar": 1057.06,
-        "monetairCo2EurPerEenheid": null
+        "maatschappelijkeBesparingEurPerJaar": 137.42,
+        "totaleWaardeEurPerJaar": 642.22,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     },
     {
@@ -1258,9 +1334,11 @@
         "co2ePerEenheidTekst": null
       },
       "berekend": {
-        "besparingEurPerJaar": 212.5,
+        "besparingHuishoudenEurPerJaar": 217.47,
         "co2eKgPerJaar": 207.4,
-        "monetairCo2EurPerEenheid": null
+        "maatschappelijkeBesparingEurPerJaar": 26.96,
+        "totaleWaardeEurPerJaar": 244.43,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     },
     {
@@ -1290,9 +1368,11 @@
         "co2ePerEenheidTekst": null
       },
       "berekend": {
-        "besparingEurPerJaar": 4.59,
+        "besparingHuishoudenEurPerJaar": 4.59,
         "co2eKgPerJaar": 7.26,
-        "monetairCo2EurPerEenheid": null
+        "maatschappelijkeBesparingEurPerJaar": 0.94,
+        "totaleWaardeEurPerJaar": 5.53,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     },
     {
@@ -1322,9 +1402,11 @@
         "co2ePerEenheidTekst": null
       },
       "berekend": {
-        "besparingEurPerJaar": null,
+        "besparingHuishoudenEurPerJaar": null,
         "co2eKgPerJaar": null,
-        "monetairCo2EurPerEenheid": null
+        "maatschappelijkeBesparingEurPerJaar": null,
+        "totaleWaardeEurPerJaar": null,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     },
     {
@@ -1354,9 +1436,11 @@
         "co2ePerEenheidTekst": null
       },
       "berekend": {
-        "besparingEurPerJaar": null,
+        "besparingHuishoudenEurPerJaar": null,
         "co2eKgPerJaar": null,
-        "monetairCo2EurPerEenheid": null
+        "maatschappelijkeBesparingEurPerJaar": null,
+        "totaleWaardeEurPerJaar": null,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     },
     {
@@ -1386,9 +1470,657 @@
         "co2ePerEenheidTekst": null
       },
       "berekend": {
-        "besparingEurPerJaar": null,
+        "besparingHuishoudenEurPerJaar": null,
         "co2eKgPerJaar": null,
-        "monetairCo2EurPerEenheid": null
+        "maatschappelijkeBesparingEurPerJaar": null,
+        "totaleWaardeEurPerJaar": null,
+        "maatschappelijkeBesparingEurPerEenheid": null
+      }
+    },
+    {
+      "id": "WG01",
+      "slug": "koelvriescombinatie-vervangen-15-jr-label-c",
+      "code": "WG01",
+      "domein": "Klimaat & Energie",
+      "activiteitstype": "Apparaat vervangen",
+      "interventie": "Koelvriescombinatie vervangen (>=15 jr -> label C)",
+      "eenheid": "per apparaat",
+      "primaireEffecten": "Elektriciteitsbesparing -> CO2-reductie",
+      "rekenmodel": "Effectcode WG01. 350 kWh/jr (koelvriescombi 15 jr) - 160 kWh/jr (nieuw, label C) = 190 kWh/jr. Leeftijdsvarianten: 10 jr 280 -> 120; 20 jr 370 -> 210; 25 jr 470 -> 310 kWh/jr.",
+      "monetarisatiebron": "Energieprijzen huishouden (Aannames, elektra incl. groenestroomopslag); CO2 maatschappelijk: Milieuprijzen 2023 EUR0,13/kg.",
+      "onderbouwing": "GEVERIFIEERD: Milieu Centraal (Grote energieslurpers + Koelkasten en vriezers): oud 15 jr 350 kWh/jr, nieuw label C 160 kWh/jr. MC noemt zelf EUR50/jr besparing - consistent.",
+      "bewijssterkte": "Hoog",
+      "statusKengetal": "herleidbare omrekening",
+      "statusKengetalBron": "herleidbare omrekening",
+      "afbakening": "Overlapgroep witgoed - per fysiek apparaat een keer (regel 14). Niet stapelen met WG02/WG03/WG07 op hetzelfde apparaat.",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-witgoed-koelvriescombinatie.md",
+      "kengetallen": {
+        "gasM3PerJaar": 0,
+        "elektraKwhPerJaar": 190,
+        "waterM3PerJaar": 0,
+        "bestendiging": 1,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": null
+      },
+      "berekend": {
+        "besparingHuishoudenEurPerJaar": 48.61,
+        "co2eKgPerJaar": 46.36,
+        "maatschappelijkeBesparingEurPerJaar": 6.03,
+        "totaleWaardeEurPerJaar": 54.64,
+        "maatschappelijkeBesparingEurPerEenheid": null
+      }
+    },
+    {
+      "id": "WG02",
+      "slug": "koelkast-vervangen-10-jr-label-c",
+      "code": "WG02",
+      "domein": "Klimaat & Energie",
+      "activiteitstype": "Apparaat vervangen",
+      "interventie": "Koelkast vervangen (>=10 jr -> label C)",
+      "eenheid": "per apparaat",
+      "primaireEffecten": "Elektriciteitsbesparing -> CO2-reductie",
+      "rekenmodel": "Effectcode WG02. 280 kWh/jr (10 jr) - 160 kWh/jr (nieuw label C) = 120 kWh/jr.",
+      "monetarisatiebron": "Energieprijzen huishouden (Aannames, elektra incl. groenestroomopslag); CO2 maatschappelijk: Milieuprijzen 2023 EUR0,13/kg.",
+      "onderbouwing": "GEVERIFIEERD: Milieu Centraal (Koelkasten en vriezers): 10 jr 280 kWh/jr; nieuw label C 160 kWh/jr. MC noemt EUR30/jr - consistent.",
+      "bewijssterkte": "Hoog",
+      "statusKengetal": "herleidbare omrekening",
+      "statusKengetalBron": "herleidbare omrekening",
+      "afbakening": "Overlapgroep witgoed (regel 14). Niet stapelen met WG01 op hetzelfde apparaat.",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-witgoed-koelkast.md",
+      "kengetallen": {
+        "gasM3PerJaar": 0,
+        "elektraKwhPerJaar": 120,
+        "waterM3PerJaar": 0,
+        "bestendiging": 1,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": null
+      },
+      "berekend": {
+        "besparingHuishoudenEurPerJaar": 30.7,
+        "co2eKgPerJaar": 29.28,
+        "maatschappelijkeBesparingEurPerJaar": 3.81,
+        "totaleWaardeEurPerJaar": 34.51,
+        "maatschappelijkeBesparingEurPerEenheid": null
+      }
+    },
+    {
+      "id": "WG03",
+      "slug": "tweede-koelkast-vriezer-afdanken",
+      "code": "WG03",
+      "domein": "Klimaat & Energie",
+      "activiteitstype": "Apparaat vervangen",
+      "interventie": "Tweede koelkast/vriezer afdanken",
+      "eenheid": "per apparaat",
+      "primaireEffecten": "Elektriciteitsbesparing -> CO2-reductie",
+      "rekenmodel": "Effectcode WG03. Volledig verbruik vervalt: 140 kWh/jr (oud klein koelkastmodel / tweede koelkast).",
+      "monetarisatiebron": "Energieprijzen huishouden (Aannames, elektra incl. groenestroomopslag); CO2 maatschappelijk: Milieuprijzen 2023 EUR0,13/kg.",
+      "onderbouwing": "GEVERIFIEERD: Milieu Centraal (Grote energieslurpers): oud klein koelkastmodel 140 kWh/jr = EUR30/jr.",
+      "bewijssterkte": "Hoog",
+      "statusKengetal": "direct brongetal",
+      "statusKengetalBron": "direct brongetal",
+      "afbakening": "Overlapgroep witgoed (regel 14). Afdanken != vervangen: niet combineren met WG01/WG02 voor hetzelfde apparaat.",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-witgoed-tweede-koelkast.md",
+      "kengetallen": {
+        "gasM3PerJaar": 0,
+        "elektraKwhPerJaar": 140,
+        "waterM3PerJaar": 0,
+        "bestendiging": 1,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": null
+      },
+      "berekend": {
+        "besparingHuishoudenEurPerJaar": 35.82,
+        "co2eKgPerJaar": 34.16,
+        "maatschappelijkeBesparingEurPerJaar": 4.44,
+        "totaleWaardeEurPerJaar": 40.26,
+        "maatschappelijkeBesparingEurPerEenheid": null
+      }
+    },
+    {
+      "id": "WG04",
+      "slug": "wasmachine-vervangen-label-e-label-a",
+      "code": "WG04",
+      "domein": "Klimaat & Energie",
+      "activiteitstype": "Apparaat vervangen",
+      "interventie": "Wasmachine vervangen (label E -> label A)",
+      "eenheid": "per apparaat",
+      "primaireEffecten": "Elektriciteitsbesparing -> CO2-reductie",
+      "rekenmodel": "Effectcode WG04. 150 kWh/jr (7 kg, label E) - 90 kWh/jr (7 kg, label A) = 60 kWh/jr.",
+      "monetarisatiebron": "Energieprijzen huishouden (Aannames, elektra incl. groenestroomopslag); CO2 maatschappelijk: Milieuprijzen 2023 EUR0,13/kg.",
+      "onderbouwing": "GEVERIFIEERD: Milieu Centraal (Wasmachine): label A 7 kg 90 kWh/jr; zelfde maat label E 150 kWh/jr.",
+      "bewijssterkte": "Hoog",
+      "statusKengetal": "herleidbare omrekening",
+      "statusKengetalBron": "herleidbare omrekening",
+      "afbakening": "Overlapgroep witgoed (regel 14). Apparaatvervanging telt naast gedrag (EG06/EG09) - gedrag rekent over het nieuwe verbruik.",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-witgoed-wasmachine.md",
+      "kengetallen": {
+        "gasM3PerJaar": 0,
+        "elektraKwhPerJaar": 60,
+        "waterM3PerJaar": 0,
+        "bestendiging": 1,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": null
+      },
+      "berekend": {
+        "besparingHuishoudenEurPerJaar": 15.35,
+        "co2eKgPerJaar": 14.64,
+        "maatschappelijkeBesparingEurPerJaar": 1.9,
+        "totaleWaardeEurPerJaar": 17.25,
+        "maatschappelijkeBesparingEurPerEenheid": null
+      }
+    },
+    {
+      "id": "WG05",
+      "slug": "vaatwasser-vervangen-oud-zuinig-label",
+      "code": "WG05",
+      "domein": "Klimaat & Energie",
+      "activiteitstype": "Apparaat vervangen",
+      "interventie": "Vaatwasser vervangen (oud -> zuinig label)",
+      "eenheid": "per apparaat",
+      "primaireEffecten": "Elektriciteitsbesparing -> CO2-reductie",
+      "rekenmodel": "Effectcode WG05. Drie stappen, elk herleidbaar. (1) EPREL-mediaan per energieklasse voor volwaardige vaatwassers (>=12 couverts), kWh per 100 cycli: A 54 | B 65 | C 75 | D 85 | E 92 | F 104 | G 108. (2) Omrekening naar jaar met 280 standaard reinigingscycli per jaar (Verordening 1059/2010, AEc = Et x 280). (3) Standaardaanname: oud apparaat label E -> nieuw label A = (92-54) x 2,8 = 106 kWh/jr. Water idem: (11,0-9,5) l/cyclus x 280 = 420 l = 0,42 m3/jr.",
+      "monetarisatiebron": "Energieprijzen huishouden (Aannames, elektra incl. groenestroomopslag); CO2 maatschappelijk: Milieuprijzen 2023 EUR0,13/kg.",
+      "onderbouwing": "GEVERIFIEERD via EPREL (EU-productregister, mediaan over 98-295 modellen per klasse) + cyclusaantal uit Verordening 1059/2010. Onafhankelijke controle: EPREL-mediaan label A = 151 kWh/jr; marktbronnen noemen 150 kWh/jr voor label A - exacte match. Zwakke schakel blijft het uitgangslabel van het oude apparaat (labelherziening 2021).",
+      "bewijssterkte": "Middel",
+      "statusKengetal": "herleidbare omrekening",
+      "statusKengetalBron": "herleidbare omrekening",
+      "afbakening": "Overlapgroep witgoed (regel 14). Niet stapelen met EG07/EG14 (vol draaien / eco-stand) zonder nieuw basisverbruik.",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-witgoed-vaatwasser.md",
+      "kengetallen": {
+        "gasM3PerJaar": null,
+        "elektraKwhPerJaar": 106,
+        "waterM3PerJaar": 0.42,
+        "bestendiging": 1,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": null
+      },
+      "berekend": {
+        "besparingHuishoudenEurPerJaar": 28.26,
+        "co2eKgPerJaar": 25.99,
+        "maatschappelijkeBesparingEurPerJaar": 3.38,
+        "totaleWaardeEurPerJaar": 31.64,
+        "maatschappelijkeBesparingEurPerEenheid": null
+      }
+    },
+    {
+      "id": "WG06",
+      "slug": "wasdroger-vervangen-condens-luchtafvoer-warmtepompdroger",
+      "code": "WG06",
+      "domein": "Klimaat & Energie",
+      "activiteitstype": "Apparaat vervangen",
+      "interventie": "Wasdroger vervangen (condens/luchtafvoer -> warmtepompdroger)",
+      "eenheid": "per apparaat",
+      "primaireEffecten": "Elektriciteitsbesparing -> CO2-reductie",
+      "rekenmodel": "Effectcode WG06. (1) EPREL-mediaan per energieklasse voor drogers >=7 kg, kWh per cyclus: A 0,79 | B 0,92 | C 1,06 | D 1,19 | E 1,41 | F 1,53 | G 3,07. De sprong F->G markeert de scheiding warmtepomp vs. weerstandsverwarming: condens- en luchtafvoerdrogers vallen in G. (2) Omrekening naar jaar met 160 droogcycli per jaar (Verordening 392/2012, gewogen AEc bij volle en gedeeltelijke belading). (3) G -> A = (3,07-0,79) x 160 = 365 kWh/jr.",
+      "monetarisatiebron": "Energieprijzen huishouden (Aannames, elektra incl. groenestroomopslag); CO2 maatschappelijk: Milieuprijzen 2023 EUR0,13/kg.",
+      "onderbouwing": "GEVERIFIEERD via EPREL (mediaan over 100-319 modellen per klasse) + cyclusaantal uit Verordening 392/2012. Onafhankelijke controle: EPREL-mediaan label C = 170 kWh/jr en label D = 190 kWh/jr; eerder gevonden marktcijfers noemen 170 kWh/jr voor een warmtepompdroger en ~190 kWh/jr voor een condensdroger - beide exact reproduceerbaar.",
+      "bewijssterkte": "Middel",
+      "statusKengetal": "herleidbare omrekening",
+      "statusKengetalBron": "herleidbare omrekening",
+      "afbakening": "Overlapgroep witgoed (regel 14). Niet stapelen met EG10 (was ophangen) - die vervangt droogbeurten juist.",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-witgoed-wasdroger.md",
+      "kengetallen": {
+        "gasM3PerJaar": null,
+        "elektraKwhPerJaar": 365,
+        "waterM3PerJaar": null,
+        "bestendiging": 1,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": null
+      },
+      "berekend": {
+        "besparingHuishoudenEurPerJaar": 93.39,
+        "co2eKgPerJaar": 89.06,
+        "maatschappelijkeBesparingEurPerJaar": 11.58,
+        "totaleWaardeEurPerJaar": 104.97,
+        "maatschappelijkeBesparingEurPerEenheid": null
+      }
+    },
+    {
+      "id": "WG07",
+      "slug": "vriezer-vervangen-oud-nieuw-label",
+      "code": "WG07",
+      "domein": "Klimaat & Energie",
+      "activiteitstype": "Apparaat vervangen",
+      "interventie": "Vriezer vervangen (oud -> nieuw label)",
+      "eenheid": "per apparaat",
+      "primaireEffecten": "Elektriciteitsbesparing -> CO2-reductie",
+      "rekenmodel": "Effectcode WG07. Milieu Centraal geeft wel oud-nieuw voor de koelvriescombinatie (WG01) maar niet voor de losse vriezer; marktbronnen (475 -> 165 kWh/jr) zijn niet gezaghebbend.",
+      "monetarisatiebron": "Energieprijzen huishouden (Aannames, elektra incl. groenestroomopslag); CO2 maatschappelijk: Milieuprijzen 2023 EUR0,13/kg.",
+      "onderbouwing": "needs verification: geen MC/overheidskengetal voor de losse vriezer. Gebruik WG01 als het om een koelvriescombinatie gaat.",
+      "bewijssterkte": "Laag",
+      "statusKengetal": "needs verification",
+      "statusKengetalBron": "needs verification",
+      "afbakening": "Overlapgroep witgoed (regel 14). Niet stapelen met WG01 (koelvriescombinatie) of WG03 (afdanken).",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-witgoed-vriezer.md",
+      "kengetallen": {
+        "gasM3PerJaar": null,
+        "elektraKwhPerJaar": null,
+        "waterM3PerJaar": null,
+        "bestendiging": 1,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": null
+      },
+      "berekend": {
+        "besparingHuishoudenEurPerJaar": null,
+        "co2eKgPerJaar": null,
+        "maatschappelijkeBesparingEurPerJaar": null,
+        "totaleWaardeEurPerJaar": null,
+        "maatschappelijkeBesparingEurPerEenheid": null
+      }
+    },
+    {
+      "id": "WG08",
+      "slug": "elektrische-kookplaat-gietijzer-inductie",
+      "code": "WG08",
+      "domein": "Klimaat & Energie",
+      "activiteitstype": "Apparaat vervangen",
+      "interventie": "Elektrische kookplaat (gietijzer) -> inductie",
+      "eenheid": "per kookplaat",
+      "primaireEffecten": "Elektriciteitsbesparing -> CO2-reductie",
+      "rekenmodel": "Effectcode WG08. 260 kWh/jr (ouderwetse elektrische plaat) - 175 kWh/jr (inductie) = 85 kWh/jr.",
+      "monetarisatiebron": "Energieprijzen huishouden (Aannames, elektra incl. groenestroomopslag); CO2 maatschappelijk: Milieuprijzen 2023 EUR0,13/kg.",
+      "onderbouwing": "GEVERIFIEERD: Milieu Centraal (Inductiekookplaat): gietijzeren plaat 260 kWh/jr, keramisch 225, inductie 175.",
+      "bewijssterkte": "Hoog",
+      "statusKengetal": "herleidbare omrekening",
+      "statusKengetalBron": "herleidbare omrekening",
+      "afbakening": "Cluster koken (regel 15) - een uitgangssituatie per huishouden. Niet stapelen met WG09/WG10.",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-witgoed-kookplaat.md",
+      "kengetallen": {
+        "gasM3PerJaar": 0,
+        "elektraKwhPerJaar": 85,
+        "waterM3PerJaar": 0,
+        "bestendiging": 1,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": null
+      },
+      "berekend": {
+        "besparingHuishoudenEurPerJaar": 21.75,
+        "co2eKgPerJaar": 20.74,
+        "maatschappelijkeBesparingEurPerJaar": 2.7,
+        "totaleWaardeEurPerJaar": 24.45,
+        "maatschappelijkeBesparingEurPerEenheid": null
+      }
+    },
+    {
+      "id": "WG09",
+      "slug": "keramische-kookplaat-inductie",
+      "code": "WG09",
+      "domein": "Klimaat & Energie",
+      "activiteitstype": "Apparaat vervangen",
+      "interventie": "Keramische kookplaat -> inductie",
+      "eenheid": "per kookplaat",
+      "primaireEffecten": "Elektriciteitsbesparing -> CO2-reductie",
+      "rekenmodel": "Effectcode WG09. 225 kWh/jr (keramisch) - 175 kWh/jr (inductie) = 50 kWh/jr.",
+      "monetarisatiebron": "Energieprijzen huishouden (Aannames, elektra incl. groenestroomopslag); CO2 maatschappelijk: Milieuprijzen 2023 EUR0,13/kg.",
+      "onderbouwing": "GEVERIFIEERD: Milieu Centraal (Inductiekookplaat): keramisch 225 kWh/jr, inductie 175 kWh/jr.",
+      "bewijssterkte": "Hoog",
+      "statusKengetal": "herleidbare omrekening",
+      "statusKengetalBron": "herleidbare omrekening",
+      "afbakening": "Cluster koken (regel 15) - een uitgangssituatie per huishouden. Niet stapelen met WG08/WG10.",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-witgoed-kookplaat.md",
+      "kengetallen": {
+        "gasM3PerJaar": 0,
+        "elektraKwhPerJaar": 50,
+        "waterM3PerJaar": 0,
+        "bestendiging": 1,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": null
+      },
+      "berekend": {
+        "besparingHuishoudenEurPerJaar": 12.79,
+        "co2eKgPerJaar": 12.2,
+        "maatschappelijkeBesparingEurPerJaar": 1.59,
+        "totaleWaardeEurPerJaar": 14.38,
+        "maatschappelijkeBesparingEurPerEenheid": null
+      }
+    },
+    {
+      "id": "WG10",
+      "slug": "gasfornuis-inductie-brandstofswitch",
+      "code": "WG10",
+      "domein": "Klimaat & Energie",
+      "activiteitstype": "Apparaat vervangen",
+      "interventie": "Gasfornuis -> inductie (brandstofswitch)",
+      "eenheid": "per kookplaat",
+      "primaireEffecten": "Gasbesparing -/- extra elektriciteit -> netto CO2-reductie",
+      "rekenmodel": "Effectcode WG10. Brandstofswitch: -37 m3 gas/jr, +175 kWh elektra/jr. Netto CO2 = 37*2,134 - 175*0,244 = 79,0 - 42,7 = 36,3 kg/jr. Let op: kolom Elektra is NEGATIEF (meerverbruik).",
+      "monetarisatiebron": "Energieprijzen huishouden (Aannames, elektra incl. groenestroomopslag); CO2 maatschappelijk: Milieuprijzen 2023 EUR0,13/kg.",
+      "onderbouwing": "GEVERIFIEERD: Milieu Centraal (Inductiekookplaat): koken op gas 37 m3/jr, inductie 175 kWh/jr; MC noemt zelf 80 kg CO2 (gas) vs 45 kg (inductie) - het model reproduceert dat verschil (36 vs 35 kg).",
+      "bewijssterkte": "Hoog",
+      "statusKengetal": "direct brongetal",
+      "statusKengetalBron": "direct brongetal",
+      "afbakening": "Cluster koken (regel 15) - een uitgangssituatie per huishouden. Niet stapelen met WG08/WG09. Netwerkkosten/aansluiting buiten scope.",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-witgoed-kookplaat.md",
+      "kengetallen": {
+        "gasM3PerJaar": 37,
+        "elektraKwhPerJaar": -175,
+        "waterM3PerJaar": 0,
+        "bestendiging": 1,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": null
+      },
+      "berekend": {
+        "besparingHuishoudenEurPerJaar": 5.18,
+        "co2eKgPerJaar": 36.26,
+        "maatschappelijkeBesparingEurPerJaar": 4.71,
+        "totaleWaardeEurPerJaar": 9.89,
+        "maatschappelijkeBesparingEurPerEenheid": null
+      }
+    },
+    {
+      "id": "EG15",
+      "slug": "verwarming-uit-in-ongebruikte-ruimtes",
+      "code": "EG15",
+      "domein": "Klimaat & Energie",
+      "activiteitstype": "Energie besparen",
+      "interventie": "Verwarming uit in ongebruikte ruimtes",
+      "eenheid": "per woning",
+      "primaireEffecten": "Gasbesparing -> CO2-reductie",
+      "rekenmodel": "Effectcode EG15. Milieu Centraal EUR80/jr (slaapverdieping niet verwarmen) / MC-gasprijs EUR1,37 = 58 m3 gas/jr.",
+      "monetarisatiebron": "Energieprijzen huishouden (Aannames, elektra incl. groenestroomopslag); CO2 maatschappelijk: Milieuprijzen 2023 EUR0,13/kg.",
+      "onderbouwing": "GEVERIFIEERD: Milieu Centraal (Bespaartips verwarming): \"jaarlijks zo'n EUR80\". Omrekening naar m3 met de MC-gasprijs EUR1,37 (MC rekent daarmee).",
+      "bewijssterkte": "Middel",
+      "statusKengetal": "herleidbare omrekening",
+      "statusKengetalBron": "herleidbare omrekening",
+      "afbakening": "Overlapgroep ruimteverwarming - cap per woning, niet optellen (regel 11). Sterke overlap met EG04/EG05/ET06.",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-onbenutte-ruimte-niet-verwarmen.md",
+      "kengetallen": {
+        "gasM3PerJaar": 58,
+        "elektraKwhPerJaar": 0,
+        "waterM3PerJaar": 0,
+        "bestendiging": 0.8,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": null
+      },
+      "berekend": {
+        "besparingHuishoudenEurPerJaar": 62.64,
+        "co2eKgPerJaar": 99.02,
+        "maatschappelijkeBesparingEurPerJaar": 12.87,
+        "totaleWaardeEurPerJaar": 75.51,
+        "maatschappelijkeBesparingEurPerEenheid": null
+      }
+    },
+    {
+      "id": "EG16",
+      "slug": "thermostaat-15c-overdag-bij-afwezigheid",
+      "code": "EG16",
+      "domein": "Klimaat & Energie",
+      "activiteitstype": "Energie besparen",
+      "interventie": "Thermostaat 15C overdag bij afwezigheid",
+      "eenheid": "per woning",
+      "primaireEffecten": "Gasbesparing -> CO2-reductie",
+      "rekenmodel": "Effectcode EG16. Milieu Centraal EUR120/jr (4 dagen/week niet thuis) / EUR1,37 = 88 m3 gas/jr.",
+      "monetarisatiebron": "Energieprijzen huishouden (Aannames, elektra incl. groenestroomopslag); CO2 maatschappelijk: Milieuprijzen 2023 EUR0,13/kg.",
+      "onderbouwing": "GEVERIFIEERD: Milieu Centraal (Bespaartips verwarming): \"jaarlijks zo'n EUR120\" bij 4 dagen per week afwezig.",
+      "bewijssterkte": "Middel",
+      "statusKengetal": "herleidbare omrekening",
+      "statusKengetalBron": "herleidbare omrekening",
+      "afbakening": "Overlapgroep ruimteverwarming - cap per woning, niet optellen (regel 11). Overlapt met EG04 (1C lager overdag) en ET05.",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-thermostaat-afwezigheid.md",
+      "kengetallen": {
+        "gasM3PerJaar": 88,
+        "elektraKwhPerJaar": 0,
+        "waterM3PerJaar": 0,
+        "bestendiging": 0.8,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": null
+      },
+      "berekend": {
+        "besparingHuishoudenEurPerJaar": 95.04,
+        "co2eKgPerJaar": 150.23,
+        "maatschappelijkeBesparingEurPerJaar": 19.53,
+        "totaleWaardeEurPerJaar": 114.57,
+        "maatschappelijkeBesparingEurPerEenheid": null
+      }
+    },
+    {
+      "id": "EG17",
+      "slug": "gordijnen-s-avonds-dicht-dubbelglas",
+      "code": "EG17",
+      "domein": "Klimaat & Energie",
+      "activiteitstype": "Energie besparen",
+      "interventie": "Gordijnen 's avonds dicht (dubbelglas)",
+      "eenheid": "per woning",
+      "primaireEffecten": "Gasbesparing -> CO2-reductie",
+      "rekenmodel": "Effectcode EG17. 30 m3 gas/jr voor een gemiddelde hoekwoning met dubbelglas en gewone gordijnen.",
+      "monetarisatiebron": "Energieprijzen huishouden (Aannames, elektra incl. groenestroomopslag); CO2 maatschappelijk: Milieuprijzen 2023 EUR0,13/kg.",
+      "onderbouwing": "GEVERIFIEERD: Milieu Centraal (Isolerende raambekleding), tabel gewone gordijnen hoekwoning: enkelglas 90 m3, dubbelglas 30 m3, HR++ 11 m3 per jaar.",
+      "bewijssterkte": "Hoog",
+      "statusKengetal": "direct brongetal",
+      "statusKengetalBron": "direct brongetal",
+      "afbakening": "Overlapgroep ruimteverwarming (regel 11). Een glastype per woning: niet stapelen met EG18. Niet stapelen met ET04 (isolerende gordijnen) - dat is dezelfde raamopening.",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-gordijnen-dicht.md",
+      "kengetallen": {
+        "gasM3PerJaar": 30,
+        "elektraKwhPerJaar": 0,
+        "waterM3PerJaar": 0,
+        "bestendiging": 0.8,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": null
+      },
+      "berekend": {
+        "besparingHuishoudenEurPerJaar": 32.4,
+        "co2eKgPerJaar": 51.22,
+        "maatschappelijkeBesparingEurPerJaar": 6.66,
+        "totaleWaardeEurPerJaar": 39.06,
+        "maatschappelijkeBesparingEurPerEenheid": null
+      }
+    },
+    {
+      "id": "EG18",
+      "slug": "gordijnen-s-avonds-dicht-enkelglas",
+      "code": "EG18",
+      "domein": "Klimaat & Energie",
+      "activiteitstype": "Energie besparen",
+      "interventie": "Gordijnen 's avonds dicht (enkelglas)",
+      "eenheid": "per woning",
+      "primaireEffecten": "Gasbesparing -> CO2-reductie",
+      "rekenmodel": "Effectcode EG18. 90 m3 gas/jr voor een gemiddelde hoekwoning met enkelglas en gewone gordijnen.",
+      "monetarisatiebron": "Energieprijzen huishouden (Aannames, elektra incl. groenestroomopslag); CO2 maatschappelijk: Milieuprijzen 2023 EUR0,13/kg.",
+      "onderbouwing": "GEVERIFIEERD: Milieu Centraal (Isolerende raambekleding), tabel gewone gordijnen hoekwoning: enkelglas 90 m3/jr (EUR120).",
+      "bewijssterkte": "Hoog",
+      "statusKengetal": "direct brongetal",
+      "statusKengetalBron": "direct brongetal",
+      "afbakening": "Overlapgroep ruimteverwarming (regel 11). Een glastype per woning: niet stapelen met EG17. Niet stapelen met ET04/ET15.",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-gordijnen-dicht.md",
+      "kengetallen": {
+        "gasM3PerJaar": 90,
+        "elektraKwhPerJaar": 0,
+        "waterM3PerJaar": 0,
+        "bestendiging": 0.8,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": null
+      },
+      "berekend": {
+        "besparingHuishoudenEurPerJaar": 97.2,
+        "co2eKgPerJaar": 153.65,
+        "maatschappelijkeBesparingEurPerJaar": 19.97,
+        "totaleWaardeEurPerJaar": 117.17,
+        "maatschappelijkeBesparingEurPerEenheid": null
+      }
+    },
+    {
+      "id": "EG19",
+      "slug": "koel-vriesapparatuur-niet-kouder-dan-nodig",
+      "code": "EG19",
+      "domein": "Klimaat & Energie",
+      "activiteitstype": "Energie besparen",
+      "interventie": "Koel-/vriesapparatuur niet kouder dan nodig",
+      "eenheid": "per graad te koud",
+      "primaireEffecten": "Elektriciteitsbesparing -> CO2-reductie",
+      "rekenmodel": "Effectcode EG19. Elke graad kouder = ~6% meer verbruik. Referentie nieuw apparaat (label C, 160 kWh/jr): 0,06 * 160 = ~10 kWh/jr per graad. Bij een oud apparaat (350 kWh/jr) is dat ~21 kWh/jr per graad.",
+      "monetarisatiebron": "Energieprijzen huishouden (Aannames, elektra incl. groenestroomopslag); CO2 maatschappelijk: Milieuprijzen 2023 EUR0,13/kg.",
+      "onderbouwing": "GEVERIFIEERD: Milieu Centraal (Koelkasten en vriezers): per graad kouder/warmer verandert het verbruik ~6%; Voedingscentrum-advies koelkast 4C, vriezer -18C.",
+      "bewijssterkte": "Middel",
+      "statusKengetal": "herleidbare omrekening",
+      "statusKengetalBron": "herleidbare omrekening",
+      "afbakening": "Cluster witgoed-gebruik (regel 14). Percentage van het APPARAATverbruik: bij een oud apparaat het hogere basisverbruik gebruiken. Niet stapelen met EG12 (vriezer ontdooien).",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-koelkast-temperatuur.md",
+      "kengetallen": {
+        "gasM3PerJaar": 0,
+        "elektraKwhPerJaar": 10,
+        "waterM3PerJaar": 0,
+        "bestendiging": 0.8,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": null
+      },
+      "berekend": {
+        "besparingHuishoudenEurPerJaar": 2.05,
+        "co2eKgPerJaar": 1.95,
+        "maatschappelijkeBesparingEurPerJaar": 0.25,
+        "totaleWaardeEurPerJaar": 2.3,
+        "maatschappelijkeBesparingEurPerEenheid": null
+      }
+    },
+    {
+      "id": "ET21",
+      "slug": "vloerverwarmingspomp-met-schakelaar",
+      "code": "ET21",
+      "domein": "Klimaat & Energie",
+      "activiteitstype": "Energie besparen",
+      "interventie": "Vloerverwarmingspomp met schakelaar",
+      "eenheid": "per pomp",
+      "primaireEffecten": "Elektriciteitsbesparing -> CO2-reductie",
+      "rekenmodel": "Effectcode ET21. Oude pomp zonder schakelaar 700 kWh/jr; met schakelaar (buiten stookseizoen uit) 570 kWh/jr besparing.",
+      "monetarisatiebron": "Energieprijzen huishouden (Aannames, elektra incl. groenestroomopslag); CO2 maatschappelijk: Milieuprijzen 2023 EUR0,13/kg.",
+      "onderbouwing": "GEVERIFIEERD: Milieu Centraal (Grote energieslurpers): pomp vloerverwarming oud zonder schakelaar 700 kWh/jr = EUR150; besparing met schakelaar 570 kWh/jr = EUR120.",
+      "bewijssterkte": "Hoog",
+      "statusKengetal": "direct brongetal",
+      "statusKengetalBron": "direct brongetal",
+      "afbakening": "Cluster installatie. Geldt alleen bij een oude pomp zonder schakelaar/zomerstand. Niet stapelen met ET13 (cv-optimalisatie pompstand).",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-vloerverwarmingspomp.md",
+      "kengetallen": {
+        "gasM3PerJaar": 0,
+        "elektraKwhPerJaar": 570,
+        "waterM3PerJaar": 0,
+        "bestendiging": 1,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": null
+      },
+      "berekend": {
+        "besparingHuishoudenEurPerJaar": 145.83,
+        "co2eKgPerJaar": 139.08,
+        "maatschappelijkeBesparingEurPerJaar": 18.08,
+        "totaleWaardeEurPerJaar": 163.91,
+        "maatschappelijkeBesparingEurPerEenheid": null
+      }
+    },
+    {
+      "id": "ET22",
+      "slug": "waakvlam-cv-ketel-uitschakelen",
+      "code": "ET22",
+      "domein": "Klimaat & Energie",
+      "activiteitstype": "Energie besparen",
+      "interventie": "Waakvlam cv-ketel uitschakelen",
+      "eenheid": "per woning",
+      "primaireEffecten": "Gasbesparing -> CO2-reductie",
+      "rekenmodel": "Effectcode ET22. 30 m3 gas/jr. Alleen van toepassing op oude ketels met permanente waakvlam.",
+      "monetarisatiebron": "Energieprijzen huishouden (Aannames, elektra incl. groenestroomopslag); CO2 maatschappelijk: Milieuprijzen 2023 EUR0,13/kg.",
+      "onderbouwing": "GEVERIFIEERD: Milieu Centraal (Bespaartips verwarming): \"waakvlam uitschakelen bespaart jaarlijks ongeveer 30 m3 gas\" (EUR41).",
+      "bewijssterkte": "Hoog",
+      "statusKengetal": "direct brongetal",
+      "statusKengetalBron": "direct brongetal",
+      "afbakening": "Cluster installatie. Alleen bij ketels met waakvlam (pre-HR). Niet stapelen met ET13.",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-waakvlam-uit.md",
+      "kengetallen": {
+        "gasM3PerJaar": 30,
+        "elektraKwhPerJaar": 0,
+        "waterM3PerJaar": 0,
+        "bestendiging": 1,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": null
+      },
+      "berekend": {
+        "besparingHuishoudenEurPerJaar": 40.5,
+        "co2eKgPerJaar": 64.02,
+        "maatschappelijkeBesparingEurPerJaar": 8.32,
+        "totaleWaardeEurPerJaar": 48.82,
+        "maatschappelijkeBesparingEurPerEenheid": null
+      }
+    },
+    {
+      "id": "ET23",
+      "slug": "cv-ketel-op-eco-stand-i-p-v-comfortstand",
+      "code": "ET23",
+      "domein": "Klimaat & Energie",
+      "activiteitstype": "Energie besparen",
+      "interventie": "Cv-ketel op eco-stand i.p.v. comfortstand",
+      "eenheid": "per woning",
+      "primaireEffecten": "Gasbesparing -> CO2-reductie",
+      "rekenmodel": "Effectcode ET23. 15 m3 gas/jr bij overschakelen van comfortstand naar eco-stand (geen warmwatervoorraad op temperatuur houden).",
+      "monetarisatiebron": "Energieprijzen huishouden (Aannames, elektra incl. groenestroomopslag); CO2 maatschappelijk: Milieuprijzen 2023 EUR0,13/kg.",
+      "onderbouwing": "GEVERIFIEERD: Milieu Centraal (Bespaartips verwarming): eco-stand i.p.v. comfortstand bespaart ~15 m3 gas per jaar.",
+      "bewijssterkte": "Hoog",
+      "statusKengetal": "direct brongetal",
+      "statusKengetalBron": "direct brongetal",
+      "afbakening": "Cluster installatie/warm water. Niet stapelen met ET13 (CV-optimalisatie) - controleer of die de eco-stand al bevat.",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-cv-ecostand.md",
+      "kengetallen": {
+        "gasM3PerJaar": 15,
+        "elektraKwhPerJaar": 0,
+        "waterM3PerJaar": 0,
+        "bestendiging": 1,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": null
+      },
+      "berekend": {
+        "besparingHuishoudenEurPerJaar": 20.25,
+        "co2eKgPerJaar": 32.01,
+        "maatschappelijkeBesparingEurPerJaar": 4.16,
+        "totaleWaardeEurPerJaar": 24.41,
+        "maatschappelijkeBesparingEurPerEenheid": null
+      }
+    },
+    {
+      "id": "ET24",
+      "slug": "deur-recht-hangen-afstellen-minder-tocht",
+      "code": "ET24",
+      "domein": "Klimaat & Energie",
+      "activiteitstype": "Energie besparen",
+      "interventie": "Deur recht hangen / afstellen (minder tocht)",
+      "eenheid": "strekkende meter gedichte kier",
+      "primaireEffecten": "Gasbesparing -> CO2-reductie; tochtreductie / comfort",
+      "rekenmodel": "Effectcode ET24. Zelfde fysieke effect als ET03 (kier dicht), andere uitvoeringsroute: scharnieren/sluitwerk afstellen i.p.v. materiaal aanbrengen. Kengetal 3 m3 gas per strekkende meter gedichte kier, overgenomen van ET03. Meet de werkelijke lekkende kierlengte; niet de volle deuromtrek aannemen.",
+      "monetarisatiebron": "Energieprijzen huishouden (Aannames, elektra incl. groenestroomopslag); CO2 maatschappelijk: Milieuprijzen 2023 EUR0,13/kg.",
+      "onderbouwing": "Kengetal herleid van ET03 (GEVERIFIEERD-consistent met Milieu Centraal: hele woning kierdichten 50 m3/jr). De GELIJKSTELLING afstellen = kierdichting is een eigen afleiding, geen brongetal - daarom Middel i.p.v. Hoog.",
+      "bewijssterkte": "Middel",
+      "statusKengetal": "herleidbare omrekening",
+      "statusKengetalBron": "herleidbare omrekening",
+      "afbakening": "Overlapgroep ruimteverwarming - cap per woning ~70 m3 (regel 11). Per deur EEN maatregel: ET24 OF ET03, nooit beide (regel 16). ALLEEN buitendeuren of deuren naar onverwarmde ruimte - de ventilatiekier onder binnendeuren niet dichtmaken.",
+      "nietCo2Monetair": null,
+      "wikipagina": "interventie-deur-recht-hangen.md",
+      "kengetallen": {
+        "gasM3PerJaar": 3,
+        "elektraKwhPerJaar": 0,
+        "waterM3PerJaar": 0,
+        "bestendiging": 1,
+        "co2ePerEenheid": null,
+        "co2ePerEenheidTekst": null
+      },
+      "berekend": {
+        "besparingHuishoudenEurPerJaar": 4.05,
+        "co2eKgPerJaar": 6.4,
+        "maatschappelijkeBesparingEurPerJaar": 0.83,
+        "totaleWaardeEurPerJaar": 4.88,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     },
     {
@@ -1418,9 +2150,11 @@
         "co2ePerEenheidTekst": "needs verification"
       },
       "berekend": {
-        "besparingEurPerJaar": null,
+        "besparingHuishoudenEurPerJaar": null,
         "co2eKgPerJaar": null,
-        "monetairCo2EurPerEenheid": null
+        "maatschappelijkeBesparingEurPerJaar": null,
+        "totaleWaardeEurPerJaar": null,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     },
     {
@@ -1450,9 +2184,11 @@
         "co2ePerEenheidTekst": "needs verification"
       },
       "berekend": {
-        "besparingEurPerJaar": null,
+        "besparingHuishoudenEurPerJaar": null,
         "co2eKgPerJaar": null,
-        "monetairCo2EurPerEenheid": null
+        "maatschappelijkeBesparingEurPerJaar": null,
+        "totaleWaardeEurPerJaar": null,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     },
     {
@@ -1482,9 +2218,11 @@
         "co2ePerEenheidTekst": "needs verification"
       },
       "berekend": {
-        "besparingEurPerJaar": null,
+        "besparingHuishoudenEurPerJaar": null,
         "co2eKgPerJaar": null,
-        "monetairCo2EurPerEenheid": null
+        "maatschappelijkeBesparingEurPerJaar": null,
+        "totaleWaardeEurPerJaar": null,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     },
     {
@@ -1514,9 +2252,11 @@
         "co2ePerEenheidTekst": 0.282
       },
       "berekend": {
-        "besparingEurPerJaar": null,
+        "besparingHuishoudenEurPerJaar": null,
         "co2eKgPerJaar": null,
-        "monetairCo2EurPerEenheid": 0.04
+        "maatschappelijkeBesparingEurPerJaar": null,
+        "totaleWaardeEurPerJaar": null,
+        "maatschappelijkeBesparingEurPerEenheid": 0.04
       }
     },
     {
@@ -1546,9 +2286,11 @@
         "co2ePerEenheidTekst": 1.35
       },
       "berekend": {
-        "besparingEurPerJaar": null,
+        "besparingHuishoudenEurPerJaar": null,
         "co2eKgPerJaar": null,
-        "monetairCo2EurPerEenheid": 0.18
+        "maatschappelijkeBesparingEurPerJaar": null,
+        "totaleWaardeEurPerJaar": null,
+        "maatschappelijkeBesparingEurPerEenheid": 0.18
       }
     },
     {
@@ -1578,9 +2320,11 @@
         "co2ePerEenheidTekst": "needs verification"
       },
       "berekend": {
-        "besparingEurPerJaar": null,
+        "besparingHuishoudenEurPerJaar": null,
         "co2eKgPerJaar": null,
-        "monetairCo2EurPerEenheid": null
+        "maatschappelijkeBesparingEurPerJaar": null,
+        "totaleWaardeEurPerJaar": null,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     },
     {
@@ -1610,9 +2354,11 @@
         "co2ePerEenheidTekst": 10
       },
       "berekend": {
-        "besparingEurPerJaar": null,
+        "besparingHuishoudenEurPerJaar": null,
         "co2eKgPerJaar": null,
-        "monetairCo2EurPerEenheid": 1.3
+        "maatschappelijkeBesparingEurPerJaar": null,
+        "totaleWaardeEurPerJaar": null,
+        "maatschappelijkeBesparingEurPerEenheid": 1.3
       }
     },
     {
@@ -1642,9 +2388,11 @@
         "co2ePerEenheidTekst": "needs verification"
       },
       "berekend": {
-        "besparingEurPerJaar": null,
+        "besparingHuishoudenEurPerJaar": null,
         "co2eKgPerJaar": null,
-        "monetairCo2EurPerEenheid": null
+        "maatschappelijkeBesparingEurPerJaar": null,
+        "totaleWaardeEurPerJaar": null,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     },
     {
@@ -1674,9 +2422,11 @@
         "co2ePerEenheidTekst": "needs verification"
       },
       "berekend": {
-        "besparingEurPerJaar": null,
+        "besparingHuishoudenEurPerJaar": null,
         "co2eKgPerJaar": null,
-        "monetairCo2EurPerEenheid": null
+        "maatschappelijkeBesparingEurPerJaar": null,
+        "totaleWaardeEurPerJaar": null,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     },
     {
@@ -1706,9 +2456,11 @@
         "co2ePerEenheidTekst": "needs verification"
       },
       "berekend": {
-        "besparingEurPerJaar": null,
+        "besparingHuishoudenEurPerJaar": null,
         "co2eKgPerJaar": null,
-        "monetairCo2EurPerEenheid": null
+        "maatschappelijkeBesparingEurPerJaar": null,
+        "totaleWaardeEurPerJaar": null,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     },
     {
@@ -1738,9 +2490,11 @@
         "co2ePerEenheidTekst": "needs verification"
       },
       "berekend": {
-        "besparingEurPerJaar": null,
+        "besparingHuishoudenEurPerJaar": null,
         "co2eKgPerJaar": null,
-        "monetairCo2EurPerEenheid": null
+        "maatschappelijkeBesparingEurPerJaar": null,
+        "totaleWaardeEurPerJaar": null,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     },
     {
@@ -1770,9 +2524,11 @@
         "co2ePerEenheidTekst": "needs verification"
       },
       "berekend": {
-        "besparingEurPerJaar": null,
+        "besparingHuishoudenEurPerJaar": null,
         "co2eKgPerJaar": null,
-        "monetairCo2EurPerEenheid": null
+        "maatschappelijkeBesparingEurPerJaar": null,
+        "totaleWaardeEurPerJaar": null,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     },
     {
@@ -1802,9 +2558,11 @@
         "co2ePerEenheidTekst": 6000
       },
       "berekend": {
-        "besparingEurPerJaar": null,
+        "besparingHuishoudenEurPerJaar": null,
         "co2eKgPerJaar": null,
-        "monetairCo2EurPerEenheid": 780
+        "maatschappelijkeBesparingEurPerJaar": null,
+        "totaleWaardeEurPerJaar": null,
+        "maatschappelijkeBesparingEurPerEenheid": 780
       }
     },
     {
@@ -1834,9 +2592,11 @@
         "co2ePerEenheidTekst": 6.3
       },
       "berekend": {
-        "besparingEurPerJaar": null,
+        "besparingHuishoudenEurPerJaar": null,
         "co2eKgPerJaar": null,
-        "monetairCo2EurPerEenheid": 0.82
+        "maatschappelijkeBesparingEurPerJaar": null,
+        "totaleWaardeEurPerJaar": null,
+        "maatschappelijkeBesparingEurPerEenheid": 0.82
       }
     },
     {
@@ -1866,9 +2626,11 @@
         "co2ePerEenheidTekst": "needs verification"
       },
       "berekend": {
-        "besparingEurPerJaar": null,
+        "besparingHuishoudenEurPerJaar": null,
         "co2eKgPerJaar": null,
-        "monetairCo2EurPerEenheid": null
+        "maatschappelijkeBesparingEurPerJaar": null,
+        "totaleWaardeEurPerJaar": null,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     },
     {
@@ -1898,9 +2660,11 @@
         "co2ePerEenheidTekst": "needs verification"
       },
       "berekend": {
-        "besparingEurPerJaar": null,
+        "besparingHuishoudenEurPerJaar": null,
         "co2eKgPerJaar": null,
-        "monetairCo2EurPerEenheid": null
+        "maatschappelijkeBesparingEurPerJaar": null,
+        "totaleWaardeEurPerJaar": null,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     },
     {
@@ -1930,9 +2694,11 @@
         "co2ePerEenheidTekst": "needs verification"
       },
       "berekend": {
-        "besparingEurPerJaar": null,
+        "besparingHuishoudenEurPerJaar": null,
         "co2eKgPerJaar": null,
-        "monetairCo2EurPerEenheid": null
+        "maatschappelijkeBesparingEurPerJaar": null,
+        "totaleWaardeEurPerJaar": null,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     },
     {
@@ -1962,9 +2728,11 @@
         "co2ePerEenheidTekst": "needs verification"
       },
       "berekend": {
-        "besparingEurPerJaar": null,
+        "besparingHuishoudenEurPerJaar": null,
         "co2eKgPerJaar": null,
-        "monetairCo2EurPerEenheid": null
+        "maatschappelijkeBesparingEurPerJaar": null,
+        "totaleWaardeEurPerJaar": null,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     },
     {
@@ -1994,9 +2762,11 @@
         "co2ePerEenheidTekst": "needs verification"
       },
       "berekend": {
-        "besparingEurPerJaar": null,
+        "besparingHuishoudenEurPerJaar": null,
         "co2eKgPerJaar": null,
-        "monetairCo2EurPerEenheid": null
+        "maatschappelijkeBesparingEurPerJaar": null,
+        "totaleWaardeEurPerJaar": null,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     },
     {
@@ -2026,9 +2796,11 @@
         "co2ePerEenheidTekst": "needs verification"
       },
       "berekend": {
-        "besparingEurPerJaar": null,
+        "besparingHuishoudenEurPerJaar": null,
         "co2eKgPerJaar": null,
-        "monetairCo2EurPerEenheid": null
+        "maatschappelijkeBesparingEurPerJaar": null,
+        "totaleWaardeEurPerJaar": null,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     },
     {
@@ -2058,9 +2830,11 @@
         "co2ePerEenheidTekst": "needs verification"
       },
       "berekend": {
-        "besparingEurPerJaar": null,
+        "besparingHuishoudenEurPerJaar": null,
         "co2eKgPerJaar": null,
-        "monetairCo2EurPerEenheid": null
+        "maatschappelijkeBesparingEurPerJaar": null,
+        "totaleWaardeEurPerJaar": null,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     },
     {
@@ -2090,9 +2864,11 @@
         "co2ePerEenheidTekst": "needs verification"
       },
       "berekend": {
-        "besparingEurPerJaar": null,
+        "besparingHuishoudenEurPerJaar": null,
         "co2eKgPerJaar": null,
-        "monetairCo2EurPerEenheid": null
+        "maatschappelijkeBesparingEurPerJaar": null,
+        "totaleWaardeEurPerJaar": null,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     },
     {
@@ -2122,9 +2898,11 @@
         "co2ePerEenheidTekst": 3
       },
       "berekend": {
-        "besparingEurPerJaar": null,
+        "besparingHuishoudenEurPerJaar": null,
         "co2eKgPerJaar": null,
-        "monetairCo2EurPerEenheid": 0.39
+        "maatschappelijkeBesparingEurPerJaar": null,
+        "totaleWaardeEurPerJaar": null,
+        "maatschappelijkeBesparingEurPerEenheid": 0.39
       }
     },
     {
@@ -2154,9 +2932,11 @@
         "co2ePerEenheidTekst": 7.5
       },
       "berekend": {
-        "besparingEurPerJaar": null,
+        "besparingHuishoudenEurPerJaar": null,
         "co2eKgPerJaar": null,
-        "monetairCo2EurPerEenheid": 0.98
+        "maatschappelijkeBesparingEurPerJaar": null,
+        "totaleWaardeEurPerJaar": null,
+        "maatschappelijkeBesparingEurPerEenheid": 0.98
       }
     },
     {
@@ -2186,9 +2966,11 @@
         "co2ePerEenheidTekst": 3
       },
       "berekend": {
-        "besparingEurPerJaar": null,
+        "besparingHuishoudenEurPerJaar": null,
         "co2eKgPerJaar": null,
-        "monetairCo2EurPerEenheid": 0.39
+        "maatschappelijkeBesparingEurPerJaar": null,
+        "totaleWaardeEurPerJaar": null,
+        "maatschappelijkeBesparingEurPerEenheid": 0.39
       }
     },
     {
@@ -2218,9 +3000,11 @@
         "co2ePerEenheidTekst": 11.5
       },
       "berekend": {
-        "besparingEurPerJaar": null,
+        "besparingHuishoudenEurPerJaar": null,
         "co2eKgPerJaar": null,
-        "monetairCo2EurPerEenheid": 1.5
+        "maatschappelijkeBesparingEurPerJaar": null,
+        "totaleWaardeEurPerJaar": null,
+        "maatschappelijkeBesparingEurPerEenheid": 1.5
       }
     },
     {
@@ -2250,9 +3034,11 @@
         "co2ePerEenheidTekst": 1
       },
       "berekend": {
-        "besparingEurPerJaar": null,
+        "besparingHuishoudenEurPerJaar": null,
         "co2eKgPerJaar": null,
-        "monetairCo2EurPerEenheid": 0.13
+        "maatschappelijkeBesparingEurPerJaar": null,
+        "totaleWaardeEurPerJaar": null,
+        "maatschappelijkeBesparingEurPerEenheid": 0.13
       }
     },
     {
@@ -2282,9 +3068,11 @@
         "co2ePerEenheidTekst": "needs verification"
       },
       "berekend": {
-        "besparingEurPerJaar": null,
+        "besparingHuishoudenEurPerJaar": null,
         "co2eKgPerJaar": null,
-        "monetairCo2EurPerEenheid": null
+        "maatschappelijkeBesparingEurPerJaar": null,
+        "totaleWaardeEurPerJaar": null,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     },
     {
@@ -2314,9 +3102,11 @@
         "co2ePerEenheidTekst": 1.1
       },
       "berekend": {
-        "besparingEurPerJaar": null,
+        "besparingHuishoudenEurPerJaar": null,
         "co2eKgPerJaar": null,
-        "monetairCo2EurPerEenheid": 0.14
+        "maatschappelijkeBesparingEurPerJaar": null,
+        "totaleWaardeEurPerJaar": null,
+        "maatschappelijkeBesparingEurPerEenheid": 0.14
       }
     },
     {
@@ -2346,9 +3136,11 @@
         "co2ePerEenheidTekst": "needs verification"
       },
       "berekend": {
-        "besparingEurPerJaar": null,
+        "besparingHuishoudenEurPerJaar": null,
         "co2eKgPerJaar": null,
-        "monetairCo2EurPerEenheid": null
+        "maatschappelijkeBesparingEurPerJaar": null,
+        "totaleWaardeEurPerJaar": null,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     },
     {
@@ -2378,9 +3170,11 @@
         "co2ePerEenheidTekst": "needs verification"
       },
       "berekend": {
-        "besparingEurPerJaar": null,
+        "besparingHuishoudenEurPerJaar": null,
         "co2eKgPerJaar": null,
-        "monetairCo2EurPerEenheid": null
+        "maatschappelijkeBesparingEurPerJaar": null,
+        "totaleWaardeEurPerJaar": null,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     },
     {
@@ -2410,9 +3204,11 @@
         "co2ePerEenheidTekst": "needs verification"
       },
       "berekend": {
-        "besparingEurPerJaar": null,
+        "besparingHuishoudenEurPerJaar": null,
         "co2eKgPerJaar": null,
-        "monetairCo2EurPerEenheid": null
+        "maatschappelijkeBesparingEurPerJaar": null,
+        "totaleWaardeEurPerJaar": null,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     },
     {
@@ -2442,9 +3238,11 @@
         "co2ePerEenheidTekst": "needs verification"
       },
       "berekend": {
-        "besparingEurPerJaar": null,
+        "besparingHuishoudenEurPerJaar": null,
         "co2eKgPerJaar": null,
-        "monetairCo2EurPerEenheid": null
+        "maatschappelijkeBesparingEurPerJaar": null,
+        "totaleWaardeEurPerJaar": null,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     },
     {
@@ -2474,9 +3272,11 @@
         "co2ePerEenheidTekst": "needs verification"
       },
       "berekend": {
-        "besparingEurPerJaar": null,
+        "besparingHuishoudenEurPerJaar": null,
         "co2eKgPerJaar": null,
-        "monetairCo2EurPerEenheid": null
+        "maatschappelijkeBesparingEurPerJaar": null,
+        "totaleWaardeEurPerJaar": null,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     },
     {
@@ -2506,9 +3306,11 @@
         "co2ePerEenheidTekst": "needs verification"
       },
       "berekend": {
-        "besparingEurPerJaar": null,
+        "besparingHuishoudenEurPerJaar": null,
         "co2eKgPerJaar": null,
-        "monetairCo2EurPerEenheid": null
+        "maatschappelijkeBesparingEurPerJaar": null,
+        "totaleWaardeEurPerJaar": null,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     },
     {
@@ -2538,9 +3340,11 @@
         "co2ePerEenheidTekst": "needs verification"
       },
       "berekend": {
-        "besparingEurPerJaar": null,
+        "besparingHuishoudenEurPerJaar": null,
         "co2eKgPerJaar": null,
-        "monetairCo2EurPerEenheid": null
+        "maatschappelijkeBesparingEurPerJaar": null,
+        "totaleWaardeEurPerJaar": null,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     },
     {
@@ -2570,9 +3374,11 @@
         "co2ePerEenheidTekst": "needs verification"
       },
       "berekend": {
-        "besparingEurPerJaar": null,
+        "besparingHuishoudenEurPerJaar": null,
         "co2eKgPerJaar": null,
-        "monetairCo2EurPerEenheid": null
+        "maatschappelijkeBesparingEurPerJaar": null,
+        "totaleWaardeEurPerJaar": null,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     },
     {
@@ -2602,9 +3408,11 @@
         "co2ePerEenheidTekst": 3
       },
       "berekend": {
-        "besparingEurPerJaar": null,
+        "besparingHuishoudenEurPerJaar": null,
         "co2eKgPerJaar": null,
-        "monetairCo2EurPerEenheid": 0.39
+        "maatschappelijkeBesparingEurPerJaar": null,
+        "totaleWaardeEurPerJaar": null,
+        "maatschappelijkeBesparingEurPerEenheid": 0.39
       }
     },
     {
@@ -2634,9 +3442,11 @@
         "co2ePerEenheidTekst": "needs verification"
       },
       "berekend": {
-        "besparingEurPerJaar": null,
+        "besparingHuishoudenEurPerJaar": null,
         "co2eKgPerJaar": null,
-        "monetairCo2EurPerEenheid": null
+        "maatschappelijkeBesparingEurPerJaar": null,
+        "totaleWaardeEurPerJaar": null,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     },
     {
@@ -2666,9 +3476,11 @@
         "co2ePerEenheidTekst": "needs verification"
       },
       "berekend": {
-        "besparingEurPerJaar": null,
+        "besparingHuishoudenEurPerJaar": null,
         "co2eKgPerJaar": null,
-        "monetairCo2EurPerEenheid": null
+        "maatschappelijkeBesparingEurPerJaar": null,
+        "totaleWaardeEurPerJaar": null,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     },
     {
@@ -2698,9 +3510,11 @@
         "co2ePerEenheidTekst": "needs verification"
       },
       "berekend": {
-        "besparingEurPerJaar": null,
+        "besparingHuishoudenEurPerJaar": null,
         "co2eKgPerJaar": null,
-        "monetairCo2EurPerEenheid": null
+        "maatschappelijkeBesparingEurPerJaar": null,
+        "totaleWaardeEurPerJaar": null,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     },
     {
@@ -2730,9 +3544,11 @@
         "co2ePerEenheidTekst": "needs verification"
       },
       "berekend": {
-        "besparingEurPerJaar": null,
+        "besparingHuishoudenEurPerJaar": null,
         "co2eKgPerJaar": null,
-        "monetairCo2EurPerEenheid": null
+        "maatschappelijkeBesparingEurPerJaar": null,
+        "totaleWaardeEurPerJaar": null,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     },
     {
@@ -2762,9 +3578,11 @@
         "co2ePerEenheidTekst": 96
       },
       "berekend": {
-        "besparingEurPerJaar": null,
+        "besparingHuishoudenEurPerJaar": null,
         "co2eKgPerJaar": null,
-        "monetairCo2EurPerEenheid": 12.48
+        "maatschappelijkeBesparingEurPerJaar": null,
+        "totaleWaardeEurPerJaar": null,
+        "maatschappelijkeBesparingEurPerEenheid": 12.48
       }
     },
     {
@@ -2794,9 +3612,11 @@
         "co2ePerEenheidTekst": "needs verification"
       },
       "berekend": {
-        "besparingEurPerJaar": null,
+        "besparingHuishoudenEurPerJaar": null,
         "co2eKgPerJaar": null,
-        "monetairCo2EurPerEenheid": null
+        "maatschappelijkeBesparingEurPerJaar": null,
+        "totaleWaardeEurPerJaar": null,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     },
     {
@@ -2826,9 +3646,11 @@
         "co2ePerEenheidTekst": 220
       },
       "berekend": {
-        "besparingEurPerJaar": null,
+        "besparingHuishoudenEurPerJaar": null,
         "co2eKgPerJaar": null,
-        "monetairCo2EurPerEenheid": 28.6
+        "maatschappelijkeBesparingEurPerJaar": null,
+        "totaleWaardeEurPerJaar": null,
+        "maatschappelijkeBesparingEurPerEenheid": 28.6
       }
     },
     {
@@ -2858,9 +3680,11 @@
         "co2ePerEenheidTekst": "needs verification"
       },
       "berekend": {
-        "besparingEurPerJaar": null,
+        "besparingHuishoudenEurPerJaar": null,
         "co2eKgPerJaar": null,
-        "monetairCo2EurPerEenheid": null
+        "maatschappelijkeBesparingEurPerJaar": null,
+        "totaleWaardeEurPerJaar": null,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     },
     {
@@ -2890,9 +3714,11 @@
         "co2ePerEenheidTekst": "needs verification"
       },
       "berekend": {
-        "besparingEurPerJaar": null,
+        "besparingHuishoudenEurPerJaar": null,
         "co2eKgPerJaar": null,
-        "monetairCo2EurPerEenheid": null
+        "maatschappelijkeBesparingEurPerJaar": null,
+        "totaleWaardeEurPerJaar": null,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     },
     {
@@ -2922,9 +3748,11 @@
         "co2ePerEenheidTekst": "needs verification"
       },
       "berekend": {
-        "besparingEurPerJaar": null,
+        "besparingHuishoudenEurPerJaar": null,
         "co2eKgPerJaar": null,
-        "monetairCo2EurPerEenheid": null
+        "maatschappelijkeBesparingEurPerJaar": null,
+        "totaleWaardeEurPerJaar": null,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     },
     {
@@ -2954,9 +3782,11 @@
         "co2ePerEenheidTekst": "needs verification"
       },
       "berekend": {
-        "besparingEurPerJaar": null,
+        "besparingHuishoudenEurPerJaar": null,
         "co2eKgPerJaar": null,
-        "monetairCo2EurPerEenheid": null
+        "maatschappelijkeBesparingEurPerJaar": null,
+        "totaleWaardeEurPerJaar": null,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     },
     {
@@ -2986,9 +3816,11 @@
         "co2ePerEenheidTekst": 24
       },
       "berekend": {
-        "besparingEurPerJaar": null,
+        "besparingHuishoudenEurPerJaar": null,
         "co2eKgPerJaar": null,
-        "monetairCo2EurPerEenheid": 3.12
+        "maatschappelijkeBesparingEurPerJaar": null,
+        "totaleWaardeEurPerJaar": null,
+        "maatschappelijkeBesparingEurPerEenheid": 3.12
       }
     },
     {
@@ -3018,9 +3850,11 @@
         "co2ePerEenheidTekst": "needs verification"
       },
       "berekend": {
-        "besparingEurPerJaar": null,
+        "besparingHuishoudenEurPerJaar": null,
         "co2eKgPerJaar": null,
-        "monetairCo2EurPerEenheid": null
+        "maatschappelijkeBesparingEurPerJaar": null,
+        "totaleWaardeEurPerJaar": null,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     },
     {
@@ -3050,9 +3884,11 @@
         "co2ePerEenheidTekst": "needs verification"
       },
       "berekend": {
-        "besparingEurPerJaar": null,
+        "besparingHuishoudenEurPerJaar": null,
         "co2eKgPerJaar": null,
-        "monetairCo2EurPerEenheid": null
+        "maatschappelijkeBesparingEurPerJaar": null,
+        "totaleWaardeEurPerJaar": null,
+        "maatschappelijkeBesparingEurPerEenheid": null
       }
     }
   ],
@@ -3063,7 +3899,9 @@
       "waarde": 0.25,
       "eenheid": "EUR/kWh",
       "bron": "GEVERIFIEERD jun 2026; volatiel",
-      "geverifieerd": true
+      "geverifieerd": true,
+      "afgeleid": false,
+      "formule": null
     },
     {
       "id": "gasprijs-variabel-incl-belasting",
@@ -3071,7 +3909,9 @@
       "waarde": 1.35,
       "eenheid": "EUR/m3",
       "bron": "GEVERIFIEERD jun 2026 (EUR1,30-1,37)",
-      "geverifieerd": true
+      "geverifieerd": true,
+      "afgeleid": false,
+      "formule": null
     },
     {
       "id": "waterprijs-incl-belastingen",
@@ -3079,7 +3919,9 @@
       "waarde": 2.71,
       "eenheid": "EUR/m3",
       "bron": "GEVERIFIEERD (Vewin 2026)",
-      "geverifieerd": true
+      "geverifieerd": true,
+      "afgeleid": false,
+      "formule": null
     },
     {
       "id": "emissiefactor-elektriciteit-location-based",
@@ -3087,7 +3929,9 @@
       "waarde": 0.244,
       "eenheid": "kg CO2e/kWh",
       "bron": "GEVERIFIEERD 2026 — location-based (netmix), vintage 2026; methodekeuze BESLIST 2026-07-24: market-based (0,483/0,536) niet gebruiken (Scope-2-instrument). Jaarlijks actualiseren",
-      "geverifieerd": true
+      "geverifieerd": true,
+      "afgeleid": false,
+      "formule": null
     },
     {
       "id": "emissiefactor-aardgas-wtw",
@@ -3095,7 +3939,9 @@
       "waarde": 2.134,
       "eenheid": "kg CO2e/m3",
       "bron": "GEVERIFIEERD; G-gas WTW",
-      "geverifieerd": true
+      "geverifieerd": true,
+      "afgeleid": false,
+      "formule": null
     },
     {
       "id": "emissiefactor-drinkwater",
@@ -3103,7 +3949,9 @@
       "waarde": 0.3,
       "eenheid": "kg CO2e/m3",
       "bron": "NIET geverifieerd (klein effect)",
-      "geverifieerd": false
+      "geverifieerd": false,
+      "afgeleid": false,
+      "formule": null
     },
     {
       "id": "bestendigingsfactor-gedragsmaatregelen-jaar-1",
@@ -3111,7 +3959,9 @@
       "waarde": 0.8,
       "eenheid": "factor",
       "bron": "AANNAME",
-      "geverifieerd": false
+      "geverifieerd": false,
+      "afgeleid": false,
+      "formule": null
     },
     {
       "id": "co2-schaduwprijs-milieuprijs-centraal-2021",
@@ -3119,9 +3969,50 @@
       "waarde": 0.13,
       "eenheid": "EUR/kg CO2e",
       "bron": "Handboek Milieuprijzen 2023 (CE Delft): 130 EUR/ton",
-      "geverifieerd": false
+      "geverifieerd": false,
+      "afgeleid": false,
+      "formule": null
+    },
+    {
+      "id": "aandeel-huishoudens-met-groenestroomcontract",
+      "parameter": "Aandeel huishoudens met groenestroomcontract",
+      "waarde": 0.78,
+      "eenheid": "fractie",
+      "bron": "INDICATIEF - needs verification (marktbron 2025/2026; geen CBS/ACM-cijfer geverifieerd). Parameter: pas aan op eigen doelgroep.",
+      "geverifieerd": false,
+      "afgeleid": false,
+      "formule": null
+    },
+    {
+      "id": "meerprijs-groene-stroom-gvo-opslag",
+      "parameter": "Meerprijs groene stroom (GvO-opslag)",
+      "waarde": 0.0075,
+      "eenheid": "EUR/kWh",
+      "bron": "GEVERIFIEERDE bandbreedte EUR0,005-0,010/kWh (Consumentenbond/marktvergelijkers 2026); midden = AANNAME. Groen en grijs kosten in NL vrijwel hetzelfde.",
+      "geverifieerd": false,
+      "afgeleid": false,
+      "formule": null
+    },
+    {
+      "id": "elektriciteitsprijs-gewogen-incl-groenestroomopslag",
+      "parameter": "Elektriciteitsprijs gewogen (incl. groenestroomopslag)",
+      "waarde": 0.25585,
+      "eenheid": "EUR/kWh",
+      "bron": "AFGELEID = B2 + B10*B11. Dit is de prijs waarmee de huishoudbesparing wordt gerekend. Raakt NIET de emissiefactor: location-based blijft (besluit 2026-07-24).",
+      "geverifieerd": false,
+      "afgeleid": true,
+      "formule": "=B2+B10*B11"
     }
   ],
+  "berekening": {
+    "toelichting": "Elke waarde in `berekend` is hier herrekend uit `aannames`, met dezelfde formule als in het werkboek. De namen tussen haakjes zijn `id`s uit `aannames`. Uitkomst 1 (energie in kWh) is geen berekening maar het kengetal zelf: `kengetallen.elektraKwhPerJaar`.",
+    "besparingHuishoudenEurPerJaar": "(gasM3PerJaar x gasprijs + elektraKwhPerJaar x elektriciteitsprijs-gewogen + waterM3PerJaar x waterprijs) x bestendiging",
+    "co2eKgPerJaar": "(gasM3PerJaar x emissiefactor-aardgas + elektraKwhPerJaar x emissiefactor-elektriciteit + waterM3PerJaar x emissiefactor-drinkwater) x bestendiging",
+    "maatschappelijkeBesparingEurPerJaar": "co2eKgPerJaar x co2-schaduwprijs",
+    "totaleWaardeEurPerJaar": "besparingHuishoudenEurPerJaar + maatschappelijkeBesparingEurPerJaar",
+    "maatschappelijkeBesparingEurPerEenheid": "co2ePerEenheid x co2-schaduwprijs",
+    "waarschuwing": "totaleWaardeEurPerJaar telt een private besparing (lagere energierekening) op bij een maatschappelijke waarde (CO2 tegen de milieuprijs). Dat is een MKBA-totaal, geen kasgeld: rapporteer de twee componenten er altijd bij."
+  },
   "bronnen": [
     {
       "id": "milieu-centraal-bespaartips",
@@ -3362,6 +4253,22 @@
       "laag": "A+B",
       "toegang": "Open",
       "wikipagina": "co2-vertaling-gebruiksfase.md"
+    },
+    {
+      "id": "milieu-centraal-apparaten-witgoed-koelkasten-vriezers-wasmachine-inductiekookplaat-grote-energieslurpers-isolerende-raambekleding-bespaartips-verwarming",
+      "bron": "Milieu Centraal apparaten & witgoed (koelkasten/vriezers, wasmachine, inductiekookplaat, grote energieslurpers, isolerende raambekleding, bespaartips verwarming)",
+      "domein": "Klimaat & Energie",
+      "laag": "A",
+      "toegang": "Gratis",
+      "wikipagina": "milieucentraal-apparaten-witgoed.md"
+    },
+    {
+      "id": "eprel-european-product-registry-for-energy-labelling-eu-productregister-energielabels-verordeningen-1059-2010-en-392-2012-cycli-per-jaar",
+      "bron": "EPREL - European Product Registry for Energy Labelling (EU-productregister energielabels) + Verordeningen 1059/2010 en 392/2012 (cycli per jaar)",
+      "domein": "Klimaat & Energie",
+      "laag": "A",
+      "toegang": "Gratis",
+      "wikipagina": "eprel-energielabeldatabase.md"
     }
   ],
   "afbakening": [
@@ -3398,7 +4305,7 @@
       "toelichting": "Geen betrouwbare bron gevonden; kengetal = onderzoek nodig (waarde 0 tot verificatie)."
     },
     {
-      "onderwerp": "Afbakeningsregels per cluster (regels 1-13)",
+      "onderwerp": "Afbakeningsregels per cluster (regels 1-16)",
       "toelichting": null
     },
     {
@@ -3452,6 +4359,18 @@
     {
       "onderwerp": "13. Comfort-enablers",
       "toelichting": "Warme sokken/kleding telt niet apart; besparing loopt via thermostaat lager (EG04). Registreren als output (aantal uitgereikt)."
+    },
+    {
+      "onderwerp": "14. Witgoed (WG01-WG07)",
+      "toelichting": "Per fysiek apparaat EEN registratie: vervangen (WG01/WG02/WG04-WG07) OF afdanken (WG03), nooit beide. Gedragsmaatregelen op hetzelfde apparaat (EG06/EG07/EG08/EG09/EG12/EG14/EG19) rekenen over het NIEUWE basisverbruik, niet over het oude."
+    },
+    {
+      "onderwerp": "15. Koken (WG08-WG10)",
+      "toelichting": "EEN uitgangssituatie per huishouden: gietijzer (WG08) OF keramisch (WG09) OF gas (WG10) -> inductie. WG10 is een brandstofswitch: gas -37 m3/jr EN elektra +175 kWh/jr (negatief in de kolom Elektra); netto CO2 blijft positief (~36 kg/jr)."
+    },
+    {
+      "onderwerp": "16. Kierdichting per deur (ET03/ET24)",
+      "toelichting": "Per deur EEN maatregel: kierdichting met materiaal (ET03) OF de deur recht hangen/afstellen (ET24), nooit beide - het is dezelfde kier. Meet de werkelijke lekkende kierlengte. Beide vallen onder de overlapgroep ruimteverwarming (cap ~70 m3/woning). Alleen buitendeuren of deuren naar een onverwarmde ruimte; de ventilatiekier onder binnendeuren blijft open (Milieu Centraal)."
     },
     {
       "onderwerp": "Productlaag (materialenlijst-energiebox)",
@@ -3513,20 +4432,20 @@
     "Laag A interventie->fysiek effect (kengetal); Laag B conversie (tab Aannames); Laag C monetarisatie.",
     "Tabbladen",
     "Aannames — centrale prijzen en emissiefactoren (1 plek wijzigen werkt door in alle formules).",
-    "Klimaat & Energie — interventies, doorgerekend (kolommen Besparing/CO2e zijn formules; kolom Afbakening / overlap markeert het overlapcluster per regel).",
-    "Biodiversiteit & Natuur / Circulariteit — interventies met geverifieerd CO2-kengetal waar beschikbaar; CO2-waarde gemonetariseerd via milieuprijs.",
+    "Klimaat & Energie - interventies, doorgerekend. De drie uitkomsten staan als aaneengesloten blok in kolom J/K/L, direct na de negen CLAUDE.md-kolommen: 1. Energiebesparing (kWh/jr) - 2. Besparing huishouden (EUR/jr, elektra tegen de gewogen groenestroomprijs) - 3. Maatschappelijke besparing (EUR/jr, CO2e x milieuprijs). Kolom M telt 2 en 3 op. Gas/water/CO2e/bestendiging staan als onderbouwende kolommen daarachter.",
+    "Biodiversiteit & Natuur / Circulariteit - interventies met geverifieerd CO2-kengetal waar beschikbaar; punt 3 (maatschappelijke besparing) gemonetariseerd via de milieuprijs. Punt 1 en 2 gelden hier niet: deze interventies besparen geen energie voor een huishouden.",
     "Bronnen — gebruikte standaarden, methoden en datasets.",
     "Afbakening — dubbeltellingsregels (clusters), status-kengetal-legenda, productlaag en kanttekeningen (rebound, aantal bewoners, schaduwprijs).",
     "Belangrijkste regel (CLAUDE.md)",
     "Geen kengetallen/monetariseringen verzinnen. Ontbreekt een betrouwbare bron: 'needs verification' (zie kolom Onderbouwing / Bewijssterkte).",
     "CO2 maatschappelijk gewaardeerd tegen EUR0,13/kg (Handboek Milieuprijzen 2023, centrale waarde).",
-    "Omvang (bijgewerkt 2026-07-24)",
-    "91 interventiepagina's in de wiki. Doorgerekende interventieregels in dit bestand: Klimaat & Energie 43, Klimaat & Energie - overig 6, Biodiversiteit & Natuur 15, Circulariteit 31 (totaal 95 regels).",
-    "Regels > pagina's doordat enkele pagina's meerdere regels hebben (isolatie: spouw/dak/vloer/bodem; raamfolie: kozijnfolie 6,5 + glasfolie 3,4 m3/m2). Nieuw: ET19 deursluiter, ET20 bewegingssensor, sokken (needs verification)."
+    "Omvang (bijgewerkt 2026-08-17)",
+    "107 interventiepagina's in de wiki (154 pagina's totaal, incl. bron- en methodepagina's). Doorgerekende interventieregels in dit bestand: Klimaat & Energie 62, Klimaat & Energie - overig 6, Biodiversiteit & Natuur 15, Circulariteit 31 (totaal 114 regels).",
+    "Regels > pagina's doordat enkele pagina's meerdere regels hebben (isolatie: spouw/dak/vloer/bodem; raamfolie; witgoed-kookplaat WG08/WG09/WG10; gordijnen EG17/EG18). Nieuw 2026-08-17: witgoedregeling WG01-WG10, energiecoach-adviezen EG15-EG19 / ET21-ET24. WG05 (vaatwasser) en WG06 (wasdroger) ingevuld via EPREL; alleen WG07 (losse vriezer) en ET19 (deursluiter) staan nog op needs verification."
   ],
   "controle": {
-    "toelichting": "Automatische controles op deze versie. `zonderKengetal` bevat interventies waarvoor geen berekenbaar CO2-kengetal beschikbaar is (needs verification, casusgebonden of enabler); die leveren geen getal op en mogen niet als nul worden gelezen. `statusGenormaliseerd` toont statuswaarden die in de bron inconsistent geschreven waren en hier zijn gelijkgetrokken.",
-    "aantalInterventies": 95,
+    "toelichting": "Automatische controles op deze versie. `zonderKengetal` bevat interventies waarvoor geen berekenbaar CO2-kengetal beschikbaar is (needs verification, casusgebonden of enabler); die leveren geen getal op en mogen niet als nul worden gelezen. `statusGenormaliseerd` toont statuswaarden die in de bron inconsistent geschreven waren en hier zijn gelijkgetrokken. `metBestendigingsfactor` bevat de gedragsmaatregelen waarop de centrale bestendigingsfactor is toegepast.",
+    "aantalInterventies": 114,
     "zonderKengetal": [
       {
         "id": "EG11",
@@ -3549,6 +4468,12 @@
       {
         "id": "warme-sokken-kleding-comfort-enabler",
         "interventie": "Warme sokken/kleding (comfort-enabler)",
+        "domein": "Klimaat & Energie",
+        "tekst": null
+      },
+      {
+        "id": "WG07",
+        "interventie": "Vriezer vervangen (oud -> nieuw label)",
         "domein": "Klimaat & Energie",
         "tekst": null
       },
@@ -3787,10 +4712,33 @@
         "naar": "enabler / output"
       }
     ],
+    "metBestendigingsfactor": [
+      "EG01",
+      "EG02",
+      "EG03",
+      "EG04",
+      "EG05",
+      "EG06",
+      "EG07",
+      "EG08",
+      "EG09",
+      "EG10",
+      "EG12",
+      "EG13",
+      "EG14",
+      "EG15",
+      "EG16",
+      "EG17",
+      "EG18",
+      "EG19"
+    ],
     "nietGeverifieerdeAannames": [
       "Emissiefactor drinkwater",
       "Bestendigingsfactor gedragsmaatregelen (jaar 1)",
-      "CO2-schaduwprijs (milieuprijs, centraal, 2021)"
+      "CO2-schaduwprijs (milieuprijs, centraal, 2021)",
+      "Aandeel huishoudens met groenestroomcontract",
+      "Meerprijs groene stroom (GvO-opslag)",
+      "Elektriciteitsprijs gewogen (incl. groenestroomopslag)"
     ]
   }
 }

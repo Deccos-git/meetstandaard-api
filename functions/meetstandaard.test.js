@@ -233,12 +233,12 @@ test("the interventiebibliotheek declares its own document kind", () => {
   assert.ok(bib.meta.toelichting);
 });
 
-test("all 95 interventies are present across the three domeinen", () => {
-  assert.equal(bib.interventies.length, 95);
+test("all 114 interventies are present across the three domeinen", () => {
+  assert.equal(bib.interventies.length, 114);
 
   const perDomein = bib.interventies.reduce((acc, i) => ({ ...acc, [i.domein]: (acc[i.domein] || 0) + 1 }), {});
   assert.deepEqual(perDomein, {
-    "Klimaat & Energie": 49,
+    "Klimaat & Energie": 68,
     "Biodiversiteit & Natuur": 15,
     Circulariteit: 31,
   });
@@ -264,33 +264,92 @@ test("every interventie says what it is and how firm it is", () => {
 test("recomputed jaarcijfers match the workbook formula", () => {
   const a = Object.fromEntries(bib.aannames.map((x) => [x.id, x.waarde]));
   const gasPrijs = a["gasprijs-variabel-incl-belasting"];
-  const elekPrijs = a["elektriciteitsprijs-variabel-incl-belasting"];
+  // The savings column bills electricity at the weighted price (grey plus the
+  // green-certificate surcharge), not the bare one — Aannames B12, not B2.
+  const elekPrijs = a["elektriciteitsprijs-gewogen-incl-groenestroomopslag"];
   const waterPrijs = a["waterprijs-incl-belastingen"];
   const efGas = a["emissiefactor-aardgas-wtw"];
   const efElek = a["emissiefactor-elektriciteit-location-based"];
   const efWater = a["emissiefactor-drinkwater"];
+  const schaduwprijs = a["co2-schaduwprijs-milieuprijs-centraal-2021"];
 
   let checked = 0;
   for (const i of bib.interventies) {
     const { gasM3PerJaar: g, elektraKwhPerJaar: e, waterM3PerJaar: w, bestendiging } = i.kengetallen;
     if (i.berekend.co2eKgPerJaar === null) continue;
     const f = bestendiging === null ? 1 : bestendiging;
+    const b = i.berekend;
 
     assert.ok(
-      Math.abs(((g || 0) * gasPrijs + (e || 0) * elekPrijs + (w || 0) * waterPrijs) * f - i.berekend.besparingEurPerJaar) <= 0.011,
+      Math.abs(((g || 0) * gasPrijs + (e || 0) * elekPrijs + (w || 0) * waterPrijs) * f - b.besparingHuishoudenEurPerJaar) <= 0.011,
       `${i.id}: besparing does not follow from aannames`
     );
     assert.ok(
-      Math.abs(((g || 0) * efGas + (e || 0) * efElek + (w || 0) * efWater) * f - i.berekend.co2eKgPerJaar) <= 0.011,
+      Math.abs(((g || 0) * efGas + (e || 0) * efElek + (w || 0) * efWater) * f - b.co2eKgPerJaar) <= 0.011,
       `${i.id}: CO2e does not follow from aannames`
+    );
+    assert.ok(
+      Math.abs(b.co2eKgPerJaar * schaduwprijs - b.maatschappelijkeBesparingEurPerJaar) <= 0.011,
+      `${i.id}: maatschappelijke besparing does not follow from the shadow price`
+    );
+    assert.ok(
+      Math.abs(b.besparingHuishoudenEurPerJaar + b.maatschappelijkeBesparingEurPerJaar - b.totaleWaardeEurPerJaar) <= 0.011,
+      `${i.id}: totale waarde is not the sum of the two components`
     );
     checked += 1;
   }
-  // Pinned so a regeneration cannot silently stop recomputing rows. 39, not the
-  // 49 in that domein: four rows had their consumption blanked in the workbook
+  // Pinned so a regeneration cannot silently stop recomputing rows. 57, not the
+  // 68 in that domein: five rows had their consumption blanked in the workbook
   // because a literal 0 there asserted "no impact" where nothing was actually
   // established, and six carry no physical consumption at all.
-  assert.equal(checked, 39, "expected the Klimaat & Energie rows to be recomputed");
+  assert.equal(checked, 57, "expected the Klimaat & Energie rows to be recomputed");
+});
+
+// The weighted electricity price is a formula in the workbook too (=B2+B10*B11),
+// so it is derived here as well and has to be re-derivable by a consumer.
+test("the derived aanname shows its own derivation", () => {
+  const a = Object.fromEntries(bib.aannames.map((x) => [x.id, x]));
+  const gewogen = a["elektriciteitsprijs-gewogen-incl-groenestroomopslag"];
+
+  assert.equal(gewogen.afgeleid, true);
+  assert.equal(gewogen.formule, "=B2+B10*B11");
+  assert.ok(
+    Math.abs(
+      a["elektriciteitsprijs-variabel-incl-belasting"].waarde +
+        a["aandeel-huishoudens-met-groenestroomcontract"].waarde * a["meerprijs-groene-stroom-gvo-opslag"].waarde -
+        gewogen.waarde
+    ) <= 1e-9,
+    "the weighted price does not follow from its inputs"
+  );
+
+  // Every other aanname is read, not computed — a stray formule there would mean
+  // a figure nobody can trace.
+  for (const x of bib.aannames) {
+    if (x.id === gewogen.id) continue;
+    assert.equal(x.afgeleid, false, `${x.id} is marked derived`);
+    assert.equal(x.formule, null);
+  }
+});
+
+// Gedragsmaatregelen are published at their first-year effect times the central
+// persistence factor. The workbook holds that as a formula (=Aannames!$B$8) with
+// no cached value, so a naive read yields nothing and the figure silently
+// inflates by 25%. Assert it is resolved, never defaulted.
+test("the bestendigingsfactor is resolved, not defaulted to 1", () => {
+  const factor = bib.aannames.find((x) => x.id.startsWith("bestendigingsfactor")).waarde;
+  assert.equal(factor, 0.8);
+
+  const met = bib.interventies.filter((i) => i.kengetallen.bestendiging === factor);
+  assert.equal(met.length, 18);
+  assert.deepEqual(bib.controle.metBestendigingsfactor, met.map((i) => i.id));
+
+  for (const i of bib.interventies) {
+    if (i.berekend.co2eKgPerJaar === null) continue;
+    assert.ok(
+      i.kengetallen.bestendiging !== null,
+      `${i.id} was recomputed without a bestendiging — the formula was not resolved`
+    );
+  }
 });
 
 test("CO2 monetisation uses the shadow price from aannames", () => {
@@ -298,12 +357,13 @@ test("CO2 monetisation uses the shadow price from aannames", () => {
   assert.equal(schaduwprijs, 0.13);
 
   for (const i of bib.interventies) {
+    const perEenheid = i.berekend.maatschappelijkeBesparingEurPerEenheid;
     if (i.kengetallen.co2ePerEenheid === null) {
-      assert.equal(i.berekend.monetairCo2EurPerEenheid, null, `${i.id} monetised without a kengetal`);
+      assert.equal(perEenheid, null, `${i.id} monetised without a kengetal`);
       continue;
     }
     assert.ok(
-      Math.abs(i.kengetallen.co2ePerEenheid * schaduwprijs - i.berekend.monetairCo2EurPerEenheid) <= 0.011,
+      Math.abs(i.kengetallen.co2ePerEenheid * schaduwprijs - perEenheid) <= 0.011,
       `${i.id}: monetary CO2 does not follow from the shadow price`
     );
   }
@@ -319,7 +379,9 @@ test("interventies without a kengetal are declared, not zeroed", () => {
   assert.ok(missing.length > 0, "the workbook has needs-verification rows — expected them flagged");
 
   for (const i of missing) {
-    assert.equal(i.berekend.monetairCo2EurPerEenheid, null, `${i.id} has a value it cannot justify`);
+    for (const [key, value] of Object.entries(i.berekend)) {
+      assert.equal(value, null, `${i.id} has a ${key} it cannot justify`);
+    }
   }
 });
 
