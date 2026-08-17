@@ -6,6 +6,8 @@ import serviceAccount from "./serviceAcountSecretKey.json" assert { type: "json"
 import benchmarks from "./benchmarks.js";
 import { handleArbeidsparticipatie } from "./arbeidsparticipatie.js";
 import { handleMonetarisering } from "./monetarisering.js";
+import { handleMeetstandaard } from "./meetstandaard.js";
+import { enforceRateLimit } from "./rateLimit.js";
 
 // Initialize firebase
 admin.initializeApp({
@@ -134,25 +136,40 @@ export const database = functions.https.onRequest((request, response) => {
 // not just the OPTIONS preflight.
 const publicCorsHandler = cors({ origin: "*" });
 
+// Every endpoint here is an unauthenticated read. `maxInstances` is the hard
+// ceiling on what the project can serve at once, and so on what a flood can
+// cost, regardless of where it comes from; the per-IP limiter on top of it stops
+// the ordinary case of one client looping. Raise this if legitimate traffic ever
+// warrants it — it is a cost bound, not a capacity estimate.
+const publicEndpoint = (corsMiddleware, label, handler) =>
+  functions.runWith({ maxInstances: 10 }).https.onRequest((request, response) => {
+    corsMiddleware(request, response, async () => {
+      try {
+        if (request.method !== "GET") {
+          return response.status(405).send("Method Not Allowed");
+        }
+        if (!enforceRateLimit(request, response)) {
+          return;
+        }
+
+        await handler(request, response);
+      } catch (error) {
+        console.error(`Error in ${label}:`, error);
+        return response.status(500).send("Error fetching data");
+      }
+    });
+  });
+
 // Arbeidsparticipatie (participatieladder) parameters endpoint.
 // Read-only, public, versioned reference data. Routes:
 //   GET .../api/v1/arbeidsparticipatie/parameters            (latest)
 //   GET .../api/v1/arbeidsparticipatie/parameters/{version}  (pinned)
 //   GET .../api/v1/arbeidsparticipatie/versions              (list)
-export const arbeidsparticipatie = functions.https.onRequest((request, response) => {
-  publicCorsHandler(request, response, async () => {
-    try {
-      if (request.method !== "GET") {
-        return response.status(405).send("Method Not Allowed");
-      }
-
-      await handleArbeidsparticipatie(firestore, request, response);
-    } catch (error) {
-      console.error("Error fetching arbeidsparticipatie parameters:", error);
-      return response.status(500).send("Error fetching data");
-    }
-  });
-});
+export const arbeidsparticipatie = publicEndpoint(
+  publicCorsHandler,
+  "arbeidsparticipatie",
+  (request, response) => handleArbeidsparticipatie(firestore, request, response)
+);
 
 // Monetarisering onderbouwing endpoint.
 // Read-only, public, versioned reference data: per effect en per score de
@@ -161,39 +178,33 @@ export const arbeidsparticipatie = functions.https.onRequest((request, response)
 //   GET .../api/v1/monetarisering/onderbouwing            (latest)
 //   GET .../api/v1/monetarisering/onderbouwing/{version}  (pinned)
 //   GET .../api/v1/monetarisering/versions                (list)
-export const monetarisering = functions.https.onRequest((request, response) => {
-  publicCorsHandler(request, response, async () => {
-    try {
-      if (request.method !== "GET") {
-        return response.status(405).send("Method Not Allowed");
-      }
+export const monetarisering = publicEndpoint(
+  publicCorsHandler,
+  "monetarisering",
+  (request, response) => handleMonetarisering(firestore, request, response)
+);
 
-      await handleMonetarisering(firestore, request, response);
-    } catch (error) {
-      console.error("Error fetching monetarisering onderbouwing:", error);
-      return response.status(500).send("Error fetching data");
-    }
-  });
-});
+// Meetstandaard endpoint: the full sector meetstandaard as one versioned
+// document (effecten, stellingen, situatieschetsen, monetarisering per niveau
+// met stakeholder-proxywaarden, bronnen, parameters, aggregatiemodel,
+// gevoeligheidsanalyse en audittrail). Read-only, public. Routes:
+//   GET .../api/v1/meetstandaard                     (index of sectoren)
+//   GET .../api/v1/meetstandaard/{sector}            (latest)
+//   GET .../api/v1/meetstandaard/{sector}/versions   (list)
+//   GET .../api/v1/meetstandaard/{sector}/{version}  (pinned, e.g. /0.9)
+export const meetstandaard = publicEndpoint(
+  publicCorsHandler,
+  "meetstandaard",
+  (request, response) => handleMeetstandaard(firestore, request, response)
+);
 
 // Benchmark endpoint
-export const benchmark = functions.https.onRequest((request, response) => {
-  corsHandler(request, response, async () => {
-    try {
-      if (request.method !== "GET") {
-        return response.status(405).send("Method Not Allowed");
-      }
+export const benchmark = publicEndpoint(corsHandler, "benchmark", async (request, response) => {
+  const benchmarksData = await benchmarks({ firestore });
 
-      const benchmarksData = await benchmarks({ firestore });
+  if (!benchmarksData) {
+    return response.status(404).json({ error: "No datasets found" });
+  }
 
-      if (!benchmarksData) {
-        return response.status(404).json({ error: "No datasets found" });
-      }
-
-      return response.status(200).json(benchmarksData);
-    } catch (error) {
-      console.error("Error fetching benchmarks:", error);
-      return response.status(500).send("Error fetching data");
-    }
-  });
+  return response.status(200).json(benchmarksData);
 });
