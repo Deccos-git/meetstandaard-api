@@ -2,7 +2,3 @@ node_modules/
 *.local
 .env
 serviceAcountSecretKey.json
-.gitignore
-```
-
-
