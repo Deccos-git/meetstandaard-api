@@ -1,36 +1,28 @@
 rules_version = '2';
 
-// These rules apply to clients using the Firebase SDK (the admin UI in src/).
+// These rules apply to clients using the Firebase SDK (the admin panel in src/).
 // The Cloud Functions in functions/ authenticate with a service account and use
 // the Admin SDK, which bypasses rules entirely — so locking things down here
 // does not affect the public API endpoints at all.
 service cloud.firestore {
   match /databases/{database}/documents {
 
-    // The published meetstandaard versions. Written only by the seed scripts via
-    // the Admin SDK, and served to the public through the Cloud Functions. The
-    // admin UI reads MeetstandaardParameters (Participatieladder page), so reads
-    // stay open to signed-in users, but no client may ever write them: a
-    // published version must not be changeable from a browser.
-    match /MeetstandaardParameters/{document=**} {
-      allow read: if request.auth != null;
-      allow write: if false;
-    }
-    match /MeetstandaardMonetarisering/{document=**} {
-      allow read: if request.auth != null;
-      allow write: if false;
-    }
-    match /MeetstandaardEnergiearmoede/{document=**} {
-      allow read: if request.auth != null;
-      allow write: if false;
-    }
+    match /{collection}/{document=**} {
 
-    // Everything else (categories, effects, questions, dataSets) is the admin
-    // UI's working data. Every page that touches it already sits behind
-    // ProtectedRoute, so requiring a signed-in user changes nothing functionally
-    // — it just makes the check real instead of cosmetic.
-    match /{document=**} {
-      allow read, write: if request.auth != null;
+      // The panel is read-only and every page that reads sits behind
+      // ProtectedRoute, so requiring a signed-in user changes nothing
+      // functionally — it just makes the check real instead of cosmetic.
+      allow read: if request.auth != null;
+
+      // A published standaard version is immutable and is written only by the
+      // seed scripts via the Admin SDK; no client may ever write one.
+      //
+      // Matched on the collection name rather than listed one by one on
+      // purpose: the previous version enumerated the three collections that
+      // existed then, so when MeetstandaardMilieuCirculariteit was added it
+      // silently fell through to the writable rule below. Any future
+      // Meetstandaard* collection is now protected the moment it exists.
+      allow write: if request.auth != null && !collection.matches('Meetstandaard.*');
     }
   }
 }
