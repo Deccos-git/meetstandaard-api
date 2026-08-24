@@ -109,6 +109,7 @@ const Formulier = ({ standaard, versie, doelen, gebruiker, isAdmin, opGeplaatst 
   const [bezig, setBezig] = useState(false);
   const [fout, setFout] = useState('');
   const [geplaatst, setGeplaatst] = useState(false);
+  const [profielOntbreekt, setProfielOntbreekt] = useState(false);
 
   // No explanation, but still a way in: without a control here a visitor has no
   // route from reading to reacting.
@@ -154,6 +155,9 @@ const Formulier = ({ standaard, versie, doelen, gebruiker, isAdmin, opGeplaatst 
       await opGeplaatst();
     } catch (e) {
       setFout(e.fouten ? Object.values(e.fouten).join(' ') : e.message);
+      // The endpoint refuses a reaction without a name, which is right, but a
+      // refusal with nowhere to go is a dead end.
+      setProfielOntbreekt(/profiel/i.test(e.message || ''));
     } finally {
       setBezig(false);
     }
@@ -169,6 +173,13 @@ const Formulier = ({ standaard, versie, doelen, gebruiker, isAdmin, opGeplaatst 
       {fout && (
         <div className="publiek-melding publiek-melding-fout">
           <p>{fout}</p>
+          {profielOntbreekt && (
+            <p style={{ marginTop: 10 }}>
+              <Link className="publiek-knop publiek-knop-zwart publiek-knop-klein" to="/profiel">
+                Naam en organisatie invullen
+              </Link>
+            </p>
+          )}
         </div>
       )}
 

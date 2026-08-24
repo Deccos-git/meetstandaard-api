@@ -12,6 +12,7 @@ import Layout from './components/layout/Layout';
 import Home from './pages/Home';
 import Inloggen from './pages/publiek/Inloggen';
 import Registreren from './pages/publiek/Registreren';
+import Profiel from './pages/publiek/Profiel';
 import AdminRoute from './components/auth/AdminRoute';
 
 // Two front-ends on one build, deliberately kept apart:
@@ -32,6 +33,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path="over" element={<Over />} />
           <Route path="inloggen" element={<Inloggen />} />
           <Route path="registreren" element={<Registreren />} />
+          <Route path="profiel" element={<Profiel />} />
         </Route>
 
         <Route path="/beheer" element={<Layout />}>

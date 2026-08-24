@@ -27,7 +27,7 @@ const Account = () => {
   return (
     <div className="publiek-account">
       {isAdmin && <Link to="/beheer">Beheer</Link>}
-      <span>{gebruiker.email}</span>
+      <Link to="/profiel">{gebruiker.email}</Link>
       <button
         type="button"
         onClick={async () => {
