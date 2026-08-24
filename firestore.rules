@@ -3,26 +3,38 @@ rules_version = '2';
 // These rules apply to clients using the Firebase SDK (the admin panel in src/).
 // The Cloud Functions in functions/ authenticate with a service account and use
 // the Admin SDK, which bypasses rules entirely — so locking things down here
-// does not affect the public API endpoints at all.
+// does not affect the API endpoints at all.
+//
+// Since the site became publicly registerable, "signed in" no longer means
+// "trusted": anyone can hold a token. Both halves of the old catch-all were
+// written when the only two accounts were the two admins, and both are now
+// wrong — reads exposed every collection to every visitor who registered, and
+// writes were allowed on anything not named Meetstandaard*.
+//
+// So: nothing is writable by any client, and only an admin reads anything.
 service cloud.firestore {
   match /databases/{database}/documents {
 
+    function isAdmin() {
+      return request.auth != null && request.auth.token.admin == true;
+    }
+
+    // Every write goes through the Admin SDK — the seed scripts for published
+    // standaarden, and the feedback endpoints in functions/ for everything a
+    // visitor submits. There is deliberately no client write path left, so a
+    // collection added later is protected before it exists rather than after
+    // someone remembers this file (see docs/pitfalls.md#deploy-firestore-rules-full-replace).
     match /{collection}/{document=**} {
+      allow read: if isAdmin();
+      allow write: if false;
+    }
 
-      // The panel is read-only and every page that reads sits behind
-      // ProtectedRoute, so requiring a signed-in user changes nothing
-      // functionally — it just makes the check real instead of cosmetic.
-      allow read: if request.auth != null;
-
-      // A published standaard version is immutable and is written only by the
-      // seed scripts via the Admin SDK; no client may ever write one.
-      //
-      // Matched on the collection name rather than listed one by one on
-      // purpose: the previous version enumerated the three collections that
-      // existed then, so when MeetstandaardMilieuCirculariteit was added it
-      // silently fell through to the writable rule below. Any future
-      // Meetstandaard* collection is now protected the moment it exists.
-      allow write: if request.auth != null && !collection.matches('Meetstandaard.*');
+    // A registered visitor may read their own profile, and nothing else. This
+    // sits after the catch-all on purpose: rules are permissive-union, so it
+    // widens the read above for exactly one document per user.
+    match /users/{uid} {
+      allow read: if request.auth != null && request.auth.uid == uid;
+      allow write: if false;
     }
   }
 }
