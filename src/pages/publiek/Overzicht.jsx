@@ -61,14 +61,8 @@ const Overzicht = () => {
       <section className="publiek-sectie" id="standaarden">
         <div className="publiek-breed">
           <p className="publiek-eyebrow">Overzicht meetstandaarden</p>
-          <h2>Vijf standaarden, elk met een eigen versie.</h2>
-          <p className="publiek-smal publiek-notitie">
-            Een gepubliceerde versie verandert nooit meer. Corrigeren gebeurt door een nieuwe versie
-            uit te brengen, zodat een meting altijd terug te leiden is naar de methodiek waarmee hij
-            is gedaan.
-          </p>
 
-          <div className="publiek-kaarten" style={{ marginTop: 28 }}>
+          <div className="publiek-kaarten" style={{ marginTop: 20 }}>
             {STANDAARDEN.map(s => {
               const versie = versies[s.key];
               return (
