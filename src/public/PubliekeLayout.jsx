@@ -50,10 +50,6 @@ const PubliekeLayout = () => (
         </Link>
         <nav className="publiek-nav">
           <NavLink to="/">Meetstandaarden</NavLink>
-          <NavLink to="/over">Over de meetstandaard</NavLink>
-          <a href="https://meetstandaard.nl" target="_blank" rel="noopener noreferrer">
-            meetstandaard.nl
-          </a>
           <Account />
         </nav>
       </div>
