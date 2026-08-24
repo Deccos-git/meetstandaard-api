@@ -67,6 +67,8 @@ Read the linked entry in `docs/pitfalls.md` **before** writing code that matches
 | Require something of a user that accounts could already lack — verified email, profile field, claim | `#data-new-requirements-strand-existing-accounts` |
 | "Fix" a lint error in a React file | `#lint-prop-types-is-the-house-style` |
 | Say two effects are comparable across sectors | `#analysis-cross-sector-means-identical-questions` |
+| Read a field a form wrote, or give a form control a default | `#data-ui-default-never-persisted` |
+| Count or measure anything over the `effects` collection | `#analysis-never-aggregate-across-standaarden` |
 | Raise the Node runtime, or upgrade a functions dependency | `#deploy-import-assertions-break-on-node-22` |
 
 ## Style rules

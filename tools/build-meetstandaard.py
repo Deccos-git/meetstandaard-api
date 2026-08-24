@@ -60,6 +60,21 @@ def score_of(niveau):
     return int(niveau) if re.fullmatch(r"\d+", str(niveau).strip()) else None
 
 
+def ja_nee(value):
+    """'ja'/'nee' -> True/False, leeg -> None.
+
+    Alleen voor kolommen waarin de auteur een feit over de stelling vastlegt.
+    Een leeg antwoord is niet hetzelfde als "nee": de workbooks van de
+    standaarden die uit de `effects`-collectie migreren hebben deze kolom leeg
+    overal waar het oude panel hem nooit heeft weggeschreven.
+
+    Zie docs/pitfalls.md#data-ui-default-never-persisted.
+    """
+    if value is None:
+        return None
+    return str(value).strip().lower().startswith("ja")
+
+
 def build_effecten(wb, sector):
     effecten = OrderedDict()
     for row in rows(wb[SHEETS["effecten"]]):
@@ -68,14 +83,25 @@ def build_effecten(wb, sector):
         effecten[eid] = OrderedDict(
             id=eid,
             slug=slug,
-            # Cross-standaard key. `id` restarts at EFF-01 in every standaard and
-            # slugs repeat across sectors ("fysieke-gezondheid" exists in both
-            # energiearmoede and gelijke-kansen), so neither is unique on its own.
-            # Consumers join on this; it is their MSIId.
+            # Cross-standaard key, en de MSIId waarop consumenten joinen.
             #
-            # It lived only in production until 2026-08-24 — patched into the
-            # seeded documents out of band, absent from the generator — so any
-            # regeneration would have dropped it. See
+            # `id` (EFF-01) telt per workbook opnieuw en `slug` komt uit de
+            # effectnaam, dus twee sectoren met "Betere fysieke gezondheid"
+            # leveren allebei `fysieke-gezondheid` op. Dat zijn niet dezelfde
+            # effecten — een effect is pas hetzelfde over sectoren heen als de
+            # stellingen identiek zijn — dus de sleutel moet de sector dragen.
+            #
+            # De versie zit er bewust niet in: een effect houdt zijn identiteit
+            # over 0.9 -> 1.0 heen, en een versiegebonden sleutel zou elke
+            # publicatie er voor een consument als een nieuw effect uit laten
+            # zien. De versie hoort op het record, niet in de sleutel.
+            #
+            # De dubbele punt omdat het resultaat een Firestore-document-id moet
+            # kunnen zijn (waar "/" een padscheiding is) en een URL-segment
+            # zonder escapen.
+            #
+            # Tot 2026-08-24 werd hij alleen bij het seeden gezet, waardoor het
+            # gecommitte document en het geserveerde document verschilden. Zie
             # docs/pitfalls.md#versioning-reseeding-strands-cached-clients.
             uid=f"{sector}:{slug}",
             effect=row.get("effect"),
@@ -103,10 +129,11 @@ def build_effecten(wb, sector):
                 origineleSchaal=row.get("originele_schaal"),
                 gebruikteSchaal=row.get("gebruikte_schaal"),
                 richting=row.get("richting"),
-                negatiefGeformuleerd=row.get("negatief_geformuleerd", "").lower().startswith("ja")
-                if row.get("negatief_geformuleerd")
-                else False,
-                letterlijkOvergenomen=(row.get("letterlijk_overgenomen") or "").lower().startswith("ja"),
+                # Een lege cel is *onbekend*, nooit "nee". Deze vlag bepaalt of
+                # een hoge score meer of minder van het effect betekent, dus een
+                # verzonnen `false` draait stil elk antwoord op die stelling om.
+                negatiefGeformuleerd=ja_nee(row.get("negatief_geformuleerd")),
+                letterlijkOvergenomen=ja_nee(row.get("letterlijk_overgenomen")),
                 toelichting=row.get("toelichting"),
             )
         )

@@ -329,3 +329,47 @@ for (const u of users) {
 ```
 
 That query, run before the deploy instead of after the complaint, would have found both defects at once.
+
+---
+
+## data-ui-default-never-persisted
+
+**Trigger:** reading a field that a form wrote, or adding a `<select>`/checkbox with a default value.
+
+**Incident (2026-08-17):** `posNeg` marks whether a question is reverse-worded — a high score means *less* of the effect. In `arbeidsparticipatie`, **65 of 86 questions have no `posNeg` key in Firestore at all**, and **zero are stored `'positive'`**. The old panel rendered `value={question.posNeg || "positive"}` and wrote only on `onChange`, so the dropdown *showed* "positive" for every unset question while storing nothing. The meaning of those 65 questions lived in a frontend fallback.
+
+`/database` passes the field through as absent. Deccos copies these questions into per-organisation records and scores answers against them, so every consumer had to re-derive the convention. Combined with the stored values being hand-editable in place — no version stamp, no audit trail — a changed flag silently reversed the meaning of answers already recorded at real organisations.
+
+❌ Wrong:
+```jsx
+<select value={question.posNeg || "positive"} onChange={posNegHandler}>
+```
+The default is displayed, never written. "Absent" and "positive" become indistinguishable to every later reader of the data.
+
+✅ Right:
+- Write the resolved value on create, so every record carries its own meaning. A default belongs in the write path, never only in the render.
+- A field that changes how existing answers are interpreted is **semantic, not editable**. It belongs in a versioned document, where a published version is immutable and an answer can be tied to the flag value it was given under.
+- When reading such data, `'posNeg' in q` and `q.posNeg == null` are different questions. Check key presence, not truthiness.
+
+**Resolution (2026-08-24).** The convention was confirmed: absent meant positief. The two published snapshots fill it in and put `herkomstRichting: "afgeleid"` beside every derived value, so derived and recorded stay distinguishable — see `docs/decisions.md#adr-008`. That settles `posNeg` specifically. It does not make a blank cell safe to default anywhere else, which is why `ja_nee()` in the generator still returns `None`.
+
+**The clue was the zero.** Not "65 missing" — *no `'positive'` values at all*, while `gelijke-kansen` had 41. A field used only to mark exceptions looks identical to a field that lost data, except for that zero.
+
+---
+
+## analysis-never-aggregate-across-standaarden
+
+**Trigger:** reporting a count, percentage or coverage figure over `effects`, `questions`, or any collection holding more than one standaard.
+
+**Incident (2026-08-17):** measuring `posNeg` coverage across the whole `effects` collection gave "66 of 139 null, 47%" — a figure describing nothing real. Split per standaard it was **65 of 86 (76%) for arbeidsparticipatie and 1 of 53 (2%) for gelijke-kansen**: one standaard almost entirely unset, the other essentially complete. The average hid both facts and produced two wrong diagnoses before anyone split it.
+
+The `effects` collection holds multiple standaarden, told apart by the `sectors` array on each effect. Categories are shared between them, so a per-category figure mixes standaarden too.
+
+❌ Wrong:
+```python
+sum(1 for q in all_questions if not q.get('posNeg'))
+```
+
+✅ Right: group by `effect.sectors` first, report per standaard, and only then look for a pattern.
+
+Two standaarden are two standaarden — the same principle applied to comparison is `#analysis-cross-sector-means-identical-questions`.

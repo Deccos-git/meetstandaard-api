@@ -84,6 +84,26 @@ const withEffectIds = (document) =>
 let geschreven = 0;
 let overgeslagen = 0;
 
+// The join keys consumers store must be in the document before it is served,
+// not added on the way in. A document generated before `uid` existed would seed
+// silently and leave consumers without the key they join on, so refuse to
+// publish it here rather than discover it in someone else's database.
+const controleerSleutels = (document) => {
+  if (!document.effecten) return;
+
+  const { version, sector } = document.meta;
+  if (!sector) {
+    throw new Error(`${version}: document has effecten but no meta.sector`);
+  }
+
+  const zonderUid = document.effecten.filter((e) => e.uid !== `${sector}:${e.slug}`);
+  if (zonderUid.length > 0) {
+    throw new Error(
+      `${sector}/${version}: ${zonderUid.length} effecten missen een kloppende uid — regenereer het document`
+    );
+  }
+};
+
 for (const { sector, collection, documenten } of Object.values(STANDAARDEN)) {
   if (onlySector && onlySector !== sector) continue;
 
@@ -108,6 +128,12 @@ for (const { sector, collection, documenten } of Object.values(STANDAARDEN)) {
       }
       continue;
     }
+
+    // Only on the path that actually writes. Refusing to *publish* a document
+    // without join keys is right; refusing to *inspect* one is not — and
+    // energiearmoede 0.9 is published, immutable, and cannot be regenerated
+    // without its workbook, so a check before the skip would only get in the way.
+    controleerSleutels(payload);
 
     await ref.set(payload);
     geschreven += 1;
