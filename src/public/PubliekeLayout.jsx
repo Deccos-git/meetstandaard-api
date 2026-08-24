@@ -59,14 +59,8 @@ const PubliekeLayout = () => (
       <Outlet />
     </main>
 
-    <footer className="publiek-footer">
-      <div className="publiek-breed">
-        <p>
-          Elke versie van een meetstandaard blijft bestaan. Zo is een meting van vandaag over jaren
-          nog uit te leggen tegen de methode waarmee hij is gedaan.
-        </p>
-      </div>
-    </footer>
+    {/* Leeg, net als het paneel: een gekleurde band die de pagina afsluit. */}
+    <footer className="publiek-footer" />
   </div>
 );
 
