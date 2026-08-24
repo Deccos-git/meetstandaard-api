@@ -31,3 +31,29 @@ export const haalStandaard = (api, version) =>
   haal(version ? `${resourcePath(api)}/${version}` : resourcePath(api));
 
 export const API_BASE = BASE;
+
+// The write endpoints take the caller's Firebase ID token. They are the only
+// way a client changes anything — the Firestore rules deny client writes
+// outright — so every call goes through here rather than through the SDK.
+export const postMetToken = async (pad, body, gebruiker) => {
+  const token = await gebruiker.getIdToken();
+
+  const res = await fetch(`${BASE}${pad}`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+    body: JSON.stringify(body),
+  });
+
+  const antwoord = await res.json().catch(() => null);
+  if (!res.ok) {
+    // The endpoint answers a 400 with which field was wrong, so hand that back
+    // rather than flattening every failure to one message.
+    const fout = new Error(antwoord?.error || `De server antwoordde met ${res.status}.`);
+    fout.fouten = antwoord?.fouten || null;
+    throw fout;
+  }
+  return antwoord;
+};
+
+export const bewaarProfiel = ({ naam, bedrijf }, gebruiker) =>
+  postMetToken('/gebruikers/api/v1/gebruikers/profiel', { naam, bedrijf }, gebruiker);

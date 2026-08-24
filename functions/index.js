@@ -7,6 +7,7 @@ import benchmarks from "./benchmarks.js";
 import { handleArbeidsparticipatie } from "./arbeidsparticipatie.js";
 import { handleMonetarisering } from "./monetarisering.js";
 import { handleMeetstandaard } from "./meetstandaard.js";
+import { handleGebruikers } from "./gebruikers.js";
 import { enforceRateLimit } from "./rateLimit.js";
 
 // Initialize firebase
@@ -159,6 +160,87 @@ const publicEndpoint = (corsMiddleware, label, handler) =>
       }
     });
   });
+
+// The public site's own origins, for the endpoints that accept a write.
+//
+// Not `*`, and not the same list as the dashboard's: these read an
+// Authorization header, so the set of pages allowed to call them should be the
+// set of pages we actually ship. The preview-channel pattern is here because
+// that is how the site is reviewed before it has a domain.
+//
+// TODO: add the public domain once it is chosen. Until then the site only runs
+// on localhost and on a Firebase Hosting URL.
+const appCorsHandler = cors({
+  origin: [
+    "http://localhost:5173",
+    "https://meetstandaard-api.web.app",
+    "https://meetstandaard-api.firebaseapp.com",
+    /^https:\/\/meetstandaard-api--[a-z0-9-]+\.web\.app$/,
+  ],
+});
+
+// Who the caller is, according to Firebase Auth — never according to the body.
+// Returns null after writing the 401 itself, so a handler that forgets to check
+// cannot proceed with an anonymous caller.
+const authenticeer = async (request, response) => {
+  const header = request.headers.authorization || "";
+  const token = header.startsWith("Bearer ") ? header.slice(7) : null;
+
+  if (!token) {
+    response.status(401).json({ error: "Log in om deze actie uit te voeren." });
+    return null;
+  }
+
+  try {
+    return await admin.auth().verifyIdToken(token);
+  } catch (error) {
+    // An expired token is the ordinary case (they last an hour), not an
+    // incident — the client refreshes and retries.
+    console.warn("Token verification failed:", error.code || error.message);
+    response.status(401).json({ error: "Je sessie is verlopen. Log opnieuw in." });
+    return null;
+  }
+};
+
+// The counterpart of `publicEndpoint` for the endpoints that write. Everything
+// a client changes goes through one of these: the Firestore rules deny client
+// writes outright, so this is the only path in, and it is a path that validates.
+const authenticatedEndpoint = (label, handler) =>
+  functions.runWith({ maxInstances: 10 }).https.onRequest((request, response) => {
+    appCorsHandler(request, response, async () => {
+      try {
+        // The browser preflights any request carrying an Authorization header.
+        if (request.method === "OPTIONS") {
+          return response.status(204).send("");
+        }
+        if (request.method !== "POST") {
+          return response.status(405).send("Method Not Allowed");
+        }
+        if (!enforceRateLimit(request, response)) {
+          return;
+        }
+
+        const gebruiker = await authenticeer(request, response);
+        if (!gebruiker) {
+          return;
+        }
+
+        // Nothing written here may ever be cached.
+        response.set("Cache-Control", "no-store");
+        await handler(request, response, gebruiker);
+      } catch (error) {
+        console.error(`Error in ${label}:`, error);
+        return response.status(500).send("Error handling request");
+      }
+    });
+  });
+
+// Gebruikersprofiel: naam en bedrijf bij een account dat zichzelf heeft
+// geregistreerd. Route:
+//   POST .../api/v1/gebruikers/profiel
+export const gebruikers = authenticatedEndpoint("gebruikers", (request, response, gebruiker) =>
+  handleGebruikers(firestore, request, response, gebruiker)
+);
 
 // Arbeidsparticipatie (participatieladder) parameters endpoint.
 // Read-only, public, versioned reference data. Routes:

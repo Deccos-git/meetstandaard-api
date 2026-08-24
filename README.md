@@ -1,12 +1,14 @@
 # Meetstandaard API
 
-Public, read-only API serving versioned meetstandaarden for social impact measurement, plus a small admin panel that displays them.
+Public API serving versioned meetstandaarden for social impact measurement, a public site that shows them, and a small admin panel behind an admin claim.
+
+Everything a consumer reads is unauthenticated and read-only. The one exception is what a visitor submits themselves — a profile, and feedback on a standaard — which goes through authenticated `POST` endpoints, because the Firestore rules deny client writes outright.
 
 A meetstandaard defines what to measure, how to score it, and what a score is worth in societal terms — with the calculation, the assumptions and the source visible behind every figure. The API exists so those figures can be cited and re-checked years later, not just consulted today.
 
 ## The API
 
-No authentication, no API key, CORS `*`. Base:
+The reference data needs no authentication, no API key, and answers CORS `*`. Base:
 
 ```
 https://us-central1-meetstandaard-api.cloudfunctions.net
@@ -20,12 +22,20 @@ https://us-central1-meetstandaard-api.cloudfunctions.net
 | `/arbeidsparticipatie/api/v1/arbeidsparticipatie/parameters` | Participatieladder parameters |
 | `/database` · `/benchmark` | Panel data and dataset benchmarks |
 
+Write endpoints are a separate class: `POST` only, a Firebase ID token required, and CORS limited to the site's own origins.
+
+| Endpoint | Accepts |
+|---|---|
+| `POST /gebruikers/api/v1/gebruikers/profiel` | Name and organisation for the signed-in account |
+
 Published today:
 
 | Standaard | Version | Content |
 |---|---|---|
 | `energiearmoede` | 0.9 | 13 effecten, 198 traceable proxyregels |
 | `milieu-circulariteit` | 0.9 | 114 interventies across three domeinen |
+| `arbeidsparticipatie` | 0.9 | 21 effecten, snapshot of the shared effects collection |
+| `gelijke-kansen` | 1.0 | 10 effecten, same snapshot pipeline |
 
 ```bash
 BASE=https://us-central1-meetstandaard-api.cloudfunctions.net/meetstandaard/api/v1/meetstandaard
@@ -83,7 +93,7 @@ cd functions && node seedMeetstandaard.js
 ## Layout
 
 ```
-src/          React admin panel — read-only, one authenticated page
+src/          React: the public site at / and the admin panel at /beheer
 functions/    Cloud Functions + the generated documents they serve
 tools/        Workbook → JSON generators
 docs/         Architecture, decisions, pitfalls, integration handoffs

@@ -48,6 +48,14 @@ const Inhoud = ({ standaard }) => {
           <p className="publiek-eyebrow">Meetstandaard</p>
           <h1 style={{ marginBottom: 12 }}>{standaard.label}</h1>
           <p className="publiek-smal">{standaard.omschrijving}</p>
+          {/* The standaard these values were derived from, which is not the
+              same thing as this document's own version. Naming both is what
+              stops the two being read as one. */}
+          {doc?.meta?.source && (
+            <p className="publiek-notitie" style={{ marginTop: 10 }}>
+              Afgeleid uit: {doc.meta.source}
+            </p>
+          )}
         </div>
       </section>
 
@@ -71,6 +79,18 @@ const Inhoud = ({ standaard }) => {
             {doc?.meta?.releasedAt && (
               <span className="publiek-badge">gepubliceerd {doc.meta.releasedAt}</span>
             )}
+
+            {/* A version id like "2026.1" reads as a mistake next to "0.9" until
+                you know it is bound to a tax year. Saying so beats renaming it:
+                consumers store this exact string alongside their measurements,
+                so it has to stay the string the API serves. */}
+            {doc?.meta?.taxYear && (
+              <span className="publiek-badge">belastingjaar {doc.meta.taxYear}</span>
+            )}
+            {doc?.meta?.updatedAt && (
+              <span className="publiek-badge">bijgewerkt {doc.meta.updatedAt}</span>
+            )}
+
             <span className="publiek-badge">alleen-lezen</span>
 
             {/* A published version is immutable, so the exact URL that produced

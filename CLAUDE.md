@@ -1,6 +1,8 @@
 # Meetstandaard API
 
-Public, read-only API serving versioned meetstandaarden, plus a small admin panel that displays them.
+Public API serving versioned meetstandaarden, a public site that shows them, and a small admin panel behind an admin claim.
+
+Reads are unauthenticated and read-only. Writes exist only for what a visitor submits about themselves, through authenticated `POST` endpoints — the Firestore rules deny client writes entirely, so those endpoints are the only way in.
 
 ## Voice
 

@@ -237,3 +237,52 @@
   .publiek-header-inner { flex-wrap: wrap; }
   .publiek-sectie { padding: 40px 0; }
 }
+
+/* --- Formulieren --- */
+.publiek-formulier { max-width: 460px; }
+.publiek-veld { margin-bottom: 18px; }
+.publiek-veld label {
+  display: block;
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.publiek-veld input {
+  font-family: var(--font);
+  font-size: 16px;
+  width: 100%;
+  padding: 13px 18px;
+  border: 1px solid var(--lijn);
+  border-radius: 12px;
+  background: var(--wit);
+}
+.publiek-veld input:focus { outline: 2px solid var(--oranje); outline-offset: 1px; }
+.publiek-veld input[aria-invalid='true'] { border-color: #b3261e; }
+.publiek-veldfout { color: #b3261e; font-size: 14px; font-weight: 500; margin: 6px 0 0; }
+.publiek-hint { font-size: 14px; color: var(--grijs); margin: 6px 0 0; font-weight: 500; }
+
+.publiek-formulier .publiek-knop { width: 100%; margin-top: 6px; }
+.publiek-formulier .publiek-knop[disabled] { opacity: 0.55; cursor: not-allowed; }
+
+.publiek-melding {
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-bottom: 22px;
+}
+.publiek-melding p { font-size: 16px; margin: 0; }
+.publiek-melding-goed { background: #eaf6ea; border: 1px solid #bfe0bf; }
+.publiek-melding-fout { background: #fdecec; border: 1px solid #f6cccc; }
+
+/* Wie er is ingelogd, rechts in de header. */
+.publiek-account { display: flex; align-items: center; gap: 12px; }
+.publiek-account span { font-size: 15px; font-weight: 700; }
+.publiek-account button {
+  font-family: var(--font);
+  font-size: 15px;
+  font-weight: 700;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+}

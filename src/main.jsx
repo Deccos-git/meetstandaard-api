@@ -10,7 +10,8 @@ import Over from './pages/publiek/Over';
 
 import Layout from './components/layout/Layout';
 import Home from './pages/Home';
-import Login from './pages/Login';
+import Inloggen from './pages/publiek/Inloggen';
+import Registreren from './pages/publiek/Registreren';
 import AdminRoute from './components/auth/AdminRoute';
 
 // Two front-ends on one build, deliberately kept apart:
@@ -29,7 +30,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route index element={<Overzicht />} />
           <Route path="standaard/:key" element={<StandaardDetail />} />
           <Route path="over" element={<Over />} />
-          <Route path="inloggen" element={<Login />} />
+          <Route path="inloggen" element={<Inloggen />} />
+          <Route path="registreren" element={<Registreren />} />
         </Route>
 
         <Route path="/beheer" element={<Layout />}>
