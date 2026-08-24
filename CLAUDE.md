@@ -62,7 +62,7 @@ Read the linked entry in `docs/pitfalls.md` **before** writing code that matches
 | Read a numeric column from a workbook | `#xlsx-formula-columns-have-no-cached-value` |
 | Parse an amount from a workbook | `#xlsx-typographic-minus-flips-sign` |
 | Correct a value in a published document | `#data-never-hand-edit-generated-json` |
-| Re-seed a version that already exists | `#versioning-reseeding-strands-cached-clients` |
+| Re-seed a version that already exists, or reach for `--force` | `#versioning-reseeding-strands-cached-clients` |
 | Verify anything in the admin panel | `#verify-panel-is-behind-auth` |
 | "Fix" a lint error in a React file | `#lint-prop-types-is-the-house-style` |
 | Say two effects are comparable across sectors | `#analysis-cross-sector-means-identical-questions` |
@@ -75,7 +75,8 @@ Read the linked entry in `docs/pitfalls.md` **before** writing code that matches
 3. Arrow functions, `export default` at the bottom (frontend); named exports (functions/).
 4. Shared read-only presentation lives in `src/components/standaard/SharedStyles.js` — don't redefine table/badge styles per component.
 5. Generators share `tools/xlsx_common.py` for cell parsing. Add parsing helpers there, not per script.
-6. A new published standaard = one entry in `STANDAARDEN` (`functions/meetstandaard.js`) + one in `src/standaarden.js` + its generated document. Nothing else.
+6. A new published standaard = one entry in `STANDAARDEN` (`functions/meetstandaard.js`) + one in `src/standaarden.js` + its generated document + a changelog entry in `functions/data/changelog.json`. Nothing else.
+7. A new *version* of an existing standaard = generate, seed, and a changelog entry. Seeding refuses to overwrite an existing version without `--force`.
 
 ## Testing
 

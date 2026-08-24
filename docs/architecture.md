@@ -59,9 +59,9 @@ That is not the migration: `docs/migratie-standaarden.md` routes them through a 
 
 ## Cloud Functions
 
-Six, all `onRequest`. Five are read-only and wrapped by `publicEndpoint` in `index.js` (CORS + method check + rate limit + `maxInstances: 10` + error handling).
+Eight, all `onRequest`. Seven are read-only and wrapped by `publicEndpoint` in `index.js` (CORS + method check + rate limit + `maxInstances: 10` + error handling).
 
-The sixth takes a write, and has its own wrapper: `authenticatedEndpoint` adds `POST`-only, an ID-token check, `Cache-Control: no-store`, and CORS limited to the site's own origins instead of `*`. The two wrappers are separate on purpose — a read endpoint must never quietly acquire a write path.
+The eighth takes a write, and has its own wrapper: `authenticatedEndpoint` adds `POST`-only, an ID-token check, `Cache-Control: no-store`, and CORS limited to the site's own origins instead of `*`. The two wrappers are separate on purpose — a read endpoint must never quietly acquire a write path.
 
 | Function | Serves |
 |---|---|
@@ -70,9 +70,25 @@ The sixth takes a write, and has its own wrapper: `authenticatedEndpoint` adds `
 | `arbeidsparticipatie` | participatieladder parameters |
 | `database` | panel data as one tree (origin-allowlisted CORS) |
 | `benchmark` | dataset benchmarks |
-| `gebruikers` | **write** — name and organisation for the signed-in account |
+| `feedback` | feedback on a standaard, public and unauthenticated |
+| `changelog` | what changed between versions — **not versioned**, see below |
+| `gebruikers` · `feedbackSchrijven` | **write** — profile; submitting and reviewing feedback |
 
 `versionedResource.js` is shared by the first three: version listing, resolution, pinning, ETag, validation. It is deliberately small — see `docs/decisions.md#adr-002`.
+
+### The one thing that is deliberately not versioned
+
+`changelog` is the exception, and it has to be. A published version is immutable, so it can never contain its own history: the entry that records a correction needs somewhere the correction can be *added*. So the changelog grows and the documents it describes stay frozen.
+
+It is maintained by hand in `functions/data/changelog.json`, because only a person knows why a value changed. Every entry names the commit it landed in, which is what keeps it a record rather than a claim, and a test asserts that every version it mentions was actually published.
+
+Two soorten are told apart: `publicatie` and `correctie-in-plaats`. The second is a deviation from ADR-001 — an already-published version changed where it stood — and is recorded as such rather than smoothed over.
+
+### The feedback loop
+
+`feedback` → `besluit` → changelog entry. Reading feedback is public and unauthenticated: someone deciding whether to adopt a standaard should see what others found wrong with it and what was done about it. Writing goes through `feedbackSchrijven`, which is also what keeps the submitter's email server-side — Firestore rules cannot filter fields, so the public list is served by a function whose projection decides what is public.
+
+The panel shows which feedback is marked `verwerkt` but is not yet named in any changelog entry, so the gap between deciding and writing it down is visible to the person who can close it.
 
 Functions authenticate with a service account and use the **Admin SDK, which bypasses Firestore rules entirely**. Locking down rules never affects the public API.
 

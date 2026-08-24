@@ -20,6 +20,8 @@ https://us-central1-meetstandaard-api.cloudfunctions.net
 | `/meetstandaard/api/v1/meetstandaard/{sector}/{version}` | A standaard, pinned |
 | `/monetarisering/api/v1/monetarisering/onderbouwing` | Monetarisation substantiation |
 | `/arbeidsparticipatie/api/v1/arbeidsparticipatie/parameters` | Participatieladder parameters |
+| `/feedback/api/v1/feedback/{standaard}` | Feedback on a standaard, and what was decided about it |
+| `/changelog/api/v1/changelog/{standaard}` | What changed between versions (not versioned itself) |
 | `/database` · `/benchmark` | Panel data and dataset benchmarks |
 
 Write endpoints are a separate class: `POST` only, a Firebase ID token required, and CORS limited to the site's own origins.
@@ -27,6 +29,8 @@ Write endpoints are a separate class: `POST` only, a Firebase ID token required,
 | Endpoint | Accepts |
 |---|---|
 | `POST /gebruikers/api/v1/gebruikers/profiel` | Name and organisation for the signed-in account |
+| `POST /feedbackSchrijven/api/v1/feedback` | Feedback on a standaard (verified email required) |
+| `POST /feedbackSchrijven/api/v1/feedback/{id}/besluit` | Status and reasoning (admins only) |
 
 Published today:
 

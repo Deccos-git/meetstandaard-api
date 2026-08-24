@@ -67,3 +67,7 @@ export const dienFeedbackIn = (inzending, gebruiker) =>
 
 export const beoordeelFeedback = (id, besluit, gebruiker) =>
   postMetToken(`/feedbackSchrijven/api/v1/feedback/${id}/besluit`, besluit, gebruiker);
+
+// De changelog is niet geversioneerd — hij groeit, juist omdat de documenten
+// waar hij over gaat dat niet mogen.
+export const haalChangelog = standaard => haal(`${BASE}/changelog/api/v1/changelog/${standaard}`);

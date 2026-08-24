@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { auth } from '../../firebase/config';
-import { beoordeelFeedback, haalFeedback } from '../../api/client';
+import { beoordeelFeedback, haalChangelog, haalFeedback } from '../../api/client';
+import { entryVoorFeedback, verwerktZonderChangelog } from '../../public/useChangelog';
 import { STANDAARDEN } from '../../standaarden';
 import { badge, note, tableWrap } from '../standaard/SharedStyles';
 
@@ -13,12 +14,16 @@ const STATUSSEN = ['nieuw', 'in-behandeling', 'verwerkt', 'afgewezen'];
 const FeedbackBeheer = () => {
   const [standaard, setStandaard] = useState(STANDAARDEN[0].key);
   const [items, setItems] = useState(null);
+  const [changelog, setChangelog] = useState(null);
   const [filter, setFilter] = useState('alles');
   const [fout, setFout] = useState('');
 
   const laad = key =>
-    haalFeedback(key)
-      .then(d => setItems(d.feedback))
+    Promise.all([haalFeedback(key), haalChangelog(key)])
+      .then(([f, c]) => {
+        setItems(f.feedback);
+        setChangelog(c.entries);
+      })
       .catch(e => setFout(e.message));
 
   useEffect(() => {
@@ -26,6 +31,11 @@ const FeedbackBeheer = () => {
     setFout('');
     laad(standaard);
   }, [standaard]);
+
+  // "Verwerkt" is a claim until a changelog entry names the reaction. Counting
+  // that here means the gap between deciding and writing it down is visible to
+  // the person who can close it, instead of quietly staying open.
+  const losseEindjes = verwerktZonderChangelog(items, changelog);
 
   const zichtbaar = items?.filter(i => filter === 'alles' || i.status === filter);
 
@@ -50,18 +60,44 @@ const FeedbackBeheer = () => {
         {items && <span style={badge}>{zichtbaar.length} van {items.length}</span>}
       </div>
 
+      {losseEindjes.length > 0 && (
+        <div style={{ ...tableWrap, padding: 16, borderColor: '#f9b03b' }}>
+          <strong>
+            {losseEindjes.length} als verwerkt gemarkeerd, maar nog niet in de changelog
+          </strong>
+          <p style={note}>
+            Voeg deze id&apos;s toe aan de <code>feedback</code>-lijst van de changelog-entry van de
+            versie die ze doorvoert, in <code>functions/data/changelog.json</code>. Tot dan ziet een
+            bezoeker wel het besluit, maar niet in welke versie het is geland.
+          </p>
+          <ul style={{ margin: 0, paddingLeft: 20 }}>
+            {losseEindjes.map(i => (
+              <li key={i.id} style={{ fontSize: 13 }}>
+                <code>{i.id}</code> — {i.tekst.slice(0, 70)}
+                {i.tekst.length > 70 && '…'}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
       {fout && <p style={{ color: 'crimson' }}>{fout}</p>}
       {items === null && !fout && <p>Laden…</p>}
       {zichtbaar?.length === 0 && <p style={note}>Geen feedback in deze selectie.</p>}
 
       {zichtbaar?.map(item => (
-        <Beoordeling key={item.id} item={item} opGewijzigd={() => laad(standaard)} />
+        <Beoordeling
+          key={item.id}
+          item={item}
+          entry={entryVoorFeedback(item.id, changelog)}
+          opGewijzigd={() => laad(standaard)}
+        />
       ))}
     </div>
   );
 };
 
-const Beoordeling = ({ item, opGewijzigd }) => {
+const Beoordeling = ({ item, entry, opGewijzigd }) => {
   const [status, setStatus] = useState(item.status);
   const [toelichting, setToelichting] = useState(item.besluit?.toelichting || '');
   const [bezig, setBezig] = useState(false);
@@ -90,6 +126,7 @@ const Beoordeling = ({ item, opGewijzigd }) => {
         </strong>
         <span style={badge}>versie {item.versie}</span>
         <span style={badge}>{item.status}</span>
+        {entry && <span style={badge}>doorgevoerd in {entry.versie}</span>}
       </div>
 
       <p style={{ whiteSpace: 'pre-wrap' }}>{item.tekst}</p>

@@ -1,0 +1,134 @@
+{
+  "_leeswijzer": "Bijgehouden met de hand, niet gegenereerd. Elke entry noemt de commit waarin de wijziging landde, zodat hij na te trekken is. Zie functions/changelog.js.",
+  "standaarden": {
+    "energiearmoede": [
+      {
+        "versie": "0.9",
+        "datum": "2026-08-17",
+        "soort": "correctie-in-plaats",
+        "samenvatting": "Typografische minustekens in de bronbedragen van EFF-07 genormaliseerd.",
+        "wijzigingen": [
+          "Bedragen die in het workbook met een typografisch minteken (U+2212) waren geschreven werden als positief geparseerd; die zijn nu negatief, zoals de bron bedoelt."
+        ],
+        "besluiten": [],
+        "feedback": [],
+        "commit": "b00a76c"
+      },
+      {
+        "versie": "0.9",
+        "datum": "2026-08-17",
+        "soort": "publicatie",
+        "samenvatting": "Eerste publicatie: 13 effecten met stellingen, situatieschetsen en monetarisering per niveau.",
+        "wijzigingen": [
+          "198 herleidbare proxyregels, elk met stakeholder, bedrag, berekening en overlapgroep.",
+          "Een `controle`-blok dat benoemt wat niet gemonetariseerd is en waar het gestelde totaal afwijkt van de som van de proxies."
+        ],
+        "besluiten": ["ADR-001", "ADR-005"],
+        "feedback": [],
+        "commit": "f03c8b7"
+      }
+    ],
+    "milieu-circulariteit": [
+      {
+        "versie": "0.9",
+        "datum": "2026-08-17",
+        "soort": "correctie-in-plaats",
+        "samenvatting": "De drie uitkomsten van het workbook gepubliceerd, inclusief het totaal.",
+        "wijzigingen": [
+          "`berekend` hernoemde zijn velden: `monetairCo2EurPerEenheid` werd `maatschappelijkeBesparingEurPerEenheid`.",
+          "Elektriciteitsbesparing rekent met de gewogen prijs inclusief groenestroomopslag; de emissiefactor blijft locatiegebaseerd.",
+          "De waarschuwing dat een private en een maatschappelijke baat verschillende dingen zijn staat nu als data in `berekening.waarschuwing`, niet alleen in proza."
+        ],
+        "besluiten": ["ADR-007"],
+        "feedback": [],
+        "commit": "d81244c"
+      },
+      {
+        "versie": "0.9",
+        "datum": "2026-08-17",
+        "soort": "correctie-in-plaats",
+        "samenvatting": "EG11 (apparaten op nachttarief) is niet langer gewaardeerd op nul.",
+        "wijzigingen": [
+          "Een nachttarief verschuift verbruik in de tijd, niet in volume. Het model kent één elektriciteitsprijs en kan dat verschil dus niet uitdrukken; `€0 bespaard` suggereerde een gemeten uitkomst waar een modelgat zat.",
+          "De verbruikscellen zijn leeggemaakt, waardoor zowel het bedrag als het CO2-cijfer `null` worden en EG11 in `controle.zonderKengetal` terechtkomt."
+        ],
+        "besluiten": ["ADR-006"],
+        "feedback": [],
+        "commit": "896362a"
+      },
+      {
+        "versie": "0.9",
+        "datum": "2026-08-17",
+        "soort": "correctie-in-plaats",
+        "samenvatting": "Niet-vastgestelde cijfers worden als `null` gepubliceerd in plaats van als 0.",
+        "wijzigingen": [
+          "42 van de 114 interventies hebben geen bruikbaar kengetal. Die stonden op 0, wat niet te onderscheiden was van een gemeten nul.",
+          "`controle.zonderKengetal` noemt ze bij naam."
+        ],
+        "besluiten": ["ADR-005"],
+        "feedback": [],
+        "commit": "df70b10"
+      },
+      {
+        "versie": "0.9",
+        "datum": "2026-08-17",
+        "soort": "publicatie",
+        "samenvatting": "Eerste publicatie: 114 interventies over drie domeinen.",
+        "wijzigingen": [
+          "Per interventie het fysieke effect per eenheid, de centrale prijzen en emissiefactoren waarmee het wordt omgerekend, en de monetarisering van CO2."
+        ],
+        "besluiten": ["ADR-001"],
+        "feedback": [],
+        "commit": "a494678"
+      }
+    ],
+    "arbeidsparticipatie": [
+      {
+        "versie": "0.9",
+        "datum": "2026-08-24",
+        "soort": "publicatie",
+        "samenvatting": "Eerste publicatie als versiedocument: 21 effecten, 86 stellingen.",
+        "wijzigingen": [
+          "Momentopname van de gedeelde `effects`-collectie. De versie kwam tot nu toe uit de frontend; nu uit de API.",
+          "Polariteit was op 21 van de 86 stellingen vastgelegd, alle 21 als negatief. De rest is afgeleid volgens de conventie dat alleen omgepoolde stellingen werden gemarkeerd, en draagt `herkomstRichting: \"afgeleid\"`.",
+          "Elk effect draagt `effectId`, de Firestore-id die het `/database`-endpoint als `effect.id` serveert, en `uid` (`{sector}:{slug}`) als sleutel over standaarden heen.",
+          "Armer dan een uit een workbook gegenereerde standaard: geen proxies, geen overlapgroepen, geen bron per stelling. `controle.ontbrekendeVelden` noemt het."
+        ],
+        "besluiten": ["ADR-008"],
+        "feedback": [],
+        "commit": "75bc603"
+      }
+    ],
+    "gelijke-kansen": [
+      {
+        "versie": "1.0",
+        "datum": "2026-08-24",
+        "soort": "publicatie",
+        "samenvatting": "Eerste publicatie als versiedocument: 10 effecten, 53 stellingen.",
+        "wijzigingen": [
+          "Momentopname van de gedeelde `effects`-collectie, met dezelfde beperkingen als arbeidsparticipatie 0.9.",
+          "Polariteit was hier wel vastgelegd: 52 van de 53 stellingen. Eén is afgeleid."
+        ],
+        "besluiten": ["ADR-008"],
+        "feedback": [],
+        "commit": "75bc603"
+      }
+    ],
+    "participatieladder": [
+      {
+        "versie": "2026.1",
+        "datum": "2026-06-08",
+        "soort": "publicatie",
+        "samenvatting": "Parameters voor belastingjaar 2026, met de treden van de ladder en hun bronnen.",
+        "wijzigingen": [
+          "Belastingschijven, bijstandsbedragen en bruto jaarinkomen per opleidingsniveau en urenband.",
+          "Per trede een waardering per jaar met bronverwijzingen.",
+          "Het versienummer volgt het belastingjaar, niet de standaard: `meta.source` verwijst naar Meetstandaard Social Impact v1.0, waaruit de parameters zijn afgeleid."
+        ],
+        "besluiten": [],
+        "feedback": [],
+        "commit": "b5c005b"
+      }
+    ]
+  }
+}

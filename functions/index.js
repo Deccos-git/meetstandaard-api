@@ -9,6 +9,7 @@ import { handleMonetarisering } from "./monetarisering.js";
 import { handleMeetstandaard } from "./meetstandaard.js";
 import { handleGebruikers } from "./gebruikers.js";
 import { handleFeedbackSchrijven, handleLijst } from "./feedback.js";
+import { handleChangelog } from "./changelog.js";
 import { enforceRateLimit } from "./rateLimit.js";
 
 // Initialize firebase
@@ -261,6 +262,15 @@ export const feedback = publicEndpoint(publicCorsHandler, "feedback", async (req
   response.set("Cache-Control", "no-store");
   return handleLijst(firestore, request, response);
 });
+
+// Wat er tussen versies van een standaard is veranderd. Bewust NIET
+// geversioneerd: een gepubliceerde versie is onveranderlijk en kan dus nooit
+// zijn eigen geschiedenis bevatten. Routes:
+//   GET .../api/v1/changelog                 (per standaard hoeveel entries)
+//   GET .../api/v1/changelog/{standaard}     (de entries, nieuwste eerst)
+export const changelog = publicEndpoint(publicCorsHandler, "changelog", (request, response) =>
+  handleChangelog(request, response)
+);
 
 // Arbeidsparticipatie (participatieladder) parameters endpoint.
 // Read-only, public, versioned reference data. Routes:

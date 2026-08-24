@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { dienFeedbackIn, haalFeedback } from '../api/client';
 import { useAuth } from './useAuth';
 import { STATUS_LABEL, doelenVan, labelVoorDoel } from './feedbackDoelen';
+import { entryVoorFeedback } from './useChangelog';
 
 // Feedback on a standaard, readable by everyone and writable by anyone with a
 // verified account.
@@ -11,7 +12,7 @@ import { STATUS_LABEL, doelenVan, labelVoorDoel } from './feedbackDoelen';
 // should be able to see what others found wrong with it and what was done about
 // that. A feedback section only visible to the people who already signed up
 // would be a suggestion box, not a public record.
-const Feedback = ({ standaard, doc, versie }) => {
+const Feedback = ({ standaard, doc, versie, changelog }) => {
   const { gebruiker, laden: authLaadt } = useAuth();
   const [items, setItems] = useState(null);
   const [fout, setFout] = useState('');
@@ -54,14 +55,17 @@ const Feedback = ({ standaard, doc, versie }) => {
       {items?.length === 0 && <p className="publiek-notitie">Er is nog geen feedback op deze standaard.</p>}
 
       {items?.map(item => (
-        <Item key={item.id} item={item} doelen={doelen} />
+        <Item key={item.id} item={item} doelen={doelen} changelog={changelog} />
       ))}
     </section>
   );
 };
 
-const Item = ({ item, doelen }) => (
-  <div className="publiek-niveau" style={{ marginBottom: 14 }}>
+const Item = ({ item, doelen, changelog }) => {
+  const entry = entryVoorFeedback(item.id, changelog);
+
+  return (
+    <div className="publiek-niveau" style={{ marginBottom: 14 }}>
     <div className="publiek-niveau-kop">
       <strong>{labelVoorDoel(item.doel, doelen)}</strong>
       <span className={`publiek-badge publiek-status-${item.status}`}>{STATUS_LABEL[item.status]}</span>
@@ -85,11 +89,15 @@ const Item = ({ item, doelen }) => (
         <p style={{ fontSize: 16, whiteSpace: 'pre-wrap' }}>{item.besluit.toelichting}</p>
         <p className="publiek-notitie">
           {new Date(item.besluit.op).toLocaleDateString('nl-NL')}
+          {/* Closes the loop: reaction to decision to the version that carried
+              it out. Without this last step "verwerkt" is a word, not a fact. */}
+          {entry && ` · doorgevoerd in versie ${entry.versie} (${entry.datum})`}
         </p>
       </div>
     )}
-  </div>
-);
+    </div>
+  );
+};
 
 const Formulier = ({ standaard, versie, doelen, gebruiker, opGeplaatst }) => {
   const [doelSleutel, setDoelSleutel] = useState('standaard');

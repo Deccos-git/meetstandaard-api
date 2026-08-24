@@ -1,11 +1,13 @@
 import { Link, useParams } from 'react-router-dom';
 import { standaardVoorKey } from '../../standaarden';
 import { useApiStandaard } from '../../public/useApiStandaard';
+import { useChangelog } from '../../public/useChangelog';
 import EffectenPubliek from '../../public/renderers/EffectenPubliek';
 import InterventiesPubliek from '../../public/renderers/InterventiesPubliek';
 import ParametersPubliek from '../../public/renderers/ParametersPubliek';
 import ControleBlok from '../../public/ControleBlok';
 import Feedback from '../../public/Feedback';
+import Changelog from '../../public/Changelog';
 
 // Which renderer a document gets is decided by `meta.kind` — the field the API
 // publishes exactly so a consumer does not have to know in advance what shape
@@ -40,6 +42,7 @@ const StandaardDetail = () => {
 
 const Inhoud = ({ standaard }) => {
   const { versies, versie, setVersie, doc, laden, fout } = useApiStandaard(standaard.api);
+  const { entries: changelog, fout: changelogFout } = useChangelog(standaard.key);
   const Renderer = doc ? rendererVoor(doc, standaard) : null;
 
   return (
@@ -129,7 +132,9 @@ const Inhoud = ({ standaard }) => {
 
               <ControleBlok controle={doc.controle} />
 
-              <Feedback standaard={standaard} doc={doc} versie={versie} />
+              <Changelog entries={changelog} fout={changelogFout} versie={versie} />
+
+              <Feedback standaard={standaard} doc={doc} versie={versie} changelog={changelog} />
             </>
           )}
         </div>
