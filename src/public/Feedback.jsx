@@ -37,11 +37,6 @@ const Feedback = ({ standaard, doc, versie, changelog }) => {
   return (
     <section style={{ marginTop: 56 }}>
       <p className="publiek-eyebrow">Feedback</p>
-      <h2>Wat anderen van deze standaard vinden.</h2>
-      <p className="publiek-smal publiek-notitie">
-        Iedereen kan meelezen. Reageren kan met een account, en wat een beheerder met een reactie
-        besluit staat er publiek bij — ook als dat &quot;afgewezen&quot; is.
-      </p>
 
       {fout && (
         <div className="publiek-fout">
