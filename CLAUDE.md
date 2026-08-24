@@ -64,6 +64,7 @@ Read the linked entry in `docs/pitfalls.md` **before** writing code that matches
 | Correct a value in a published document | `#data-never-hand-edit-generated-json` |
 | Re-seed a version that already exists, or reach for `--force` | `#versioning-reseeding-strands-cached-clients` |
 | Verify anything in the admin panel | `#verify-panel-is-behind-auth` |
+| Require something of a user that accounts could already lack — verified email, profile field, claim | `#data-new-requirements-strand-existing-accounts` |
 | "Fix" a lint error in a React file | `#lint-prop-types-is-the-house-style` |
 | Say two effects are comparable across sectors | `#analysis-cross-sector-means-identical-questions` |
 | Raise the Node runtime, or upgrade a functions dependency | `#deploy-import-assertions-break-on-node-22` |

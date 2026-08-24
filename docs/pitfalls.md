@@ -270,3 +270,56 @@ Measured against current data, **exactly one** effect qualifies (`arbeidsvaardig
 - Prefer the non-rewriting option (a follow-up commit) unless the history really matters.
 
 **Also:** `git commit -am` stages every tracked modified file, including ones unrelated to your change. Stage explicit paths.
+
+---
+
+## data-new-requirements-strand-existing-accounts
+
+**Trigger:** adding a precondition to an action — a verified address, a required profile field, an accepted agreement, a claim — when accounts or records already exist.
+
+**Incident (2026-08-24):** feedback got two preconditions, a verified email and a `users/{uid}` profile with a name. Both were correct, both were tested, and both locked out the person who owns the project.
+
+`info@deccos.nl` was created 2024-09-27, long before this codebase ever sent a verification mail, so `emailVerified` was `false`. Neither admin had a profile document either, because the only code that writes one is the registration flow — which those accounts predate by two years. The result was a 403 saying *"bevestig eerst je e-mailadres"* and then, once past that, a 400 saying *"vul je naam en organisatie aan"*.
+
+**Why the tests didn't catch it.** They did test the refusals — and passed. What they never tested was an account that predates the feature, because every fixture was written in the image of the flow that had just been built:
+
+```js
+const profiel = { "users/u1": { naam: "Gijs", bedrijf: "Deccos" } };
+const indiener = { uid: "u1", email: "gijs@voorbeeld.nl", email_verified: true };
+```
+
+A fixture built from the new happy path shares the author's assumption, so it can only confirm it. **Every existing account is a fixture you did not write.**
+
+**The second half is worse than the first.** Both errors named an action the user could not perform from where they stood: the resend-verification screen only appears during sign-in (they were already signed in from a restored session), and no profile page existed at all. A precondition the user cannot satisfy at the point of refusal is not a refusal, it is a wall.
+
+❌ Wrong — a precondition whose only satisfying path is the flow that created the account:
+```js
+if (gebruiker.email_verified !== true) return sendError(response, 403, { error: "Bevestig eerst je e-mailadres." });
+const profiel = (await firestore.collection("users").doc(gebruiker.uid).get()).data();
+if (!profiel?.naam) return sendError(response, 400, { error: "Vul je naam en organisatie aan." });
+```
+
+✅ Right — three things together:
+```js
+// 1. Name who is exempt, and why it is provenance rather than convenience.
+//    The admin claim comes from running setAdminClaims.js against a fixed list,
+//    which is stronger evidence than a clicked link.
+if (gebruiker.email_verified !== true && gebruiker.admin !== true) { ... }
+
+// 2. A test whose fixture is an OLD account, not a fresh one.
+test("een beheerder mag ook zonder bevestigd adres plaatsen", ...)
+
+// 3. A route out of every refusal — /profiel exists and the error links to it.
+```
+
+**Before shipping a precondition, list the accounts that already exist and check each against it.** Two accounts took one Admin SDK query:
+
+```js
+const { users } = await auth.listUsers(1000);
+for (const u of users) {
+  const snap = await fs.collection("users").doc(u.uid).get();
+  console.log(u.email, u.emailVerified, snap.exists);
+}
+```
+
+That query, run before the deploy instead of after the complaint, would have found both defects at once.
