@@ -65,9 +65,6 @@ const PubliekeLayout = () => (
           Elke versie van een meetstandaard blijft bestaan. Zo is een meting van vandaag over jaren
           nog uit te leggen tegen de methode waarmee hij is gedaan.
         </p>
-        <p>
-          <Link to="/over">Over de meetstandaard</Link>
-        </p>
       </div>
     </footer>
   </div>

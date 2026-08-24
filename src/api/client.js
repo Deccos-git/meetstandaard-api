@@ -30,8 +30,6 @@ export const haalVersies = api => haal(`${resourcePath(api)}/versions`);
 export const haalStandaard = (api, version) =>
   haal(version ? `${resourcePath(api)}/${version}` : resourcePath(api));
 
-export const API_BASE = BASE;
-
 // The write endpoints take the caller's Firebase ID token. They are the only
 // way a client changes anything — the Firestore rules deny client writes
 // outright — so every call goes through here rather than through the SDK.

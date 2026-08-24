@@ -6,7 +6,6 @@ import './index.css';
 import PubliekeLayout from './public/PubliekeLayout';
 import Overzicht from './pages/publiek/Overzicht';
 import StandaardDetail from './pages/publiek/StandaardDetail';
-import Over from './pages/publiek/Over';
 
 import Layout from './components/layout/Layout';
 import Home from './pages/Home';
@@ -30,7 +29,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/" element={<PubliekeLayout />}>
           <Route index element={<Overzicht />} />
           <Route path="standaard/:key" element={<StandaardDetail />} />
-          <Route path="over" element={<Over />} />
           <Route path="inloggen" element={<Inloggen />} />
           <Route path="registreren" element={<Registreren />} />
           <Route path="profiel" element={<Profiel />} />
