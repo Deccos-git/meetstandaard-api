@@ -4,6 +4,7 @@ import { useVersionedStandaard } from '../firebase/useVersionedStandaard';
 import PublishedStandaard from '../components/standaard/PublishedStandaard';
 import ParametersStandaard from '../components/standaard/ParametersStandaard';
 import InterventiesStandaard from '../components/standaard/InterventiesStandaard';
+import FeedbackBeheer from '../components/beheer/FeedbackBeheer';
 import { badge, note, versionBar } from '../components/standaard/SharedStyles';
 
 // Every standaard now loads its versions from its own Firestore collection.
@@ -45,6 +46,11 @@ const Published = ({ standaard }) => {
   );
 };
 
+// Feedback is a tab beside the standaarden rather than a page of its own: it is
+// read against the standaard it is about, and switching between the two should
+// not be a navigation.
+const FEEDBACK_TAB = 'feedback';
+
 const Home = () => {
   const [active, setActive] = useState(STANDAARDEN[0].key);
   const standaard = STANDAARDEN.find(s => s.key === active);
@@ -63,11 +69,21 @@ const Home = () => {
             <p>{s.label}</p>
           </div>
         ))}
+        <div
+          className={active === FEEDBACK_TAB ? 'active' : 'tablinks'}
+          onClick={() => setActive(FEEDBACK_TAB)}
+        >
+          <p>Feedback</p>
+        </div>
       </div>
 
       {/* Remount on tab change so each standaard loads its own data cleanly
           instead of briefly rendering the previous one's. */}
-      <Published key={standaard.key} standaard={standaard} />
+      {active === FEEDBACK_TAB ? (
+        <FeedbackBeheer />
+      ) : (
+        <Published key={standaard.key} standaard={standaard} />
+      )}
     </div>
   );
 };

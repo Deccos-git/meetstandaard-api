@@ -8,6 +8,7 @@ import { handleArbeidsparticipatie } from "./arbeidsparticipatie.js";
 import { handleMonetarisering } from "./monetarisering.js";
 import { handleMeetstandaard } from "./meetstandaard.js";
 import { handleGebruikers } from "./gebruikers.js";
+import { handleFeedbackSchrijven, handleLijst } from "./feedback.js";
 import { enforceRateLimit } from "./rateLimit.js";
 
 // Initialize firebase
@@ -241,6 +242,25 @@ const authenticatedEndpoint = (label, handler) =>
 export const gebruikers = authenticatedEndpoint("gebruikers", (request, response, gebruiker) =>
   handleGebruikers(firestore, request, response, gebruiker)
 );
+
+// Feedback indienen en beoordelen. Routes:
+//   POST .../api/v1/feedback                 (indienen; geverifieerd e-mailadres vereist)
+//   POST .../api/v1/feedback/{id}/besluit    (status + toelichting; alleen beheerders)
+export const feedbackSchrijven = authenticatedEndpoint("feedbackSchrijven", (request, response, gebruiker) =>
+  handleFeedbackSchrijven(firestore, request, response, gebruiker)
+);
+
+// Feedback lezen. Publiek en zonder login, want het hele punt van feedback
+// verzamelen is dat iedereen kan zien wat er gezegd is en wat ermee gebeurd is.
+//   GET .../api/v1/feedback/{standaard}
+//
+// Geen cache: wie net iets heeft geplaatst hoort het meteen te zien staan, en
+// een status die een dag lang oud blijft ondermijnt precies het vertrouwen dat
+// dit onderdeel moet opbouwen.
+export const feedback = publicEndpoint(publicCorsHandler, "feedback", async (request, response) => {
+  response.set("Cache-Control", "no-store");
+  return handleLijst(firestore, request, response);
+});
 
 // Arbeidsparticipatie (participatieladder) parameters endpoint.
 // Read-only, public, versioned reference data. Routes:

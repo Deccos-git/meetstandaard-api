@@ -57,3 +57,13 @@ export const postMetToken = async (pad, body, gebruiker) => {
 
 export const bewaarProfiel = ({ naam, bedrijf }, gebruiker) =>
   postMetToken('/gebruikers/api/v1/gebruikers/profiel', { naam, bedrijf }, gebruiker);
+
+// Feedback lezen kan zonder login — dat is het punt: wie overweegt de standaard
+// te gebruiken moet kunnen zien wat anderen ervan vinden en wat ermee is gedaan.
+export const haalFeedback = standaard => haal(`${BASE}/feedback/api/v1/feedback/${standaard}`);
+
+export const dienFeedbackIn = (inzending, gebruiker) =>
+  postMetToken('/feedbackSchrijven/api/v1/feedback', inzending, gebruiker);
+
+export const beoordeelFeedback = (id, besluit, gebruiker) =>
+  postMetToken(`/feedbackSchrijven/api/v1/feedback/${id}/besluit`, besluit, gebruiker);

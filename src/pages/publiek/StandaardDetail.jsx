@@ -5,6 +5,7 @@ import EffectenPubliek from '../../public/renderers/EffectenPubliek';
 import InterventiesPubliek from '../../public/renderers/InterventiesPubliek';
 import ParametersPubliek from '../../public/renderers/ParametersPubliek';
 import ControleBlok from '../../public/ControleBlok';
+import Feedback from '../../public/Feedback';
 
 // Which renderer a document gets is decided by `meta.kind` — the field the API
 // publishes exactly so a consumer does not have to know in advance what shape
@@ -127,6 +128,8 @@ const Inhoud = ({ standaard }) => {
               <Renderer doc={doc} />
 
               <ControleBlok controle={doc.controle} />
+
+              <Feedback standaard={standaard} doc={doc} versie={versie} />
             </>
           )}
         </div>
