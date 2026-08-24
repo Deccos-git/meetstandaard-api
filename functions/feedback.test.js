@@ -133,6 +133,24 @@ test("een onbevestigd e-mailadres mag geen feedback plaatsen", async () => {
   assert.equal(Object.keys(opslag).length, 1, "er is niets bijgeschreven");
 });
 
+// The claim is granted out of band, by running a script against a fixed list of
+// addresses. That is stronger provenance than a clicked link, and it is what
+// unblocks the accounts that existed before this gate did.
+test("een beheerder mag ook zonder bevestigd adres plaatsen", async () => {
+  const opslag = { "users/a1": { naam: "Gijs", bedrijf: "Deccos" } };
+  const firestore = fakeFirestore(opslag);
+  const response = fakeResponse();
+  await handleIndienen(
+    firestore,
+    { path: "/api/v1/feedback", body: geldig, headers: {} },
+    response,
+    { uid: "a1", email: "info@deccos.nl", email_verified: false, admin: true }
+  );
+
+  assert.equal(response.statusCode, 201);
+  assert.ok(Object.keys(opslag).some((k) => k.startsWith("feedback/")));
+});
+
 test("zonder profiel kan er geen naam bij de reactie", async () => {
   const { response } = await indien(geldig, indiener, {});
   assert.equal(response.statusCode, 400);

@@ -13,7 +13,7 @@ import { entryVoorFeedback } from './useChangelog';
 // that. A feedback section only visible to the people who already signed up
 // would be a suggestion box, not a public record.
 const Feedback = ({ standaard, doc, versie, changelog }) => {
-  const { gebruiker, laden: authLaadt } = useAuth();
+  const { gebruiker, isAdmin, laden: authLaadt } = useAuth();
   const [items, setItems] = useState(null);
   const [fout, setFout] = useState('');
 
@@ -44,7 +44,16 @@ const Feedback = ({ standaard, doc, versie, changelog }) => {
         </div>
       )}
 
-      {!authLaadt && <Formulier standaard={standaard} versie={versie} doelen={doelen} gebruiker={gebruiker} opGeplaatst={laadOpnieuw} />}
+      {!authLaadt && (
+        <Formulier
+          standaard={standaard}
+          versie={versie}
+          doelen={doelen}
+          gebruiker={gebruiker}
+          isAdmin={isAdmin}
+          opGeplaatst={laadOpnieuw}
+        />
+      )}
 
       {items === null && !fout && <p>Feedback laden…</p>}
       {items?.length === 0 && <p className="publiek-notitie">Er is nog geen feedback op deze standaard.</p>}
@@ -94,7 +103,7 @@ const Item = ({ item, doelen, changelog }) => {
   );
 };
 
-const Formulier = ({ standaard, versie, doelen, gebruiker, opGeplaatst }) => {
+const Formulier = ({ standaard, versie, doelen, gebruiker, isAdmin, opGeplaatst }) => {
   const [doelSleutel, setDoelSleutel] = useState('standaard');
   const [tekst, setTekst] = useState('');
   const [bezig, setBezig] = useState(false);
@@ -113,9 +122,9 @@ const Formulier = ({ standaard, versie, doelen, gebruiker, opGeplaatst }) => {
     );
   }
 
-  // The endpoint refuses an unverified address, so saying it here beats letting
-  // someone type a reaction and then rejecting it.
-  if (!gebruiker.emailVerified) {
+  // Mirrors the rule the endpoint applies, admin exemption included — a form
+  // that blocks what the API would accept is worse than no check at all.
+  if (!gebruiker.emailVerified && !isAdmin) {
     return (
       <div className="publiek-melding publiek-melding-fout" style={{ marginBottom: 24 }}>
         <p>

@@ -96,7 +96,13 @@ const nu = () => new Date().toISOString();
 export const handleIndienen = async (firestore, request, response, gebruiker) => {
   // A verified address is the cheapest brake on a public write path, and the
   // reason registration sends a verification mail at all.
-  if (gebruiker.email_verified !== true) {
+  //
+  // The admin claim is exempt, and not as a convenience: it is granted by
+  // running setAdminClaims.js against a hardcoded list of addresses, which is
+  // stronger provenance than clicking a link in a mail. It also unblocks the
+  // accounts that predate this gate — info@deccos.nl was created in 2024 and
+  // never had a verification mail to click.
+  if (gebruiker.email_verified !== true && gebruiker.admin !== true) {
     return sendError(response, 403, {
       error: "Bevestig eerst je e-mailadres. Daarna kun je feedback geven.",
     });
