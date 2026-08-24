@@ -19,7 +19,7 @@ const Topbar = () => {
 
   const logout = async () => {
     await auth.signOut()
-    navigate(`/login`)
+    navigate(`/inloggen`)
   }
 
   return (
@@ -30,7 +30,7 @@ const Topbar = () => {
               <p>Logout</p>
           </div>
         :
-          <div id='login-button-container' onClick={() => navigate(`/login`)}>
+          <div id='login-button-container' onClick={() => navigate(`/inloggen`)}>
               <p>Login</p>
           </div>
         }

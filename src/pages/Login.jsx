@@ -27,9 +27,12 @@ const Login = () => {
         e.preventDefault()
        
         signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-            console.log('User logged in')
-            navigate(`/`)
+        .then(async (userCredential) => {
+            // Only an admin has anywhere to go that is not the public site, so
+            // read the claim rather than sending everyone to the panel and
+            // letting AdminRoute turn most of them away.
+            const token = await userCredential.user.getIdTokenResult()
+            navigate(token.claims.admin === true ? `/beheer` : `/`)
         })
         .catch((error) => {
             const errorCode = error.code;

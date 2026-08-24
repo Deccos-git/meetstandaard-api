@@ -1,16 +1,15 @@
 import { useState } from 'react';
 import { STANDAARDEN } from '../standaarden';
 import { useVersionedStandaard } from '../firebase/useVersionedStandaard';
-import EffectenStandaard from '../components/standaard/EffectenStandaard';
 import PublishedStandaard from '../components/standaard/PublishedStandaard';
 import ParametersStandaard from '../components/standaard/ParametersStandaard';
 import InterventiesStandaard from '../components/standaard/InterventiesStandaard';
 import { badge, note, versionBar } from '../components/standaard/SharedStyles';
 
-// A published standaard loads its versions from Firestore and offers them in a
-// dropdown; the two effects-backed standaarden are not versioned yet, so they
-// show their known version as a fixed label instead. Kept in one component so
-// both cases share the same header.
+// Every standaard now loads its versions from its own Firestore collection.
+// Arbeidsparticipatie and gelijke kansen used to be the exception — they showed
+// a version hardcoded in src/standaarden.js — until they were snapshotted into
+// versioned documents too. There is no second case left to handle.
 const Published = ({ standaard }) => {
   const { versions, version, setVersion, doc, loading, err } = useVersionedStandaard(standaard.collection);
 
@@ -46,25 +45,6 @@ const Published = ({ standaard }) => {
   );
 };
 
-const Effecten = ({ standaard }) => (
-  <>
-    <div style={versionBar}>
-      <label style={note} htmlFor="versie">
-        Versie
-      </label>
-      {/* Not versioned in the data yet — see docs/migratie-standaarden.md. One
-          option so the control reads the same across all four tabs. */}
-      <select id="versie" value={standaard.version} disabled>
-        <option value={standaard.version}>{standaard.version}</option>
-      </select>
-      <span style={badge}>nog niet geversioneerd</span>
-      <span style={badge}>alleen-lezen</span>
-    </div>
-
-    <EffectenStandaard sector={standaard.sector} />
-  </>
-);
-
 const Home = () => {
   const [active, setActive] = useState(STANDAARDEN[0].key);
   const standaard = STANDAARDEN.find(s => s.key === active);
@@ -87,11 +67,7 @@ const Home = () => {
 
       {/* Remount on tab change so each standaard loads its own data cleanly
           instead of briefly rendering the previous one's. */}
-      {standaard.source === 'published' ? (
-        <Published key={standaard.key} standaard={standaard} />
-      ) : (
-        <Effecten key={standaard.key} standaard={standaard} />
-      )}
+      <Published key={standaard.key} standaard={standaard} />
     </div>
   );
 };

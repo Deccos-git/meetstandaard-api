@@ -1,0 +1,239 @@
+/* The public site's design is taken from meetstandaard.nl: the same typeface,
+   palette, pill buttons and uppercase section labels, so the two read as one
+   thing rather than as a site and a database in front of it.
+
+   Values were measured off the live site rather than eyeballed — the orange is
+   #FBB03B, not the #F9B03B the panel has been using. */
+
+.publiek {
+  --oranje: #fbb03b;
+  --creme: #ede8e4;
+  --offwhite: #f8f8f8;
+  --zwart: #000;
+  --grijs: #5c5c5c;
+  --lijn: #e2ded9;
+  --paars: #9d7fbd;
+  --groen: #78a856;
+  --wit: #fff;
+
+  /* Interstate comes from the Adobe Fonts kit that meetstandaard.nl uses. It
+     only serves to domains registered on that kit, so until the public domain
+     is added there this stack falls back — the layout must not depend on it. */
+  --font: interstate, "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+  font-family: var(--font);
+  color: var(--zwart);
+  background: var(--wit);
+  letter-spacing: -0.34px;
+}
+
+.publiek p { font-size: 18px; font-weight: 500; line-height: 1.6; }
+.publiek h1, .publiek h2, .publiek h3, .publiek h4 { font-weight: 700; letter-spacing: -0.02em; }
+.publiek h1 { font-size: clamp(34px, 5vw, 54px); line-height: 1.12; margin: 0 0 20px; }
+.publiek h2 { font-size: clamp(26px, 3.2vw, 34px); line-height: 1.2; margin: 0 0 16px; }
+.publiek h3 { font-size: 28px; margin: 0 0 10px; }
+.publiek h4 { font-size: 19px; margin: 24px 0 8px; }
+.publiek a { color: inherit; }
+
+.publiek-breed { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+.publiek-smal { max-width: 820px; }
+
+/* Uppercase label above a section heading — the site's own rhythm. */
+.publiek-eyebrow {
+  font-size: 15px;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin: 0 0 10px;
+  letter-spacing: 0;
+}
+
+.publiek-sectie { padding: 64px 0; }
+.publiek-sectie-creme { background: var(--creme); }
+.publiek-sectie-offwhite { background: var(--offwhite); }
+
+/* --- Header --- */
+.publiek-header {
+  background: var(--wit);
+  border-bottom: 1px solid var(--lijn);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.publiek-header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 14px 24px;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+.publiek-logo { height: 56px; display: block; }
+.publiek-nav { display: flex; gap: 26px; align-items: center; flex-wrap: wrap; }
+.publiek-nav a { font-size: 16px; font-weight: 700; text-decoration: none; }
+.publiek-nav a:hover { color: var(--grijs); }
+
+/* --- Knoppen: pill, zoals op meetstandaard.nl --- */
+.publiek-knop {
+  display: inline-block;
+  border: none;
+  border-radius: 200px;
+  padding: 14px 28px;
+  font-family: var(--font);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.32px;
+  text-decoration: none;
+  cursor: pointer;
+}
+/* Qualified with .publiek so these beat `.publiek a { color: inherit }`, which
+   is more specific than a bare class and would otherwise paint the label of a
+   black button black. */
+.publiek .publiek-knop-zwart { background: var(--zwart); color: var(--wit); }
+.publiek .publiek-knop-zwart:hover { background: #222; }
+.publiek .publiek-knop-oranje { background: var(--oranje); color: var(--zwart); }
+.publiek .publiek-knop-oranje:hover { background: #f0a52c; }
+.publiek .publiek-knop-licht { background: var(--wit); color: var(--zwart); border: 1px solid var(--zwart); }
+.publiek-knop-klein { padding: 9px 18px; font-size: 14px; }
+
+/* --- Kaarten --- */
+.publiek-kaarten {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+  gap: 20px;
+}
+.publiek-kaart {
+  background: var(--wit);
+  border: 1px solid var(--lijn);
+  border-radius: 14px;
+  padding: 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-decoration: none;
+}
+.publiek-kaart:hover { border-color: var(--zwart); }
+.publiek-kaart h3 { margin: 0; }
+.publiek-kaart p { font-size: 16px; margin: 0; color: var(--grijs); }
+.publiek-kaart-voet { margin-top: auto; padding-top: 12px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+
+/* --- Badges --- */
+.publiek-badge {
+  display: inline-block;
+  border-radius: 200px;
+  padding: 5px 14px;
+  font-size: 13px;
+  font-weight: 700;
+  background: var(--offwhite);
+  border: 1px solid var(--lijn);
+  letter-spacing: 0;
+}
+.publiek-badge-versie { background: var(--oranje); border-color: var(--oranje); }
+.publiek-badge-let-op { background: #fdecec; border-color: #f6cccc; }
+.publiek-badge-afgeleid { background: #f1eaf7; border-color: var(--paars); }
+
+/* --- Versiebalk boven een standaard --- */
+.publiek-versiebalk {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  padding: 18px 0;
+  border-top: 1px solid var(--lijn);
+  border-bottom: 1px solid var(--lijn);
+  margin-bottom: 28px;
+}
+.publiek-versiebalk label { font-size: 15px; font-weight: 700; text-transform: uppercase; }
+.publiek-versiebalk select {
+  font-family: var(--font);
+  font-size: 16px;
+  font-weight: 700;
+  padding: 8px 14px;
+  border-radius: 200px;
+  border: 1px solid var(--zwart);
+  background: var(--wit);
+  cursor: pointer;
+}
+
+/* --- Tabellen --- */
+.publiek-tabelwrap {
+  border: 1px solid var(--lijn);
+  border-radius: 14px;
+  overflow-x: auto;
+  background: var(--wit);
+  margin: 14px 0 26px;
+}
+.publiek-tabel { width: 100%; border-collapse: collapse; font-size: 15px; }
+.publiek-tabel th {
+  text-align: left;
+  background: var(--offwhite);
+  border-bottom: 1px solid var(--lijn);
+  padding: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.publiek-tabel td { padding: 12px; border-bottom: 1px solid var(--offwhite); vertical-align: top; }
+.publiek-tabel tr:last-child td { border-bottom: none; }
+.publiek-tabel .num { text-align: right; white-space: nowrap; }
+.publiek-tabel .negatief { color: #b3261e; }
+
+/* --- Effect: uitklapbaar blok --- */
+.publiek-effect {
+  border: 1px solid var(--lijn);
+  border-radius: 14px;
+  background: var(--wit);
+  margin-bottom: 12px;
+  overflow: hidden;
+}
+.publiek-effect summary {
+  cursor: pointer;
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-weight: 700;
+  font-size: 19px;
+  list-style: none;
+}
+.publiek-effect summary::-webkit-details-marker { display: none; }
+.publiek-effect summary::before { content: '+'; font-size: 22px; width: 18px; color: var(--grijs); }
+.publiek-effect[open] summary::before { content: '–'; }
+.publiek-effect[open] summary { border-bottom: 1px solid var(--lijn); background: var(--offwhite); }
+.publiek-effect-body { padding: 22px 24px 26px; }
+
+.publiek-niveau { border: 1px solid var(--lijn); border-radius: 12px; padding: 16px; margin-bottom: 10px; }
+.publiek-niveau-kop { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 8px; }
+
+.publiek-notitie { font-size: 15px; color: var(--grijs); font-weight: 500; }
+
+/* A warning that changes how a number may be used is not a footnote. */
+.publiek-waarschuwing {
+  border-left: 4px solid var(--oranje);
+  background: var(--offwhite);
+  padding: 16px 20px;
+  border-radius: 0 12px 12px 0;
+  margin: 20px 0;
+}
+.publiek-waarschuwing p { font-size: 16px; margin: 0; }
+
+.publiek-zoek {
+  font-family: var(--font);
+  font-size: 16px;
+  padding: 12px 20px;
+  border-radius: 200px;
+  border: 1px solid var(--lijn);
+  width: min(340px, 100%);
+}
+
+/* --- Footer --- */
+.publiek-footer { background: var(--zwart); color: var(--wit); padding: 44px 0; margin-top: 64px; }
+.publiek-footer p { font-size: 15px; color: #cfcfcf; }
+.publiek-footer a { color: var(--oranje); }
+
+.publiek-fout { border: 1px solid #f6cccc; background: #fdecec; border-radius: 12px; padding: 18px 22px; }
+
+@media (max-width: 640px) {
+  .publiek-header-inner { flex-wrap: wrap; }
+  .publiek-sectie { padding: 40px 0; }
+}

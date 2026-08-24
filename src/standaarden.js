@@ -1,55 +1,59 @@
-// The four meetstandaarden this panel shows, all read-only.
+// The five meetstandaarden, for both the public site and the panel.
 //
-// They come from two different places, and that difference is temporary:
+// All five are now published documents: one Firestore collection per standaard,
+// one document per version, generated and seeded via the Admin SDK. The version
+// numbers that used to be hardcoded here for arbeidsparticipatie and gelijke
+// kansen are gone — those two are snapshotted into versioned documents by
+// functions/exportEffectenStandaard.js, so every version a visitor sees comes
+// from the API.
 //
-// - `published`: a versioned document per version in its own Firestore
-//   collection, generated from an authoring workbook and seeded via the Admin
-//   SDK. The version dropdown lists the versions that actually exist.
-// - `effects`: the older shape, where a standard is the subset of the shared
-//   `effects` collection tagged with its sector. Nothing there is versioned, so
-//   the version below is the one the standard is known by, recorded here rather
-//   than in the data.
+// Each entry says where to read it from twice, because the two front-ends read
+// differently and deliberately so:
 //
-// See docs/migratie-standaarden.md: once both `effects` standards are authored
-// in a workbook like Energiearmoede, they become `published` too and the
-// hardcoded version disappears.
-
+// - `api`     the public site, over HTTP, unauthenticated. Anonymous visitors
+//             cannot read Firestore at all — the rules require an admin.
+// - `collection`  the panel, over the Firebase SDK as a signed-in admin.
 export const STANDAARDEN = [
   {
     key: 'arbeidsparticipatie',
     label: 'Arbeidsparticipatie',
-    source: 'effects',
-    sector: 'arbeidsparticipatie',
-    version: '0.9',
+    omschrijving: 'Effecten van begeleiding naar werk, van mentale gezondheid tot vakvaardigheden.',
+    collection: 'MeetstandaardArbeidsparticipatie',
+    api: { functie: 'meetstandaard', resource: 'arbeidsparticipatie' },
   },
   {
     key: 'gelijke-kansen',
     label: 'Gelijke kansen',
-    source: 'effects',
-    sector: 'gelijke-kansen',
-    version: '1.0',
+    omschrijving: 'Effecten op kansengelijkheid van kinderen en jongeren.',
+    collection: 'MeetstandaardGelijkeKansen',
+    api: { functie: 'meetstandaard', resource: 'gelijke-kansen' },
   },
   {
     key: 'energiearmoede',
     label: 'Energiearmoede',
-    source: 'published',
+    omschrijving: 'Effecten van interventies bij huishoudens met een hoge energierekening.',
     collection: 'MeetstandaardEnergiearmoede',
+    api: { functie: 'meetstandaard', resource: 'energiearmoede' },
   },
   {
     key: 'milieu-circulariteit',
     label: 'Milieu & circulariteit',
-    source: 'published',
+    omschrijving: 'Interventies met hun fysieke besparing per eenheid en de waarde daarvan.',
     collection: 'MeetstandaardMilieuCirculariteit',
+    api: { functie: 'meetstandaard', resource: 'milieu-circulariteit' },
     render: 'interventies',
   },
   {
     key: 'participatieladder',
     label: 'Participatieladder',
-    source: 'published',
+    omschrijving: 'De parameters waarmee een stap op de participatieladder wordt gewaardeerd.',
     collection: 'MeetstandaardParameters',
+    api: { functie: 'arbeidsparticipatie', resource: 'parameters' },
     render: 'parameters',
   },
 ];
+
+export const standaardVoorKey = key => STANDAARDEN.find(s => s.key === key) ?? null;
 
 // Numeric-aware compare so "1.10" sorts after "1.2", matching the API.
 export const compareVersions = (a, b) => {
