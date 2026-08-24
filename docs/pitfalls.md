@@ -195,7 +195,13 @@ After deploying, confirm the runtime actually changed rather than trusting the C
                     lokaal: undefined
 ```
 
-`uid` exists nowhere in this repo — not in the generator, not in the seed script, not in the JSON's git history. It was added out of band, and the API serves it to consumers today. `seedMeetstandaard.js` writes with `set()`, which **replaces the whole document**, so a plain `node seedMeetstandaard.js` would have deleted all thirteen.
+`uid` appeared nowhere on `main` — not in the generator, not in the seed script, not in the JSON's git history — yet the API serves it to consumers today. `seedMeetstandaard.js` writes with `set()`, which **replaces the whole document**, so a plain `node seedMeetstandaard.js` would have deleted all thirteen.
+
+**Where it actually came from (established 2026-08-24, after this entry was first written).** Not an out-of-band edit: the unmerged branch `fix/posneg-provenance-and-workbook-seed` adds `uid` in `seedMeetstandaard.js` at seed time, and production was seeded from that branch. The first version of this entry said the field existed nowhere in the repo, because the search only covered `main`.
+
+That correction makes the trap sharper, not smaller: **`main` no longer described what was live, and no diff on `main` could reveal it.** A branch that is deployed but not merged is invisible to every check that starts from the default branch. `git log --all -S'<field>'` finds it; `grep` in the working tree does not.
+
+It also argues for where the field belongs. Adding it at seed time keeps it derived, but it means the committed document and the served document differ by design — which is the drift this entry is about. Deriving it in the generator, so it lands in the committed JSON, makes the two identical and a diff meaningful.
 
 - **Never assume the committed document is what is live.** Diff before seeding, the same way you diff `firestore.rules` before deploying. Generated-and-committed is only the source of truth if nothing else writes.
 - The script now refuses to overwrite an existing version without `--force`, and prints which field paths would change before it skips. Reaching for `--force` should feel like a decision.
