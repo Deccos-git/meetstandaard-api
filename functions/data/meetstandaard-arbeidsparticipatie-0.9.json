@@ -1,0 +1,1806 @@
+{
+  "meta": {
+    "version": "0.9",
+    "sector": "arbeidsparticipatie",
+    "sectorLabel": "Arbeidsparticipatie",
+    "kind": "meetstandaard",
+    "releasedAt": "2026-08-24",
+    "source": "effects/questions/categories (dashboarddatabase), snapshot",
+    "generatedBy": "functions/exportEffectenStandaard.js",
+    "toelichting": "Momentopname van de standaard zoals die in de dashboarddatabase staat, gepubliceerd zodat de versie uit de API komt in plaats van uit de frontend. Dit document is armer dan een uit een workbook gegenereerde standaard: er zijn geen proxies per stakeholder, geen overlapgroepen en geen bronvermelding per stelling. Zie `controle` voor wat ontbreekt. Een stelling met `herkomstRichting: \"afgeleid\"` had geen polariteit in de bron; die is ingevuld volgens de conventie dat alleen omgepoolde stellingen werden gemarkeerd (zie docs/decisions.md#adr-008). Vastgelegd en afgeleid zijn opzettelijk uit elkaar te houden."
+  },
+  "effecten": [
+    {
+      "id": "EFF-01",
+      "slug": "mentale-gezondheid",
+      "uid": "arbeidsparticipatie:mentale-gezondheid",
+      "effect": "Mentale gezondheid ",
+      "categorie": "Gezondheid en Welzijn",
+      "definitie": "Mentale gezondheid is het vermogen van een individu om emotioneel, psychologisch en sociaal welzijn te behouden. Het omvat hoe iemand denkt, voelt en zich gedraagt, evenals hoe iemand omgaat met stress, relaties en dagelijkse uitdagingen.",
+      "effectId": "637263gf4hf5h45",
+      "stellingen": [
+        {
+          "nummer": 1,
+          "stelling": "Ik kan mij niet goed concentreren",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "negatief",
+          "negatiefGeformuleerd": true,
+          "herkomstRichting": "vastgelegd",
+          "bronPosNeg": "negative",
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "3232778fhjdgfjd7463fg"
+        },
+        {
+          "nummer": 2,
+          "stelling": "Ik kan goed omgaan met mijn problemen",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "afgeleid",
+          "bronPosNeg": null,
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "da4335e7-e571-41a7-bf23-fdf0d6acaf40"
+        },
+        {
+          "nummer": 3,
+          "stelling": "Ik voel me vaak tevreden",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "afgeleid",
+          "bronPosNeg": null,
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "fd1fa215-68a4-4d1e-929b-c5f8cd2e377b"
+        },
+        {
+          "nummer": 4,
+          "stelling": "Ik accepteer mezelf zoals ik ben",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "afgeleid",
+          "bronPosNeg": null,
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "69046754-de27-4d04-b7db-3e1a921661d6"
+        }
+      ],
+      "situatieschetsen": [
+        {
+          "niveau": 1,
+          "label": null,
+          "situatieschets": "De persoon ervaart ernstige psychische klachten (bijv. depressie of angststoornis) die het dagelijks functioneren volledig belemmeren. Er is sprake van langdurig verzuim, een hoog risico op arbeidsongeschiktheid (WIA/IVA) of werkloosheid. De persoon maakt intensief gebruik van specialistische zorg (tweedelijns GGZ), gebruikt medicatie en ervaart sterke eenzaamheid.",
+          "bron": null
+        },
+        {
+          "niveau": 2,
+          "label": null,
+          "situatieschets": "De persoon ervaart duidelijke klachten (bijv. somberheid, stress, angst) die het functioneren beperken, maar er is nog enige deelname aan de maatschappij of werk. Er is sprake van frequent kort verzuim of verminderde productiviteit op het werk (presenteïsme). Zorggebruik bestaat uit huisarts, POH-GGZ of Basis-GGZ en eventueel medicatie.",
+          "bron": null
+        },
+        {
+          "niveau": 3,
+          "label": null,
+          "situatieschets": "De persoon functioneert, maar ervaart regelmatig stress of lichte angstklachten. Er is geen sprake van een gediagnosticeerde stoornis die specialistische zorg vereist, maar wel van een beroep op eerstelijnszorg (huisarts/POH-GGZ). Het verzuim ligt rond het landelijk gemiddelde. De veerkracht is beperkt; bij tegenslag dreigt terugval.",
+          "bron": null
+        },
+        {
+          "niveau": 4,
+          "label": null,
+          "situatieschets": "De persoon voelt zich mentaal gezond, ervaart werkgeluk en is productief. Er is sprake van een goede balans en voldoende veerkracht om dagelijkse stress op te vangen. Zorggebruik voor mentale klachten is nihil. Verzuim is lager dan het gemiddelde.",
+          "bron": null
+        },
+        {
+          "niveau": 5,
+          "label": null,
+          "situatieschets": "De persoon floreert, heeft een hoge mate van veerkracht en draagt actief bij aan de maatschappij (bijv. via mantelzorg, vrijwilligerswerk of hoge arbeidsproductiviteit). Er is sprake van duurzame inzetbaarheid en een preventieve werking op fysieke gezondheid (succesvol ouder worden).",
+          "bron": null
+        }
+      ],
+      "monetarisering": {
+        "eenheid": null,
+        "niveaus": [
+          {
+            "niveau": 1,
+            "totaleWaardeIndicatief": -15000,
+            "onderbouwing": "Mentale gezondheid onderbouwing",
+            "proxies": []
+          },
+          {
+            "niveau": 2,
+            "totaleWaardeIndicatief": -6000,
+            "onderbouwing": "Mentale gezondheid uitwerking Notebook LM",
+            "proxies": []
+          },
+          {
+            "niveau": 3,
+            "totaleWaardeIndicatief": -3350,
+            "onderbouwing": null,
+            "proxies": []
+          },
+          {
+            "niveau": 4,
+            "totaleWaardeIndicatief": 0,
+            "onderbouwing": null,
+            "proxies": []
+          },
+          {
+            "niveau": 5,
+            "totaleWaardeIndicatief": 2000,
+            "onderbouwing": null,
+            "proxies": []
+          }
+        ]
+      }
+    },
+    {
+      "id": "EFF-02",
+      "slug": "fysieke-gezondheid",
+      "uid": "arbeidsparticipatie:fysieke-gezondheid",
+      "effect": "Fysieke gezondheid",
+      "categorie": "Gezondheid en Welzijn",
+      "definitie": "Fysieke gezondheid is de staat van het lichaam, waarbij aspecten zoals de afwezigheid van ziekten, de werking van organen, het immuunsysteem, en het algemene fitheidsniveau worden meegenomen. Dit omvat ook kracht, flexibiliteit, en uithoudingsvermogen.",
+      "effectId": "91ff841d-8614-4155-b683-416f5c51adb4",
+      "stellingen": [
+        {
+          "nummer": 1,
+          "stelling": "Ik voel me gezond",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "afgeleid",
+          "bronPosNeg": null,
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "42d823b0-7697-4aef-9ca7-c982b6a68560"
+        },
+        {
+          "nummer": 2,
+          "stelling": "Ik heb genoeg energie om mijn dagelijkse taken te doen",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "afgeleid",
+          "bronPosNeg": null,
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "304a4df8-0e1a-4a6a-bc4c-21b117ec1c64"
+        },
+        {
+          "nummer": 3,
+          "stelling": "Ik heb vaak pijn of lichamelijk ongemak",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "negatief",
+          "negatiefGeformuleerd": true,
+          "herkomstRichting": "vastgelegd",
+          "bronPosNeg": "negative",
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "f48895b9-feae-4b02-9a0d-5854b772047a"
+        },
+        {
+          "nummer": 4,
+          "stelling": "Ik kan makkelijk bewegen",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "afgeleid",
+          "bronPosNeg": null,
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "644a505f-43c1-4505-961e-376242a97865"
+        }
+      ],
+      "situatieschetsen": [
+        {
+          "niveau": 1,
+          "label": null,
+          "situatieschets": "De persoon ervaart continu ernstige pijn of lichamelijk ongemak en is sterk beperkt in mobiliteit (\"ik kan niet makkelijk bewegen\"). Dagelijkse taken kunnen vrijwel niet worden uitgevoerd door een chronisch gebrek aan energie en het algemene fitheidsniveau is zeer laag. Er is vaak sprake van complexe multimorbiditeit of ernstige functionele achteruitgan",
+          "bron": null
+        },
+        {
+          "niveau": 2,
+          "label": null,
+          "situatieschets": "De persoon heeft vaak pijn of fysieke klachten die het functioneren belemmeren. Basisactiviteiten lukken nog, maar kosten veel energie. Er is sprake van fysieke inactiviteit en beperkte kracht of uithoudingsvermogen, wat leidt tot een lagere algemene gezondheidsbeleving.",
+          "bron": null
+        },
+        {
+          "niveau": 3,
+          "label": null,
+          "situatieschets": "De persoon functioneert naar behoren, maar ervaart soms lichamelijk ongemak of een gebrek aan energie na inspanning. Bewegen gaat over het algemeen goed, al wordt de norm voor structurele intensieve fysieke gezondheid niet altijd gehaald.",
+          "bron": null
+        },
+        {
+          "niveau": 4,
+          "label": null,
+          "situatieschets": "De persoon voelt zich vitaal, heeft geen last van pijn en beschikt over meer dan voldoende energie om dagelijkse en professionele taken soepel uit te voeren. Men is fysiek actief en ondervindt geen functionele belemmeringen.",
+          "bron": null
+        },
+        {
+          "niveau": 5,
+          "label": null,
+          "situatieschets": "De persoon floreert fysiek, heeft een hoge mate van uithoudingsvermogen, flexibiliteit en spierkracht. Er is structureel een overschot aan energie, blessures herstellen snel en een gezonde levensstijl fungeert als beschermende factor (\"buffer\") tegen externe fysieke of werkgerelateerde stressoren.",
+          "bron": null
+        }
+      ],
+      "monetarisering": {
+        "eenheid": null,
+        "niveaus": [
+          {
+            "niveau": 1,
+            "totaleWaardeIndicatief": -17500,
+            "onderbouwing": "Fysieke gezondheid uitwerking Notebook LM",
+            "proxies": []
+          },
+          {
+            "niveau": 2,
+            "totaleWaardeIndicatief": -8500,
+            "onderbouwing": "Link notebook",
+            "proxies": []
+          },
+          {
+            "niveau": 3,
+            "totaleWaardeIndicatief": -3000,
+            "onderbouwing": null,
+            "proxies": []
+          },
+          {
+            "niveau": 4,
+            "totaleWaardeIndicatief": 0,
+            "onderbouwing": null,
+            "proxies": []
+          },
+          {
+            "niveau": 5,
+            "totaleWaardeIndicatief": 2000,
+            "onderbouwing": null,
+            "proxies": []
+          }
+        ]
+      }
+    },
+    {
+      "id": "EFF-03",
+      "slug": "gezonde-leefstijl",
+      "uid": "arbeidsparticipatie:gezonde-leefstijl",
+      "effect": "Gezonde leefstijl",
+      "categorie": "Gezondheid en Welzijn",
+      "definitie": "Een gezonde leefstijl omvat regelmatige lichaamsbeweging, niet roken, matig alcoholgebruik, gezonde voeding, en voldoende ontspanning. Het gaat om het bevorderen van gewoonten die bijdragen aan een langere en gezondere levensduur.",
+      "effectId": "aa810ea6-bc5e-4265-945e-6890c28729c8",
+      "stellingen": [
+        {
+          "nummer": 1,
+          "stelling": "Ik slaap goed",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "afgeleid",
+          "bronPosNeg": null,
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "0277d000-2416-422c-81b0-24be389b1c45"
+        },
+        {
+          "nummer": 2,
+          "stelling": "Ik eet gezond",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "afgeleid",
+          "bronPosNeg": null,
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "6c7c925a-2099-4106-84d2-8e18fa38d9b0"
+        },
+        {
+          "nummer": 3,
+          "stelling": "Ik beweeg weinig",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "negatief",
+          "negatiefGeformuleerd": true,
+          "herkomstRichting": "vastgelegd",
+          "bronPosNeg": "negative",
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "852d2814-0dd1-4540-93af-34268b0345e6"
+        },
+        {
+          "nummer": 4,
+          "stelling": "Ik neem tijd om te ontspannen",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "afgeleid",
+          "bronPosNeg": null,
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "14a4fed9-ea60-41ac-9e57-834a176ed84d"
+        },
+        {
+          "nummer": 5,
+          "stelling": "Ik rook of, drink regelmatig alcohol, of gebruik andere verslavende middelen",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "negatief",
+          "negatiefGeformuleerd": true,
+          "herkomstRichting": "vastgelegd",
+          "bronPosNeg": "negative",
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "0b34d5a6-f8d1-4f99-bac7-749d0865bef8"
+        }
+      ],
+      "situatieschetsen": [
+        {
+          "niveau": 1,
+          "label": null,
+          "situatieschets": "De persoon heeft een sterk ongezonde leefstijl: ernstig overgewicht (obesitas), chronisch fysiek inactief, rookt en/of heeft problematisch alcoholgebruik. In het dagelijks leven ervaart de persoon forse fysieke belemmeringen en een structureel gebrek aan energie. Er is vaak sprake van multimorbiditeit (bijv. diabetes type 2, hart- en vaatziekten), wat leidt tot intensief zorggebruik, langdurig verzuim of volledige uitstroom uit het arbeidsproces naar een uitkering [1, 2].",
+          "bron": null
+        },
+        {
+          "niveau": 2,
+          "label": null,
+          "situatieschets": "De persoon vertoont meerdere ongezonde gedragingen: overgewicht, voldoet niet aan de beweegrichtlijn, rookt mogelijk of eet structureel ongezond. De persoon redt zich in de maatschappij, maar is sneller vermoeid, herstelt langzamer van ziektes en bezoekt vaker de eerste lijn voor lichte chronische klachten of gewrichtspijn.",
+          "bron": null
+        },
+        {
+          "niveau": 3,
+          "label": null,
+          "situatieschets": "De persoon is relatief gezond, maar beweegt net niet voldoende, heeft licht overgewicht of ervaart incidenteel stress door een verstoorde balans. De persoon is volledig zelfredzaam en functioneert naar behoren, maar de leefstijl fungeert niet als beschermende buffer, wat leidt tot kleine fysieke klachten na inspanning.",
+          "bron": null
+        },
+        {
+          "niveau": 4,
+          "label": null,
+          "situatieschets": "De persoon heeft een leefstijl die overeenkomt met het landelijk gemiddelde. Dit houdt in dat men redelijk oplet qua voeding, af en toe sport, matig alcohol drinkt, en doorgaans een regulier aantal dagen per jaar ziek is. Er is sprake van een neutrale maatschappelijke impact: er worden geen bovenmatige zorg- of verzuimkosten gemaakt, maar er zijn ook geen extra baten.",
+          "bron": null
+        },
+        {
+          "niveau": 5,
+          "label": null,
+          "situatieschets": "De persoon hanteert een actieve, zeer gezonde leefstijl (dagelijks voldoende beweging, gezond gewicht, gezond dieet, geen roken). De persoon barst van de energie, floreert in werk en privé, herstelt extreem snel van tegenslagen en heeft een hoge veerkracht tegen stress. Zorggebruik voor fysieke klachten is nihil.",
+          "bron": null
+        }
+      ],
+      "monetarisering": {
+        "eenheid": null,
+        "niveaus": [
+          {
+            "niveau": 1,
+            "totaleWaardeIndicatief": -15000,
+            "onderbouwing": "Gezonde leefstijl uitwerking Notebook LM",
+            "proxies": []
+          },
+          {
+            "niveau": 2,
+            "totaleWaardeIndicatief": -6000,
+            "onderbouwing": "https://notebooklm.google.com/notebook/8f13c7fc-576c-4b85-90a6-da32819101a5",
+            "proxies": []
+          },
+          {
+            "niveau": 3,
+            "totaleWaardeIndicatief": -2500,
+            "onderbouwing": null,
+            "proxies": []
+          },
+          {
+            "niveau": 4,
+            "totaleWaardeIndicatief": 0,
+            "onderbouwing": null,
+            "proxies": []
+          },
+          {
+            "niveau": 5,
+            "totaleWaardeIndicatief": 2000,
+            "onderbouwing": null,
+            "proxies": []
+          }
+        ]
+      }
+    },
+    {
+      "id": "EFF-04",
+      "slug": "veerkracht",
+      "uid": "arbeidsparticipatie:veerkracht",
+      "effect": "Veerkracht",
+      "categorie": "Gezondheid en Welzijn",
+      "definitie": "Veerkracht, ook wel weerbaarheid genoemd, is het vermogen om te herstellen van tegenslagen, stress of moeilijke situaties. Het omvat de mentale en emotionele kracht om door te gaan, aan te passen en te groeien in het gezicht van uitdagingen en veranderingen.",
+      "effectId": "0828cb82-14f6-4c1d-941a-0d0516724188",
+      "stellingen": [
+        {
+          "nummer": 1,
+          "stelling": "Ik kan goed omgaan met stressvolle situaties",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "afgeleid",
+          "bronPosNeg": null,
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "79554c15-4c62-441b-8183-e094d3e546e6"
+        },
+        {
+          "nummer": 2,
+          "stelling": "Na een tegenslag kan ik snel weer verdergaan",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "afgeleid",
+          "bronPosNeg": null,
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "31b715d6-bb65-4eda-96f3-41ba181b04c9"
+        },
+        {
+          "nummer": 3,
+          "stelling": "Ik blijf kalm en gefocust onder druk",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "afgeleid",
+          "bronPosNeg": null,
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "ee9848a2-0c07-47ef-9044-071624f7b3eb"
+        },
+        {
+          "nummer": 4,
+          "stelling": "Ik kan mijn emoties niet goed beheersen tijdens moeilijke momenten",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "negatief",
+          "negatiefGeformuleerd": true,
+          "herkomstRichting": "vastgelegd",
+          "bronPosNeg": "negative",
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "fadf6bac-b796-4e04-b0c3-5187d1db2c8b"
+        }
+      ],
+      "situatieschetsen": [],
+      "monetarisering": {
+        "eenheid": null,
+        "niveaus": []
+      }
+    },
+    {
+      "id": "EFF-05",
+      "slug": "dagelijks-functioneren",
+      "uid": "arbeidsparticipatie:dagelijks-functioneren",
+      "effect": "Dagelijks functioneren",
+      "categorie": "Gezondheid en Welzijn",
+      "definitie": "Dagelijks functioneren verwijst naar het vermogen van een individu om dagelijkse activiteiten uit te voeren die essentieel zijn voor zelfredzaamheid, zoals persoonlijke verzorging, huishoudelijke taken, en het beheren van tijd en middelen. Dit omvat ook de capaciteit om te werken of vrijwilligerswerk te doen.",
+      "effectId": "2498b0dd-5adc-47c7-8a70-756d233645e9",
+      "stellingen": [
+        {
+          "nummer": 1,
+          "stelling": "Ik kan goed voor mezelf zorgen",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "afgeleid",
+          "bronPosNeg": null,
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "31c03abe-eda6-4d80-ae36-da7234cdafad"
+        },
+        {
+          "nummer": 2,
+          "stelling": "Ik kan niet zelfstandig huishoudelijke taken uitvoeren",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "negatief",
+          "negatiefGeformuleerd": true,
+          "herkomstRichting": "vastgelegd",
+          "bronPosNeg": "negative",
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "f3ee0884-eaf8-4f2a-9cd0-12143d46e0b9"
+        },
+        {
+          "nummer": 3,
+          "stelling": "Ik kan goed plannen wat ik op een dag moet doen",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "afgeleid",
+          "bronPosNeg": null,
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "c3ec11a3-9625-408b-85a7-68614c154f92"
+        },
+        {
+          "nummer": 4,
+          "stelling": "Ik kan werken of vrijwilligerswerk doen",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "afgeleid",
+          "bronPosNeg": null,
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "26ea5cc4-8ad9-48fc-bc25-d76302fc3d5b"
+        }
+      ],
+      "situatieschetsen": [],
+      "monetarisering": {
+        "eenheid": null,
+        "niveaus": []
+      }
+    },
+    {
+      "id": "EFF-06",
+      "slug": "zingeving",
+      "uid": "arbeidsparticipatie:zingeving",
+      "effect": "Zingeving ",
+      "categorie": "Gezondheid en Welzijn",
+      "definitie": "Zingeving is het streven naar en het vinden van betekenis in het leven. Het omvat het ervaren dat wat we doen van waarde is en bijdraagt aan een groter doel of persoonlijke voldoening.",
+      "effectId": "101aec6a-28d3-4d49-9f08-b69b015f7de5",
+      "stellingen": [
+        {
+          "nummer": 1,
+          "stelling": "Ik heb ‘s morgens zin in de dag",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "afgeleid",
+          "bronPosNeg": null,
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "806160a4-9b78-497d-8b7a-46c271ee5213"
+        },
+        {
+          "nummer": 2,
+          "stelling": "Ik heb het gevoel dat ik iets goeds doe",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "afgeleid",
+          "bronPosNeg": null,
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "22b78e89-c011-489c-b5e1-73c72bf2e52e"
+        },
+        {
+          "nummer": 3,
+          "stelling": "Ik heb een zinvol leven",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "afgeleid",
+          "bronPosNeg": null,
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "bcfc5b8c-e335-4453-8582-1b6261d993a6"
+        },
+        {
+          "nummer": 4,
+          "stelling": "Ik heb geen doelen in het leven",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "negatief",
+          "negatiefGeformuleerd": true,
+          "herkomstRichting": "vastgelegd",
+          "bronPosNeg": "negative",
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "fb58cbda-7389-4fdd-8d55-bf8710319b4c"
+        }
+      ],
+      "situatieschetsen": [],
+      "monetarisering": {
+        "eenheid": null,
+        "niveaus": []
+      }
+    },
+    {
+      "id": "EFF-07",
+      "slug": "sociale-contacten",
+      "uid": "arbeidsparticipatie:sociale-contacten",
+      "effect": "Sociale contacten",
+      "categorie": "Sociaal en maatschappelijk",
+      "definitie": "Sociale contacten verwijzen naar de relaties en interacties die een persoon heeft met familie, vrienden, buren, en andere mensen in hun omgeving. Goede sociale contacten zijn belangrijk voor emotionele steun, een gevoel van verbondenheid en algemeen welzijn.",
+      "effectId": "b7398878-d600-4d50-8e6c-c40123307cb5",
+      "stellingen": [
+        {
+          "nummer": 1,
+          "stelling": "Ik heb genoeg fijne contacten, zoals familie/vrienden",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "afgeleid",
+          "bronPosNeg": null,
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "63b92d2f-a452-4d9b-985d-c1537ee1dfac"
+        },
+        {
+          "nummer": 2,
+          "stelling": "Ik voel me vaak eenzaam, zelfs wanneer ik omringd ben door mensen",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "negatief",
+          "negatiefGeformuleerd": true,
+          "herkomstRichting": "vastgelegd",
+          "bronPosNeg": "negative",
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "86adcd68-ab1c-4c23-8ff9-4d2c485d33f7"
+        },
+        {
+          "nummer": 3,
+          "stelling": "Ik doe vaak leuke dingen met andere mensen",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "afgeleid",
+          "bronPosNeg": null,
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "1df60ae1-4efe-469d-9ff2-5a4a5838ed8c"
+        },
+        {
+          "nummer": 4,
+          "stelling": "Er zijn genoeg mensen op wie ik in moeilijke situaties terug kan vallen",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "afgeleid",
+          "bronPosNeg": null,
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "588fa7d6-263d-4967-99fe-8fc853085ef6"
+        }
+      ],
+      "situatieschetsen": [],
+      "monetarisering": {
+        "eenheid": null,
+        "niveaus": []
+      }
+    },
+    {
+      "id": "EFF-08",
+      "slug": "sociale-cohesie",
+      "uid": "arbeidsparticipatie:sociale-cohesie",
+      "effect": "Sociale cohesie",
+      "categorie": "Sociaal en maatschappelijk",
+      "definitie": "Sociale cohesie gaat over naar de mate waarin (groepen) mensen zich met elkaar verbonden voelen, en naar het gedrag dat hieraan invulling geeft.",
+      "effectId": "5a67b5c7-90ca-4b9e-980b-41f8db426770",
+      "stellingen": [
+        {
+          "nummer": 1,
+          "stelling": "Ik help mensen in mijn omgeving graag als ze hulp nodig hebben",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "afgeleid",
+          "bronPosNeg": null,
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "72b2aee0-aab1-4b01-a507-11d1379b2428"
+        },
+        {
+          "nummer": 2,
+          "stelling": "Ik voel me niet verbonden met de mensen in mijn omgeving",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "negatief",
+          "negatiefGeformuleerd": true,
+          "herkomstRichting": "vastgelegd",
+          "bronPosNeg": "negative",
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "561eebfb-3947-449c-9e2f-04058cd582b0"
+        },
+        {
+          "nummer": 3,
+          "stelling": "De mensen om me heen accepteren en respecteren mij.",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "afgeleid",
+          "bronPosNeg": null,
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "160b4c17-44f4-4b62-a386-93adce8cc133"
+        },
+        {
+          "nummer": 4,
+          "stelling": "Ik voel me thuis in mijn omgeving",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "afgeleid",
+          "bronPosNeg": null,
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "16fc7bab-dfdf-4eb7-9a4c-9a9bf266e4c4"
+        }
+      ],
+      "situatieschetsen": [],
+      "monetarisering": {
+        "eenheid": null,
+        "niveaus": []
+      }
+    },
+    {
+      "id": "EFF-09",
+      "slug": "integratie-nieuwkomers",
+      "uid": "arbeidsparticipatie:integratie-nieuwkomers",
+      "effect": "Integratie (nieuwkomers)",
+      "categorie": "Sociaal en maatschappelijk",
+      "definitie": "Integratie verwijst naar het proces waarbij nieuwkomers zich aanpassen en opgenomen worden in een nieuwe samenleving. Dit omvat het leren van de taal, het vinden van werk, en het opbouwen van sociale relaties.",
+      "effectId": "d04c8f22-c033-40c7-afe4-6cf0e1720eab",
+      "stellingen": [
+        {
+          "nummer": 1,
+          "stelling": "Ik krijg geen passende hulp om de taal te leren en werk te vinden",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "negatief",
+          "negatiefGeformuleerd": true,
+          "herkomstRichting": "vastgelegd",
+          "bronPosNeg": "negative",
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "526054f8-8730-42f9-b229-2db8f98e982d"
+        },
+        {
+          "nummer": 2,
+          "stelling": "Ik heb vaak contact met mensen in mijn nieuwe omgeving",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "afgeleid",
+          "bronPosNeg": null,
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "ac7d24ce-b1d8-4bd8-9d10-456722db3d4f"
+        },
+        {
+          "nummer": 3,
+          "stelling": "Ik begrijp de gewoontes en gebruiken van mijn nieuwe land",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "afgeleid",
+          "bronPosNeg": null,
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "3d336713-f6f8-40f7-8a3e-742d31c5b634"
+        },
+        {
+          "nummer": 4,
+          "stelling": "De mensen om me heen accepteren en respecteren mij",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "afgeleid",
+          "bronPosNeg": null,
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "b2db5f41-d425-4803-91b7-6f766ffbf927"
+        },
+        {
+          "nummer": 5,
+          "stelling": "Ik voel me thuis in mijn nieuwe omgeving",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "afgeleid",
+          "bronPosNeg": null,
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "2001a1f7-fe85-4050-87c4-d8a77b6b9287"
+        }
+      ],
+      "situatieschetsen": [],
+      "monetarisering": {
+        "eenheid": null,
+        "niveaus": []
+      }
+    },
+    {
+      "id": "EFF-10",
+      "slug": "zelfvertrouwen",
+      "uid": "arbeidsparticipatie:zelfvertrouwen",
+      "effect": "Zelfvertrouwen",
+      "categorie": "Persoonlijke ontwikkeling",
+      "definitie": "Zelfvertrouwen is de mate waarin men vertrouwen heeft in het eigen kunnen. Een grote zelfverzekerdheid of zelfzekerheid betekent dat dit een sterk vertrouwen is.",
+      "effectId": "0d0d4971-dcb4-49b5-a761-ab6246489f1f",
+      "stellingen": [
+        {
+          "nummer": 1,
+          "stelling": "Over het algemeen ben ik blij met mezelf",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "afgeleid",
+          "bronPosNeg": null,
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "ad8db90e-1cb7-4a6d-9b50-4f76107e6854"
+        },
+        {
+          "nummer": 2,
+          "stelling": "Ik vind dat ik een aantal goede eigenschappen bezit",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "afgeleid",
+          "bronPosNeg": null,
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "88146ba1-6fdf-4034-bbc5-95cb41e57841"
+        },
+        {
+          "nummer": 3,
+          "stelling": "Ik durf nieuwe dingen te proberen, zelfs als ze moeilijk lijken",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "afgeleid",
+          "bronPosNeg": null,
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "56c15aaf-2c2e-41f1-bb6b-1277379b1f4d"
+        },
+        {
+          "nummer": 4,
+          "stelling": "Ik zou meer respect voor mezelf willen hebben",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "negatief",
+          "negatiefGeformuleerd": true,
+          "herkomstRichting": "vastgelegd",
+          "bronPosNeg": "negative",
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "a9bc48bb-c1cd-44a1-ac1b-98e6b3186545"
+        }
+      ],
+      "situatieschetsen": [],
+      "monetarisering": {
+        "eenheid": null,
+        "niveaus": []
+      }
+    },
+    {
+      "id": "EFF-11",
+      "slug": "zelf-effectiviteit",
+      "uid": "arbeidsparticipatie:zelf-effectiviteit",
+      "effect": "Zelf-effectiviteit",
+      "categorie": "Persoonlijke ontwikkeling",
+      "definitie": "Zelf-effectiviteit betekent vertrouwen hebben dat je acties verantwoordelijk zijn voor succesvolle uitkomsten, oftewel dat men controle heeft over uitdagende eisen die de omgeving stelt.",
+      "effectId": "68bd35c3-85d5-4fec-81ca-e094710759bc",
+      "stellingen": [
+        {
+          "nummer": 1,
+          "stelling": "Het lukt me om moeilijke problemen op te lossen, als ik er genoeg moeite voor doe",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "afgeleid",
+          "bronPosNeg": null,
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "4bbc2663-2115-413a-9390-68cec17db65d"
+        },
+        {
+          "nummer": 2,
+          "stelling": "Ik weet vaak niet wat ik moet doen in onverwachte situaties",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "negatief",
+          "negatiefGeformuleerd": true,
+          "herkomstRichting": "vastgelegd",
+          "bronPosNeg": "negative",
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "ddcaaa72-d6b1-4c7c-8279-cad25e41dba7"
+        },
+        {
+          "nummer": 3,
+          "stelling": "Het is voor mij makkelijk om vast te houden aan mijn plannen en mijn doel te bereiken.",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "afgeleid",
+          "bronPosNeg": null,
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "add3c982-84c8-44b1-8bfa-5c7a96d65d8f"
+        },
+        {
+          "nummer": 4,
+          "stelling": "Wat er ook gebeurt, ik kom er wel uit.",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "afgeleid",
+          "bronPosNeg": null,
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "098e6319-b903-4018-8657-62d74715c5f4"
+        }
+      ],
+      "situatieschetsen": [],
+      "monetarisering": {
+        "eenheid": null,
+        "niveaus": []
+      }
+    },
+    {
+      "id": "EFF-12",
+      "slug": "empowerment",
+      "uid": "arbeidsparticipatie:empowerment",
+      "effect": "Empowerment",
+      "categorie": "Persoonlijke ontwikkeling",
+      "definitie": "Empowerment is het proces waarin individuen meer controle krijgen over hun eigen leven. Dit omvat het vermogen om zelfstandig beslissingen te nemen, actie te ondernemen en op te komen voor hun rechten.",
+      "effectId": "d472c0b5-5635-4ef9-a301-aa55e6284677",
+      "stellingen": [
+        {
+          "nummer": 1,
+          "stelling": "Ik heb invloed op wat er in mijn leven gebeurt",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "afgeleid",
+          "bronPosNeg": null,
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "04f95778-0569-4735-911e-855f69b5aed1"
+        },
+        {
+          "nummer": 2,
+          "stelling": "Ik ben niet sterk genoeg om veranderingen aan te brengen in mijn leven",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "negatief",
+          "negatiefGeformuleerd": true,
+          "herkomstRichting": "vastgelegd",
+          "bronPosNeg": "negative",
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "9b94a3a9-cb60-4efa-a92e-fff0da916030"
+        },
+        {
+          "nummer": 3,
+          "stelling": "Ik kan mijn eigen keuzes maken",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "afgeleid",
+          "bronPosNeg": null,
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "494a808d-46f9-4a27-b9ce-9d458e57921b"
+        },
+        {
+          "nummer": 4,
+          "stelling": "Ik kan goed voor mezelf opkomen",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "afgeleid",
+          "bronPosNeg": null,
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "12eba934-5ead-4204-933b-0e437c2738eb"
+        }
+      ],
+      "situatieschetsen": [],
+      "monetarisering": {
+        "eenheid": null,
+        "niveaus": []
+      }
+    },
+    {
+      "id": "EFF-13",
+      "slug": "persoonlijke-ontwikkeling",
+      "uid": "arbeidsparticipatie:persoonlijke-ontwikkeling",
+      "effect": "Persoonlijke ontwikkeling",
+      "categorie": "Persoonlijke ontwikkeling",
+      "definitie": "Persoonlijke ontwikkeling is het proces van zelfverbetering en groei, waarbij individuen hun talenten en vaardigheden ontdekken, ontwikkelen en toepassen om hun persoonlijke en professionele doelen te bereiken.",
+      "effectId": "6f458491-c9f6-4757-aa66-180b11f9482c",
+      "stellingen": [
+        {
+          "nummer": 1,
+          "stelling": "Ik werk aan mijn doelen om beter te worden",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "afgeleid",
+          "bronPosNeg": null,
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "171270e2-84b4-4489-8053-f23213ff59e6"
+        },
+        {
+          "nummer": 2,
+          "stelling": "Ik reflecteer op fouten en leer ervan",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "afgeleid",
+          "bronPosNeg": null,
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "8b2a8af8-ebba-48d4-93cf-9044ad2e0428"
+        },
+        {
+          "nummer": 3,
+          "stelling": "Ik ben niet gemotiveerd om nieuwe dingen te leren",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "negatief",
+          "negatiefGeformuleerd": true,
+          "herkomstRichting": "vastgelegd",
+          "bronPosNeg": "negative",
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "59de9fea-1d24-4c36-8d57-b1148fb4877f"
+        }
+      ],
+      "situatieschetsen": [],
+      "monetarisering": {
+        "eenheid": null,
+        "niveaus": []
+      }
+    },
+    {
+      "id": "EFF-14",
+      "slug": "zelfbewustzijn",
+      "uid": "arbeidsparticipatie:zelfbewustzijn",
+      "effect": "Zelfbewustzijn",
+      "categorie": "Persoonlijke ontwikkeling",
+      "definitie": "Zelfbewustzijn is het vermogen om jezelf te begrijpen en te reflecteren op je eigen gedachten, emoties, en gedragingen. Het omvat inzicht in je eigen sterke punten, zwakke punten, waarden en doelen.",
+      "effectId": "645e06bf-a1aa-4785-9c43-f7304334a9a2",
+      "stellingen": [
+        {
+          "nummer": 1,
+          "stelling": "Ik weet waar ik goed in ben, en ik weet wat moeilijk voor mij is",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "afgeleid",
+          "bronPosNeg": null,
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "5db27456-b9bb-4ba0-bd77-b753a2a4ef78"
+        },
+        {
+          "nummer": 2,
+          "stelling": "Ik kan mijn kwaliteiten benoemen",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "afgeleid",
+          "bronPosNeg": null,
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "acbd3af9-a5fc-4a3b-8621-3a1fffd7be3a"
+        },
+        {
+          "nummer": 3,
+          "stelling": "Ik weet niet goed wat belangrijk voor mij is",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "negatief",
+          "negatiefGeformuleerd": true,
+          "herkomstRichting": "vastgelegd",
+          "bronPosNeg": "negative",
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "541fc78b-858b-4b37-b5af-e14e2eac1c05"
+        },
+        {
+          "nummer": 4,
+          "stelling": "Ik weet waar mijn interesses liggen",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "afgeleid",
+          "bronPosNeg": null,
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "d555b7e7-8367-4c51-9015-7289dcf7f40d"
+        }
+      ],
+      "situatieschetsen": [],
+      "monetarisering": {
+        "eenheid": null,
+        "niveaus": []
+      }
+    },
+    {
+      "id": "EFF-15",
+      "slug": "sociale-vaardigheden",
+      "uid": "arbeidsparticipatie:sociale-vaardigheden",
+      "effect": "Sociale vaardigheden",
+      "categorie": "Vaardigheden",
+      "definitie": "Sociale vaardigheden zijn de vaardigheden die nodig zijn om effectief en bevredigend met anderen te communiceren en relaties te onderhouden. Dit omvat luisteren, empathie, samenwerken en conflictoplossing.",
+      "effectId": "82bcb083-6eec-46f3-aafa-a11b0d21082f",
+      "stellingen": [
+        {
+          "nummer": 1,
+          "stelling": "Ik onderhoud geen contact met kennissen, vrienden of familie",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "negatief",
+          "negatiefGeformuleerd": true,
+          "herkomstRichting": "vastgelegd",
+          "bronPosNeg": "negative",
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "5e84dd50-32d8-4925-a8b9-d4a21967003b"
+        },
+        {
+          "nummer": 2,
+          "stelling": "Ik kan me goed inleven in hoe andere mensen zich voelen",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "afgeleid",
+          "bronPosNeg": null,
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "6cabbcfb-c39e-4603-a4b8-32009f3d6b6b"
+        },
+        {
+          "nummer": 3,
+          "stelling": "Ik kan duidelijk en vriendelijk om hulp vragen",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "afgeleid",
+          "bronPosNeg": null,
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "bbdadd66-dd44-4753-b09e-f6a02a1345b6"
+        },
+        {
+          "nummer": 4,
+          "stelling": "Ik luister goed naar anderen zonder hen te onderbreken",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "afgeleid",
+          "bronPosNeg": null,
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "2ead72cc-add7-40a0-ba84-7e05640cfeaa"
+        }
+      ],
+      "situatieschetsen": [],
+      "monetarisering": {
+        "eenheid": null,
+        "niveaus": []
+      }
+    },
+    {
+      "id": "EFF-16",
+      "slug": "arbeidsvaardigheden",
+      "uid": "arbeidsparticipatie:arbeidsvaardigheden",
+      "effect": "Arbeidsvaardigheden",
+      "categorie": "Vaardigheden",
+      "definitie": "Arbeidsvaardigheden zijn de competenties en capaciteiten die een individu nodig heeft om succesvol te zijn in een werkomgeving. Dit omvat technische vaardigheden, communicatieve vaardigheden, teamwork en het vermogen om instructies te volgen en taken efficiënt uit te voeren.",
+      "effectId": "09fc1aa0-e2fd-4448-8bc3-ac7ecc5101f8",
+      "stellingen": [
+        {
+          "nummer": 1,
+          "stelling": "Ik geef aan wanneer ik iets niet kan of wil op mijn werk",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "afgeleid",
+          "bronPosNeg": null,
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "37e28c37-28c3-44b7-9a95-0341c7455a0b"
+        },
+        {
+          "nummer": 2,
+          "stelling": "Ik kom altijd op tijd",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "afgeleid",
+          "bronPosNeg": null,
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "e52ff909-4640-4844-a2dd-91c7279b5e76"
+        },
+        {
+          "nummer": 3,
+          "stelling": "Ik kan niet goed samenwerken met mijn collega’s",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "negatief",
+          "negatiefGeformuleerd": true,
+          "herkomstRichting": "vastgelegd",
+          "bronPosNeg": "negative",
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "d36311f7-2386-48b4-a783-cabb4ecc36f7"
+        },
+        {
+          "nummer": 4,
+          "stelling": "Ik kan goed omgaan met feedback",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "afgeleid",
+          "bronPosNeg": null,
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "7ec7d829-9742-40cf-bcc9-d4ea2574a9de"
+        }
+      ],
+      "situatieschetsen": [],
+      "monetarisering": {
+        "eenheid": null,
+        "niveaus": []
+      }
+    },
+    {
+      "id": "EFF-17",
+      "slug": "digitale-vaardigheden",
+      "uid": "arbeidsparticipatie:digitale-vaardigheden",
+      "effect": "Digitale vaardigheden",
+      "categorie": "Vaardigheden",
+      "definitie": "Digitale vaardigheden zijn de capaciteiten die een individu nodig heeft om informatie en communicatietechnologieën effectief te gebruiken. Dit omvat het gebruik van internet, computers, en andere digitale middelen voor persoonlijke, educatieve, en professionele doeleinden.",
+      "effectId": "00e572e7-bfce-4ff7-b295-b2871d7c9e28",
+      "stellingen": [
+        {
+          "nummer": 1,
+          "stelling": "Ik heb toegang tot internet",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "afgeleid",
+          "bronPosNeg": null,
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "aa1ab7ce-20a4-4412-8c93-eece855d0d93"
+        },
+        {
+          "nummer": 2,
+          "stelling": "Ik weet hoe ik belangrijke digitale diensten moet gebruiken, zoals DigiD, internetbankieren en navigatie",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "afgeleid",
+          "bronPosNeg": null,
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "100edbb5-6740-405c-a8c2-d3c1afe7c1ab"
+        },
+        {
+          "nummer": 3,
+          "stelling": "Ik voel mij onzeker bij het gebruik van een laptop of smartphone",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "negatief",
+          "negatiefGeformuleerd": true,
+          "herkomstRichting": "vastgelegd",
+          "bronPosNeg": "negative",
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "f4339986-869f-411f-a9b6-ee7d7129c30b"
+        },
+        {
+          "nummer": 4,
+          "stelling": "Ik kan digitaal contact onderhouden met familie en vrienden",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "afgeleid",
+          "bronPosNeg": null,
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "75b6fc15-2d6a-4b7a-9b1c-04f6ee531a40"
+        }
+      ],
+      "situatieschetsen": [],
+      "monetarisering": {
+        "eenheid": null,
+        "niveaus": []
+      }
+    },
+    {
+      "id": "EFF-18",
+      "slug": "taalvaardigheid",
+      "uid": "arbeidsparticipatie:taalvaardigheid",
+      "effect": "Taalvaardigheid",
+      "categorie": "Vaardigheden",
+      "definitie": "Taalvaardigheid verwijst naar het vermogen om effectief te communiceren in een bepaalde taal, zowel mondeling als schriftelijk. Dit omvat het begrijpen en produceren van gesproken en geschreven teksten, en het vermogen om gesprekken te voeren, informatie te delen, en meningen te uiten.",
+      "effectId": "aad5a30a-8787-483c-afee-b4b1f72c79b9",
+      "stellingen": [
+        {
+          "nummer": 1,
+          "stelling": "Ik durf iets in het Nederlands aan iemand te vragen",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "afgeleid",
+          "bronPosNeg": null,
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "df64945a-8810-45b6-9d44-b30a14b3b9f7"
+        },
+        {
+          "nummer": 2,
+          "stelling": "Ik begrijp Nederlandse teksten zoals krantenartikelen, boeken en officiële documenten",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "afgeleid",
+          "bronPosNeg": null,
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "68403a3f-9ff4-48a3-ab88-931581cde178"
+        },
+        {
+          "nummer": 3,
+          "stelling": "Ik kan me verstaanbaar maken in het Nederlands",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "afgeleid",
+          "bronPosNeg": null,
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "ca6cf2ef-2ba4-449a-bf6f-8bab92aaacb1"
+        },
+        {
+          "nummer": 4,
+          "stelling": "Ik spreek slecht Nederlands",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "negatief",
+          "negatiefGeformuleerd": true,
+          "herkomstRichting": "vastgelegd",
+          "bronPosNeg": "negative",
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "9f6a114a-f33a-4025-8ab5-67edc943f220"
+        }
+      ],
+      "situatieschetsen": [],
+      "monetarisering": {
+        "eenheid": null,
+        "niveaus": []
+      }
+    },
+    {
+      "id": "EFF-19",
+      "slug": "participatieladder",
+      "uid": "arbeidsparticipatie:participatieladder",
+      "effect": "Participatieladder",
+      "categorie": "Werk en economie",
+      "definitie": "Arbeidsparticipatie verwijst naar de mate waarin individuen deelnemen aan betaalde of onbetaalde arbeid, zoals (vrijwilligers)werk of stages. Het geeft aan hoe actief iemand is in de arbeidsmarkt en in welke mate men bijdraagt aan economische activiteiten.",
+      "effectId": "ffba7445-7d2c-4a92-835c-9273c9a3478c",
+      "stellingen": [
+        {
+          "nummer": 1,
+          "stelling": "Ik heb wekelijks contact met mensen buitenshuis",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "afgeleid",
+          "bronPosNeg": null,
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "1cf75648-c798-4009-a71f-ed34b1e7ffeb"
+        },
+        {
+          "nummer": 2,
+          "stelling": "Ik doe mee aan georganiseerde activiteiten",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "afgeleid",
+          "bronPosNeg": null,
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "e0be6872-7996-4302-bba4-2fb93cae531a"
+        },
+        {
+          "nummer": 3,
+          "stelling": "Ik doe vrijwilligerswerk of volg een opleiding",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "afgeleid",
+          "bronPosNeg": null,
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "5a9297ca-57a7-4ba1-b044-f1c509458510"
+        },
+        {
+          "nummer": 4,
+          "stelling": "Ik heb betaald werk en krijg daarnaast ondersteuning (geld of hulp) vanuit de overheid",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "afgeleid",
+          "bronPosNeg": null,
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "55f367d2-6668-46a3-9eba-4e0ad3c4efe3"
+        },
+        {
+          "nummer": 5,
+          "stelling": "Ik heb betaald werk zonder extra ondersteuning, zoals een uitkering of hulp",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "afgeleid",
+          "bronPosNeg": null,
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "22349c9f-d4e2-477e-8534-bb92f4f2bedb"
+        }
+      ],
+      "situatieschetsen": [
+        {
+          "niveau": 1,
+          "label": null,
+          "situatieschets": "Geïsoleerd: Geen contact buitenshuis, behalve functionele bezoeken (bijv. supermarkt of huisarts). Contact beperkt tot huisgenoten (3, 4).",
+          "bron": null
+        },
+        {
+          "niveau": 2,
+          "label": null,
+          "situatieschets": "Sociale contacten buitenshuis:Minimaal eens per week informeel contact met buren of kennissen. Geen georganiseerde activiteiten (7, 8)",
+          "bron": null
+        },
+        {
+          "niveau": 3,
+          "label": null,
+          "situatieschets": "Deelname & Onbetaald werk:Meedoen aan georganiseerde clubs/cursussen of het verrichten van vrijwilligerswerk met verantwoordelijkheid (7, 8, 11)",
+          "bron": null
+        },
+        {
+          "niveau": 4,
+          "label": null,
+          "situatieschets": "Betaald werk met ondersteuning:Werken met loonkostensubsidie, jobcoach of in een beschutte omgeving (11, 13).",
+          "bron": null
+        },
+        {
+          "niveau": 5,
+          "label": null,
+          "situatieschets": "Regulier betaald werk: Werken zonder aanvullende uitkering of overheidssteun (inclusief zzp/ondernemerschap) (16, 17)",
+          "bron": null
+        }
+      ],
+      "monetarisering": {
+        "eenheid": null,
+        "niveaus": [
+          {
+            "niveau": 1,
+            "totaleWaardeIndicatief": -21150,
+            "onderbouwing": "Hoogste maatschappelijke last. De kosten bestaan uit een gewogen gemiddelde van uitkeringen (€5.600), gederfde inkomstenbelasting (€11.050) en hoge zorg- en veiligheidskosten door inactiviteit (€4.500). (2, 5, 6)",
+            "proxies": []
+          },
+          {
+            "niveau": 2,
+            "totaleWaardeIndicatief": -19500,
+            "onderbouwing": "Lichte daling in zorgbehoefte. Het doorbreken van sociaal isolement verlaagt het risico op zware mentale problematiek, maar er is nog geen productieve bijdrage of belastingafdracht.(9, 10)",
+            "proxies": []
+          },
+          {
+            "niveau": 3,
+            "totaleWaardeIndicatief": -15000,
+            "onderbouwing": "Productieve bijdrage zonder loon. De 'brede baten' stijgen door minder beroep op ggz en Wmo (besparing ~€2.000). Vrijwilligerswerk levert maatschappelijke waarde, maar de uitkeringslast blijft deels bestaan (6, 12)",
+            "proxies": []
+          },
+          {
+            "niveau": 4,
+            "totaleWaardeIndicatief": -5000,
+            "onderbouwing": "Netto bijdrage begint. De uitkeringslast daalt scherp (terugverdieneffect). Men gaat voor het eerst belasting en premies afdragen, hoewel er nog kosten zijn voor begeleiding en subsidies (14, 15).",
+            "proxies": []
+          },
+          {
+            "niveau": 5,
+            "totaleWaardeIndicatief": 11050,
+            "onderbouwing": "Maximale maatschappelijke baat. De overheid bespaart de volledige uitkering en ontvangt circa €11.000 aan belastingen/premies. Zorgkosten zijn minimaal en de economische productiviteit is maximaal (5, 18).",
+            "proxies": []
+          }
+        ]
+      }
+    },
+    {
+      "id": "EFF-20",
+      "slug": "werkgeluk",
+      "uid": "arbeidsparticipatie:werkgeluk",
+      "effect": "Werkgeluk",
+      "categorie": "Werk en economie",
+      "definitie": "Werkgeluk is de tevredenheid en het plezier dat een individu ervaart in zijn of haar werk. Het omvat gevoelens van voldoening, waardering, en de mate waarin het werk aansluit bij persoonlijke waarden en doelen.",
+      "effectId": "57ca5117-e779-4a45-be76-6dccf8ec55c8",
+      "stellingen": [
+        {
+          "nummer": 1,
+          "stelling": "Ik heb geen plezier in mijn werk",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "negatief",
+          "negatiefGeformuleerd": true,
+          "herkomstRichting": "vastgelegd",
+          "bronPosNeg": "negative",
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "e16e3b99-d8c5-4cb4-8a31-bfd2ff2836a9"
+        },
+        {
+          "nummer": 2,
+          "stelling": "Ik doe waar ik goed in ben",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "afgeleid",
+          "bronPosNeg": null,
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "212bdfe7-dab5-4185-bc5a-6937ea4e0a21"
+        },
+        {
+          "nummer": 3,
+          "stelling": "Ik wordt gewaardeerd op mijn werk",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "afgeleid",
+          "bronPosNeg": null,
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "c082f212-d2d6-4dad-87c4-8d721df2cb10"
+        },
+        {
+          "nummer": 4,
+          "stelling": "Ik kan beter worden in mijn werk en leer nieuwe dingen",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "afgeleid",
+          "bronPosNeg": null,
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "f786b264-e231-421d-803b-18023a4cbe24"
+        }
+      ],
+      "situatieschetsen": [],
+      "monetarisering": {
+        "eenheid": null,
+        "niveaus": []
+      }
+    },
+    {
+      "id": "EFF-21",
+      "slug": "financiele-gezondheid",
+      "uid": "arbeidsparticipatie:financiele-gezondheid",
+      "effect": "Financiële gezondheid",
+      "categorie": "Werk en economie",
+      "definitie": "Financiële gezondheid is de staat waarin een persoon voldoende financiële middelen heeft om in hun basisbehoeften te voorzien, financiële verplichtingen na te komen, en een zekere mate van financiële zekerheid te ervaren. Het omvat ook de kennis en vaardigheden om financiële beslissingen te nemen.",
+      "effectId": "f5026b58-bab2-4e40-97ce-32ae51b15326",
+      "stellingen": [
+        {
+          "nummer": 1,
+          "stelling": "Ik weet niet goed wat mijn inkomsten en uitgaven zijn",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "negatief",
+          "negatiefGeformuleerd": true,
+          "herkomstRichting": "vastgelegd",
+          "bronPosNeg": "negative",
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "60dcfd49-30c8-4269-8b30-0da4395bf5d6"
+        },
+        {
+          "nummer": 2,
+          "stelling": "Ik heb elke maand genoeg geld om alles te betalen",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "afgeleid",
+          "bronPosNeg": null,
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "cc837476-58e8-4f0b-adb2-d90f2a62fb5d"
+        },
+        {
+          "nummer": 3,
+          "stelling": "Ik herken belangrijke post en weet welke actie ik moet ondernemen.",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "afgeleid",
+          "bronPosNeg": null,
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "ac19404d-5aeb-46fb-9cf4-1552163c27fa"
+        },
+        {
+          "nummer": 4,
+          "stelling": "Als ik iets over mijn financiën niet begrijp dan weet ik waar ik hulp kan vragen.",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "afgeleid",
+          "bronPosNeg": null,
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "7aa16783-c142-488a-b498-3440f77279ee"
+        }
+      ],
+      "situatieschetsen": [
+        {
+          "niveau": 1,
+          "label": null,
+          "situatieschets": "De respondent scoort extreem laag op de vier stellingen. Er is geen overzicht van inkomsten en uitgaven, rekeningen kunnen structureel niet betaald worden, post wordt genegeerd (ongeopend gelaten) en de persoon is geïsoleerd en durft of weet geen hulp te vragen. Er is sprake van crisis.",
+          "bron": null
+        },
+        {
+          "niveau": 2,
+          "label": null,
+          "situatieschets": "De respondent scoort overwegend negatief. Er is onvoldoende overzicht en aan het eind van de maand is er vaak tekort. De persoon herkent belangrijke post wel, maar stelt actie uit door stress. De drempel om hulp in te schakelen is te hoog, men probeert het krampachtig zelf op te lossen.",
+          "bron": null
+        },
+        {
+          "niveau": 3,
+          "label": null,
+          "situatieschets": "De respondent scoort neutraal of wisselend. Inkomsten en uitgaven zijn globaal bekend en rekeningen worden meestal betaald, maar er is geen buffer. Post wordt gelezen en deels afgehandeld. Bij onbegrip weet men wel enigszins waar informatie te vinden is, maar men is reactief.",
+          "bron": null
+        },
+        {
+          "niveau": 4,
+          "label": null,
+          "situatieschets": "De respondent scoort positief. Men heeft goed inzicht in inkomsten en uitgaven, betaalt rekeningen moeiteloos, opent en snapt de post (of onderneemt direct actie) en zoekt proactief hulp bij complexe financiële vragen.",
+          "bron": null
+        },
+        {
+          "niveau": 5,
+          "label": null,
+          "situatieschets": "De respondent scoort maximaal op alle stellingen. Er is niet alleen grip op het heden, maar men plant ook voor de lange termijn (pensioen, buffers voor life events). Administratie is geautomatiseerd, en men maakt actief en met vertrouwen gebruik van (professioneel) onafhankelijk advies.",
+          "bron": null
+        }
+      ],
+      "monetarisering": {
+        "eenheid": null,
+        "niveaus": [
+          {
+            "niveau": 1,
+            "totaleWaardeIndicatief": -15000,
+            "onderbouwing": "Financiele gezondheid onderbouwing",
+            "proxies": []
+          },
+          {
+            "niveau": 2,
+            "totaleWaardeIndicatief": -5500,
+            "onderbouwing": "Financiele gezondheid Notebook LM",
+            "proxies": []
+          },
+          {
+            "niveau": 3,
+            "totaleWaardeIndicatief": -800,
+            "onderbouwing": null,
+            "proxies": []
+          },
+          {
+            "niveau": 4,
+            "totaleWaardeIndicatief": 0,
+            "onderbouwing": null,
+            "proxies": []
+          },
+          {
+            "niveau": 5,
+            "totaleWaardeIndicatief": 1000,
+            "onderbouwing": null,
+            "proxies": []
+          }
+        ]
+      }
+    }
+  ],
+  "controle": {
+    "aantallen": {
+      "effecten": 21,
+      "stellingen": 86
+    },
+    "afgeleideRichting": [
+      "EFF-01 #2",
+      "EFF-01 #3",
+      "EFF-01 #4",
+      "EFF-02 #1",
+      "EFF-02 #2",
+      "EFF-02 #4",
+      "EFF-03 #1",
+      "EFF-03 #2",
+      "EFF-03 #4",
+      "EFF-04 #1",
+      "EFF-04 #2",
+      "EFF-04 #3",
+      "EFF-05 #1",
+      "EFF-05 #3",
+      "EFF-05 #4",
+      "EFF-06 #1",
+      "EFF-06 #2",
+      "EFF-06 #3",
+      "EFF-07 #1",
+      "EFF-07 #3",
+      "EFF-07 #4",
+      "EFF-08 #1",
+      "EFF-08 #3",
+      "EFF-08 #4",
+      "EFF-09 #2",
+      "EFF-09 #3",
+      "EFF-09 #4",
+      "EFF-09 #5",
+      "EFF-10 #1",
+      "EFF-10 #2",
+      "EFF-10 #3",
+      "EFF-11 #1",
+      "EFF-11 #3",
+      "EFF-11 #4",
+      "EFF-12 #1",
+      "EFF-12 #3",
+      "EFF-12 #4",
+      "EFF-13 #1",
+      "EFF-13 #2",
+      "EFF-14 #1",
+      "EFF-14 #2",
+      "EFF-14 #4",
+      "EFF-15 #2",
+      "EFF-15 #3",
+      "EFF-15 #4",
+      "EFF-16 #1",
+      "EFF-16 #2",
+      "EFF-16 #4",
+      "EFF-17 #1",
+      "EFF-17 #2",
+      "EFF-17 #4",
+      "EFF-18 #1",
+      "EFF-18 #2",
+      "EFF-18 #3",
+      "EFF-19 #1",
+      "EFF-19 #2",
+      "EFF-19 #3",
+      "EFF-19 #4",
+      "EFF-19 #5",
+      "EFF-20 #2",
+      "EFF-20 #3",
+      "EFF-20 #4",
+      "EFF-21 #2",
+      "EFF-21 #3",
+      "EFF-21 #4"
+    ],
+    "zonderOnderbouwing": [
+      "EFF-01 niveau 3",
+      "EFF-01 niveau 4",
+      "EFF-01 niveau 5",
+      "EFF-02 niveau 3",
+      "EFF-02 niveau 4",
+      "EFF-02 niveau 5",
+      "EFF-03 niveau 3",
+      "EFF-03 niveau 4",
+      "EFF-03 niveau 5",
+      "EFF-21 niveau 3",
+      "EFF-21 niveau 4",
+      "EFF-21 niveau 5"
+    ],
+    "zonderMonetarisering": [
+      "EFF-04",
+      "EFF-05",
+      "EFF-06",
+      "EFF-07",
+      "EFF-08",
+      "EFF-09",
+      "EFF-10",
+      "EFF-11",
+      "EFF-12",
+      "EFF-13",
+      "EFF-14",
+      "EFF-15",
+      "EFF-16",
+      "EFF-17",
+      "EFF-18",
+      "EFF-20"
+    ],
+    "ontbrekendeVelden": [
+      "stellingen[].bron — de herkomst van een stelling is nooit vastgelegd",
+      "stellingen[].posNeg — bij arbeidsparticipatie alleen op omgepoolde stellingen ingevuld; de rest is afgeleid",
+      "monetarisering.eenheid — waar een bedrag per geldt is nooit vastgelegd",
+      "monetarisering.niveaus[].proxies — één bedrag per niveau, niet uitgesplitst per stakeholder",
+      "situatieschetsen[].label en .bron — alleen de omschrijving zelf bestaat",
+      "aggregatie/overlapgroep — bedragen mogen niet over effecten heen opgeteld worden",
+      "bronnen, parameters, gevoeligheid, audit — bestaan alleen in workbookgestuurde standaarden"
+    ]
+  }
+}

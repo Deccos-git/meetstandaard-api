@@ -1,0 +1,990 @@
+{
+  "meta": {
+    "version": "1.0",
+    "sector": "gelijke-kansen",
+    "sectorLabel": "Gelijke kansen",
+    "kind": "meetstandaard",
+    "releasedAt": "2026-08-24",
+    "source": "effects/questions/categories (dashboarddatabase), snapshot",
+    "generatedBy": "functions/exportEffectenStandaard.js",
+    "toelichting": "Momentopname van de standaard zoals die in de dashboarddatabase staat, gepubliceerd zodat de versie uit de API komt in plaats van uit de frontend. Dit document is armer dan een uit een workbook gegenereerde standaard: er zijn geen proxies per stakeholder, geen overlapgroepen en geen bronvermelding per stelling. Zie `controle` voor wat ontbreekt. Een stelling met `herkomstRichting: \"afgeleid\"` had geen polariteit in de bron; die is ingevuld volgens de conventie dat alleen omgepoolde stellingen werden gemarkeerd (zie docs/decisions.md#adr-008). Vastgelegd en afgeleid zijn opzettelijk uit elkaar te houden."
+  },
+  "effecten": [
+    {
+      "id": "EFF-01",
+      "slug": "fysieke-gezondheid",
+      "uid": "gelijke-kansen:fysieke-gezondheid",
+      "effect": "Fysieke gezondheid",
+      "categorie": "Gezondheid en Welzijn",
+      "definitie": "Fysieke gezondheid is de staat van het lichaam, waarbij aspecten zoals de afwezigheid van ziekten, de werking van organen, het immuunsysteem, en het algemene fitheidsniveau worden meegenomen. Dit omvat ook kracht, flexibiliteit, en uithoudingsvermogen.",
+      "effectId": "ba4bc88c-6118-4d99-a690-fa34e7e22e70",
+      "stellingen": [
+        {
+          "nummer": 1,
+          "stelling": "Ik voel me fit en gezond",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "afgeleid",
+          "bronPosNeg": null,
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "446762c6-2437-49e4-a72f-480e9bd31a73"
+        },
+        {
+          "nummer": 2,
+          "stelling": "Ik heb veel energie ",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "vastgelegd",
+          "bronPosNeg": "positive",
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "ee2d5331-5436-4190-acfb-59252e90bc1c"
+        },
+        {
+          "nummer": 3,
+          "stelling": "In mijn vrije tijd doe ik wat ik van te voren wilde doen",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "vastgelegd",
+          "bronPosNeg": "positive",
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "123fcb12-9cd0-472c-b37b-1b5e4b03602b"
+        },
+        {
+          "nummer": 4,
+          "stelling": "Ik heb vaak plezier met vrienden",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "vastgelegd",
+          "bronPosNeg": "positive",
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "2a036723-710c-4085-837a-746bc8530574"
+        }
+      ],
+      "situatieschetsen": [
+        {
+          "niveau": 1,
+          "label": null,
+          "situatieschets": "De persoon ervaart continu ernstige pijn of lichamelijk ongemak en is sterk beperkt in mobiliteit (\"ik kan niet makkelijk bewegen\"). Dagelijkse taken kunnen vrijwel niet worden uitgevoerd door een chronisch gebrek aan energie en het algemene fitheidsniveau is zeer laag. Er is vaak sprake van complexe multimorbiditeit of ernstige functionele achteruitgan",
+          "bron": null
+        },
+        {
+          "niveau": 2,
+          "label": null,
+          "situatieschets": "De persoon heeft vaak pijn of fysieke klachten die het functioneren belemmeren. Basisactiviteiten lukken nog, maar kosten veel energie. Er is sprake van fysieke inactiviteit en beperkte kracht of uithoudingsvermogen, wat leidt tot een lagere algemene gezondheidsbeleving.",
+          "bron": null
+        },
+        {
+          "niveau": 3,
+          "label": null,
+          "situatieschets": "De persoon functioneert naar behoren, maar ervaart soms lichamelijk ongemak of een gebrek aan energie na inspanning. Bewegen gaat over het algemeen goed, al wordt de norm voor structurele intensieve fysieke gezondheid niet altijd gehaald.",
+          "bron": null
+        },
+        {
+          "niveau": 4,
+          "label": null,
+          "situatieschets": "De persoon voelt zich vitaal, heeft geen last van pijn en beschikt over meer dan voldoende energie om dagelijkse en professionele taken soepel uit te voeren. Men is fysiek actief en ondervindt geen functionele belemmeringen.",
+          "bron": null
+        },
+        {
+          "niveau": 5,
+          "label": null,
+          "situatieschets": "De persoon floreert fysiek, heeft een hoge mate van uithoudingsvermogen, flexibiliteit en spierkracht. Er is structureel een overschot aan energie, blessures herstellen snel en een gezonde levensstijl fungeert als beschermende factor (\"buffer\") tegen externe fysieke of werkgerelateerde stressoren.",
+          "bron": null
+        }
+      ],
+      "monetarisering": {
+        "eenheid": null,
+        "niveaus": [
+          {
+            "niveau": 1,
+            "totaleWaardeIndicatief": -17500,
+            "onderbouwing": "Fysieke gezondheid uitwerking Notebook LM",
+            "proxies": []
+          },
+          {
+            "niveau": 2,
+            "totaleWaardeIndicatief": -8500,
+            "onderbouwing": "Link notebook",
+            "proxies": []
+          },
+          {
+            "niveau": 3,
+            "totaleWaardeIndicatief": -3000,
+            "onderbouwing": null,
+            "proxies": []
+          },
+          {
+            "niveau": 4,
+            "totaleWaardeIndicatief": 0,
+            "onderbouwing": null,
+            "proxies": []
+          },
+          {
+            "niveau": 5,
+            "totaleWaardeIndicatief": 2000,
+            "onderbouwing": null,
+            "proxies": []
+          }
+        ]
+      }
+    },
+    {
+      "id": "EFF-02",
+      "slug": "gezonde-leefstijl",
+      "uid": "gelijke-kansen:gezonde-leefstijl",
+      "effect": "Gezonde leefstijl",
+      "categorie": "Gezondheid en Welzijn",
+      "definitie": "Een gezonde leefstijl omvat regelmatige lichaamsbeweging, niet roken, matig alcoholgebruik, gezonde voeding, en voldoende ontspanning. Het gaat om het bevorderen van gewoonten die bijdragen aan een langere en gezondere levensduur.",
+      "effectId": "4a32f9f6-b308-4315-aa3d-819216dcc960",
+      "stellingen": [
+        {
+          "nummer": 1,
+          "stelling": "Ik slaap goed ",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "vastgelegd",
+          "bronPosNeg": "positive",
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "93e556b2-ba1e-4881-8690-8c0b621d7e8f"
+        },
+        {
+          "nummer": 2,
+          "stelling": "Ik eet bijna elke dag een stuk fruit of eet groente",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "vastgelegd",
+          "bronPosNeg": "positive",
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "baf55dd6-1797-4ae8-b2df-62c0fae065c2"
+        },
+        {
+          "nummer": 3,
+          "stelling": " Ik sport/beweeg minimaal 2 keer per week een uur",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "vastgelegd",
+          "bronPosNeg": "positive",
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "526a7970-e269-4f91-97d8-4f3c8e4d7f4a"
+        },
+        {
+          "nummer": 4,
+          "stelling": " Ik heb wel eens gerookt, gevapet of alcohol gedronken",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "negatief",
+          "negatiefGeformuleerd": true,
+          "herkomstRichting": "vastgelegd",
+          "bronPosNeg": "negative",
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "c4d0dd74-49d2-46ae-be59-b7b1ccb8707e"
+        },
+        {
+          "nummer": 5,
+          "stelling": " Ik voel me vaak rot als ik geen sociale media kan gebruiken",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "negatief",
+          "negatiefGeformuleerd": true,
+          "herkomstRichting": "vastgelegd",
+          "bronPosNeg": "negative",
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "96c4b528-efda-4669-9753-00ff572c09fc"
+        },
+        {
+          "nummer": 6,
+          "stelling": "Ik besteed minder tijd aan huiswerk door mijn smartphone of gamen",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "negatief",
+          "negatiefGeformuleerd": true,
+          "herkomstRichting": "vastgelegd",
+          "bronPosNeg": "negative",
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "e358ba67-30db-4b12-a95a-962aeec407cd"
+        }
+      ],
+      "situatieschetsen": [
+        {
+          "niveau": 1,
+          "label": null,
+          "situatieschets": "De persoon heeft een sterk ongezonde leefstijl: ernstig overgewicht (obesitas), chronisch fysiek inactief, rookt en/of heeft problematisch alcoholgebruik. In het dagelijks leven ervaart de persoon forse fysieke belemmeringen en een structureel gebrek aan energie. Er is vaak sprake van multimorbiditeit (bijv. diabetes type 2, hart- en vaatziekten), wat leidt tot intensief zorggebruik, langdurig verzuim of volledige uitstroom uit het arbeidsproces naar een uitkering [1, 2].",
+          "bron": null
+        },
+        {
+          "niveau": 2,
+          "label": null,
+          "situatieschets": "De persoon vertoont meerdere ongezonde gedragingen: overgewicht, voldoet niet aan de beweegrichtlijn, rookt mogelijk of eet structureel ongezond. De persoon redt zich in de maatschappij, maar is sneller vermoeid, herstelt langzamer van ziektes en bezoekt vaker de eerste lijn voor lichte chronische klachten of gewrichtspijn.",
+          "bron": null
+        },
+        {
+          "niveau": 3,
+          "label": null,
+          "situatieschets": "De persoon is relatief gezond, maar beweegt net niet voldoende, heeft licht overgewicht of ervaart incidenteel stress door een verstoorde balans. De persoon is volledig zelfredzaam en functioneert naar behoren, maar de leefstijl fungeert niet als beschermende buffer, wat leidt tot kleine fysieke klachten na inspanning.",
+          "bron": null
+        },
+        {
+          "niveau": 4,
+          "label": null,
+          "situatieschets": "De persoon heeft een leefstijl die overeenkomt met het landelijk gemiddelde. Dit houdt in dat men redelijk oplet qua voeding, af en toe sport, matig alcohol drinkt, en doorgaans een regulier aantal dagen per jaar ziek is. Er is sprake van een neutrale maatschappelijke impact: er worden geen bovenmatige zorg- of verzuimkosten gemaakt, maar er zijn ook geen extra baten.",
+          "bron": null
+        },
+        {
+          "niveau": 5,
+          "label": null,
+          "situatieschets": "De persoon hanteert een actieve, zeer gezonde leefstijl (dagelijks voldoende beweging, gezond gewicht, gezond dieet, geen roken). De persoon barst van de energie, floreert in werk en privé, herstelt extreem snel van tegenslagen en heeft een hoge veerkracht tegen stress. Zorggebruik voor fysieke klachten is nihil.",
+          "bron": null
+        }
+      ],
+      "monetarisering": {
+        "eenheid": null,
+        "niveaus": [
+          {
+            "niveau": 1,
+            "totaleWaardeIndicatief": -15000,
+            "onderbouwing": "Gezonde leefstijl uitwerking Notebook LM",
+            "proxies": []
+          },
+          {
+            "niveau": 2,
+            "totaleWaardeIndicatief": -6000,
+            "onderbouwing": "https://notebooklm.google.com/notebook/8f13c7fc-576c-4b85-90a6-da32819101a5",
+            "proxies": []
+          },
+          {
+            "niveau": 3,
+            "totaleWaardeIndicatief": -2500,
+            "onderbouwing": null,
+            "proxies": []
+          },
+          {
+            "niveau": 4,
+            "totaleWaardeIndicatief": 0,
+            "onderbouwing": null,
+            "proxies": []
+          },
+          {
+            "niveau": 5,
+            "totaleWaardeIndicatief": 2000,
+            "onderbouwing": null,
+            "proxies": []
+          }
+        ]
+      }
+    },
+    {
+      "id": "EFF-03",
+      "slug": "sociaal-emotionele-vaardigheden",
+      "uid": "gelijke-kansen:sociaal-emotionele-vaardigheden",
+      "effect": "Sociaal emotionele vaardigheden",
+      "categorie": "Sociaal en maatschappelijk",
+      "definitie": "Sociaal emotionele vaardigheden zijn de vaardigheden die nodig zijn om effectief en bevredigend met anderen te communiceren en relaties te onderhouden. Dit omvat luisteren, empathie, samenwerken en conflictoplossing.",
+      "effectId": "33c97a0a-757f-4c86-b174-3ce4d18d014b",
+      "stellingen": [
+        {
+          "nummer": 1,
+          "stelling": "Ik kan me goed inleven in hoe andere kinderen zich voelen",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "vastgelegd",
+          "bronPosNeg": "positive",
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "9ffa02cc-df9d-4133-9198-78b34417b2c1"
+        },
+        {
+          "nummer": 2,
+          "stelling": "Ik kan duidelijk en vriendelijk om hulp vragen ",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "vastgelegd",
+          "bronPosNeg": "positive",
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "1911e856-a9b6-4e77-b2bf-33cbd4d77d10"
+        },
+        {
+          "nummer": 3,
+          "stelling": "Ik luister goed naar anderen zonder hen te onderbreken",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "vastgelegd",
+          "bronPosNeg": "positive",
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "bcc5ccb4-4ce0-44b3-963e-40c8b0e926c3"
+        },
+        {
+          "nummer": 4,
+          "stelling": "Het lukt me vaak om een oplossing voor een probleem te vinden",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "vastgelegd",
+          "bronPosNeg": "positive",
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "92893172-ce27-4ff3-b1dd-46e2ef783fa7"
+        },
+        {
+          "nummer": 5,
+          "stelling": "Ik heb genoeg zelfvertrouwen",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "vastgelegd",
+          "bronPosNeg": "positive",
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "a261b9a4-af6f-4977-92fe-34e591a034b7"
+        }
+      ],
+      "situatieschetsen": [],
+      "monetarisering": {
+        "eenheid": null,
+        "niveaus": []
+      }
+    },
+    {
+      "id": "EFF-04",
+      "slug": "sociale-contacten-sociale-cohesie-sochale-verbondenheid",
+      "uid": "gelijke-kansen:sociale-contacten-sociale-cohesie-sochale-verbondenheid",
+      "effect": "Sociale contacten, sociale cohesie, sochale verbondenheid",
+      "categorie": "Sociaal en maatschappelijk",
+      "definitie": "Sociale contacten verwijzen naar de relaties en interacties die een persoon heeft met familie, vrienden, buren, en andere mensen in hun omgeving. Goede sociale contacten zijn belangrijk voor emotionele steun, een gevoel van verbondenheid en algemeen welzijn.",
+      "effectId": "45ace55b-70aa-4933-978c-5350c2c8eb9d",
+      "stellingen": [
+        {
+          "nummer": 1,
+          "stelling": "Ik heb minstens 1 goede vriend",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "vastgelegd",
+          "bronPosNeg": "positive",
+          "bron": null,
+          "doelgroepen": [
+            "kinderen-vanaf-groep-5"
+          ],
+          "bronId": "eb144daa-f8bd-4899-a64a-f1c212498f33"
+        },
+        {
+          "nummer": 2,
+          "stelling": "Andere kinderen vinden mij aardig",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "vastgelegd",
+          "bronPosNeg": "positive",
+          "bron": null,
+          "doelgroepen": [
+            "kinderen-vanaf-groep-5"
+          ],
+          "bronId": "0b33e3e0-8753-42c5-bee9-99048fa883be"
+        },
+        {
+          "nummer": 3,
+          "stelling": " Ik word gepest",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "negatief",
+          "negatiefGeformuleerd": true,
+          "herkomstRichting": "vastgelegd",
+          "bronPosNeg": "negative",
+          "bron": null,
+          "doelgroepen": [
+            "kinderen-vanaf-groep-5"
+          ],
+          "bronId": "dc83bd8a-1294-4a6d-8b62-72010074c1db"
+        },
+        {
+          "nummer": 4,
+          "stelling": " Ik doe leuke dingen met mijn vrienden",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "vastgelegd",
+          "bronPosNeg": "positive",
+          "bron": null,
+          "doelgroepen": [
+            "kinderen-vanaf-groep-5"
+          ],
+          "bronId": "059d064d-a54c-4893-ace3-6e47dcac6522"
+        },
+        {
+          "nummer": 5,
+          "stelling": " Ik voel me vaak eenzaam",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "negatief",
+          "negatiefGeformuleerd": true,
+          "herkomstRichting": "vastgelegd",
+          "bronPosNeg": "negative",
+          "bron": null,
+          "doelgroepen": [
+            "kinderen-vanaf-groep-5"
+          ],
+          "bronId": "ac8bfd6c-81c0-40bf-8326-9d62bc603cc5"
+        },
+        {
+          "nummer": 6,
+          "stelling": "Ik heb genoeg fijne contacten, zoals familie/vrienden",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "vastgelegd",
+          "bronPosNeg": "positive",
+          "bron": null,
+          "doelgroepen": [
+            "jongeren-vanaf-middelbare-school"
+          ],
+          "bronId": "d56ccfac-f824-459a-a453-0e9a19be7279"
+        },
+        {
+          "nummer": 7,
+          "stelling": "Ik voel me vaak eenzaam, zelfs wanneer ik omringd ben door mensen",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "negatief",
+          "negatiefGeformuleerd": true,
+          "herkomstRichting": "vastgelegd",
+          "bronPosNeg": "negative",
+          "bron": null,
+          "doelgroepen": [
+            "jongeren-vanaf-middelbare-school"
+          ],
+          "bronId": "bb451e3e-cfc6-4ce2-8157-fe6bc6eaf704"
+        },
+        {
+          "nummer": 8,
+          "stelling": "Ik doe vaak leuke dingen met andere mensen",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "vastgelegd",
+          "bronPosNeg": "positive",
+          "bron": null,
+          "doelgroepen": [
+            "jongeren-vanaf-middelbare-school"
+          ],
+          "bronId": "4517ac0a-0d23-4503-88c2-2b5e5889bcb7"
+        },
+        {
+          "nummer": 9,
+          "stelling": "Er zijn genoeg mensen op wie ik in moeilijke situaties terug kan vallen",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "vastgelegd",
+          "bronPosNeg": "positive",
+          "bron": null,
+          "doelgroepen": [
+            "jongeren-vanaf-middelbare-school"
+          ],
+          "bronId": "a1bc11ee-c9af-4071-b3b4-f6c3f0b617be"
+        },
+        {
+          "nummer": 10,
+          "stelling": "Ik word op school gepest",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "negatief",
+          "negatiefGeformuleerd": true,
+          "herkomstRichting": "vastgelegd",
+          "bronPosNeg": "negative",
+          "bron": null,
+          "doelgroepen": [
+            "jongeren-vanaf-middelbare-school"
+          ],
+          "bronId": "5bbf9103-21e9-4e7d-8d00-22e551b82dac"
+        }
+      ],
+      "situatieschetsen": [],
+      "monetarisering": {
+        "eenheid": null,
+        "niveaus": []
+      }
+    },
+    {
+      "id": "EFF-05",
+      "slug": "ervaren-discriminatie-en-racisme",
+      "uid": "gelijke-kansen:ervaren-discriminatie-en-racisme",
+      "effect": "Ervaren discriminatie en racisme",
+      "categorie": "Sociaal en maatschappelijk",
+      "definitie": "Ervaren discriminatie en racisme verwijzen naar de mate waarin mensen het gevoel hebben ongelijk, oneerlijk of respectloos behandeld te worden op basis van persoonlijke kenmerken, zoals afkomst, huidskleur, religie, geslacht, seksuele oriëntatie of andere identiteitskenmerken. Het gaat hierbij om de subjectieve ervaring van de persoon zelf, ongeacht of de discriminatie objectief vast te stellen is.",
+      "effectId": "e2d26b43-8b5f-477f-aea6-e5f80a18f62e",
+      "stellingen": [
+        {
+          "nummer": 1,
+          "stelling": "Ik word anders behandeld dan andere kinderen die ik ken. Bijvoorbeeld om mijn geloof, om hoe ik eruit zie, om mijn huidskleur, omdat ik arm of rijk ben, of omdat ik een handicap heb",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "negatief",
+          "negatiefGeformuleerd": true,
+          "herkomstRichting": "vastgelegd",
+          "bronPosNeg": "negative",
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "f105ce79-4939-4954-b543-61362412cc61"
+        },
+        {
+          "nummer": 2,
+          "stelling": " Ik heb het gevoel dat anderen rekening houden met wie ik ben",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "vastgelegd",
+          "bronPosNeg": "positive",
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "65fbfaae-cbab-4a82-ae59-2a70daa14af5"
+        },
+        {
+          "nummer": 3,
+          "stelling": "Ik heb het gevoel dat ik dezelfde kansen krijg als andere kinderen",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "vastgelegd",
+          "bronPosNeg": "positive",
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "cb0c4bbf-eb2b-4f61-ad20-1b1c1df83e61"
+        }
+      ],
+      "situatieschetsen": [],
+      "monetarisering": {
+        "eenheid": null,
+        "niveaus": []
+      }
+    },
+    {
+      "id": "EFF-06",
+      "slug": "opvoedvaardigheden",
+      "uid": "gelijke-kansen:opvoedvaardigheden",
+      "effect": "Opvoedvaardigheden",
+      "categorie": "Opvoeding",
+      "definitie": "De mate waarin ouders/verzorgers in het dagelijks leven effectief en positief opvoedgedrag laten zien dat bijdraagt aan het welzijn en gedrag van hun kind.",
+      "effectId": "1e3ff173-95c4-4ed9-86b6-9cfd01f234e7",
+      "stellingen": [
+        {
+          "nummer": 1,
+          "stelling": "Ik heb moeite om grenzen te stellen aan mijn kind",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "negatief",
+          "negatiefGeformuleerd": true,
+          "herkomstRichting": "vastgelegd",
+          "bronPosNeg": "negative",
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "ad594938-ae0c-48e7-8eb8-ae899bfc7b14"
+        },
+        {
+          "nummer": 2,
+          "stelling": "Ik maak samen met mijn kind afspraken over wat wel en niet kan",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "vastgelegd",
+          "bronPosNeg": "positive",
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "a47b9063-cd79-492c-8860-1e56b3cda6ae"
+        },
+        {
+          "nummer": 3,
+          "stelling": "Ik geef mijn kind ruimte om zelf keuzes te maken",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "vastgelegd",
+          "bronPosNeg": "positive",
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "17535e5f-74b3-4dc2-8166-2946570cd6f0"
+        },
+        {
+          "nummer": 4,
+          "stelling": "Als mijn kind boos of verdrietig is, neem ik dat serieus",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "vastgelegd",
+          "bronPosNeg": "positive",
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "79183ac1-23c6-43ab-b48c-ecc9ee402598"
+        },
+        {
+          "nummer": 5,
+          "stelling": "Ik ben beschikbaar voor mijn kind wanneer hen mij nodig heeft",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "vastgelegd",
+          "bronPosNeg": "positive",
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "9f86731d-475b-4f3b-8251-3ad5ba3be9e9"
+        }
+      ],
+      "situatieschetsen": [],
+      "monetarisering": {
+        "eenheid": null,
+        "niveaus": []
+      }
+    },
+    {
+      "id": "EFF-07",
+      "slug": "ontwikkelingsondersteunend-vermogen",
+      "uid": "gelijke-kansen:ontwikkelingsondersteunend-vermogen",
+      "effect": "Ontwikkelingsondersteunend vermogen",
+      "categorie": "Opvoeding",
+      "definitie": "De mate waarin ouders/verzorgers actief bijdragen aan het leren, de ontwikkeling en talentontwikkeling van hun kind in het dagelijks leven.",
+      "effectId": "77df0689-fc6c-4d48-a439-bfa39ac5a677",
+      "stellingen": [
+        {
+          "nummer": 1,
+          "stelling": "Ik moedig mijn kind aan om nieuwe dingen te proberen",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "vastgelegd",
+          "bronPosNeg": "positive",
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "3bebee80-f558-4281-8035-db103f2a7ddb"
+        },
+        {
+          "nummer": 2,
+          "stelling": "Als mijn kind ergens mee zit, help ik hen om zelf oplossingen te bedenken",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "vastgelegd",
+          "bronPosNeg": "positive",
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "2efaa97f-4e11-4fbb-a235-97710dc8b0f7"
+        },
+        {
+          "nummer": 3,
+          "stelling": "Ik praat met mijn kind over keuzes die belangrijk zijn voor de toekomst",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "vastgelegd",
+          "bronPosNeg": "positive",
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "2864b031-948c-4be5-b211-f9af90675ee9"
+        },
+        {
+          "nummer": 4,
+          "stelling": "Ik vind het moeilijk om mijn kind los te laten bij belangrijke keuzes",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "negatief",
+          "negatiefGeformuleerd": true,
+          "herkomstRichting": "vastgelegd",
+          "bronPosNeg": "negative",
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "abbf3fcc-229c-4140-a3b9-71a08944ddbe"
+        },
+        {
+          "nummer": 5,
+          "stelling": "Ik help mijn kind bij huiswerk of andere leeractiviteiten als dat nodig is.",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "vastgelegd",
+          "bronPosNeg": "positive",
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "be174461-bb7f-4d3f-b012-7816387dbd16"
+        }
+      ],
+      "situatieschetsen": [],
+      "monetarisering": {
+        "eenheid": null,
+        "niveaus": []
+      }
+    },
+    {
+      "id": "EFF-08",
+      "slug": "ouderbetrokkenheid",
+      "uid": "gelijke-kansen:ouderbetrokkenheid",
+      "effect": "Ouderbetrokkenheid",
+      "categorie": "Opvoeding",
+      "definitie": "De mate waarin ouders/verzorgers actief contact hebben met school of interventie en deelnemen aan activiteiten rondom de ontwikkeling van hun kind.",
+      "effectId": "7503c79b-85de-467f-b963-aa09b2aa3abe",
+      "stellingen": [
+        {
+          "nummer": 1,
+          "stelling": "Ik heb contact met school over de ontwikkeling van mijn kind",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "vastgelegd",
+          "bronPosNeg": "positive",
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "ac8311a8-0faf-4c58-8305-7f1458afe669"
+        },
+        {
+          "nummer": 2,
+          "stelling": "Ik ga naar gesprekken of bijeenkomsten van school als dat mogelijk is",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "vastgelegd",
+          "bronPosNeg": "positive",
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "9b8b688f-f318-46f6-9357-aeb136af8eb4"
+        },
+        {
+          "nummer": 3,
+          "stelling": "Ik praat met mijn kind over wat hen op school heeft gedaan",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "vastgelegd",
+          "bronPosNeg": "positive",
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "364c78a0-85b3-4b87-b95d-fefedd765ac2"
+        },
+        {
+          "nummer": 4,
+          "stelling": "Ik vind het lastig om contact op te nemen met school bij vragen of problemen",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "negatief",
+          "negatiefGeformuleerd": true,
+          "herkomstRichting": "vastgelegd",
+          "bronPosNeg": "negative",
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "00f31136-a31c-447f-b139-9570416bb122"
+        },
+        {
+          "nummer": 5,
+          "stelling": "Ik geef mij op als vrijwilliger bij activiteiten die door school worden georganiseerd",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "vastgelegd",
+          "bronPosNeg": "positive",
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "c7d64611-eeee-4ccf-883a-fc44be8d2e3f"
+        }
+      ],
+      "situatieschetsen": [],
+      "monetarisering": {
+        "eenheid": null,
+        "niveaus": []
+      }
+    },
+    {
+      "id": "EFF-09",
+      "slug": "sociale-veiligheid-in-de-opvoeding",
+      "uid": "gelijke-kansen:sociale-veiligheid-in-de-opvoeding",
+      "effect": "Sociale veiligheid (in de opvoeding)",
+      "categorie": "Opvoeding",
+      "definitie": "De mate waarin ouders/verzorgers zorgen voor een voorspelbare, respectvolle en veilige opvoedomgeving waarin het kind zich gezien en gehoord voelt.",
+      "effectId": "c328c178-6eb6-4d02-a195-20800f7ab7ff",
+      "stellingen": [
+        {
+          "nummer": 1,
+          "stelling": "Mijn kind ervaart de ruimte om fouten te maken",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "vastgelegd",
+          "bronPosNeg": "positive",
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "1bf97ac1-a09d-4b9c-9165-0b392dab3950"
+        },
+        {
+          "nummer": 2,
+          "stelling": "Mijn kind weet welke regels er zijn",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "vastgelegd",
+          "bronPosNeg": "positive",
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "2787ad7a-69aa-4c2a-9782-d5a6e448c1bf"
+        },
+        {
+          "nummer": 3,
+          "stelling": "Mijn kind komt naar mij toe als hen ergens mee zit",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "vastgelegd",
+          "bronPosNeg": "positive",
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "a9e7d965-0482-4a62-a23e-e0e09094a662"
+        },
+        {
+          "nummer": 4,
+          "stelling": "Ik luister naar mijn kind als hij of zij iets wil vertellen",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "vastgelegd",
+          "bronPosNeg": "positive",
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "c782e267-b609-4fdf-99a6-fde9d4cfc988"
+        },
+        {
+          "nummer": 5,
+          "stelling": "Ik maak duidelijke afspraken met mijn kind over wat wel en niet mag",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "vastgelegd",
+          "bronPosNeg": "positive",
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "702bd387-01a2-416d-9551-8120ee532cc9"
+        }
+      ],
+      "situatieschetsen": [],
+      "monetarisering": {
+        "eenheid": null,
+        "niveaus": []
+      }
+    },
+    {
+      "id": "EFF-10",
+      "slug": "sociale-cohesie-verbondenheid-en-steun",
+      "uid": "gelijke-kansen:sociale-cohesie-verbondenheid-en-steun",
+      "effect": "Sociale cohesie, verbondenheid en steun",
+      "categorie": "Opvoeding",
+      "definitie": "De mate waarin ouders/verzorgers actief gebruikmaken van hun opvoednetwerk (ouders, school, professionals, wijk) voor steun, informatie en samenwerking.",
+      "effectId": "b64749b9-f730-4d46-a8e1-34090eaea17c",
+      "stellingen": [
+        {
+          "nummer": 1,
+          "stelling": "Ik praat met anderen (zoals ouders, school of professionals) over de opvoeding van mijn kind",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "vastgelegd",
+          "bronPosNeg": "positive",
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "155fd0b8-e401-4f47-a641-b15b36169aa0"
+        },
+        {
+          "nummer": 2,
+          "stelling": "Ik vraag anderen om advies als ik vragen heb over opvoeden",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "vastgelegd",
+          "bronPosNeg": "positive",
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "ab1ade11-f107-4480-b592-5952ed7af16b"
+        },
+        {
+          "nummer": 3,
+          "stelling": "Ik weet wie ik kan benaderen als ik hulp nodig heb bij de opvoeding",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "vastgelegd",
+          "bronPosNeg": "positive",
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "3a6bfdb8-ba9d-4d4e-ac0c-d15dc0c92eaf"
+        },
+        {
+          "nummer": 4,
+          "stelling": "Ik maak gebruik van steun of aanbod van school of andere organisaties",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "vastgelegd",
+          "bronPosNeg": "positive",
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "e077d0fb-0d1a-4673-9f4b-2e02bc69790e"
+        },
+        {
+          "nummer": 5,
+          "stelling": "Ik deel mijn ervaringen over opvoeden met anderen",
+          "gebruikteSchaal": "5-punt Likert (1-5)",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "herkomstRichting": "vastgelegd",
+          "bronPosNeg": "positive",
+          "bron": null,
+          "doelgroepen": null,
+          "bronId": "3ed080c2-6684-46cd-8c77-ad6ea1bd7f1d"
+        }
+      ],
+      "situatieschetsen": [],
+      "monetarisering": {
+        "eenheid": null,
+        "niveaus": []
+      }
+    }
+  ],
+  "controle": {
+    "aantallen": {
+      "effecten": 10,
+      "stellingen": 53
+    },
+    "afgeleideRichting": [
+      "EFF-01 #1"
+    ],
+    "zonderOnderbouwing": [
+      "EFF-01 niveau 3",
+      "EFF-01 niveau 4",
+      "EFF-01 niveau 5",
+      "EFF-02 niveau 3",
+      "EFF-02 niveau 4",
+      "EFF-02 niveau 5"
+    ],
+    "zonderMonetarisering": [
+      "EFF-03",
+      "EFF-04",
+      "EFF-05",
+      "EFF-06",
+      "EFF-07",
+      "EFF-08",
+      "EFF-09",
+      "EFF-10"
+    ],
+    "ontbrekendeVelden": [
+      "stellingen[].bron — de herkomst van een stelling is nooit vastgelegd",
+      "stellingen[].posNeg — bij arbeidsparticipatie alleen op omgepoolde stellingen ingevuld; de rest is afgeleid",
+      "monetarisering.eenheid — waar een bedrag per geldt is nooit vastgelegd",
+      "monetarisering.niveaus[].proxies — één bedrag per niveau, niet uitgesplitst per stakeholder",
+      "situatieschetsen[].label en .bron — alleen de omschrijving zelf bestaat",
+      "aggregatie/overlapgroep — bedragen mogen niet over effecten heen opgeteld worden",
+      "bronnen, parameters, gevoeligheid, audit — bestaan alleen in workbookgestuurde standaarden"
+    ]
+  }
+}

@@ -60,13 +60,24 @@ def score_of(niveau):
     return int(niveau) if re.fullmatch(r"\d+", str(niveau).strip()) else None
 
 
-def build_effecten(wb):
+def build_effecten(wb, sector):
     effecten = OrderedDict()
     for row in rows(wb[SHEETS["effecten"]]):
         eid = row["effect_id"]
+        slug = slug_from_path(row.get("opmerkingen"), row.get("effect"))
         effecten[eid] = OrderedDict(
             id=eid,
-            slug=slug_from_path(row.get("opmerkingen"), row.get("effect")),
+            slug=slug,
+            # Cross-standaard key. `id` restarts at EFF-01 in every standaard and
+            # slugs repeat across sectors ("fysieke-gezondheid" exists in both
+            # energiearmoede and gelijke-kansen), so neither is unique on its own.
+            # Consumers join on this; it is their MSIId.
+            #
+            # It lived only in production until 2026-08-24 — patched into the
+            # seeded documents out of band, absent from the generator — so any
+            # regeneration would have dropped it. See
+            # docs/pitfalls.md#versioning-reseeding-strands-cached-clients.
+            uid=f"{sector}:{slug}",
             effect=row.get("effect"),
             categorie=row.get("categorie"),
             typeEffect=row.get("type_effect"),
@@ -343,7 +354,7 @@ def main():
     if missing:
         raise SystemExit(f"workbook is missing required sheets: {missing}")
 
-    effecten = build_effecten(wb)
+    effecten = build_effecten(wb, args.sector)
 
     document = OrderedDict(
         meta=OrderedDict(

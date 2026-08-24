@@ -188,6 +188,20 @@ After deploying, confirm the runtime actually changed rather than trusting the C
 - Verify a re-seed against **Firestore directly** or with a cache-busting query param, never the plain URL you already fetched.
 - A published version is immutable *by contract*. Re-seeding one in place is only safe while you are the sole consumer. Once anyone pins a version, republishing it silently changes numbers they have already reported — ship a new version instead.
 
+**Near miss (2026-08-24): the live document can be ahead of the repo.** Before seeding two new standaarden, a comparison of the committed JSON against Firestore showed `energiearmoede/0.9` differing on every effect:
+
+```
+.effecten[0].uid    live  : "energiearmoede:fysieke-gezondheid"
+                    lokaal: undefined
+```
+
+`uid` exists nowhere in this repo — not in the generator, not in the seed script, not in the JSON's git history. It was added out of band, and the API serves it to consumers today. `seedMeetstandaard.js` writes with `set()`, which **replaces the whole document**, so a plain `node seedMeetstandaard.js` would have deleted all thirteen.
+
+- **Never assume the committed document is what is live.** Diff before seeding, the same way you diff `firestore.rules` before deploying. Generated-and-committed is only the source of truth if nothing else writes.
+- The script now refuses to overwrite an existing version without `--force`, and prints which field paths would change before it skips. Reaching for `--force` should feel like a decision.
+- A field that only exists in production is a bug waiting for the next regeneration. `uid` is now emitted by `tools/build-meetstandaard.py` and by `functions/exportEffectenStandaard.js`, composed as `{sector}:{slug}` — the same value the consumer reconstructs when it is absent, and pinned by a test.
+- The committed `meetstandaard-energiearmoede-0.9.json` still has no `uid`, because regenerating it needs the workbook and 0.9 is published and immutable. It arrives with the next version. Until then the drift is real and the `--force` guard is what keeps it harmless.
+
 ---
 
 ## verify-panel-is-behind-auth

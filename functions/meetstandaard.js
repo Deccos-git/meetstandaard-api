@@ -1,6 +1,8 @@
 import { handleVersionedResource, sendCached, sendError } from "./versionedResource.js";
 import energiearmoede09 from "./data/meetstandaard-energiearmoede-0.9.json" with { type: "json" };
 import milieuCirculariteit09 from "./data/interventiebibliotheek-milieu-circulariteit-0.9.json" with { type: "json" };
+import arbeidsparticipatie09 from "./data/meetstandaard-arbeidsparticipatie-0.9.json" with { type: "json" };
+import gelijkeKansen10 from "./data/meetstandaard-gelijke-kansen-1.0.json" with { type: "json" };
 
 // The published standaarden, each served as one versioned document per version.
 //
@@ -35,6 +37,23 @@ export const STANDAARDEN = {
     label: "Milieu & circulariteit",
     collection: "MeetstandaardMilieuCirculariteit",
     documenten: [milieuCirculariteit09],
+  },
+  // Snapshots of the two standaarden that still live as a sector tag on the
+  // shared `effects` collection. They are here so that every standaard states
+  // its version through the API rather than through a constant in the frontend;
+  // their content is thinner than a workbook-generated one, and `controle` on
+  // each document says exactly how. See functions/exportEffectenStandaard.js.
+  arbeidsparticipatie: {
+    sector: "arbeidsparticipatie",
+    label: "Arbeidsparticipatie",
+    collection: "MeetstandaardArbeidsparticipatie",
+    documenten: [arbeidsparticipatie09],
+  },
+  "gelijke-kansen": {
+    sector: "gelijke-kansen",
+    label: "Gelijke kansen",
+    collection: "MeetstandaardGelijkeKansen",
+    documenten: [gelijkeKansen10],
   },
 };
 

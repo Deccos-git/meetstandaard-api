@@ -162,3 +162,31 @@ Bill electricity savings at the weighted price. Leave the emission factor locati
 - The admin panel shows the total in bold with both components in the columns beside it, and renders `berekening.waarschuwing` under the table. The total never appears alone.
 - Two prices now exist in `aannames` and they are not interchangeable. `elektriciteitsprijs` is an input to the derived one; only `elektriciteitsprijs-gewogen-incl-groenestroomopslag` is used in a savings figure. A test pins which one the published numbers follow.
 - The derived aanname carries `afgeleid: true` and its verbatim `formule`, so a consumer can re-derive it rather than trust it.
+
+---
+
+## ADR-008: Een ontbrekende polariteit is positief, en wordt gemarkeerd als afgeleid
+
+**Date:** 2026-08-24 · **Status:** Accepted
+
+### Context
+
+Arbeidsparticipatie en gelijke kansen worden als momentopname uit de `effects`-collectie gepubliceerd, zodat hun versie uit de API komt in plaats van uit `src/standaarden.js`.
+
+Daarbij bleek `posNeg` — het enige veld dat vastlegt of een stelling omgepoold is — nauwelijks gevuld: **21 van 86 stellingen** bij arbeidsparticipatie, en die 21 zeggen allemaal `"negative"`. Bij gelijke kansen is het 52 van 53, mét beide waarden.
+
+Het patroon wees één kant op: 19 van de 21 effecten hebben precies één gemarkeerde stelling, en de ongemarkeerde lezen onmiskenbaar positief ("Ik voel me gezond" naast `negative` op "Ik heb vaak pijn of lichamelijk ongemak"). Bij het invoeren van de vragenlijst zijn alleen de omgepoolde items aangevinkt.
+
+Dit is het gevaarlijkste veld om fout te hebben: een omgepoolde stelling die als positief wordt gescoord draait de uitkomst van het effect om.
+
+### Decision
+
+De conventie is bevestigd (2026-08-24): **niet geregistreerd betekent positief.** De generator vult dat in, maar zet er `herkomstRichting` naast — `"vastgelegd"` of `"afgeleid"` — en bewaart de letterlijke bronwaarde in `bronPosNeg`.
+
+### Consequences
+
+- Beide standaarden zijn scoorbaar in plaats van alleen leesbaar. 65 stellingen bij arbeidsparticipatie en 1 bij gelijke kansen zijn afgeleid; `controle.afgeleideRichting` noemt ze allemaal bij naam.
+- Een consument die niet op een afgeleide polariteit wil varen, filtert op `herkomstRichting`. Dat kan alleen omdat afgeleid en vastgelegd apart blijven — vandaar dat er een test op staat.
+- Dit is hetzelfde patroon als `afgeleid: true` op een afgeleide aanname in ADR-007: de waarde is bruikbaar, en dat hij is afgeleid blijft zichtbaar.
+- **De duurzame oplossing ligt in de bron, niet hier.** Zolang `posNeg` in de `effects`-collectie leeg blijft, leidt elke regeneratie het opnieuw af. Zet het veld expliciet bij de migratie uit `docs/migratie-standaarden.md`, dan verdwijnt de afleiding vanzelf.
+- Het alternatief — `null` publiceren — is verworpen omdat het een bevestigde conventie behandelt als onbekend, en daarmee 65 stellingen onbruikbaar maakt zonder dat er iets onzeker aan is.

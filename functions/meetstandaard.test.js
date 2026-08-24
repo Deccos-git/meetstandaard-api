@@ -157,12 +157,17 @@ const get = async (path, headers = {}) => {
   return response;
 };
 
+// Derived from the registry rather than written out: a literal list here would
+// have to be remembered every time a standaard is added, which is the same trap
+// as enumerating collections in firestore.rules.
+const SECTOREN = Object.keys(STANDAARDEN);
+
 test("GET /meetstandaard lists the available sectoren", async () => {
   const res = await get("/api/v1/meetstandaard");
   assert.equal(res.statusCode, 200);
   assert.deepEqual(
     JSON.parse(res.body).sectoren.map((s) => s.sector),
-    ["energiearmoede", "milieu-circulariteit"]
+    SECTOREN
   );
   assert.deepEqual(JSON.parse(res.body).sectoren[0], {
     sector: "energiearmoede",
@@ -200,7 +205,7 @@ test("the bare function URL lists the sectoren", async () => {
   assert.equal(res.statusCode, 200);
   assert.deepEqual(
     JSON.parse(res.body).sectoren.map((s) => s.sector),
-    ["energiearmoede", "milieu-circulariteit"]
+    SECTOREN
   );
 });
 
@@ -216,7 +221,7 @@ test("an unknown sector 404s with the sectoren that do exist", async () => {
   assert.equal(res.body.error, "Unknown sector: warmtetransitie");
   assert.deepEqual(
     res.body.sectoren.map((s) => s.sector),
-    ["energiearmoede", "milieu-circulariteit"]
+    SECTOREN
   );
 });
 
