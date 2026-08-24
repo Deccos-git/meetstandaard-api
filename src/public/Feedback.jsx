@@ -194,10 +194,6 @@ const Formulier = ({ standaard, versie, doelen, gebruiker, isAdmin, opGeplaatst 
           maxLength={4000}
           required
         />
-        <p className="publiek-hint">
-          Reageer je op versie {versie}. Dat wordt erbij vastgelegd, zodat later duidelijk is welke
-          formulering je bedoelde.
-        </p>
       </div>
 
       <button type="submit" className="publiek-knop publiek-knop-zwart" disabled={bezig || !tekst.trim()}>
