@@ -101,14 +101,15 @@ const Formulier = ({ standaard, versie, doelen, gebruiker, opGeplaatst }) => {
   const [fout, setFout] = useState('');
   const [geplaatst, setGeplaatst] = useState(false);
 
+  // No explanation, but still a way in: without a control here a visitor has no
+  // route from reading to reacting.
   if (!gebruiker) {
     return (
-      <div className="publiek-melding publiek-melding-goed" style={{ marginBottom: 24 }}>
-        <p>
-          <Link to="/inloggen">Log in</Link> of <Link to="/registreren">maak een account</Link> om te
-          reageren. Meelezen kan zonder.
-        </p>
-      </div>
+      <p style={{ marginBottom: 24 }}>
+        <Link className="publiek-knop publiek-knop-licht publiek-knop-klein" to="/inloggen">
+          Reageren
+        </Link>
+      </p>
     );
   }
 
