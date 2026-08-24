@@ -74,7 +74,7 @@ const InterventiesPubliek = ({ doc }) => {
                   <th className="num">Maatschappelijk / eenheid</th>
                 </>
               )}
-              <th>Bewijs</th>
+              <th>Bewijskracht</th>
             </tr>
           </thead>
           <tbody>
@@ -82,7 +82,11 @@ const InterventiesPubliek = ({ doc }) => {
               <tr key={i.id}>
                 <td>
                   {i.interventie}
-                  <div className="publiek-notitie">{i.id}</div>
+                  {/* Where the figure is monetised from. For this audience that
+                      is the question behind every number in the row. */}
+                  {i.monetarisatiebron && (
+                    <div className="publiek-notitie">Bron: {i.monetarisatiebron}</div>
+                  )}
                 </td>
                 <td>{i.eenheid}</td>
                 {jaarcijfers ? (
@@ -105,7 +109,7 @@ const InterventiesPubliek = ({ doc }) => {
                     </td>
                   </>
                 )}
-                <td>{i.bewijskracht || leeg}</td>
+                <td>{i.bewijssterkte || i.bewijskracht || leeg}</td>
               </tr>
             ))}
           </tbody>

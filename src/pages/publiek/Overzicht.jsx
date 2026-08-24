@@ -81,7 +81,6 @@ const Overzicht = () => {
                     {versie?.latest && (
                       <span className="publiek-badge publiek-badge-versie">versie {versie.latest}</span>
                     )}
-                    <span className="publiek-badge">alleen-lezen</span>
                   </div>
                 </Link>
               );

@@ -24,11 +24,7 @@ const ParametersPubliek = ({ doc }) => {
 
   return (
     <>
-      <p className="publiek-notitie">
-        Belastingjaar {doc.meta?.taxYear}. Bron: {doc.meta?.source}. Bijgewerkt: {doc.meta?.updatedAt}.
-      </p>
-
-      <h4>Treden van de participatieladder</h4>
+      <h3>Treden van de participatieladder</h3>
       <div className="publiek-tabelwrap">
         <table className="publiek-tabel">
           <thead>
@@ -57,7 +53,7 @@ const ParametersPubliek = ({ doc }) => {
         </table>
       </div>
 
-      <h4>Bruto jaarinkomen per opleiding en uren per week</h4>
+      <h3>Bruto jaarinkomen per opleiding en uren per week</h3>
       <p className="publiek-notitie">
         Bron: {bronLinks(doc.sourceRefs?.incomeByEducationAndHoursBand)}
       </p>

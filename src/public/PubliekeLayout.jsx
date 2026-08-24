@@ -50,7 +50,7 @@ const PubliekeLayout = () => (
         </Link>
         <nav className="publiek-nav">
           <NavLink to="/">Meetstandaarden</NavLink>
-          <NavLink to="/over">Over de standaard</NavLink>
+          <NavLink to="/over">Over de meetstandaard</NavLink>
           <a href="https://meetstandaard.nl" target="_blank" rel="noopener noreferrer">
             meetstandaard.nl
           </a>
@@ -66,11 +66,11 @@ const PubliekeLayout = () => (
     <footer className="publiek-footer">
       <div className="publiek-breed">
         <p>
-          De meetstandaarden worden gepubliceerd via een open, alleen-lezen API. Elke versie blijft
-          bestaan, zodat een meting van vandaag over jaren nog uit te leggen is.
+          Elke versie van een meetstandaard blijft bestaan. Zo is een meting van vandaag over jaren
+          nog uit te leggen tegen de methode waarmee hij is gedaan.
         </p>
         <p>
-          <Link to="/over">Over de standaard en de API</Link>
+          <Link to="/over">Over de meetstandaard</Link>
         </p>
       </div>
     </footer>

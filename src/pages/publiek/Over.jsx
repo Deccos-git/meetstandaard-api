@@ -1,73 +1,54 @@
 import { API_BASE } from '../../api/client';
 
-// The public site is one consumer of the API among others. Saying so, and
-// showing the exact URLs, is what makes "controleerbaar" more than a claim.
+// Written for the people the standaard is for: organisations measuring their
+// impact, financiers judging it, sector partners building on it. The technical
+// half is real and stays, but it sits at the end under its own heading instead
+// of setting the tone of the page.
 const Over = () => (
   <section className="publiek-sectie">
     <div className="publiek-breed publiek-smal">
-      <p className="publiek-eyebrow">Over de standaard</p>
-      <h1>Elk cijfer is terug te leiden.</h1>
+      <p className="publiek-eyebrow">Over de meetstandaard</p>
+      <h1>Samen één manier van meten.</h1>
 
       <p>
-        Een meetstandaard beschrijft welke effecten je meet, met welke stellingen, en wat een score
-        maatschappelijk waard is. Bij elk bedrag horen de berekening, de aannames en de bron.
+        Een meetstandaard beschrijft per thema welke maatschappelijke effecten ertoe doen, welke
+        vragen je stelt om ze te meten, en wat een uitkomst maatschappelijk waard is. Organisaties
+        die hetzelfde meten kunnen hun resultaten naast elkaar leggen, en financiers kunnen zien
+        waar een bedrag op rust.
       </p>
 
-      <h2>Een versie verandert nooit</h2>
+      <h2>Bij elk bedrag staat waar het vandaan komt</h2>
       <p>
-        Een gepubliceerde versie blijft bestaan en blijft geserveerd worden. Een correctie komt uit
-        als nieuwe versie. Daardoor is een meting van vandaag over jaren nog uit te leggen tegen
-        precies de methodiek waarmee hij is gedaan.
-      </p>
-      <p>
-        Leg daarom de versie vast bij alles wat je meet — die staat in elk antwoord in{' '}
-        <code>meta.version</code>.
+        Achter elke waardering staat wie er baat bij heeft, hoe het bedrag is berekend, welke
+        aannames daarbij zijn gedaan en uit welke bron het komt. Waar een bedrag nog niet is
+        vastgesteld, staat dat er — geen nul die een echte nul lijkt.
       </p>
 
-      <h2>Wat een standaard niet weet</h2>
+      <h2>Een versie verandert nooit meer</h2>
       <p>
-        Elke standaard publiceert ook zijn gaten. Ontbreekt een cijfer, dan staat er geen nul maar
-        een lege waarde met de brontekst erbij, en wordt hij genoemd onder <em>Controle</em>. Een
-        waarde die is afgeleid in plaats van vastgelegd staat als afgeleid gemarkeerd.
+        Zodra een versie is gepubliceerd blijft hij bestaan zoals hij is. Verbeteringen komen uit
+        als nieuwe versie. Daardoor blijft een meting die je vorig jaar deed uit te leggen, ook als
+        de standaard sindsdien is doorontwikkeld.
+      </p>
+      <p>Noteer daarom bij elke meting welke versie je gebruikte. Die staat bovenaan elke standaard.</p>
+
+      <h2>Meedenken</h2>
+      <p>
+        Deze standaarden zijn in ontwikkeling en worden beter van gebruik. Bij elke standaard kun je
+        reageren — op het geheel of op één effect. Wat er met een reactie is besloten staat er
+        publiek bij, ook als het antwoord &quot;hier doen we niets mee&quot; is.
       </p>
 
-      <h2>De API</h2>
+      <h2>Voor ontwikkelaars</h2>
       <p>
-        Openbaar, alleen-lezen, zonder sleutel. Deze pagina gebruikt precies dezelfde endpoints als
-        elke andere consument.
+        Alle standaarden zijn ook machineleesbaar op te halen. Openbaar, zonder sleutel; deze site
+        gebruikt precies dezelfde ingang.
       </p>
-      <div className="publiek-tabelwrap">
-        <table className="publiek-tabel">
-          <thead>
-            <tr>
-              <th>Wat</th>
-              <th>Pad</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Alle standaarden</td>
-              <td>
-                <code>/meetstandaard/api/v1/meetstandaard</code>
-              </td>
-            </tr>
-            <tr>
-              <td>Welke versies bestaan</td>
-              <td>
-                <code>/meetstandaard/api/v1/meetstandaard/{'{standaard}'}/versions</code>
-              </td>
-            </tr>
-            <tr>
-              <td>Eén versie, vastgepind</td>
-              <td>
-                <code>/meetstandaard/api/v1/meetstandaard/{'{standaard}'}/{'{versie}'}</code>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
       <p className="publiek-notitie">
-        Basis: <code>{API_BASE}</code>
+        <code>{API_BASE}/meetstandaard/api/v1/meetstandaard</code>
+        <br />
+        Pin een versie met <code>/{'{standaard}'}/{'{versie}'}</code> en bewaar{' '}
+        <code>meta.version</code> bij wat je registreert.
       </p>
     </div>
   </section>

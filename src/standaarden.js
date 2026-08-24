@@ -70,3 +70,12 @@ export const euro = n =>
   typeof n === 'number'
     ? n.toLocaleString('nl-NL', { style: 'currency', currency: 'EUR', maximumFractionDigits: 2 })
     : '';
+
+// 2026-08-17 leest als een systeemveld; 17 augustus 2026 leest als een datum.
+export const datum = iso => {
+  if (!iso) return '';
+  const d = new Date(iso);
+  return Number.isNaN(d.getTime())
+    ? iso
+    : d.toLocaleDateString('nl-NL', { day: 'numeric', month: 'long', year: 'numeric' });
+};

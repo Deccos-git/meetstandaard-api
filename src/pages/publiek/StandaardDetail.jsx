@@ -1,13 +1,12 @@
 import { Link, useParams } from 'react-router-dom';
-import { standaardVoorKey } from '../../standaarden';
+import { datum, standaardVoorKey } from '../../standaarden';
 import { useApiStandaard } from '../../public/useApiStandaard';
 import { useChangelog } from '../../public/useChangelog';
+import BronnenPubliek from '../../public/renderers/BronnenPubliek';
 import EffectenPubliek from '../../public/renderers/EffectenPubliek';
 import InterventiesPubliek from '../../public/renderers/InterventiesPubliek';
 import ParametersPubliek from '../../public/renderers/ParametersPubliek';
-import ControleBlok from '../../public/ControleBlok';
 import Feedback from '../../public/Feedback';
-import Changelog from '../../public/Changelog';
 
 // Which renderer a document gets is decided by `meta.kind` — the field the API
 // publishes exactly so a consumer does not have to know in advance what shape
@@ -42,7 +41,8 @@ const StandaardDetail = () => {
 
 const Inhoud = ({ standaard }) => {
   const { versies, versie, setVersie, doc, laden, fout } = useApiStandaard(standaard.api);
-  const { entries: changelog, fout: changelogFout } = useChangelog(standaard.key);
+  // Still loaded: a processed reaction says which version carried it out.
+  const { entries: changelog } = useChangelog(standaard.key);
   const Renderer = doc ? rendererVoor(doc, standaard) : null;
 
   return (
@@ -52,14 +52,6 @@ const Inhoud = ({ standaard }) => {
           <p className="publiek-eyebrow">Meetstandaard</p>
           <h1 style={{ marginBottom: 12 }}>{standaard.label}</h1>
           <p className="publiek-smal">{standaard.omschrijving}</p>
-          {/* The standaard these values were derived from, which is not the
-              same thing as this document's own version. Naming both is what
-              stops the two being read as one. */}
-          {doc?.meta?.source && (
-            <p className="publiek-notitie" style={{ marginTop: 10 }}>
-              Afgeleid uit: {doc.meta.source}
-            </p>
-          )}
         </div>
       </section>
 
@@ -81,7 +73,7 @@ const Inhoud = ({ standaard }) => {
             </select>
 
             {doc?.meta?.releasedAt && (
-              <span className="publiek-badge">gepubliceerd {doc.meta.releasedAt}</span>
+              <span className="publiek-badge">gepubliceerd {datum(doc.meta.releasedAt)}</span>
             )}
 
             {/* A version id like "2026.1" reads as a mistake next to "0.9" until
@@ -92,21 +84,9 @@ const Inhoud = ({ standaard }) => {
               <span className="publiek-badge">belastingjaar {doc.meta.taxYear}</span>
             )}
             {doc?.meta?.updatedAt && (
-              <span className="publiek-badge">bijgewerkt {doc.meta.updatedAt}</span>
+              <span className="publiek-badge">bijgewerkt {datum(doc.meta.updatedAt)}</span>
             )}
 
-            <span className="publiek-badge">alleen-lezen</span>
-
-            {/* A published version is immutable, so the exact URL that produced
-                what is on screen is worth showing — it is what a consumer pins. */}
-            {versie && (
-              <span className="publiek-notitie" style={{ marginLeft: 'auto' }}>
-                Rechtstreeks uit de API:{' '}
-                <code>
-                  /api/v1/{standaard.api.functie}/{standaard.api.resource}/{versie}
-                </code>
-              </span>
-            )}
           </div>
 
           {fout && (
@@ -118,21 +98,10 @@ const Inhoud = ({ standaard }) => {
 
           {doc && !laden && (
             <>
-              {/* The toelichting explains what the version is; it is not a
-                  warning. Giving it the warning styling would make the real
-                  warnings — the ones that change how a number may be used —
-                  indistinguishable from an introduction. */}
-              {doc.meta?.toelichting && (
-                <p className="publiek-smal publiek-notitie" style={{ marginBottom: 28 }}>
-                  {doc.meta.toelichting}
-                </p>
-              )}
 
               <Renderer doc={doc} />
 
-              <ControleBlok controle={doc.controle} />
-
-              <Changelog entries={changelog} fout={changelogFout} versie={versie} />
+              <BronnenPubliek doc={doc} />
 
               <Feedback standaard={standaard} doc={doc} versie={versie} changelog={changelog} />
             </>

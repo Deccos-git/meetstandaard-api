@@ -10,14 +10,10 @@ export const doelenVan = doc => {
   if (!doc) return [];
 
   if (Array.isArray(doc.effecten)) {
-    return doc.effecten.map(e => ({ type: 'effect', id: e.id, label: `${e.id} — ${e.effect}` }));
+    return doc.effecten.map(e => ({ type: 'effect', id: e.id, label: e.effect }));
   }
   if (Array.isArray(doc.interventies)) {
-    return doc.interventies.map(i => ({
-      type: 'interventie',
-      id: i.id,
-      label: `${i.id} — ${i.interventie}`,
-    }));
+    return doc.interventies.map(i => ({ type: 'interventie', id: i.id, label: i.interventie }));
   }
   if (Array.isArray(doc.ladderLevels)) {
     return doc.ladderLevels.map(l => ({
@@ -31,12 +27,12 @@ export const doelenVan = doc => {
 
 // A reaction keeps pointing at its target even when that target no longer
 // exists in the version being viewed — an effect can be renamed or dropped
-// between versions. Saying "onbekend onderdeel" beats silently showing it as
-// feedback on the standaard as a whole.
+// between versions. Saying so beats silently showing it as feedback on the
+// standaard as a whole.
 export const labelVoorDoel = (doel, doelen) => {
   if (!doel || doel.type === 'standaard') return 'De standaard als geheel';
   const gevonden = doelen.find(d => d.type === doel.type && d.id === doel.id);
-  return gevonden ? gevonden.label : `${doel.id} (onbekend onderdeel in deze versie)`;
+  return gevonden ? gevonden.label : 'Een onderdeel dat niet meer in deze versie staat';
 };
 
 export const STATUS_LABEL = {

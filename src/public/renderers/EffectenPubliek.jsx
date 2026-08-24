@@ -1,9 +1,11 @@
 import { useMemo, useState } from 'react';
 import { euro } from '../../standaarden';
 
-// An effect-based meetstandaard, grouped by categorie and expandable per effect.
-// Unlike the panel's master/detail pane this opens inline: a visitor scans the
-// whole standaard first and only then goes into one effect.
+// An effect-based meetstandaard for the people who will use it: practitioners
+// deciding what to measure, financiers deciding what to believe.
+//
+// So no internal identifiers, and every amount shows the source it rests on —
+// that is the question this audience actually has.
 const EffectenPubliek = ({ doc }) => {
   const [zoek, setZoek] = useState('');
 
@@ -29,7 +31,7 @@ const EffectenPubliek = ({ doc }) => {
         <input
           className="publiek-zoek"
           type="search"
-          placeholder="Zoek in effecten en stellingen"
+          placeholder="Zoek een effect of vraag"
           value={zoek}
           onChange={e => setZoek(e.target.value)}
         />
@@ -65,26 +67,21 @@ const Effect = ({ effect }) => {
     <details className="publiek-effect">
       <summary>
         {effect.effect}
-        <span className="publiek-badge">{effect.id}</span>
-        {niveaus.length === 0 && <span className="publiek-badge">nog niet gemonetariseerd</span>}
+        {niveaus.length === 0 && <span className="publiek-badge">nog geen bedragen</span>}
       </summary>
 
       <div className="publiek-effect-body">
         {effect.definitie && <p className="publiek-smal">{effect.definitie}</p>}
-        {effect.bronDefinitie && (
-          <p className="publiek-notitie">Bron definitie: {effect.bronDefinitie}</p>
-        )}
 
         {effect.stellingen.length > 0 && (
           <>
-            <h4>Stellingen</h4>
+            <h4>Wat je vraagt</h4>
             <div className="publiek-tabelwrap">
               <table className="publiek-tabel">
                 <thead>
                   <tr>
                     <th>#</th>
-                    <th>Stelling</th>
-                    <th>Richting</th>
+                    <th>Vraag</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -93,25 +90,12 @@ const Effect = ({ effect }) => {
                       <td>{s.nummer}</td>
                       <td>
                         {s.stelling}
-                        {/* A reverse-coded item has to be flipped before it is
-                            averaged, so this cannot be a footnote. */}
+                        {/* A negatively phrased question scores the other way
+                            round. Whoever fills in the answers needs to know
+                            that; it is not a technical detail. */}
                         {s.negatiefGeformuleerd && (
                           <span className="publiek-badge publiek-badge-let-op" style={{ marginLeft: 8 }}>
-                            omscoren 1↔5
-                          </span>
-                        )}
-                      </td>
-                      <td>
-                        {s.richting}
-                        {/* Derived rather than recorded: see ADR-008. Showing it
-                            is the whole reason the field exists. */}
-                        {s.herkomstRichting === 'afgeleid' && (
-                          <span
-                            className="publiek-badge publiek-badge-afgeleid"
-                            style={{ marginLeft: 8 }}
-                            title="Niet vastgelegd in de bron; afgeleid uit de conventie dat alleen omgepoolde stellingen zijn gemarkeerd."
-                          >
-                            afgeleid
+                            eens = ongunstig
                           </span>
                         )}
                       </td>
@@ -125,21 +109,16 @@ const Effect = ({ effect }) => {
 
         {niveaus.length > 0 && (
           <>
-            <h4>Niveaus en maatschappelijke waarde</h4>
-            {effect.monetarisering.eenheid && (
-              <p className="publiek-notitie">{effect.monetarisering.eenheid}</p>
-            )}
+            <h4>Wat een score maatschappelijk waard is</h4>
 
             {niveaus.map(n => (
               <div className="publiek-niveau" key={n.niveau}>
                 <div className="publiek-niveau-kop">
-                  <strong>Niveau {n.niveau}</strong>
+                  <strong>Score {n.niveau}</strong>
                   {n.schets?.label && <span className="publiek-badge">{n.schets.label}</span>}
-                  {/* null is a real state — an unvalued level must not read as
-                      "nothing gained". */}
                   <span className="publiek-badge">
                     {n.totaleWaardeIndicatief === null
-                      ? 'niet gewaardeerd'
+                      ? 'nog geen bedrag'
                       : `${euro(n.totaleWaardeIndicatief)} per jaar`}
                   </span>
                 </div>
@@ -150,11 +129,11 @@ const Effect = ({ effect }) => {
                     <table className="publiek-tabel">
                       <thead>
                         <tr>
-                          <th>Stakeholder</th>
-                          <th>Proxy</th>
-                          <th className="num">Bedrag</th>
+                          <th>Voor wie</th>
+                          <th>Waar het bedrag over gaat</th>
+                          <th className="num">Bedrag per jaar</th>
                           <th>Berekening</th>
-                          <th>Overlapgroep</th>
+                          <th>Bron</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -169,23 +148,31 @@ const Effect = ({ effect }) => {
                                 euro(p.bedrag)
                               )}
                             </td>
-                            <td>{p.berekening}</td>
-                            <td>{p.overlapgroep}</td>
+                            <td>
+                              {p.berekening}
+                              {p.aannames && <div className="publiek-notitie">{p.aannames}</div>}
+                            </td>
+                            {/* The source of the amount and the evidence that
+                                the effect leads to it are two different claims,
+                                and both belong next to the figure. */}
+                            <td className="publiek-notitie">
+                              {p.bronBedrag}
+                              {p.bronEffectProxyRelatie && (
+                                <div style={{ marginTop: 4 }}>
+                                  Onderbouwing: {p.bronEffectProxyRelatie}
+                                </div>
+                              )}
+                            </td>
                           </tr>
                         ))}
                       </tbody>
                     </table>
                   </div>
                 )}
+
+                {n.onderbouwing && <p className="publiek-notitie">Onderbouwing: {n.onderbouwing}</p>}
               </div>
             ))}
-
-            <div className="publiek-waarschuwing">
-              <p>
-                Tel bedragen niet zonder meer op over effecten heen. Zonder de overlapcorrectie uit
-                de standaard tel je dezelfde baat meerdere keren mee.
-              </p>
-            </div>
           </>
         )}
       </div>
