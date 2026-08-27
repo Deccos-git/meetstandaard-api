@@ -23,6 +23,7 @@ Short, direct, one idea per paragraph. Tables and bullets over walls of text. If
 **Deploy safety.**
 - `firebase deploy --only functions` / `--only firestore:rules` are fine when asked.
 - **Before deploying `firestore.rules`, diff the local file against the live ruleset.** A rules deploy fully replaces the backend — anything present live but missing locally is silently removed. See `docs/pitfalls.md#deploy-firestore-rules-full-replace`.
+- **A filtered function deploy never deletes.** Removing an export leaves the old function running in production on its last-deployed code. After removing one, run `firebase functions:list`, compare against the exports in `functions/index.js`, and delete the difference explicitly. See `docs/pitfalls.md#deploy-removed-function-stays-live`.
 - Never write to production Firestore to test a permission. Test writes go to a scratch document id that does not exist. See `docs/pitfalls.md#data-destructive-write-test-on-production`.
 
 **No silent skipping.** Missing tooling, a step you want to skip, a conflict between instructions — say so and ask.
@@ -43,6 +44,7 @@ export PATH="$HOME/.nvm/versions/node/v20.19.0/bin:$PATH"
 "$HOME/.nvm/versions/node/v22.14.0/bin/node" --test     # from functions/
 npx firebase deploy --only functions:meetstandaard
 npx firebase deploy --only firestore:rules      # read Deploy safety first
+npx firebase functions:list                     # after removing an export: a filtered deploy never deletes
 ```
 
 ## Architecture in one paragraph
@@ -58,6 +60,7 @@ Read the linked entry in `docs/pitfalls.md` **before** writing code that matches
 | About to… | Read |
 |---|---|
 | Deploy `firestore.rules`, or add a Firestore collection | `#deploy-firestore-rules-full-replace` |
+| Remove an export from `functions/index.js`, or delete a file under `functions/` | `#deploy-removed-function-stays-live` |
 | Test a permission, or write to Firestore outside a seed script | `#data-destructive-write-test-on-production` |
 | Read a numeric column from a workbook | `#xlsx-formula-columns-have-no-cached-value` |
 | Parse an amount from a workbook | `#xlsx-typographic-minus-flips-sign` |

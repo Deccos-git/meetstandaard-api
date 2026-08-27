@@ -375,3 +375,35 @@ sum(1 for q in all_questions if not q.get('posNeg'))
 ✅ Right: group by `effect.sectors` first, report per standaard, and only then look for a pattern.
 
 Two standaarden are two standaarden — the same principle applied to comparison is `#analysis-cross-sector-means-identical-questions`.
+
+---
+
+## deploy-removed-function-stays-live
+
+**Trigger:** deleting an export from `functions/index.js`, or removing a file under `functions/` that backed an endpoint.
+
+**Incident (2026-08-27):** the accounts model was taken out — registration, profiles, `functions/gebruikers.js`. The source was gone, `src/` referenced nothing, 161 tests passed and the deploy succeeded. `gebruikers` kept running in `us-central1` the whole time, on its last-deployed code, still accepting an authenticated `POST` and still writing to `users/{uid}`. It had been orphaned since at least the account work of 2026-08-24.
+
+Nothing was corrupted — that function was narrowly written (only `naam` and `bedrijf`, `uid` taken from the token, no body spread). **The damage was to a guarantee, not to data.** `firestore.rules` states, in a comment above the catch-all, *"There is deliberately no client write path left"*. That sentence was false for three days, and the file that made the claim had no way to know. It surfaced only because `firebase functions:list` happened to get run before an unrelated deploy.
+
+**Root cause:** a filtered deploy never deletes anything. Only an unfiltered `firebase deploy --only functions` compares the deployed set against your exports and offers to remove the difference — and the filtered form is what this repo's own commands section recommends, so it is the habit.
+
+This is the mirror image of `#deploy-firestore-rules-full-replace`. Rules deploys remove **too much** (the live ruleset is replaced wholesale, so anything missing locally is dropped). Function deploys remove **too little** (nothing is ever dropped). Both bite because the local file stops being an accurate picture of the backend, in opposite directions.
+
+❌ Wrong — deletes the source, deploys the rest, leaves the endpoint serving:
+```bash
+git rm functions/gebruikers.js
+npx firebase deploy --only functions:meetstandaard,functions:feedback
+```
+
+✅ Right — after removing any export, reconcile the deployed set against the source:
+```bash
+npx firebase functions:list                       # what is actually running
+grep '^export const' functions/index.js           # what should be running
+npx firebase functions:delete gebruikers --region us-central1
+```
+
+**Verify by hitting the URL**, not by reading the list: a deleted function returns `404` at
+`https://us-central1-meetstandaard-api.cloudfunctions.net/{naam}/...`. Until it does, it is live.
+
+An endpoint with no source is worse than one with source: nothing greps for it, no test covers it, and no review will ever look at it again.
