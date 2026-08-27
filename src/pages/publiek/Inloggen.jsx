@@ -1,7 +1,10 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { sendEmailVerification, signInWithEmailAndPassword } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../firebase/config';
+
+// Inloggen is er alleen nog voor beheerders. Bezoekers hebben geen account meer
+// nodig: feedback geven gaat via een open formulier op de standaard zelf.
 
 const FOUTTEKST = {
   // Firebase answers wrong-password and unknown-account with the same code on
@@ -18,8 +21,6 @@ const Inloggen = () => {
   const [wachtwoord, setWachtwoord] = useState('');
   const [fout, setFout] = useState('');
   const [bezig, setBezig] = useState(false);
-  const [opnieuwGestuurd, setOpnieuwGestuurd] = useState(false);
-  const [onbevestigd, setOnbevestigd] = useState(null);
 
   const navigate = useNavigate();
 
@@ -30,14 +31,6 @@ const Inloggen = () => {
 
     try {
       const { user } = await signInWithEmailAndPassword(auth, email, wachtwoord);
-
-      // An unverified account may sign in and read — it just cannot post
-      // feedback. Saying so here beats letting them discover it at the point
-      // where they have already typed a reaction.
-      if (!user.emailVerified) {
-        setOnbevestigd(user);
-        return;
-      }
 
       // Admins have somewhere else to be; everyone else belongs on the public
       // site. Reading the claim beats sending everyone to /beheer and letting
@@ -50,42 +43,6 @@ const Inloggen = () => {
       setBezig(false);
     }
   };
-
-  if (onbevestigd) {
-    return (
-      <section className="publiek-sectie">
-        <div className="publiek-breed publiek-smal">
-          <p className="publiek-eyebrow">Nog te bevestigen</p>
-          <h1>Je e-mailadres is nog niet bevestigd.</h1>
-          <p>
-            Je bent ingelogd en kunt alle standaarden lezen. Feedback geven kan zodra je op de link
-            in de bevestigingsmail hebt geklikt.
-          </p>
-
-          {opnieuwGestuurd ? (
-            <div className="publiek-melding publiek-melding-goed">
-              <p>Er is een nieuwe bevestigingsmail onderweg naar {onbevestigd.email}.</p>
-            </div>
-          ) : (
-            <button
-              type="button"
-              className="publiek-knop publiek-knop-oranje"
-              onClick={async () => {
-                await sendEmailVerification(onbevestigd);
-                setOpnieuwGestuurd(true);
-              }}
-            >
-              Stuur de mail opnieuw
-            </button>
-          )}
-
-          <p style={{ marginTop: 20 }}>
-            <Link to="/">Naar de meetstandaarden</Link>
-          </p>
-        </div>
-      </section>
-    );
-  }
 
   return (
     <section className="publiek-sectie">
@@ -130,7 +87,8 @@ const Inloggen = () => {
         </form>
 
         <p className="publiek-notitie" style={{ marginTop: 22 }}>
-          Nog geen account? <Link to="/registreren">Account aanmaken</Link>
+          Inloggen is voor beheerders. Feedback op een standaard geven kan zonder account,
+          onderaan de pagina van die standaard.
         </p>
       </div>
     </section>

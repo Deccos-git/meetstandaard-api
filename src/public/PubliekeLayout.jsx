@@ -10,24 +10,20 @@ import './public.css';
 // Signed-out and still-loading both render nothing in the account slot rather
 // than a login button, so the header does not flicker for someone whose session
 // is still being restored.
+//
+// Er is niets meer waarvoor een bezoeker inlogt — feedback geven kan zonder
+// account — dus de kop toont geen inlogknop meer. /inloggen blijft bestaan voor
+// beheerders, die het adres kennen.
 const Account = () => {
   const { gebruiker, isAdmin, laden } = useAuth();
   const navigate = useNavigate();
 
-  if (laden) return null;
-
-  if (!gebruiker) {
-    return (
-      <Link className="publiek-knop publiek-knop-oranje publiek-knop-klein" to="/inloggen">
-        Inloggen
-      </Link>
-    );
-  }
+  if (laden || !gebruiker) return null;
 
   return (
     <div className="publiek-account">
       {isAdmin && <Link to="/beheer">Beheer</Link>}
-      <Link to="/profiel">{gebruiker.email}</Link>
+      <span>{gebruiker.email}</span>
       <button
         type="button"
         onClick={async () => {

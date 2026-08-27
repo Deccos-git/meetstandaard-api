@@ -59,9 +59,13 @@ That is not the migration: `docs/migratie-standaarden.md` routes them through a 
 
 ## Cloud Functions
 
-Eight, all `onRequest`. Seven are read-only and wrapped by `publicEndpoint` in `index.js` (CORS + method check + rate limit + `maxInstances: 10` + error handling).
+Nine, all `onRequest`, and three wrappers in `index.js` that differ only in who may call them. The split is the point: a read endpoint must never quietly acquire a write path, and an open write must never sit one `if` away from an admin-only one.
 
-The eighth takes a write, and has its own wrapper: `authenticatedEndpoint` adds `POST`-only, an ID-token check, `Cache-Control: no-store`, and CORS limited to the site's own origins instead of `*`. The two wrappers are separate on purpose — a read endpoint must never quietly acquire a write path.
+| Wrapper | Adds |
+|---|---|
+| `publicEndpoint` | CORS + `GET`-only + read rate limit + `maxInstances: 10` + error handling |
+| `publicWriteEndpoint` | `POST`-only, the much smaller `schrijven` rate limit, `no-store`, CORS limited to the site's own origins |
+| `authenticatedEndpoint` | an ID-token check on top of that, and a method it is told (`POST` to decide, `GET` to moderate) |
 
 | Function | Serves |
 |---|---|
@@ -70,9 +74,11 @@ The eighth takes a write, and has its own wrapper: `authenticatedEndpoint` adds 
 | `arbeidsparticipatie` | participatieladder parameters |
 | `database` | panel data as one tree (origin-allowlisted CORS) |
 | `benchmark` | dataset benchmarks |
-| `feedback` | feedback on a standaard, public and unauthenticated |
+| `feedback` | reviewed feedback on a standaard, public and unauthenticated |
 | `changelog` | what changed between versions — **not versioned**, see below |
-| `gebruikers` · `feedbackSchrijven` | **write** — profile; submitting and reviewing feedback |
+| `feedbackIndienen` | **write, open** — submitting feedback without an account |
+| `feedbackSchrijven` | **write, admin** — status and reasoning on one reaction |
+| `feedbackBeheer` | **read, admin** — the moderation queue, incl. the submitter's email |
 
 `versionedResource.js` is shared by the first three: version listing, resolution, pinning, ETag, validation. It is deliberately small — see `docs/decisions.md#adr-002`.
 
@@ -86,9 +92,17 @@ Two soorten are told apart: `publicatie` and `correctie-in-plaats`. The second i
 
 ### The feedback loop
 
-`feedback` → `besluit` → changelog entry. Reading feedback is public and unauthenticated: someone deciding whether to adopt a standaard should see what others found wrong with it and what was done about it. Writing goes through `feedbackSchrijven`, which is also what keeps the submitter's email server-side — Firestore rules cannot filter fields, so the public list is served by a function whose projection decides what is public.
+`feedback` → `besluit` → changelog entry. Reading feedback is public and unauthenticated: someone deciding whether to adopt a standaard should see what others found wrong with it and what was done about it.
 
-The panel shows which feedback is marked `verwerkt` but is not yet named in any changelog entry, so the gap between deciding and writing it down is visible to the person who can close it.
+Submitting is public too. An account was a threshold in front of the one thing this project asks of an outsider, so the form is open — name, organisation (optional), email, reaction. What replaces the account is **moderation, not a lower bar**: a submission lands on status `nieuw`, and `nieuw` is not in `PUBLIEKE_STATUSSEN`. Nothing an anonymous visitor writes reaches the public page until a beheerder gives it a status and a reason.
+
+`spam` exists for the case `afgewezen` cannot cover. A rejection is public on purpose — someone wrote in and is owed a visible answer — which is exactly the wrong response to a bot, so `spam` ends the matter without repeating it. Nothing is deleted; it just stops being published.
+
+The submitter's email is stored and never projected into the public list. Firestore rules cannot filter fields, so the list is served by a function whose projection decides what is public — and the panel gets its own, wider projection through `feedbackBeheer`, because moderating a queue you cannot see is not moderation.
+
+Each reaction shows the changelog entry that names it, when there is one — that last step is what makes `verwerkt` a fact rather than a word.
+
+`verwijderd` is a soft delete alongside `spam`: the document stays and the status can be set back, because a feedback record that can be silently erased is not a record.
 
 Functions authenticate with a service account and use the **Admin SDK, which bypasses Firestore rules entirely**. Locking down rules never affects the public API.
 
@@ -98,30 +112,36 @@ Vite + React, one build, two front-ends that share nothing but the registry:
 
 | Route | What | Reads from |
 |---|---|---|
-| `/` | The public site — every standaard, no login | The HTTP API |
-| `/beheer` | The panel — five tabs | Firestore, over the SDK, as an admin |
+| `/` | The public site — every standaard, no login, feedback included | The HTTP API |
+| `/beheer` | The feedback queue, nothing else | The HTTP API, as an admin |
 
-They read differently because they must. The Firestore rules give an anonymous
-visitor nothing, so the public site can only go over HTTP — which also means it
-shows exactly what any other consumer of the API gets, and says so per standaard
-by printing the URL that produced the page.
+Both read over HTTP. The Firestore rules give an anonymous visitor nothing, so
+the public site has no other way in — which also means it shows exactly what any
+other consumer of the API gets, and says so per standaard by printing the URL
+that produced the page. The panel followed: it used to render the standaarden
+from Firestore behind a login, a second view of the same document that could
+drift from the first. It now shows only what exists nowhere else — the feedback
+queue — and reads that over HTTP too, with a token.
 
 ```
 src/
   standaarden.js                    registry: label, api route, collection
-  api/client.js                     the public site's reads, plus the token-authenticated writes
+  index.css                         reset only; the design lives in public/public.css
+  api/client.js                     the public site's reads, the open feedback write, the admin writes
+  firebase/config.js                the Firebase app the admin login runs on
   public/
     public.css                      the meetstandaard.nl design as tokens
     PubliekeLayout.jsx              header, nav, footer, account slot
     useAuth.js                      signed-in user + admin claim, read from the ID token
     useApiStandaard.js              versions + the pinned document
-    ControleBlok.jsx                what a version reports about its own gaps
-    renderers/                      EffectenPubliek, InterventiesPubliek, ParametersPubliek
-  pages/publiek/                    Overzicht, StandaardDetail, Over, Inloggen, Registreren
-  pages/Home.jsx                    the panel: tabs + version dropdown
-  components/standaard/             the panel's renderers + SharedStyles
+    useChangelog.js                 the changelog of a standaard, shared by history and feedback
+    Feedback.jsx                    the open feedback form and list under a standaard
+    feedbackDoelen.js               what a reaction can be about, read off the pinned document
+    renderers/                      EffectenPubliek, InterventiesPubliek, ParametersPubliek, BronnenPubliek
+  pages/publiek/                    Overzicht, StandaardDetail, Inloggen (beheerders)
+  pages/Beheer.jsx                  the panel: the feedback queue and nothing else
+  components/beheer/FeedbackBeheer  moderating one standaard or all of them at once
   components/auth/AdminRoute.jsx    claim check on /beheer
-  firebase/useVersionedStandaard.js the panel's version list + selected document
 ```
 
 Renderers on both sides are presentational and take `doc`. Which renderer a
@@ -134,7 +154,8 @@ field.
 | Layer | Rule |
 |---|---|
 | Public read API | No auth, CORS `*`, read-only, 60 req/min per client, `maxInstances: 10` |
-| Write endpoints | `POST` only, Firebase ID token required, CORS limited to the site's own origins, same rate limit |
+| Feedback submission | `POST` only, no auth, 5 per 10 min per client, CORS limited to the site's own origins, published only after review |
+| Admin endpoints | Firebase ID token + `admin` claim, CORS limited to the site's own origins |
 | Firestore rules | Reads require the `admin` claim; **no client may write anything at all** |
 | Cloud Functions | Admin SDK, bypasses rules |
 | Panel | `AdminRoute` checks the `admin` claim — UI gating only, never the enforcement point |

@@ -30,15 +30,16 @@ export const haalVersies = api => haal(`${resourcePath(api)}/versions`);
 export const haalStandaard = (api, version) =>
   haal(version ? `${resourcePath(api)}/${version}` : resourcePath(api));
 
-// The write endpoints take the caller's Firebase ID token. They are the only
-// way a client changes anything — the Firestore rules deny client writes
-// outright — so every call goes through here rather than through the SDK.
-export const postMetToken = async (pad, body, gebruiker) => {
-  const token = await gebruiker.getIdToken();
-
+// Every client write goes through an endpoint — the Firestore rules deny client
+// writes outright — so every call goes through here rather than through the SDK.
+// `token` is only omitted by the one endpoint that has no caller to identify.
+const post = async (pad, body, token) => {
   const res = await fetch(`${BASE}${pad}`, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+    headers: {
+      'Content-Type': 'application/json',
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
+    },
     body: JSON.stringify(body),
   });
 
@@ -53,18 +54,36 @@ export const postMetToken = async (pad, body, gebruiker) => {
   return antwoord;
 };
 
-export const bewaarProfiel = ({ naam, bedrijf }, gebruiker) =>
-  postMetToken('/gebruikers/api/v1/gebruikers/profiel', { naam, bedrijf }, gebruiker);
+export const postMetToken = async (pad, body, gebruiker) =>
+  post(pad, body, await gebruiker.getIdToken());
 
 // Feedback lezen kan zonder login — dat is het punt: wie overweegt de standaard
 // te gebruiken moet kunnen zien wat anderen ervan vinden en wat ermee is gedaan.
+// Deze lijst bevat alleen wat een beheerder heeft beoordeeld.
 export const haalFeedback = standaard => haal(`${BASE}/feedback/api/v1/feedback/${standaard}`);
 
-export const dienFeedbackIn = (inzending, gebruiker) =>
-  postMetToken('/feedbackSchrijven/api/v1/feedback', inzending, gebruiker);
+// Indienen kan ook zonder login: het formulier staat open. De naam, organisatie
+// en het e-mailadres komen dus uit het formulier zelf — er is geen profiel meer
+// dat ervoor instaat. Het adres blijft server-side en komt nooit in de publieke
+// lijst terug.
+export const dienFeedbackIn = inzending =>
+  post('/feedbackIndienen/api/v1/feedback', inzending);
 
 export const beoordeelFeedback = (id, besluit, gebruiker) =>
   postMetToken(`/feedbackSchrijven/api/v1/feedback/${id}/besluit`, besluit, gebruiker);
+
+// De moderatiewachtrij: alles, inclusief wat nog niet is beoordeeld en het
+// e-mailadres van de indiener. Alleen een beheerder komt hier langs.
+export const haalFeedbackVoorBeheer = async (standaard, gebruiker) => {
+  const token = await gebruiker.getIdToken();
+  const res = await fetch(`${BASE}/feedbackBeheer/api/v1/feedback/${standaard}`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+
+  const antwoord = await res.json().catch(() => null);
+  if (!res.ok) throw new Error(antwoord?.error || `De server antwoordde met ${res.status}.`);
+  return antwoord;
+};
 
 // De changelog is niet geversioneerd — hij groeit, juist omdat de documenten
 // waar hij over gaat dat niet mogen.

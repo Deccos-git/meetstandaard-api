@@ -61,3 +61,30 @@ test("the client is identified from X-Forwarded-For, not the proxy peer", () => 
   const forwarded = { headers: { "x-forwarded-for": "6.6.6.6, 10.0.0.1" }, ip: "10.0.0.1" };
   assert.equal(enforceRateLimit(forwarded, fakeResponse(), 0), true);
 });
+
+// --- De schrijfbudgetten ---
+
+const { schrijven } = RATE_LIMIT.LIMIETEN;
+
+// Sinds het feedbackformulier openstaat is dit de enige rem op een schrijfpad
+// dat niemand meer hoeft te passeren.
+test("inzendingen hebben een eigen, veel kleiner budget", () => {
+  const request = requestFrom("7.7.7.7");
+  for (let i = 0; i < schrijven.max; i++) {
+    assert.equal(enforceRateLimit(request, fakeResponse(), 0, "schrijven"), true, `inzending ${i + 1}`);
+  }
+
+  const res = fakeResponse();
+  assert.equal(enforceRateLimit(request, res, 0, "schrijven"), false);
+  assert.equal(res.statusCode, 429);
+  assert.equal(res.headers["Retry-After"], String(schrijven.windowMs / 1000));
+});
+
+// Een bezoeker die de standaard leest hoort daarna nog te kunnen reageren.
+test("lezen en schrijven tellen elkaars budget niet op", () => {
+  const request = requestFrom("8.8.8.8");
+  for (let i = 0; i <= MAX_REQUESTS_PER_WINDOW; i++) enforceRateLimit(request, fakeResponse(), 0);
+  assert.equal(enforceRateLimit(request, fakeResponse(), 0), false, "leesbudget is op");
+
+  assert.equal(enforceRateLimit(request, fakeResponse(), 0, "schrijven"), true);
+});

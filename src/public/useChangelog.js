@@ -30,12 +30,3 @@ export const useChangelog = standaardKey => {
 // reactions at once, and the entry is what gets written when the change ships.
 export const entryVoorFeedback = (feedbackId, entries) =>
   (entries || []).find(e => (e.feedback || []).includes(feedbackId)) || null;
-
-// Feedback that was marked processed but that no changelog entry mentions. Not
-// an error — a decision can precede the release that carries it out — but it is
-// the gap where "we'll write it down later" quietly becomes never, so it is
-// shown rather than counted.
-export const verwerktZonderChangelog = (items, entries) =>
-  (items || []).filter(
-    item => item.status === 'verwerkt' && !entryVoorFeedback(item.id, entries)
-  );

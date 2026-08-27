@@ -29,17 +29,20 @@ const AdminRoute = () => {
   if (status === 'admin') return <Outlet />;
 
   return (
-    <div style={{ padding: 24 }}>
-      <h2>Geen toegang</h2>
-      <p>
-        {status === 'uitgelogd'
-          ? 'Log in met een beheeraccount om deze pagina te zien.'
-          : 'Dit account heeft geen beheerrechten.'}
-      </p>
-      <p>
-        <Link to="/">Terug naar de meetstandaarden</Link>
-      </p>
-    </div>
+    <section className="publiek-sectie">
+      <div className="publiek-breed publiek-smal">
+        <p className="publiek-eyebrow">Beheer</p>
+        <h1>Geen toegang.</h1>
+        <p>
+          {status === 'uitgelogd'
+            ? 'Log in met een beheeraccount om deze pagina te zien.'
+            : 'Dit account heeft geen beheerrechten.'}
+        </p>
+        <p>
+          <Link to="/">Terug naar de meetstandaarden</Link>
+        </p>
+      </div>
+    </section>
   );
 };
 

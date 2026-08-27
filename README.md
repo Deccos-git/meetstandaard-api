@@ -2,7 +2,7 @@
 
 Public API serving versioned meetstandaarden for social impact measurement, a public site that shows them, and a small admin panel behind an admin claim.
 
-Everything a consumer reads is unauthenticated and read-only. The one exception is what a visitor submits themselves — a profile, and feedback on a standaard — which goes through authenticated `POST` endpoints, because the Firestore rules deny client writes outright.
+Everything a consumer reads is unauthenticated and read-only. The one exception is feedback on a standaard, which a visitor submits over an open `POST` endpoint — no account — and which becomes public only after a beheerder has reviewed it. The Firestore rules deny client writes outright, so that endpoint is the only way in.
 
 A meetstandaard defines what to measure, how to score it, and what a score is worth in societal terms — with the calculation, the assumptions and the source visible behind every figure. The API exists so those figures can be cited and re-checked years later, not just consulted today.
 
@@ -24,13 +24,15 @@ https://us-central1-meetstandaard-api.cloudfunctions.net
 | `/changelog/api/v1/changelog/{standaard}` | What changed between versions (not versioned itself) |
 | `/database` · `/benchmark` | Panel data and dataset benchmarks |
 
-Write endpoints are a separate class: `POST` only, a Firebase ID token required, and CORS limited to the site's own origins.
+Write endpoints are a separate class: `POST` only, a tighter rate limit, and CORS limited to the site's own origins.
 
 | Endpoint | Accepts |
 |---|---|
-| `POST /gebruikers/api/v1/gebruikers/profiel` | Name and organisation for the signed-in account |
-| `POST /feedbackSchrijven/api/v1/feedback` | Feedback on a standaard (verified email required) |
-| `POST /feedbackSchrijven/api/v1/feedback/{id}/besluit` | Status and reasoning (admins only) |
+| `POST /feedbackIndienen/api/v1/feedback` | Feedback on a standaard — open, no account (`naam`, `bedrijf` optional, `email`, `tekst`) |
+| `POST /feedbackSchrijven/api/v1/feedback/{id}/besluit` | Status and reasoning (ID token, admins only) |
+| `GET /feedbackBeheer/api/v1/feedback/{standaard}` | The moderation queue: everything, incl. the submitter's email (ID token, admins only) |
+
+The public feedback list carries only what has been reviewed. A submission is stored the moment it arrives and published the moment a beheerder gives it a status and a reason; the `spam` status ends it without a public answer. The submitter's email is stored but never projected into the public list.
 
 Published today:
 

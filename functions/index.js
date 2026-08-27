@@ -7,8 +7,7 @@ import benchmarks from "./benchmarks.js";
 import { handleArbeidsparticipatie } from "./arbeidsparticipatie.js";
 import { handleMonetarisering } from "./monetarisering.js";
 import { handleMeetstandaard } from "./meetstandaard.js";
-import { handleGebruikers } from "./gebruikers.js";
-import { handleFeedbackSchrijven, handleLijst } from "./feedback.js";
+import { handleBeheerLijst, handleBesluit, handleIndienen, handleLijst } from "./feedback.js";
 import { handleChangelog } from "./changelog.js";
 import { enforceRateLimit } from "./rateLimit.js";
 
@@ -163,12 +162,13 @@ const publicEndpoint = (corsMiddleware, label, handler) =>
     });
   });
 
-// The public site's own origins, for the endpoints that accept a write.
+// The public site's own origins, for everything that is not an open read.
 //
-// Not `*`, and not the same list as the dashboard's: these read an
-// Authorization header, so the set of pages allowed to call them should be the
-// set of pages we actually ship. The preview-channel pattern is here because
-// that is how the site is reviewed before it has a domain.
+// Not `*`, and not the same list as the dashboard's: these either read an
+// Authorization header or accept a submission, so the set of pages allowed to
+// call them should be the set of pages we actually ship. The preview-channel
+// pattern is here because that is how the site is reviewed before it has a
+// domain.
 //
 // TODO: add the public domain once it is chosen. Until then the site only runs
 // on localhost and on a Firebase Hosting URL.
@@ -204,10 +204,10 @@ const authenticeer = async (request, response) => {
   }
 };
 
-// The counterpart of `publicEndpoint` for the endpoints that write. Everything
-// a client changes goes through one of these: the Firestore rules deny client
-// writes outright, so this is the only path in, and it is a path that validates.
-const authenticatedEndpoint = (label, handler) =>
+// The counterpart of `publicEndpoint` for everything that needs to know who is
+// calling: the writes only an admin may do, and the admin's own view of the
+// moderation queue.
+const authenticatedEndpoint = (label, handler, methode = "POST") =>
   functions.runWith({ maxInstances: 10 }).https.onRequest((request, response) => {
     appCorsHandler(request, response, async () => {
       try {
@@ -215,7 +215,7 @@ const authenticatedEndpoint = (label, handler) =>
         if (request.method === "OPTIONS") {
           return response.status(204).send("");
         }
-        if (request.method !== "POST") {
+        if (request.method !== methode) {
           return response.status(405).send("Method Not Allowed");
         }
         if (!enforceRateLimit(request, response)) {
@@ -237,23 +237,66 @@ const authenticatedEndpoint = (label, handler) =>
     });
   });
 
-// Gebruikersprofiel: naam en bedrijf bij een account dat zichzelf heeft
-// geregistreerd. Route:
-//   POST .../api/v1/gebruikers/profiel
-export const gebruikers = authenticatedEndpoint("gebruikers", (request, response, gebruiker) =>
-  handleGebruikers(firestore, request, response, gebruiker)
+// De enige schrijffunctie zonder login. Bewust een eigen wrapper en niet een
+// tak binnen `authenticatedEndpoint`: het verschil tussen "iedereen mag dit" en
+// "alleen een beheerder mag dit" hoort in de vorm van de functie te zitten, niet
+// in een if halverwege een handler.
+//
+// De CORS-lijst is die van de site zelf, niet `*`. Dat houdt geen script tegen —
+// CORS is een browserregel — maar het beperkt wel welke pagina's dit formulier
+// namens een bezoeker kunnen versturen. De echte rem is de `schrijven`-limiet
+// hieronder, plus het feit dat niets publiek wordt voordat het is beoordeeld.
+const publicWriteEndpoint = (label, handler) =>
+  functions.runWith({ maxInstances: 10 }).https.onRequest((request, response) => {
+    appCorsHandler(request, response, async () => {
+      try {
+        if (request.method === "OPTIONS") {
+          return response.status(204).send("");
+        }
+        if (request.method !== "POST") {
+          return response.status(405).send("Method Not Allowed");
+        }
+        if (!enforceRateLimit(request, response, Date.now(), "schrijven")) {
+          return;
+        }
+
+        response.set("Cache-Control", "no-store");
+        await handler(request, response);
+      } catch (error) {
+        console.error(`Error in ${label}:`, error);
+        return response.status(500).send("Error handling request");
+      }
+    });
+  });
+
+// Feedback indienen. Openbaar en zonder account — wie een fout ziet in een
+// standaard hoort zich daarvoor niet eerst te hoeven registreren. Route:
+//   POST .../api/v1/feedback
+export const feedbackIndienen = publicWriteEndpoint("feedbackIndienen", (request, response) =>
+  handleIndienen(firestore, request, response)
 );
 
-// Feedback indienen en beoordelen. Routes:
-//   POST .../api/v1/feedback                 (indienen; geverifieerd e-mailadres vereist)
-//   POST .../api/v1/feedback/{id}/besluit    (status + toelichting; alleen beheerders)
+// Feedback beoordelen: status + toelichting, en daarmee ook de publicatie. Route:
+//   POST .../api/v1/feedback/{id}/besluit    (alleen beheerders)
 export const feedbackSchrijven = authenticatedEndpoint("feedbackSchrijven", (request, response, gebruiker) =>
-  handleFeedbackSchrijven(firestore, request, response, gebruiker)
+  handleBesluit(firestore, request, response, gebruiker)
+);
+
+// De moderatiewachtrij: alles op een standaard, inclusief wat nog niet is
+// beoordeeld en inclusief het e-mailadres van de indiener. Alleen beheerders.
+//   GET .../api/v1/feedback/{standaard}
+export const feedbackBeheer = authenticatedEndpoint(
+  "feedbackBeheer",
+  (request, response, gebruiker) => handleBeheerLijst(firestore, request, response, gebruiker),
+  "GET"
 );
 
 // Feedback lezen. Publiek en zonder login, want het hele punt van feedback
 // verzamelen is dat iedereen kan zien wat er gezegd is en wat ermee gebeurd is.
 //   GET .../api/v1/feedback/{standaard}
+//
+// Alleen beoordeelde feedback. Het formulier staat open, dus zonder die filter
+// zou een inzending zichzelf publiceren.
 //
 // Geen cache: wie net iets heeft geplaatst hoort het meteen te zien staan, en
 // een status die een dag lang oud blijft ondermijnt precies het vertrouwen dat

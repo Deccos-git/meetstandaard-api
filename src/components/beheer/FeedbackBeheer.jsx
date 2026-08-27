@@ -1,30 +1,54 @@
 import { useEffect, useState } from 'react';
 import { auth } from '../../firebase/config';
-import { beoordeelFeedback, haalChangelog, haalFeedback } from '../../api/client';
-import { entryVoorFeedback, verwerktZonderChangelog } from '../../public/useChangelog';
+import { beoordeelFeedback, haalChangelog, haalFeedbackVoorBeheer } from '../../api/client';
+import { entryVoorFeedback } from '../../public/useChangelog';
 import { STANDAARDEN } from '../../standaarden';
-import { badge, note, tableWrap } from '../standaard/SharedStyles';
 
-const STATUSSEN = ['nieuw', 'in-behandeling', 'verwerkt', 'afgewezen'];
+const STATUSSEN = ['nieuw', 'in-behandeling', 'verwerkt', 'afgewezen', 'spam', 'verwijderd'];
 
-// Reviewing feedback. Reads through the same public endpoint the site uses, so
-// an admin sees exactly what a visitor sees — including that the author's email
-// is not part of it. If contacting someone directly ever becomes necessary, that
-// needs a deliberate second endpoint rather than a wider projection here.
+// De statussen die een bezoeker te zien krijgt. Spiegelt PUBLIEKE_STATUSSEN in
+// functions/feedback.js — een paneel dat iets anders belooft dan het endpoint
+// doet is erger dan een paneel dat niets belooft.
+const PUBLIEK = ['in-behandeling', 'verwerkt', 'afgewezen'];
+
+const ALLE = 'alle';
+
+// "Open" is de dagelijkse lijst: alles behalve wat is verwijderd. "Alles" is
+// letterlijk alles, verwijderde reacties incluis — ze zijn immers niet weg, dat
+// is het verschil tussen een softdelete en een delete.
+const OPEN = 'open';
+
+// Reviewing feedback. Sinds het formulier open staat is dit geen kijkvenster
+// meer maar een wachtrij: wat hier op `nieuw` staat, staat nergens anders. Het
+// leest daarom via het beheerendpoint — alles, inclusief het e-mailadres van de
+// indiener, dat de publieke lijst nooit meegeeft.
 const FeedbackBeheer = () => {
-  const [standaard, setStandaard] = useState(STANDAARDEN[0].key);
+  const [standaard, setStandaard] = useState(ALLE);
   const [items, setItems] = useState(null);
-  const [changelog, setChangelog] = useState(null);
-  const [filter, setFilter] = useState('alles');
+  const [changelogs, setChangelogs] = useState({});
+  const [filter, setFilter] = useState(OPEN);
   const [fout, setFout] = useState('');
 
-  const laad = key =>
-    Promise.all([haalFeedback(key), haalChangelog(key)])
-      .then(([f, c]) => {
-        setItems(f.feedback);
-        setChangelog(c.entries);
+  const laad = keuze => {
+    const keys = keuze === ALLE ? STANDAARDEN.map(s => s.key) : [keuze];
+
+    return Promise.all(
+      keys.map(k =>
+        Promise.all([haalFeedbackVoorBeheer(k, auth.currentUser), haalChangelog(k)]).then(
+          ([f, c]) => ({ key: k, feedback: f.feedback, entries: c.entries })
+        )
+      )
+    )
+      .then(delen => {
+        setItems(
+          delen
+            .flatMap(d => d.feedback)
+            .sort((a, b) => String(b.aangemaaktOp).localeCompare(String(a.aangemaaktOp)))
+        );
+        setChangelogs(Object.fromEntries(delen.map(d => [d.key, d.entries])));
       })
       .catch(e => setFout(e.message));
+  };
 
   useEffect(() => {
     setItems(null);
@@ -32,70 +56,54 @@ const FeedbackBeheer = () => {
     laad(standaard);
   }, [standaard]);
 
-  // "Verwerkt" is a claim until a changelog entry names the reaction. Counting
-  // that here means the gap between deciding and writing it down is visible to
-  // the person who can close it, instead of quietly staying open.
-  const losseEindjes = verwerktZonderChangelog(items, changelog);
-
-  const zichtbaar = items?.filter(i => filter === 'alles' || i.status === filter);
+  const zichtbaar = items?.filter(i =>
+    filter === OPEN ? i.status !== 'verwijderd' : filter === 'alles' || i.status === filter
+  );
 
   return (
-    <div>
-      <div style={{ display: 'flex', gap: 12, alignItems: 'center', flexWrap: 'wrap', margin: '16px 0' }}>
-        <label htmlFor="fb-standaard" style={note}>Standaard</label>
+    <div className="publiek-beheer">
+      <div className="publiek-beheer-balk">
+        <label htmlFor="fb-standaard">Standaard</label>
         <select id="fb-standaard" value={standaard} onChange={e => setStandaard(e.target.value)}>
+          <option value={ALLE}>alle</option>
           {STANDAARDEN.map(s => (
             <option key={s.key} value={s.key}>{s.label}</option>
           ))}
         </select>
 
-        <label htmlFor="fb-status" style={note}>Status</label>
+        <label htmlFor="fb-status">Status</label>
         <select id="fb-status" value={filter} onChange={e => setFilter(e.target.value)}>
+          <option value={OPEN}>open</option>
           <option value="alles">alles</option>
           {STATUSSEN.map(s => (
             <option key={s} value={s}>{s}</option>
           ))}
         </select>
 
-        {items && <span style={badge}>{zichtbaar.length} van {items.length}</span>}
+        {items && <span className="publiek-badge">{zichtbaar.length} van {items.length}</span>}
       </div>
 
-      {losseEindjes.length > 0 && (
-        <div style={{ ...tableWrap, padding: 16, borderColor: '#f9b03b' }}>
-          <strong>
-            {losseEindjes.length} als verwerkt gemarkeerd, maar nog niet in de changelog
-          </strong>
-          <p style={note}>
-            Voeg deze id&apos;s toe aan de <code>feedback</code>-lijst van de changelog-entry van de
-            versie die ze doorvoert, in <code>functions/data/changelog.json</code>. Tot dan ziet een
-            bezoeker wel het besluit, maar niet in welke versie het is geland.
-          </p>
-          <ul style={{ margin: 0, paddingLeft: 20 }}>
-            {losseEindjes.map(i => (
-              <li key={i.id} style={{ fontSize: 13 }}>
-                <code>{i.id}</code> — {i.tekst.slice(0, 70)}
-                {i.tekst.length > 70 && '…'}
-              </li>
-            ))}
-          </ul>
+      {fout && (
+        <div className="publiek-fout">
+          <p>{fout}</p>
         </div>
       )}
-
-      {fout && <p style={{ color: 'crimson' }}>{fout}</p>}
       {items === null && !fout && <p>Laden…</p>}
-      {zichtbaar?.length === 0 && <p style={note}>Geen feedback in deze selectie.</p>}
+      {zichtbaar?.length === 0 && <p className="publiek-notitie">Geen feedback in deze selectie.</p>}
 
       {zichtbaar?.map(item => (
         <Beoordeling
           key={item.id}
           item={item}
-          entry={entryVoorFeedback(item.id, changelog)}
+          entry={entryVoorFeedback(item.id, changelogs[item.standaard])}
           opGewijzigd={() => laad(standaard)}
         />
       ))}
     </div>
   );
 };
+
+const labelVoorStandaard = key => STANDAARDEN.find(s => s.key === key)?.label || key;
 
 const Beoordeling = ({ item, entry, opGewijzigd }) => {
   const [status, setStatus] = useState(item.status);
@@ -104,12 +112,17 @@ const Beoordeling = ({ item, entry, opGewijzigd }) => {
   const [fout, setFout] = useState('');
 
   const gewijzigd = status !== item.status || toelichting !== (item.besluit?.toelichting || '');
+  const verwijderd = item.status === 'verwijderd';
 
-  const bewaar = async () => {
+  const zet = async (nieuweStatus, nieuweToelichting) => {
     setBezig(true);
     setFout('');
     try {
-      await beoordeelFeedback(item.id, { status, toelichting }, auth.currentUser);
+      await beoordeelFeedback(
+        item.id,
+        { status: nieuweStatus, toelichting: nieuweToelichting },
+        auth.currentUser
+      );
       await opGewijzigd();
     } catch (e) {
       setFout(e.fouten ? Object.values(e.fouten).join(' ') : e.message);
@@ -118,26 +131,38 @@ const Beoordeling = ({ item, entry, opGewijzigd }) => {
     }
   };
 
+  // Een softdelete: het document blijft staan, het verdwijnt alleen uit de
+  // publieke lijst en uit deze. Daarom is de bevestiging kort en de weg terug
+  // een knop, niet een export uit Firestore.
+  const verwijder = () => {
+    if (window.confirm('Deze reactie verbergen? Hij blijft bewaard en je kunt hem terugzetten.')) {
+      zet('verwijderd', '');
+    }
+  };
+
   return (
-    <div style={{ ...tableWrap, padding: 16 }}>
-      <div style={{ display: 'flex', gap: 10, alignItems: 'baseline', flexWrap: 'wrap' }}>
+    <div className="publiek-niveau" style={{ marginBottom: 14, opacity: verwijderd ? 0.6 : 1 }}>
+      <div className="publiek-niveau-kop">
         <strong>
           {item.doel.type === 'standaard' ? 'De standaard als geheel' : `${item.doel.type} ${item.doel.id}`}
         </strong>
-        <span style={badge}>versie {item.versie}</span>
-        <span style={badge}>{item.status}</span>
-        {entry && <span style={badge}>doorgevoerd in {entry.versie}</span>}
+        <span className={`publiek-badge publiek-status-${item.status}`}>{item.status}</span>
+        <span className="publiek-badge">{labelVoorStandaard(item.standaard)}</span>
+        <span className="publiek-badge">versie {item.versie}</span>
+        {entry && <span className="publiek-badge">doorgevoerd in {entry.versie}</span>}
       </div>
 
-      <p style={{ whiteSpace: 'pre-wrap' }}>{item.tekst}</p>
-      <p style={note}>
+      <p style={{ fontSize: 16, whiteSpace: 'pre-wrap' }}>{item.tekst}</p>
+      <p className="publiek-notitie">
         {item.auteur.naam}
         {item.auteur.bedrijf && ` · ${item.auteur.bedrijf}`}
+        {/* Alleen hier. De publieke lijst projecteert dit adres nooit. */}
+        {item.auteurEmail && ` · ${item.auteurEmail}`}
         {' · '}
         {new Date(item.aangemaaktOp).toLocaleString('nl-NL')}
       </p>
 
-      <div style={{ display: 'flex', gap: 10, alignItems: 'flex-start', flexWrap: 'wrap', marginTop: 12 }}>
+      <div className="publiek-beheer-regel">
         <select value={status} onChange={e => setStatus(e.target.value)}>
           {STATUSSEN.map(s => (
             <option key={s} value={s}>{s}</option>
@@ -149,20 +174,37 @@ const Beoordeling = ({ item, entry, opGewijzigd }) => {
           onChange={e => setToelichting(e.target.value)}
           rows={3}
           placeholder="Waarom dit besluit? Dit is publiek zichtbaar."
-          style={{ flex: 1, minWidth: 280, fontFamily: 'inherit', fontSize: 14, padding: 8 }}
         />
 
-        <button type="button" onClick={bewaar} disabled={bezig || !gewijzigd}>
+        <button
+          type="button"
+          className="publiek-knop publiek-knop-zwart publiek-knop-klein"
+          onClick={() => zet(status, toelichting)}
+          disabled={bezig || !gewijzigd}
+        >
           {bezig ? 'Bezig…' : 'Opslaan'}
+        </button>
+
+        <button
+          type="button"
+          className="publiek-knop publiek-knop-licht publiek-knop-klein"
+          onClick={verwijderd ? () => zet('nieuw', '') : verwijder}
+          disabled={bezig}
+        >
+          {verwijderd ? 'Terugzetten' : 'Verwijderen'}
         </button>
       </div>
 
-      {/* The endpoint refuses any status but `nieuw` without a reason; saying so
-          here beats a 400 the moment they press save. */}
-      {status !== 'nieuw' && !toelichting.trim() && (
-        <p style={note}>Een status anders dan &quot;nieuw&quot; heeft een toelichting nodig.</p>
+      {/* The endpoint refuses a publicly visible status without a reason; saying
+          so here beats a 400 the moment they press save. */}
+      {PUBLIEK.includes(status) && !toelichting.trim() && (
+        <p className="publiek-notitie">Deze status is publiek zichtbaar en heeft een toelichting nodig.</p>
       )}
-      {fout && <p style={{ color: 'crimson' }}>{fout}</p>}
+      {fout && (
+        <div className="publiek-melding publiek-melding-fout" style={{ marginTop: 12, marginBottom: 0 }}>
+          <p>{fout}</p>
+        </div>
+      )}
     </div>
   );
 };

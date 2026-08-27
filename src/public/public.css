@@ -297,7 +297,9 @@
   max-width: 720px;
 }
 .publiek-feedbackformulier select,
-.publiek-feedbackformulier textarea {
+.publiek-feedbackformulier textarea,
+.publiek-beheer select,
+.publiek-beheer textarea {
   font-family: var(--font);
   font-size: 16px;
   width: 100%;
@@ -323,6 +325,36 @@
 .publiek-status-in-behandeling { background: #fff3dd; border-color: var(--oranje); }
 .publiek-status-verwerkt { background: #eaf6ea; border-color: #bfe0bf; }
 .publiek-status-afgewezen { background: #f1f1f1; color: var(--grijs); }
+/* Alleen zichtbaar in het paneel — deze twee halen de publieke lijst nooit. */
+.publiek-status-spam,
+.publiek-status-verwijderd { background: #f1f1f1; color: var(--grijs); text-decoration: line-through; }
+
+/* --- Beheer ---
+   Het paneel is dezelfde site achter een claim, geen tweede product. Het leent
+   daarom de vormtaal hierboven; wat hier staat is alleen wat een wachtrij nodig
+   heeft en een leespagina niet: velden naast elkaar in plaats van onder elkaar. */
+.publiek-beheer textarea { min-height: 90px; resize: vertical; }
+.publiek-beheer-balk {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+.publiek-beheer-balk label { font-size: 15px; font-weight: 700; }
+.publiek-beheer-balk select { width: auto; }
+
+.publiek-beheer-regel {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+}
+.publiek-beheer-regel select { width: auto; }
+/* Een flex-item mag standaard niet kleiner worden dan zijn inhoud; zonder dit
+   duwt de toelichting de knop van de regel af. */
+.publiek-beheer-regel textarea { flex: 1; min-width: 260px; }
 
 /* Een knop die als tekst moet lezen, binnen een alinea. */
 .publiek-tekstknop {

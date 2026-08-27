@@ -76,7 +76,7 @@ Read the linked entry in `docs/pitfalls.md` **before** writing code that matches
 1. Match the surrounding file — comment density, naming, idiom.
 2. Comments explain *why*, never *what*. If a line needs a "what" comment, rename something instead.
 3. Arrow functions, `export default` at the bottom (frontend); named exports (functions/).
-4. Shared read-only presentation lives in `src/components/standaard/SharedStyles.js` — don't redefine table/badge styles per component.
+4. All presentation lives in `src/public/public.css` as `publiek-*` classes — don't redefine table/badge styles per component. `src/index.css` is the reset only.
 5. Generators share `tools/xlsx_common.py` for cell parsing. Add parsing helpers there, not per script.
 6. A new published standaard = one entry in `STANDAARDEN` (`functions/meetstandaard.js`) + one in `src/standaarden.js` + its generated document + a changelog entry in `functions/data/changelog.json`. Nothing else.
 7. A new *version* of an existing standaard = generate, seed, and a changelog entry. Seeding refuses to overwrite an existing version without `--force`.

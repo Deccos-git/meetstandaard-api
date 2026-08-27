@@ -283,6 +283,8 @@ Measured against current data, **exactly one** effect qualifies (`arbeidsvaardig
 
 **Trigger:** adding a precondition to an action — a verified address, a required profile field, an accepted agreement, a claim — when accounts or records already exist.
 
+> *Naschrift (2026-08-27):* deze twee preconditions bestaan niet meer — het feedbackformulier staat inmiddels open en vraagt naam, organisatie en e-mailadres in het formulier zelf. Wat hieronder staat is het incident, niet de huidige code. De les geldt onverminderd voor de volgende precondition.
+
 **Incident (2026-08-24):** feedback got two preconditions, a verified email and a `users/{uid}` profile with a name. Both were correct, both were tested, and both locked out the person who owns the project.
 
 `info@deccos.nl` was created 2024-09-27, long before this codebase ever sent a verification mail, so `emailVerified` was `false`. Neither admin had a profile document either, because the only code that writes one is the registration flow — which those accounts predate by two years. The result was a 403 saying *"bevestig eerst je e-mailadres"* and then, once past that, a 400 saying *"vul je naam en organisatie aan"*.

@@ -1,28 +1,25 @@
 import { useEffect, useMemo, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { dienFeedbackIn, haalFeedback } from '../api/client';
-import { useAuth } from './useAuth';
 import { STATUS_LABEL, doelenVan, labelVoorDoel } from './feedbackDoelen';
 import { entryVoorFeedback } from './useChangelog';
 
-// Feedback on a standaard, readable by everyone and writable by anyone with a
-// verified account.
+// Feedback on a standaard, readable and writable by everyone.
 //
 // Reading is deliberately open: someone deciding whether to adopt a standaard
 // should be able to see what others found wrong with it and what was done about
 // that. A feedback section only visible to the people who already signed up
 // would be a suggestion box, not a public record.
+//
+// Writing is open for the same reason it is read: an account was a threshold in
+// front of the one thing this project asks of an outsider. What takes its place
+// is moderation — the API stores a submission immediately and publishes it only
+// once a beheerder has seen it — so this list shows reviewed feedback, never
+// whatever arrived last.
 const Feedback = ({ standaard, doc, versie, changelog }) => {
-  const { gebruiker, isAdmin, laden: authLaadt } = useAuth();
   const [items, setItems] = useState(null);
   const [fout, setFout] = useState('');
 
   const doelen = useMemo(() => doelenVan(doc), [doc]);
-
-  const laadOpnieuw = () =>
-    haalFeedback(standaard.key)
-      .then(d => setItems(d.feedback))
-      .catch(e => setFout(e.message));
 
   useEffect(() => {
     let afgebroken = false;
@@ -44,16 +41,7 @@ const Feedback = ({ standaard, doc, versie, changelog }) => {
         </div>
       )}
 
-      {!authLaadt && (
-        <Formulier
-          standaard={standaard}
-          versie={versie}
-          doelen={doelen}
-          gebruiker={gebruiker}
-          isAdmin={isAdmin}
-          opGeplaatst={laadOpnieuw}
-        />
-      )}
+      <Formulier standaard={standaard} versie={versie} doelen={doelen} />
 
       {items === null && !fout && <p>Feedback laden…</p>}
       {items?.length === 0 && <p className="publiek-notitie">Er is nog geen feedback op deze standaard.</p>}
@@ -103,37 +91,20 @@ const Item = ({ item, doelen, changelog }) => {
   );
 };
 
-const Formulier = ({ standaard, versie, doelen, gebruiker, isAdmin, opGeplaatst }) => {
+const LEEG = { naam: '', bedrijf: '', email: '' };
+
+const Formulier = ({ standaard, versie, doelen }) => {
+  const [velden, setVelden] = useState(LEEG);
   const [doelSleutel, setDoelSleutel] = useState('standaard');
   const [tekst, setTekst] = useState('');
   const [bezig, setBezig] = useState(false);
   const [fout, setFout] = useState('');
   const [geplaatst, setGeplaatst] = useState(false);
-  const [profielOntbreekt, setProfielOntbreekt] = useState(false);
 
-  // No explanation, but still a way in: without a control here a visitor has no
-  // route from reading to reacting.
-  if (!gebruiker) {
-    return (
-      <p style={{ marginBottom: 24 }}>
-        <Link className="publiek-knop publiek-knop-licht publiek-knop-klein" to="/inloggen">
-          Reageren
-        </Link>
-      </p>
-    );
-  }
-
-  // Mirrors the rule the endpoint applies, admin exemption included — a form
-  // that blocks what the API would accept is worse than no check at all.
-  if (!gebruiker.emailVerified && !isAdmin) {
-    return (
-      <div className="publiek-melding publiek-melding-fout" style={{ marginBottom: 24 }}>
-        <p>
-          Bevestig eerst je e-mailadres via de link in de bevestigingsmail. Daarna kun je reageren.
-        </p>
-      </div>
-    );
-  }
+  const wijzig = veld => e => {
+    setVelden({ ...velden, [veld]: e.target.value });
+    setGeplaatst(false);
+  };
 
   const verstuur = async e => {
     e.preventDefault();
@@ -149,15 +120,13 @@ const Formulier = ({ standaard, versie, doelen, gebruiker, isAdmin, opGeplaatst 
           })();
 
     try {
-      await dienFeedbackIn({ standaard: standaard.key, versie, doel, tekst }, gebruiker);
+      await dienFeedbackIn({ standaard: standaard.key, versie, doel, tekst, ...velden });
+      // Alleen de reactie leegmaken. Wie twee dingen te melden heeft, hoort zijn
+      // naam en adres niet twee keer te hoeven typen.
       setTekst('');
       setGeplaatst(true);
-      await opGeplaatst();
     } catch (e) {
       setFout(e.fouten ? Object.values(e.fouten).join(' ') : e.message);
-      // The endpoint refuses a reaction without a name, which is right, but a
-      // refusal with nowhere to go is a dead end.
-      setProfielOntbreekt(/profiel/i.test(e.message || ''));
     } finally {
       setBezig(false);
     }
@@ -167,21 +136,61 @@ const Formulier = ({ standaard, versie, doelen, gebruiker, isAdmin, opGeplaatst 
     <form className="publiek-feedbackformulier" onSubmit={verstuur}>
       {geplaatst && (
         <div className="publiek-melding publiek-melding-goed">
-          <p>Je reactie staat erbij. Je ziet hem hieronder terug zodra hij is beoordeeld.</p>
+          <p>
+            Dank je wel. Je reactie is binnen. Hij verschijnt hieronder zodra we hem hebben
+            beoordeeld — met het besluit erbij.
+          </p>
         </div>
       )}
       {fout && (
         <div className="publiek-melding publiek-melding-fout">
           <p>{fout}</p>
-          {profielOntbreekt && (
-            <p style={{ marginTop: 10 }}>
-              <Link className="publiek-knop publiek-knop-zwart publiek-knop-klein" to="/profiel">
-                Naam en organisatie invullen
-              </Link>
-            </p>
-          )}
         </div>
       )}
+
+      <div className="publiek-veld">
+        <label htmlFor="naam">Je naam</label>
+        <input
+          id="naam"
+          type="text"
+          value={velden.naam}
+          onChange={wijzig('naam')}
+          autoComplete="name"
+          maxLength={120}
+          required
+        />
+      </div>
+
+      <div className="publiek-veld">
+        <label htmlFor="bedrijf">Organisatie</label>
+        <input
+          id="bedrijf"
+          type="text"
+          value={velden.bedrijf}
+          onChange={wijzig('bedrijf')}
+          autoComplete="organization"
+          maxLength={160}
+        />
+        <p className="publiek-notitie">Optioneel. Laat leeg als je op persoonlijke titel reageert.</p>
+      </div>
+
+      <div className="publiek-veld">
+        <label htmlFor="email">E-mailadres</label>
+        <input
+          id="email"
+          type="email"
+          value={velden.email}
+          onChange={wijzig('email')}
+          autoComplete="email"
+          maxLength={254}
+          required
+        />
+        {/* Wie zijn adres achterlaat hoort te weten waar het heen gaat. Het is
+            het enige veld op dit formulier dat niet publiek wordt. */}
+        <p className="publiek-notitie">
+          Niet publiek zichtbaar. Alleen om contact met je op te nemen over deze reactie.
+        </p>
+      </div>
 
       <div className="publiek-veld">
         <label htmlFor="doel">Waar gaat het over?</label>
@@ -200,16 +209,28 @@ const Formulier = ({ standaard, versie, doelen, gebruiker, isAdmin, opGeplaatst 
         <textarea
           id="tekst"
           value={tekst}
-          onChange={e => setTekst(e.target.value)}
+          onChange={e => {
+            setTekst(e.target.value);
+            setGeplaatst(false);
+          }}
           rows={5}
           maxLength={4000}
           required
         />
       </div>
 
-      <button type="submit" className="publiek-knop publiek-knop-zwart" disabled={bezig || !tekst.trim()}>
+      <button
+        type="submit"
+        className="publiek-knop publiek-knop-zwart"
+        disabled={bezig || !tekst.trim() || !velden.naam.trim() || !velden.email.trim()}
+      >
         {bezig ? 'Versturen…' : 'Plaats reactie'}
       </button>
+
+      <p className="publiek-notitie" style={{ marginTop: 12 }}>
+        Reacties worden eerst gelezen en daarna gepubliceerd, met naam, organisatie en het besluit
+        dat we erover namen.
+      </p>
     </form>
   );
 };
