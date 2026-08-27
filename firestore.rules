@@ -5,11 +5,11 @@ rules_version = '2';
 // the Admin SDK, which bypasses rules entirely — so locking things down here
 // does not affect the API endpoints at all.
 //
-// Since the site became publicly registerable, "signed in" no longer means
-// "trusted": anyone can hold a token. Both halves of the old catch-all were
-// written when the only two accounts were the two admins, and both are now
-// wrong — reads exposed every collection to every visitor who registered, and
-// writes were allowed on anything not named Meetstandaard*.
+// "Signed in" does not mean "trusted": Firebase Auth hands out a token to
+// whoever asks, whatever the site itself offers. Both halves of the old
+// catch-all were written when the only two accounts were the two admins, and
+// both were wrong — reads exposed every collection to every visitor holding a
+// token, and writes were allowed on anything not named Meetstandaard*.
 //
 // So: nothing is writable by any client, and only an admin reads anything.
 service cloud.firestore {
@@ -26,14 +26,6 @@ service cloud.firestore {
     // someone remembers this file (see docs/pitfalls.md#deploy-firestore-rules-full-replace).
     match /{collection}/{document=**} {
       allow read: if isAdmin();
-      allow write: if false;
-    }
-
-    // A registered visitor may read their own profile, and nothing else. This
-    // sits after the catch-all on purpose: rules are permissive-union, so it
-    // widens the read above for exactly one document per user.
-    match /users/{uid} {
-      allow read: if request.auth != null && request.auth.uid == uid;
       allow write: if false;
     }
   }
