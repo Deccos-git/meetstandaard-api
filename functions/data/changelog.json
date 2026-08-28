@@ -147,6 +147,22 @@
     ],
     "arbeidsvaardigheden": [
       {
+        "versie": "1.0",
+        "datum": "2026-08-28",
+        "soort": "publicatie",
+        "samenvatting": "De monetarisering is uit de standaard gehaald. Wat blijft is de meting: negen effecten, 46 stellingen en situatieschetsen per Likert-niveau.",
+        "wijzigingen": [
+          "Geen bedragen meer. De velden monetarisering, aggregatie en gevoeligheid zijn leeg; bronnen, parameters en het auditspoor blijven.",
+          "Aanleiding: alle drie de gebruikte routes waren kostenvermijdingsroutes, en die kunnen per definitie geen waarde boven de nullijn uitdrukken - bij niveau 4 valt er niets meer te vermijden. De standaard kende in 0.9 drie positieve bedragen, alle drie uit de zwakst onderbouwde route.",
+          "Van de reele claim op niveau 1 in 0.9 rustte 37% op een markttarief van EUR 28 per uur, toegepast op werk bij een werkbedrijf dat vaak bestaat omdat er een traject is; en de opvallendste post, EUR 11.636 vermeden bijstand, was een overdrachtsbetaling die per definitie niet meetelt.",
+          "Versie 0.9 blijft opvraagbaar als historisch record; een gepubliceerde versie is onveranderlijk.",
+          "meta.toelichting beschrijft nu wat het document wel en niet bevat, in plaats van de standaardtekst over indicatieve bedragen."
+        ],
+        "besluiten": [],
+        "feedback": [],
+        "commit": "d9939d4"
+      },
+      {
         "versie": "0.9",
         "datum": "2026-08-28",
         "soort": "publicatie",
