@@ -387,6 +387,10 @@ def main():
     parser.add_argument("--version", required=True)
     parser.add_argument("--released-at", required=True, help="ISO date, e.g. 2026-08-17")
     parser.add_argument("--out", required=True)
+    # De standaardtekst beschrijft een document met bedragen. Een standaard die
+    # niet monetariseert zou daarmee over zichzelf liegen, en meta.toelichting is
+    # het eerste wat een consument leest.
+    parser.add_argument("--toelichting", default=None)
     args = parser.parse_args()
 
     wb = openpyxl.load_workbook(args.xlsx, data_only=True)
@@ -404,7 +408,7 @@ def main():
             releasedAt=args.released_at,
             source=f"Meetstandaard {SECTOR_LABELS.get(args.sector, args.sector)} (meetstandaard.xlsx)",
             generatedBy="tools/build-meetstandaard.py",
-            toelichting=(
+            toelichting=args.toelichting or (
                 "Release candidate voor versie 1.0. De inhoud is compleet en intern geauditeerd "
                 "(zie `audit`), maar nog niet extern gevalideerd; onderdelen gemarkeerd als "
                 "'needs verification' (nv) kunnen in 1.0 nog wijzigen. Bedragen zijn indicatieve "
