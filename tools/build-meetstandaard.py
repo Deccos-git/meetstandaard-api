@@ -162,6 +162,13 @@ def build_effecten(wb, sector):
                 bedrag=to_number(row.get("bedrag")),
                 bedragTekst=row.get("bedrag"),
                 eenheid=row.get("eenheid"),
+                # Reeel of overdrachtsbetaling. Een overdracht is herverdeling
+                # en hoort niet in een netto maatschappelijk totaal; zonder dit
+                # veld is dat alleen uit de proxynaam af te leiden, en die zegt
+                # het niet altijd (Bijstandsuitvoeringskosten is reeel) of in
+                # wisselende bewoordingen. Leeg waar het workbook de kolom niet
+                # heeft: onbekend, nooit "reeel".
+                typePost=row.get("type_post"),
                 bronBedrag=row.get("bron_bedrag"),
                 bronEffectProxyRelatie=row.get("bron_effect_proxy_relatie"),
                 toelichtingProxykeuze=row.get("toelichting_proxykeuze"),
@@ -183,6 +190,12 @@ def build_effecten(wb, sector):
                 niveau=niveau,
                 score=score_of(row.get("likert_niveau")),
                 totaleWaardeIndicatief=to_number(row.get("totale_waarde_niveau_indicatief")),
+                # De splitsing die bepaalt wat een consument mag optellen. Staat
+                # hier en niet alleen op de proxyregels, zodat het antwoord op
+                # "welk deel is maatschappelijk" geen inspectie van elke proxy
+                # vergt.
+                waarvanReeel=to_number(row.get("waarvan_reeel")),
+                waarvanOverdracht=to_number(row.get("waarvan_overdracht")),
                 berekening=row.get("berekening"),
                 belangrijksteAannames=row.get("belangrijkste_aannames"),
                 aannamescore=row.get("aannamescore"),

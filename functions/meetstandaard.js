@@ -3,6 +3,7 @@ import energiearmoede09 from "./data/meetstandaard-energiearmoede-0.9.json" with
 import milieuCirculariteit09 from "./data/interventiebibliotheek-milieu-circulariteit-0.9.json" with { type: "json" };
 import arbeidsparticipatie09 from "./data/meetstandaard-arbeidsparticipatie-0.9.json" with { type: "json" };
 import gelijkeKansen10 from "./data/meetstandaard-gelijke-kansen-1.0.json" with { type: "json" };
+import arbeidsvaardigheden09 from "./data/meetstandaard-arbeidsvaardigheden-0.9.json" with { type: "json" };
 
 // The published standaarden, each served as one versioned document per version.
 //
@@ -31,6 +32,12 @@ export const STANDAARDEN = {
     label: "Energiearmoede",
     collection: "MeetstandaardEnergiearmoede",
     documenten: [energiearmoede09],
+  },
+  arbeidsvaardigheden: {
+    sector: "arbeidsvaardigheden",
+    label: "Arbeidsvaardigheden",
+    collection: "MeetstandaardArbeidsvaardigheden",
+    documenten: [arbeidsvaardigheden09],
   },
   "milieu-circulariteit": {
     sector: "milieu-circulariteit",

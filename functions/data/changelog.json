@@ -23,7 +23,10 @@
           "198 herleidbare proxyregels, elk met stakeholder, bedrag, berekening en overlapgroep.",
           "Een `controle`-blok dat benoemt wat niet gemonetariseerd is en waar het gestelde totaal afwijkt van de som van de proxies."
         ],
-        "besluiten": ["ADR-001", "ADR-005"],
+        "besluiten": [
+          "ADR-001",
+          "ADR-005"
+        ],
         "feedback": [],
         "commit": "f03c8b7"
       }
@@ -39,7 +42,9 @@
           "Elektriciteitsbesparing rekent met de gewogen prijs inclusief groenestroomopslag; de emissiefactor blijft locatiegebaseerd.",
           "De waarschuwing dat een private en een maatschappelijke baat verschillende dingen zijn staat nu als data in `berekening.waarschuwing`, niet alleen in proza."
         ],
-        "besluiten": ["ADR-007"],
+        "besluiten": [
+          "ADR-007"
+        ],
         "feedback": [],
         "commit": "d81244c"
       },
@@ -52,7 +57,9 @@
           "Een nachttarief verschuift verbruik in de tijd, niet in volume. Het model kent één elektriciteitsprijs en kan dat verschil dus niet uitdrukken; `€0 bespaard` suggereerde een gemeten uitkomst waar een modelgat zat.",
           "De verbruikscellen zijn leeggemaakt, waardoor zowel het bedrag als het CO2-cijfer `null` worden en EG11 in `controle.zonderKengetal` terechtkomt."
         ],
-        "besluiten": ["ADR-006"],
+        "besluiten": [
+          "ADR-006"
+        ],
         "feedback": [],
         "commit": "896362a"
       },
@@ -65,7 +72,9 @@
           "42 van de 114 interventies hebben geen bruikbaar kengetal. Die stonden op 0, wat niet te onderscheiden was van een gemeten nul.",
           "`controle.zonderKengetal` noemt ze bij naam."
         ],
-        "besluiten": ["ADR-005"],
+        "besluiten": [
+          "ADR-005"
+        ],
         "feedback": [],
         "commit": "df70b10"
       },
@@ -77,7 +86,9 @@
         "wijzigingen": [
           "Per interventie het fysieke effect per eenheid, de centrale prijzen en emissiefactoren waarmee het wordt omgerekend, en de monetarisering van CO2."
         ],
-        "besluiten": ["ADR-001"],
+        "besluiten": [
+          "ADR-001"
+        ],
         "feedback": [],
         "commit": "a494678"
       }
@@ -94,7 +105,9 @@
           "Elk effect draagt `effectId`, de Firestore-id die het `/database`-endpoint als `effect.id` serveert, en `uid` (`{sector}:{slug}`) als sleutel over standaarden heen.",
           "Armer dan een uit een workbook gegenereerde standaard: geen proxies, geen overlapgroepen, geen bron per stelling. `controle.ontbrekendeVelden` noemt het."
         ],
-        "besluiten": ["ADR-008"],
+        "besluiten": [
+          "ADR-008"
+        ],
         "feedback": [],
         "commit": "75bc603"
       }
@@ -109,7 +122,9 @@
           "Momentopname van de gedeelde `effects`-collectie, met dezelfde beperkingen als arbeidsparticipatie 0.9.",
           "Polariteit was hier wel vastgelegd: 52 van de 53 stellingen. Eén is afgeleid."
         ],
-        "besluiten": ["ADR-008"],
+        "besluiten": [
+          "ADR-008"
+        ],
         "feedback": [],
         "commit": "75bc603"
       }
@@ -128,6 +143,29 @@
         "besluiten": [],
         "feedback": [],
         "commit": "b5c005b"
+      }
+    ],
+    "arbeidsvaardigheden": [
+      {
+        "versie": "0.9",
+        "datum": "2026-08-28",
+        "soort": "publicatie",
+        "samenvatting": "Eerste publicatie. Negen effecten en 46 stellingen, afgeleid van het Formulier arbeidsvaardigheden Werkbedrijf Nijmegen 0.9; zeven effecten met bedragen per Likert-niveau.",
+        "wijzigingen": [
+          "Negen effecten met 46 stellingen, waarvan 41 scorend. Geen stelling is letterlijk overgenomen: het bronformulier is derdepersoons en is omgezet naar zelfrapportage in ik-vorm.",
+          "Situatieschetsen voor alle vijf de Likert-niveaus per effect, elk met bronvermelding.",
+          "Bedragen voor zeven effecten langs drie routes: begeleidingsintensiteit (UWV-normbedragen per begeleidingsregime), arbeidsproductiviteit (loonwaardefactoren T, K en N) en plaatsingskans.",
+          "Alle 27 proxyregels dragen twee bronnen: een voor het bedrag en een voor de relatie tussen effect en proxy.",
+          "Overdrachtsbetalingen zijn apart geboekt en tellen niet mee in een netto totaal; bij EFF-07 is dat de grootste post van de standaard.",
+          "EFF-09 Presentatie en contact is niet gemonetariseerd: na uitsluiting van twee niet-scorende stellingen blijven er twee over, onder de ondergrens van drie per effect, en het effect is een mediator.",
+          "EFF-04 Handigheid krijgt geen eigen bedrag: mediator waarvan de waarde al via loonwaarde en begeleidingsintensiteit loopt.",
+          "Overlap tussen effecten is vastgelegd maar niet gecorrigeerd (alpha = 1,00), op advies van TNO. Een som over effecten heen is daarmee een bovengrens, geen netto maatschappelijk totaal.",
+          "De koppelingen van effectscore naar productiviteit en naar plaatsingskans zijn overgenomen uit de Meetstandaard Arbeidsparticipatie 2.0, niet zelf vastgesteld. Aannamescore 7.",
+          "De onderbouwing per effect, de aannamescores en het auditrapport staan in het bronproject MSI Arbeidsvaardigheden; dit document is de gepubliceerde neerslag daarvan."
+        ],
+        "besluiten": [],
+        "feedback": [],
+        "commit": "(nog niet gecommit)"
       }
     ]
   }

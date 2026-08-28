@@ -1,6 +1,6 @@
-// The five meetstandaarden, for both the public site and the panel.
+// The six meetstandaarden, for both the public site and the panel.
 //
-// All five are now published documents: one Firestore collection per standaard,
+// All six are now published documents: one Firestore collection per standaard,
 // one document per version, generated and seeded via the Admin SDK. The version
 // numbers that used to be hardcoded here for arbeidsparticipatie and gelijke
 // kansen are gone — those two are snapshotted into versioned documents by
@@ -27,6 +27,13 @@ export const STANDAARDEN = [
     omschrijving: 'Effecten op kansengelijkheid van kinderen en jongeren.',
     collection: 'MeetstandaardGelijkeKansen',
     api: { functie: 'meetstandaard', resource: 'gelijke-kansen' },
+  },
+  {
+    key: 'arbeidsvaardigheden',
+    label: 'Arbeidsvaardigheden',
+    omschrijving: 'Wat een deelnemer zelf op de werkvloer kan, van zelfstandigheid tot betrouwbaarheid.',
+    collection: 'MeetstandaardArbeidsvaardigheden',
+    api: { functie: 'meetstandaard', resource: 'arbeidsvaardigheden' },
   },
   {
     key: 'energiearmoede',
