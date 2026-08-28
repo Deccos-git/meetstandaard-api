@@ -1,0 +1,2912 @@
+{
+  "meta": {
+    "version": "1.0",
+    "sector": "arbeidsvaardigheden",
+    "sectorLabel": "Arbeidsvaardigheden",
+    "releasedAt": "2026-08-28",
+    "source": "Meetstandaard arbeidsvaardigheden (meetstandaard.xlsx)",
+    "generatedBy": "tools/build-meetstandaard.py",
+    "toelichting": "Meetstandaard zonder monetarisering. Negen effecten met 46 stellingen, waarvan 41 scorend, en situatieschetsen voor elk van de vijf Likert-niveaus. Er zijn geen bedragen: de monetarisering die versie 0.9 nog droeg is op 2026-08-28 ingetrokken. Alle drie de gebruikte routes waren kostenvermijdingsroutes, en die kunnen per definitie geen waarde boven de nullijn uitdrukken - bij niveau 4 valt er niets meer te vermijden. De enige positieve bedragen rustten bovendien op de zwakst onderbouwde route. De velden monetarisering, aggregatie en gevoeligheid zijn daarom leeg; bronnen, parameters en het auditspoor blijven gelden."
+  },
+  "effecten": [
+    {
+      "id": "EFF-01",
+      "slug": "zelfstandigheid-en-kwaliteit",
+      "uid": "arbeidsvaardigheden:zelfstandigheid-en-kwaliteit",
+      "effect": "Zelfstandigheid en kwaliteit",
+      "categorie": "arbeidsvaardigheden",
+      "typeEffect": "zelfstandig effect",
+      "definitie": "De mate waarin de deelnemer werkzaamheden zonder begeleiding en zonder controle uitvoert, zelf problemen oplost, overziet wat er moet gebeuren, uit zichzelf begint en werk van voldoende kwaliteit levert waarbij fouten worden opgemerkt.",
+      "bronDefinitie": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Zelfstandigheid / Kwaliteit (afgeleid, niet letterlijk overgenomen)",
+      "doelgroep": "deelnemers met een afstand tot de arbeidsmarkt in een ontwikkeltraject bij Werkbedrijf Rijk van Nijmegen",
+      "relevantieSector": "hoog",
+      "crossSectorBenchmarkbaar": "nee",
+      "herkomstBestaandeStandaard": "nee - afgeleid van Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9",
+      "monetariseerbaarheid": "n.v.t. - monetarisering vervallen 2026-08-28",
+      "document": "8 scorende stellingen: BOVEN de bandbreedte 3-5. Zie audit bevinding integriteitscontrole. Het effect mengt zelfstandigheid, kwaliteit en overzicht in een score; vermeld dit in het monetariseringsdocument.",
+      "stellingen": [
+        {
+          "nummer": 1,
+          "stelling": "Ik heb geen begeleiding nodig bij mijn werk",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Zelfstandigheid / Kwaliteit",
+          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "letterlijkOvergenomen": false,
+          "toelichting": "Afgeleid van het tegenpolenpaar: Heeft geen begeleiding nodig / Heeft veel begeleiding nodig. Sluit direct aan op de begeleidingsladder van het formulier en daarmee op monetariseringsroute 1."
+        },
+        {
+          "nummer": 2,
+          "stelling": "Mijn werk hoeft niet gecontroleerd te worden",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Zelfstandigheid / Kwaliteit",
+          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "letterlijkOvergenomen": false,
+          "toelichting": "Afgeleid van het tegenpolenpaar: Hoeft niet gecontroleerd te worden / Moet door de begeleiding gecontroleerd worden. Controletijd is begeleidingstijd; raakt route 1."
+        },
+        {
+          "nummer": 3,
+          "stelling": "Ik los problemen zelf op",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Zelfstandigheid / Kwaliteit",
+          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "letterlijkOvergenomen": false,
+          "toelichting": "Afgeleid van het tegenpolenpaar: Lost problemen zelfstandig op / Lost zelf geen problemen op."
+        },
+        {
+          "nummer": 4,
+          "stelling": "Ik overzie wat er moet gebeuren en wat belangrijk is",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Zelfstandigheid / Kwaliteit",
+          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "letterlijkOvergenomen": false,
+          "toelichting": "Afgeleid van het tegenpolenpaar: Overziet wat er moet gebeuren, wat belangrijk is / Overziet niet wat er moet gebeuren. Dit tegenpolenpaar staat in het formulier TWEE keer: in de sectie Zelfstandigheid / Kwaliteit en in de sectie Tempo. Het is bij de omzetting terecht eenmaal opgenomen. Zie audit bevinding 1."
+        },
+        {
+          "nummer": 5,
+          "stelling": "Mijn werk is kwalitatief goed",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Zelfstandigheid / Kwaliteit",
+          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "letterlijkOvergenomen": false,
+          "toelichting": "Afgeleid van het tegenpolenpaar: Het werk is kwalitatief goed / Het werk is kwalitatief onvoldoende. Raakt de kwaliteitsfactor van de uniforme loonwaardebepaling (route 2)."
+        },
+        {
+          "nummer": 6,
+          "stelling": "Ik merk het als er iets fout gaat",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Zelfstandigheid / Kwaliteit",
+          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "letterlijkOvergenomen": false,
+          "toelichting": "Afgeleid van het tegenpolenpaar: Ziet fouten / Ziet geen fouten."
+        },
+        {
+          "nummer": 7,
+          "stelling": "Ik begin uit mezelf aan mijn werk",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Zelfstandigheid / Kwaliteit",
+          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "letterlijkOvergenomen": false,
+          "toelichting": "Afgeleid van het tegenpolenpaar: Begint uit zichzelf aan werkzaamheden / Begint niet uit zichzelf aan werkzaamheden."
+        },
+        {
+          "nummer": 8,
+          "stelling": "Als een taak af is, wacht ik tot iemand mij iets nieuws geeft",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Zelfstandigheid / Kwaliteit",
+          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "richting": "negatief",
+          "negatiefGeformuleerd": true,
+          "letterlijkOvergenomen": false,
+          "toelichting": "Afgeleid van het tegenpolenpaar: Wacht niet af bij einde taak / Is afwachtend bij einde taak. Polariteit omgekeerd ten opzichte van het formulier: de stelling is negatief geformuleerd en moet bij de scoreberekening worden gespiegeld."
+        }
+      ],
+      "situatieschetsen": [
+        {
+          "niveau": "1",
+          "score": 1,
+          "label": "sterk negatieve situatie",
+          "situatieschets": "Kan geen enkele werktaak zelfstandig afmaken; instructies moeten tijdens de uitvoering worden herhaald en het werk stopt zodra de begeleider wegloopt. Fouten worden niet opgemerkt, vrijwel al het werk moet worden nagelopen en een deel opnieuw gedaan. Bij een probleem valt het werk stil. Na een afgeronde taak wordt gewacht. Ladder: permanente begeleiding in de directe omgeving noodzakelijk (intensief regime, 15% van de gewerkte uren in jaar 1).",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen 0.9, sectie Zelfstandigheid / Kwaliteit (tegenpolen) + begeleidingsladder ('Welke begeleiding op de werkplek is nodig?') + Beleidsregel Protocol Interne Jobcoach UWV 2025 tabel 1",
+          "toelichting": "Hoogste begeleidingsinzet. Kans op toekenning intensief regime NIET gebronnd; UWV kent midden als standaard toe."
+        },
+        {
+          "niveau": "2",
+          "score": 2,
+          "label": "negatieve situatie",
+          "situatieschets": "Voert een vaste, eenvoudige taak uit zolang die niet verandert; begeleider moet meestal in de buurt zijn en kan even weg. Werk wordt structureel gecontroleerd en er komen fouten uit die de deelnemer zelf niet zag. Problemen worden gemeld, niet opgelost. Ladder: moet meestal in de buurt zijn (middenregime, 10%).",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen 0.9, sectie Zelfstandigheid / Kwaliteit (tegenpolen) + begeleidingsladder ('Welke begeleiding op de werkplek is nodig?') + Beleidsregel Protocol Interne Jobcoach UWV 2025 tabel 1",
+          "toelichting": "Werkbaar in een beschutte of sterk gestructureerde omgeving."
+        },
+        {
+          "niveau": "3",
+          "score": 3,
+          "label": "licht negatieve situatie",
+          "situatieschets": "Werkt zelfstandig aan bekende taken; begeleider nodig op vaste momenten - dagstart, nieuwe opdracht, iets onverwachts. Steekproefcontrole volstaat. Eenvoudige problemen worden zelf opgelost, complexere niet. Overzicht wisselt bij drukte. Ladder: af en toe, op bepaalde tijden in de buurt (licht regime, 6%).",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen 0.9, sectie Zelfstandigheid / Kwaliteit (tegenpolen) + begeleidingsladder ('Welke begeleiding op de werkplek is nodig?') + Beleidsregel Protocol Interne Jobcoach UWV 2025 tabel 1",
+          "toelichting": "LET OP: vanaf jaar 3 vallen licht en midden samen op 3%; de stap 2 naar 3 is in dat jaar EUR 0 waard."
+        },
+        {
+          "niveau": "4",
+          "score": 4,
+          "label": "neutrale of gemiddelde situatie (nullijn, EUR 0)",
+          "situatieschets": "Voert het werk zelfstandig uit na een normale inwerkperiode; begeleider hoeft na instructie niet meer aanwezig te zijn. Geen stelselmatige controle. Fouten worden zelf opgemerkt en hersteld, problemen zelf opgelost of gericht voorgelegd. Begint uit zichzelf en pakt na een afgeronde taak zelf iets nieuws op.",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen 0.9, sectie Zelfstandigheid / Kwaliteit (tegenpolen) + begeleidingsladder ('Welke begeleiding op de werkplek is nodig?') + Beleidsregel Protocol Interne Jobcoach UWV 2025 tabel 1",
+          "toelichting": "NULLIJN - EUR 0. Gemiddelde, duurzaam inzetbare werknemer. Ladder: hoeft na instructie niet meer aanwezig te zijn."
+        },
+        {
+          "niveau": "5",
+          "score": 5,
+          "label": "positieve situatie",
+          "situatieschets": "Ziet ook wat er buiten de eigen taak nodig is: signaleert dat voorraad opraakt, merkt fouten van anderen op, pakt liggend werk op. Werkt nieuwe collega's in en denkt mee over verbetering. Kwaliteit boven wat de functie vraagt.",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen 0.9, sectie Zelfstandigheid / Kwaliteit (tegenpolen) + Meetstandaard Arbeidsparticipatie 2.0, effect-arbeidsvaardigheden.md (situatieschets niveau 5)",
+          "toelichting": "EXTRAPOLATIE voorbij de positieve pool van het formulier. Spillover-effect op anderen is bij deze doelgroep NIET onderbouwd."
+        }
+      ],
+      "monetarisering": {
+        "document": null,
+        "eenheid": null,
+        "niveaus": [
+          {
+            "niveau": "1",
+            "score": 1,
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
+            "proxies": []
+          },
+          {
+            "niveau": "2",
+            "score": 2,
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
+            "proxies": []
+          },
+          {
+            "niveau": "3",
+            "score": 3,
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
+            "proxies": []
+          },
+          {
+            "niveau": "4",
+            "score": 4,
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
+            "proxies": []
+          },
+          {
+            "niveau": "5",
+            "score": 5,
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
+            "proxies": []
+          }
+        ]
+      }
+    },
+    {
+      "id": "EFF-02",
+      "slug": "leerbaarheid-en-motivatie",
+      "uid": "arbeidsvaardigheden:leerbaarheid-en-motivatie",
+      "effect": "Leerbaarheid en motivatie",
+      "categorie": "arbeidsvaardigheden",
+      "typeEffect": "zelfstandig effect",
+      "definitie": "De mate waarin de deelnemer nieuwe werkzaamheden aanleert, genoeg heeft aan eenmalige uitleg, inzicht heeft in het waarom van een taak, en gemotiveerd is voor huidige en nieuwe werkzaamheden.",
+      "bronDefinitie": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Leerbaarheid en motivatie (afgeleid, niet letterlijk overgenomen)",
+      "doelgroep": "deelnemers met een afstand tot de arbeidsmarkt in een ontwikkeltraject bij Werkbedrijf Rijk van Nijmegen",
+      "relevantieSector": "hoog",
+      "crossSectorBenchmarkbaar": "nee",
+      "herkomstBestaandeStandaard": "nee - afgeleid van Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9",
+      "monetariseerbaarheid": "n.v.t. - monetarisering vervallen 2026-08-28",
+      "document": "Stelling 3 telt niet mee (leerstijl, normatief niet houdbaar).",
+      "stellingen": [
+        {
+          "nummer": 1,
+          "stelling": "Ik leer gemakkelijk nieuwe werkzaamheden aan",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Leerbaarheid en motivatie",
+          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "letterlijkOvergenomen": false,
+          "toelichting": "Afgeleid van het tegenpolenpaar: Leert gemakkelijk nieuwe werkzaamheden aan / Heeft moeite met aanleren nieuwe werkzaamheden."
+        },
+        {
+          "nummer": 2,
+          "stelling": "Ik heb genoeg aan een eenmalige uitleg",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Leerbaarheid en motivatie",
+          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "letterlijkOvergenomen": false,
+          "toelichting": "Afgeleid van het tegenpolenpaar: Heeft genoeg aan eenmalige uitleg / Heeft veel herhaling nodig. Herhaling van uitleg is begeleidingstijd; raakt route 1."
+        },
+        {
+          "nummer": 3,
+          "stelling": "Ik leer beter als iets wordt voorgedaan of getekend dan alleen verteld",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Leerbaarheid en motivatie",
+          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "richting": "geen",
+          "negatiefGeformuleerd": false,
+          "letterlijkOvergenomen": false,
+          "toelichting": "Afgeleid van het tegenpolenpaar: Heeft genoeg aan mondelinge uitleg / Heeft visualisatie nodig. TELT NIET MEE. De positieve pool is normatief niet houdbaar: leren via beeld is geen tekortkoming maar een leerstijl en een fit-vraag met de werkplek. Polariteit bovendien omgekeerd ten opzichte van het formulier."
+        },
+        {
+          "nummer": 4,
+          "stelling": "Ik begrijp waaróm ik een taak doe",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Leerbaarheid en motivatie",
+          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "letterlijkOvergenomen": false,
+          "toelichting": "Afgeleid van het tegenpolenpaar: Heeft inzicht in taak / Heeft geen inzicht in taak."
+        },
+        {
+          "nummer": 5,
+          "stelling": "Ik ben gemotiveerd voor mijn huidige werkzaamheden",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Leerbaarheid en motivatie",
+          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "letterlijkOvergenomen": false,
+          "toelichting": "Afgeleid van het tegenpolenpaar: Is gemotiveerd voor huidige werkzaamheden / Is niet gemotiveerd voor huidige werkzaamheden."
+        },
+        {
+          "nummer": 6,
+          "stelling": "Ik ben gemotiveerd om nieuwe werkzaamheden te leren",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Leerbaarheid en motivatie",
+          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "letterlijkOvergenomen": false,
+          "toelichting": "Afgeleid van het tegenpolenpaar: Is gemotiveerd voor nieuwe werkzaamheden / Is niet gemotiveerd voor nieuwe werkzaamheden."
+        }
+      ],
+      "situatieschetsen": [
+        {
+          "niveau": "1",
+          "score": 1,
+          "label": "sterk negatieve situatie",
+          "situatieschets": "Een nieuwe handeling beklijft niet; wat gisteren is voorgedaan moet vandaag opnieuw. Voert uit zonder te begrijpen waarom, waardoor een kleine afwijking het hele patroon onbruikbaar maakt. Geen zichtbare motivatie voor huidig werk, verzet of onverschilligheid tegen iets nieuws. Elke taakwijziging betekent opnieuw inwerken.",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen 0.9, sectie Leerbaarheid en motivatie (tegenpolen)",
+          "toelichting": null
+        },
+        {
+          "niveau": "2",
+          "score": 2,
+          "label": "negatieve situatie",
+          "situatieschets": "Leert een nieuwe taak aan met veel herhaling over een langere periode dan gebruikelijk. Het waarom blijft buiten beeld; volgt de stappen. Motivatie voor vertrouwd werk wel, voor verandering niet.",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen 0.9, sectie Leerbaarheid en motivatie (tegenpolen)",
+          "toelichting": null
+        },
+        {
+          "niveau": "3",
+          "score": 3,
+          "label": "licht negatieve situatie",
+          "situatieschets": "Leert nieuwe taken iets onder gemiddeld tempo: een uitleg is meestal niet genoeg, twee of drie wel. Taakbegrip in grote lijnen aanwezig maar niet scherp genoeg om een uitzondering te beoordelen. Motivatie voor huidig werk goed; voor nieuw werk is aanmoediging nodig.",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen 0.9, sectie Leerbaarheid en motivatie (tegenpolen)",
+          "toelichting": null
+        },
+        {
+          "niveau": "4",
+          "score": 4,
+          "label": "neutrale of gemiddelde situatie (nullijn, EUR 0)",
+          "situatieschets": "Leert nieuwe werkzaamheden in een normale inwerkperiode aan, heeft in de regel genoeg aan een uitleg, begrijpt waarom een taak wordt gedaan en is gemotiveerd voor zowel huidig als nieuw werk.",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen 0.9, sectie Leerbaarheid en motivatie (tegenpolen)",
+          "toelichting": "NULLIJN - EUR 0."
+        },
+        {
+          "niveau": "5",
+          "score": 5,
+          "label": "positieve situatie",
+          "situatieschets": "Pikt nieuw werk sneller dan gemiddeld op en zoekt zelf het waarom achter een taak. Vraagt actief om nieuwe werkzaamheden en om scholing. Uitleg hoeft niet volledig te zijn.",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen 0.9, sectie Leerbaarheid en motivatie (tegenpolen) + Meetstandaard Arbeidsparticipatie 2.0, effect-arbeidsvaardigheden.md (situatieschets niveau 5)",
+          "toelichting": "EXTRAPOLATIE voorbij de positieve pool."
+        }
+      ],
+      "monetarisering": {
+        "document": null,
+        "eenheid": null,
+        "niveaus": [
+          {
+            "niveau": "1",
+            "score": 1,
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
+            "proxies": []
+          },
+          {
+            "niveau": "2",
+            "score": 2,
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
+            "proxies": []
+          },
+          {
+            "niveau": "3",
+            "score": 3,
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
+            "proxies": []
+          },
+          {
+            "niveau": "4",
+            "score": 4,
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
+            "proxies": []
+          },
+          {
+            "niveau": "5",
+            "score": 5,
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
+            "proxies": []
+          }
+        ]
+      }
+    },
+    {
+      "id": "EFF-03",
+      "slug": "tempo-en-energie",
+      "uid": "arbeidsvaardigheden:tempo-en-energie",
+      "effect": "Tempo en energie",
+      "categorie": "arbeidsvaardigheden",
+      "typeEffect": "zelfstandig effect",
+      "definitie": "De mate waarin de deelnemer snel en op tijd klaar is, voldoende energie heeft voor de werkdag, aaneengesloten kan doorwerken, een regelmatig tempo houdt en tempodruk aankan.",
+      "bronDefinitie": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Tempo (afgeleid, niet letterlijk overgenomen)",
+      "doelgroep": "deelnemers met een afstand tot de arbeidsmarkt in een ontwikkeltraject bij Werkbedrijf Rijk van Nijmegen",
+      "relevantieSector": "hoog",
+      "crossSectorBenchmarkbaar": "nee",
+      "herkomstBestaandeStandaard": "nee - afgeleid van Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9",
+      "monetariseerbaarheid": "n.v.t. - monetarisering vervallen 2026-08-28",
+      "document": "Het formulieritem 'Overziet wat er moet gebeuren' uit de formuliersectie Tempo is niet apart overgenomen; het staat als EFF-01 stelling 4. Zie audit bevinding 1.",
+      "stellingen": [
+        {
+          "nummer": 1,
+          "stelling": "Ik werk snel en ben op tijd klaar",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Tempo",
+          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "letterlijkOvergenomen": false,
+          "toelichting": "Afgeleid van het tegenpolenpaar: Werkt snel, is op tijd klaar / Werkt langzaam. Raakt de tempofactor van de uniforme loonwaardebepaling (route 2)."
+        },
+        {
+          "nummer": 2,
+          "stelling": "Ik heb genoeg energie voor mijn werkdag",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Tempo",
+          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "letterlijkOvergenomen": false,
+          "toelichting": "Afgeleid van het tegenpolenpaar: Heeft voldoende energie / Heeft weinig energie, vaak pauze nodig. Raakt de factor netto werktijd van de uniforme loonwaardebepaling (route 2)."
+        },
+        {
+          "nummer": 3,
+          "stelling": "Ik kan een uur achter elkaar doorwerken",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Tempo",
+          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "letterlijkOvergenomen": false,
+          "toelichting": "Afgeleid van het tegenpolenpaar: Kan 1 uur aaneengesloten werken / Kan niet 1 uur aandacht bij werk houden."
+        },
+        {
+          "nummer": 4,
+          "stelling": "Mijn tempo wisselt sterk per dag",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Tempo",
+          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "richting": "negatief",
+          "negatiefGeformuleerd": true,
+          "letterlijkOvergenomen": false,
+          "toelichting": "Afgeleid van het tegenpolenpaar: Heeft een regelmatig tempo / Heeft een onregelmatig tempo. Polariteit omgekeerd ten opzichte van het formulier: negatief geformuleerd, spiegelen bij de scoreberekening."
+        },
+        {
+          "nummer": 5,
+          "stelling": "Ik kan het aan als er druk op het tempo staat",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Tempo",
+          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "letterlijkOvergenomen": false,
+          "toelichting": "Afgeleid van het tegenpolenpaar: Kan druk op tempo aan / Kan druk op tempo niet aan."
+        }
+      ],
+      "situatieschetsen": [
+        {
+          "niveau": "1",
+          "score": 1,
+          "label": "sterk negatieve situatie",
+          "situatieschets": "Werkt zo langzaam dat de output niet in verhouding staat tot de gewerkte tijd, en houdt het niet vol: na korte tijd is pauze nodig. Een uur aaneengesloten werken lukt niet. Het tempo verschilt zo sterk per dag dat er niet op te plannen valt. Tempodruk leidt tot stilvallen of fouten.",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen 0.9, sectie Tempo (tegenpolen) + Besluit loonkostensubsidie Participatiewet 2021, art. 1 en 5",
+          "toelichting": "Laagste T en laagste N in AP=TxKxNxBT. Past niet in een productieplanning."
+        },
+        {
+          "niveau": "2",
+          "score": 2,
+          "label": "negatieve situatie",
+          "situatieschets": "Werkt structureel langzamer dan de normfunctie en heeft meer pauzes nodig, maar houdt een werkdag vol in aangepaste vorm - korter of met ingebouwde rustmomenten. Een uur doorwerken lukt op goede dagen. Bij tempodruk loopt de kwaliteit terug.",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen 0.9, sectie Tempo (tegenpolen) + Besluit loonkostensubsidie Participatiewet 2021, art. 1 en 5",
+          "toelichting": null
+        },
+        {
+          "niveau": "3",
+          "score": 3,
+          "label": "licht negatieve situatie",
+          "situatieschets": "Tempo iets onder de normfunctie maar voorspelbaar: de werkgever weet wat een dag oplevert. Volledige werkdag met normale pauzes, een uur aaneengesloten werken gaat goed. Bij piekdrukte lukt bijhouden niet helemaal, maar het werk valt niet stil.",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen 0.9, sectie Tempo (tegenpolen) + Besluit loonkostensubsidie Participatiewet 2021, art. 1 en 5",
+          "toelichting": null
+        },
+        {
+          "niveau": "4",
+          "score": 4,
+          "label": "neutrale of gemiddelde situatie (nullijn, EUR 0)",
+          "situatieschets": "Werkt in het tempo dat de functie vraagt en is op tijd klaar, heeft voldoende energie voor de volle werkdag, werkt aaneengesloten door en houdt een regelmatig tempo. Piekdrukte wordt opgevangen zoals van elke werknemer verwacht mag worden.",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen 0.9, sectie Tempo (tegenpolen) + Besluit loonkostensubsidie Participatiewet 2021, art. 1 en 5",
+          "toelichting": "NULLIJN - EUR 0. Dit IS de normfunctie: T, K en N op 100%."
+        },
+        {
+          "niveau": "5",
+          "score": 5,
+          "label": "positieve situatie",
+          "situatieschets": "Werkt sneller dan de functie vraagt en houdt dat vol over dag en week. Piekdrukte is geen probleem; wordt juist bij drukte ingezet. Er blijft ruimte over voor extra taken.",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen 0.9, sectie Tempo (tegenpolen) + Besluit loonkostensubsidie Participatiewet 2021, art. 1 en 5",
+          "toelichting": "EXTRAPOLATIE. LET OP: T boven 100% leidt niet tot negatieve LKS maar tot geen LKS; de baat is productiviteit bij de werkgever."
+        }
+      ],
+      "monetarisering": {
+        "document": null,
+        "eenheid": null,
+        "niveaus": [
+          {
+            "niveau": "1",
+            "score": 1,
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
+            "proxies": []
+          },
+          {
+            "niveau": "2",
+            "score": 2,
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
+            "proxies": []
+          },
+          {
+            "niveau": "3",
+            "score": 3,
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
+            "proxies": []
+          },
+          {
+            "niveau": "4",
+            "score": 4,
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
+            "proxies": []
+          },
+          {
+            "niveau": "5",
+            "score": 5,
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
+            "proxies": []
+          }
+        ]
+      }
+    },
+    {
+      "id": "EFF-04",
+      "slug": "handigheid",
+      "uid": "arbeidsvaardigheden:handigheid",
+      "effect": "Handigheid",
+      "categorie": "arbeidsvaardigheden",
+      "typeEffect": "mediator",
+      "definitie": "De mate waarin de deelnemer soepel beweegt bij tillen, bukken en staan, nauwkeurig werkt met de handen, kracht kan doseren, veilig omgaat met machines en apparaten, en ordelijk en netjes werkt.",
+      "bronDefinitie": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Handigheid (afgeleid, niet letterlijk overgenomen)",
+      "doelgroep": "deelnemers met een afstand tot de arbeidsmarkt in een ontwikkeltraject bij Werkbedrijf Rijk van Nijmegen",
+      "relevantieSector": "middel",
+      "crossSectorBenchmarkbaar": "nee",
+      "herkomstBestaandeStandaard": "nee - afgeleid van Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9",
+      "monetariseerbaarheid": "n.v.t. - monetarisering vervallen 2026-08-28",
+      "document": "Stellingen 1-3 raken Fysieke gezondheid in de Meetstandaard Arbeidsparticipatie. Geen eigen monetarisering zonder expliciete overlapanalyse.",
+      "stellingen": [
+        {
+          "nummer": 1,
+          "stelling": "Ik beweeg soepel bij werk waarbij ik til, buk of sta",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Handigheid",
+          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "letterlijkOvergenomen": false,
+          "toelichting": "Afgeleid van het tegenpolenpaar: Heeft een goede grove motoriek / Heeft een slechte grove motoriek. Mediator, geen zelfstandig maatschappelijk effect. Raakt Fysieke gezondheid in de Meetstandaard Arbeidsparticipatie."
+        },
+        {
+          "nummer": 2,
+          "stelling": "Ik werk nauwkeurig met mijn handen bij fijn werk",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Handigheid",
+          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "letterlijkOvergenomen": false,
+          "toelichting": "Afgeleid van het tegenpolenpaar: Heeft een goede fijne motoriek / Heeft een slechte fijne motoriek. Mediator. Raakt Fysieke gezondheid in de Meetstandaard Arbeidsparticipatie."
+        },
+        {
+          "nummer": 3,
+          "stelling": "Ik kan mijn kracht goed doseren",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Handigheid",
+          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "letterlijkOvergenomen": false,
+          "toelichting": "Afgeleid van het tegenpolenpaar: Kan kracht doseren / Kan kracht niet doseren. Mediator. Raakt Fysieke gezondheid in de Meetstandaard Arbeidsparticipatie."
+        },
+        {
+          "nummer": 4,
+          "stelling": "Ik ga veilig om met machines en apparaten",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Handigheid",
+          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "letterlijkOvergenomen": false,
+          "toelichting": "Afgeleid van het tegenpolenpaar: Gaat veilig/goed om met apparaten / Kan niet veilig/goed omgaan met apparaten."
+        },
+        {
+          "nummer": 5,
+          "stelling": "Ik werk ordelijk en netjes",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Handigheid",
+          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "letterlijkOvergenomen": false,
+          "toelichting": "Afgeleid van het tegenpolenpaar: Werkt ordelijk en netjes / Werkt chaotisch en slordig."
+        }
+      ],
+      "situatieschetsen": [
+        {
+          "niveau": "1",
+          "score": 1,
+          "label": "sterk negatieve situatie",
+          "situatieschets": "Tillen, bukken en langdurig staan gaan moeizaam of niet. Fijn handwerk lukt niet - de beweging is te grof of te onvast. Kracht wordt niet gedoseerd. Met machines ontstaan onveilige situaties. De werkplek is chaotisch, wat op zichzelf tot fouten en risico's leidt.",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen 0.9, sectie Handigheid (tegenpolen)",
+          "toelichting": "MEDIATOR - geen zelfstandig bedrag."
+        },
+        {
+          "niveau": "2",
+          "score": 2,
+          "label": "negatieve situatie",
+          "situatieschets": "Fysiek werk lukt in beperkte vorm en over kortere tijd. Fijn handwerk gaat traag en met veel uitval. Krachtdosering wisselend. Machinewerk vraagt structureel toezicht. Orde moet door anderen worden aangebracht.",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen 0.9, sectie Handigheid (tegenpolen)",
+          "toelichting": "MEDIATOR - geen zelfstandig bedrag."
+        },
+        {
+          "niveau": "3",
+          "score": 3,
+          "label": "licht negatieve situatie",
+          "situatieschets": "Fysiek werk gaat, maar niet de hele dag en niet in de zwaarste varianten. Fijn handwerk lukt met meer tijd dan gemiddeld. Machines worden veilig bediend na instructie. Werkplek redelijk ordelijk, af en toe een correctie.",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen 0.9, sectie Handigheid (tegenpolen)",
+          "toelichting": "MEDIATOR - geen zelfstandig bedrag."
+        },
+        {
+          "niveau": "4",
+          "score": 4,
+          "label": "neutrale of gemiddelde situatie (nullijn, EUR 0)",
+          "situatieschets": "Beweegt soepel bij tillen, bukken en staan, werkt nauwkeurig met de handen, doseert kracht naar behoefte, gaat veilig om met machines en apparaten en houdt de werkplek ordelijk.",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen 0.9, sectie Handigheid (tegenpolen)",
+          "toelichting": "NULLIJN - EUR 0. MEDIATOR."
+        },
+        {
+          "niveau": "5",
+          "score": 5,
+          "label": "positieve situatie",
+          "situatieschets": "Fysiek breed inzetbaar en ook bij fijn of precies werk nauwkeurig en snel. Veiligheid is vanzelfsprekend en onveilige situaties van anderen worden gesignaleerd. Werkplek voorbeeldig op orde.",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen 0.9, sectie Handigheid (tegenpolen)",
+          "toelichting": "EXTRAPOLATIE. MEDIATOR - geen zelfstandig bedrag."
+        }
+      ],
+      "monetarisering": {
+        "document": null,
+        "eenheid": null,
+        "niveaus": [
+          {
+            "niveau": "1",
+            "score": 1,
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
+            "proxies": []
+          },
+          {
+            "niveau": "2",
+            "score": 2,
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
+            "proxies": []
+          },
+          {
+            "niveau": "3",
+            "score": 3,
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
+            "proxies": []
+          },
+          {
+            "niveau": "4",
+            "score": 4,
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
+            "proxies": []
+          },
+          {
+            "niveau": "5",
+            "score": 5,
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
+            "proxies": []
+          }
+        ]
+      }
+    },
+    {
+      "id": "EFF-05",
+      "slug": "omgaan-met-verandering-en-spanning",
+      "uid": "arbeidsvaardigheden:omgaan-met-verandering-en-spanning",
+      "effect": "Omgaan met verandering en spanning",
+      "categorie": "arbeidsvaardigheden",
+      "typeEffect": "zelfstandig effect",
+      "definitie": "De mate waarin de deelnemer kan omgaan met veranderingen, rustig blijft bij tegenslag en een stabiele stemming heeft tijdens het werk.",
+      "bronDefinitie": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Stressbestendigheid / Flexibiliteit (afgeleid, niet letterlijk overgenomen)",
+      "doelgroep": "deelnemers met een afstand tot de arbeidsmarkt in een ontwikkeltraject bij Werkbedrijf Rijk van Nijmegen",
+      "relevantieSector": "hoog",
+      "crossSectorBenchmarkbaar": "nee",
+      "herkomstBestaandeStandaard": "nee - afgeleid van Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9",
+      "monetariseerbaarheid": "n.v.t. - monetarisering vervallen 2026-08-28",
+      "document": "Stelling 1 telt niet mee (behoefte aan structuur). 3 scorende stellingen: op de ondergrens. Afkomstig uit dezelfde formuliersectie als EFF-06; zie audit bevinding 2.",
+      "stellingen": [
+        {
+          "nummer": 1,
+          "stelling": "Ik werk het best met een vaste structuur",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Stressbestendigheid / Flexibiliteit",
+          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "richting": "geen",
+          "negatiefGeformuleerd": false,
+          "letterlijkOvergenomen": false,
+          "toelichting": "Afgeleid van het tegenpolenpaar: Heeft geen behoefte aan structuur / Heeft behoefte aan structuur. TELT NIET MEE. Behoefte aan structuur is geen tekortkoming maar een kenmerk en een fit-vraag met de werkplek. Polariteit omgekeerd ten opzichte van het formulier."
+        },
+        {
+          "nummer": 2,
+          "stelling": "Ik kan goed omgaan met veranderingen",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Stressbestendigheid / Flexibiliteit",
+          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "letterlijkOvergenomen": false,
+          "toelichting": "Afgeleid van het tegenpolenpaar: Kan tegen veranderingen / Kan niet tegen veranderingen."
+        },
+        {
+          "nummer": 3,
+          "stelling": "Ik blijf rustig als er iets tegenzit",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Stressbestendigheid / Flexibiliteit",
+          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "letterlijkOvergenomen": false,
+          "toelichting": "Afgeleid van het tegenpolenpaar: Blijft rustig in lastige situaties / bij tegenvallers // Wordt onrustig in lastige situaties / bij tegenvallers."
+        },
+        {
+          "nummer": 4,
+          "stelling": "Mijn stemming wisselt vaak",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Stressbestendigheid / Flexibiliteit",
+          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "richting": "negatief",
+          "negatiefGeformuleerd": true,
+          "letterlijkOvergenomen": false,
+          "toelichting": "Afgeleid van het tegenpolenpaar: Heeft geen stemmingswisselingen / Wisselt vaak van stemming. Polariteit omgekeerd; negatief geformuleerd. Raakt Mentale gezondheid in de Meetstandaard Arbeidsparticipatie."
+        }
+      ],
+      "situatieschetsen": [
+        {
+          "niveau": "1",
+          "score": 1,
+          "label": "sterk negatieve situatie",
+          "situatieschets": "Elke afwijking van het bekende patroon ontregelt de werkdag - andere werkplek, andere collega, taak op een ander moment. Bij een tegenvaller valt het werk stil en is een begeleider nodig om weer op gang te komen. De stemming wisselt sterk en zichtbaar binnen een dag, wat de omgang met collega's belast.",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen 0.9, sectie Stressbestendigheid / Flexibiliteit (tegenpolen) + Besluit loonkostensubsidie Participatiewet 2021, art. 1 en 5",
+          "toelichting": "Verlies van netto werktijd (factor N); begeleidingsinzet bij elke wijziging."
+        },
+        {
+          "niveau": "2",
+          "score": 2,
+          "label": "negatieve situatie",
+          "situatieschets": "Veranderingen zijn mogelijk maar moeten aangekondigd en voorbereid worden; een onverwachte wijziging kost de rest van de ochtend. Bij tegenslag komt de deelnemer er zelf uit, maar langzaam. Stemmingswisselingen zijn merkbaar.",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen 0.9, sectie Stressbestendigheid / Flexibiliteit (tegenpolen) + Besluit loonkostensubsidie Participatiewet 2021, art. 1 en 5",
+          "toelichting": null
+        },
+        {
+          "niveau": "3",
+          "score": 3,
+          "label": "licht negatieve situatie",
+          "situatieschets": "Aangekondigde veranderingen gaan goed, onverwachte kosten even tijd. Bij tegenslag over het algemeen rustig, met uitschieters bij opeenstapeling. Stemming grotendeels stabiel.",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen 0.9, sectie Stressbestendigheid / Flexibiliteit (tegenpolen) + Besluit loonkostensubsidie Participatiewet 2021, art. 1 en 5",
+          "toelichting": null
+        },
+        {
+          "niveau": "4",
+          "score": 4,
+          "label": "neutrale of gemiddelde situatie (nullijn, EUR 0)",
+          "situatieschets": "Gaat om met veranderingen zoals van elke werknemer verwacht mag worden, blijft rustig bij tegenslag en heeft een stabiele stemming op het werk.",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen 0.9, sectie Stressbestendigheid / Flexibiliteit (tegenpolen) + Besluit loonkostensubsidie Participatiewet 2021, art. 1 en 5",
+          "toelichting": "NULLIJN - EUR 0."
+        },
+        {
+          "niveau": "5",
+          "score": 5,
+          "label": "positieve situatie",
+          "situatieschets": "Schakelt moeiteloos mee met veranderingen en houdt bij onverwachte situaties het hoofd koel. Bij tegenslag komt de deelnemer met een oplossing in plaats van een vraag, en werkt stabiliserend op collega's.",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen 0.9, sectie Stressbestendigheid / Flexibiliteit (tegenpolen) + Besluit loonkostensubsidie Participatiewet 2021, art. 1 en 5",
+          "toelichting": "EXTRAPOLATIE."
+        }
+      ],
+      "monetarisering": {
+        "document": null,
+        "eenheid": null,
+        "niveaus": [
+          {
+            "niveau": "1",
+            "score": 1,
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
+            "proxies": []
+          },
+          {
+            "niveau": "2",
+            "score": 2,
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
+            "proxies": []
+          },
+          {
+            "niveau": "3",
+            "score": 3,
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
+            "proxies": []
+          },
+          {
+            "niveau": "4",
+            "score": 4,
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
+            "proxies": []
+          },
+          {
+            "niveau": "5",
+            "score": 5,
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
+            "proxies": []
+          }
+        ]
+      }
+    },
+    {
+      "id": "EFF-06",
+      "slug": "concentratie-en-taakwisseling",
+      "uid": "arbeidsvaardigheden:concentratie-en-taakwisseling",
+      "effect": "Concentratie en taakwisseling",
+      "categorie": "arbeidsvaardigheden",
+      "typeEffect": "zelfstandig effect",
+      "definitie": "De mate waarin de deelnemer overschakelt naar een volgende taak, een opdracht tussendoor aankan, en zich kan concentreren bij zowel enkelvoudige als meerstaps opdrachten.",
+      "bronDefinitie": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Stressbestendigheid / Flexibiliteit (afgeleid, niet letterlijk overgenomen)",
+      "doelgroep": "deelnemers met een afstand tot de arbeidsmarkt in een ontwikkeltraject bij Werkbedrijf Rijk van Nijmegen",
+      "relevantieSector": "middel",
+      "crossSectorBenchmarkbaar": "nee",
+      "herkomstBestaandeStandaard": "nee - afgeleid van Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9",
+      "monetariseerbaarheid": "n.v.t. - monetarisering vervallen 2026-08-28",
+      "document": "Stelling 3 telt niet mee (voorkeur voor een taak tegelijk). Afkomstig uit dezelfde formuliersectie als EFF-05; bij aggregatie als een cluster behandelen tot het tegendeel is aangetoond. Zie audit bevinding 2.",
+      "stellingen": [
+        {
+          "nummer": 1,
+          "stelling": "Ik schakel gemakkelijk over naar een volgende taak",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Stressbestendigheid / Flexibiliteit",
+          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "letterlijkOvergenomen": false,
+          "toelichting": "Afgeleid van het tegenpolenpaar: Schakelt gemakkelijk over naar de volgende taak / Schakelt moeilijk over naar de volgende taak."
+        },
+        {
+          "nummer": 2,
+          "stelling": "Ik kan een opdracht tussendoor aan",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Stressbestendigheid / Flexibiliteit",
+          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "letterlijkOvergenomen": false,
+          "toelichting": "Afgeleid van het tegenpolenpaar: Kan opdrachten tussendoor aan / Kan geen opdrachten tussendoor aan."
+        },
+        {
+          "nummer": 3,
+          "stelling": "Ik werk het liefst aan één taak tegelijk",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Stressbestendigheid / Flexibiliteit",
+          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "richting": "geen",
+          "negatiefGeformuleerd": false,
+          "letterlijkOvergenomen": false,
+          "toelichting": "Afgeleid van het tegenpolenpaar: Kan aan 2 of meer taken tegelijk werken / Kan aan 1 taak tegelijk werken. TELT NIET MEE. Liever één taak tegelijk werken is geen tekortkoming maar een kenmerk en een fit-vraag met de werkplek. Polariteit omgekeerd ten opzichte van het formulier."
+        },
+        {
+          "nummer": 4,
+          "stelling": "Ik kan me goed concentreren bij een enkelvoudige opdracht",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Stressbestendigheid / Flexibiliteit",
+          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "letterlijkOvergenomen": false,
+          "toelichting": "Afgeleid van het tegenpolenpaar: Kan zich concentreren bij enkelvoudige opdracht / Kan zich niet concentreren, snel afgeleid."
+        },
+        {
+          "nummer": 5,
+          "stelling": "Ik kan me goed concentreren bij een opdracht met meerdere stappen",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Stressbestendigheid / Flexibiliteit",
+          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "letterlijkOvergenomen": false,
+          "toelichting": "Afgeleid van het tegenpolenpaar: Kan zich concentreren bij meervoudige opdracht / Kan zich niet concentreren, snel afgeleid."
+        }
+      ],
+      "situatieschetsen": [
+        {
+          "niveau": "1",
+          "score": 1,
+          "label": "sterk negatieve situatie",
+          "situatieschets": "Overschakelen naar een andere taak lukt niet zonder hulp. Een opdracht tussendoor betekent dat de oorspronkelijke taak niet wordt hervat. Concentreren lukt zelfs bij een enkelvoudige handeling maar kort; elke prikkel onderbreekt het werk. Meerstaps opdrachten worden niet afgemaakt.",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen 0.9, sectie Stressbestendigheid / Flexibiliteit (tegenpolen) + Besluit loonkostensubsidie Participatiewet 2021, art. 1 en 5",
+          "toelichting": "Alleen inzetbaar op een vaste, korte, enkelvoudige handeling in een prikkelarme omgeving met herstart door een ander."
+        },
+        {
+          "niveau": "2",
+          "score": 2,
+          "label": "negatieve situatie",
+          "situatieschets": "Taakwisseling lukt als hij wordt aangekondigd en begeleid. Een opdracht tussendoor kan, maar daarna moet iemand aangeven dat de eerste taak wordt hervat. Meerstaps opdrachten alleen met stappenlijst en controle achteraf.",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen 0.9, sectie Stressbestendigheid / Flexibiliteit (tegenpolen) + Besluit loonkostensubsidie Participatiewet 2021, art. 1 en 5",
+          "toelichting": null
+        },
+        {
+          "niveau": "3",
+          "score": 3,
+          "label": "licht negatieve situatie",
+          "situatieschets": "Overschakelen gaat zelfstandig met wat opstarttijd. Een opdracht tussendoor is geen probleem, terugkeren kost even. Concentratie bij enkelvoudig werk goed; bij meerstaps werk wordt bij drukte weleens een stap overgeslagen.",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen 0.9, sectie Stressbestendigheid / Flexibiliteit (tegenpolen) + Besluit loonkostensubsidie Participatiewet 2021, art. 1 en 5",
+          "toelichting": null
+        },
+        {
+          "niveau": "4",
+          "score": 4,
+          "label": "neutrale of gemiddelde situatie (nullijn, EUR 0)",
+          "situatieschets": "Schakelt zelfstandig tussen taken, kan een opdracht tussendoor aan en hervat daarna het eigen werk, en concentreert zich bij zowel enkelvoudige als meerstaps opdrachten zoals van elke werknemer verwacht mag worden.",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen 0.9, sectie Stressbestendigheid / Flexibiliteit (tegenpolen) + Besluit loonkostensubsidie Participatiewet 2021, art. 1 en 5",
+          "toelichting": "NULLIJN - EUR 0."
+        },
+        {
+          "niveau": "5",
+          "score": 5,
+          "label": "positieve situatie",
+          "situatieschets": "Wisselt moeiteloos tussen taken met behoud van overzicht over wat nog openstaat. Opdrachten tussendoor worden opgevangen zonder dat er iets blijft liggen. Complexe meerstaps opdrachten zelfstandig en foutloos.",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen 0.9, sectie Stressbestendigheid / Flexibiliteit (tegenpolen) + Besluit loonkostensubsidie Participatiewet 2021, art. 1 en 5",
+          "toelichting": "EXTRAPOLATIE."
+        }
+      ],
+      "monetarisering": {
+        "document": null,
+        "eenheid": null,
+        "niveaus": [
+          {
+            "niveau": "1",
+            "score": 1,
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
+            "proxies": []
+          },
+          {
+            "niveau": "2",
+            "score": 2,
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
+            "proxies": []
+          },
+          {
+            "niveau": "3",
+            "score": 3,
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
+            "proxies": []
+          },
+          {
+            "niveau": "4",
+            "score": 4,
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
+            "proxies": []
+          },
+          {
+            "niveau": "5",
+            "score": 5,
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
+            "proxies": []
+          }
+        ]
+      }
+    },
+    {
+      "id": "EFF-07",
+      "slug": "samenwerking",
+      "uid": "arbeidsvaardigheden:samenwerking",
+      "effect": "Samenwerking",
+      "categorie": "arbeidsvaardigheden",
+      "typeEffect": "zelfstandig effect",
+      "definitie": "De mate waarin de deelnemer samenwerkt, bij verschillende belangen een goede afweging maakt, collega's helpt, om hulp vraagt en kan omgaan met kritiek in beide richtingen.",
+      "bronDefinitie": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Samenwerking (afgeleid, niet letterlijk overgenomen)",
+      "doelgroep": "deelnemers met een afstand tot de arbeidsmarkt in een ontwikkeltraject bij Werkbedrijf Rijk van Nijmegen",
+      "relevantieSector": "hoog",
+      "crossSectorBenchmarkbaar": "nee",
+      "herkomstBestaandeStandaard": "nee - afgeleid van Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9",
+      "monetariseerbaarheid": "n.v.t. - monetarisering vervallen 2026-08-28",
+      "document": "Raakt Sociale vaardigheden in de Meetstandaard Arbeidsparticipatie.",
+      "stellingen": [
+        {
+          "nummer": 1,
+          "stelling": "Ik kan goed samenwerken",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Samenwerking",
+          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "letterlijkOvergenomen": false,
+          "toelichting": "Afgeleid van het tegenpolenpaar: Kan samenwerken / Kan niet samenwerken. Raakt Sociale vaardigheden in de Meetstandaard Arbeidsparticipatie."
+        },
+        {
+          "nummer": 2,
+          "stelling": "Als er verschillende belangen spelen, maak ik daarin een goede afweging",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Samenwerking",
+          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "letterlijkOvergenomen": false,
+          "toelichting": "Afgeleid van het tegenpolenpaar: Kan bij belangen juiste afweging maken / Kan niet de juiste afweging maken (kwetsbaar)."
+        },
+        {
+          "nummer": 3,
+          "stelling": "Ik help collega's",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Samenwerking",
+          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "letterlijkOvergenomen": false,
+          "toelichting": "Afgeleid van het tegenpolenpaar: Is behulpzaam / Is niet behulpzaam."
+        },
+        {
+          "nummer": 4,
+          "stelling": "Ik vraag om hulp als ik iets niet weet",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Samenwerking",
+          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "letterlijkOvergenomen": false,
+          "toelichting": "Afgeleid van het tegenpolenpaar: Stelt hulpvragen / Stelt geen hulpvragen."
+        },
+        {
+          "nummer": 5,
+          "stelling": "Ik kan omgaan met kritiek, zowel geven als krijgen",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Samenwerking",
+          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "letterlijkOvergenomen": false,
+          "toelichting": "Afgeleid van het tegenpolenpaar: Kan omgaan met kritiek (geven en ontvangen) / Kan niet omgaan met kritiek."
+        }
+      ],
+      "situatieschetsen": [
+        {
+          "niveau": "1",
+          "score": 1,
+          "label": "sterk negatieve situatie",
+          "situatieschets": "Samenwerken lukt niet; gezamenlijke taken lopen vast op onenigheid. Bij tegengestelde belangen kan geen afweging worden gemaakt: willekeurige keuze of volledig toegeven, wat de deelnemer kwetsbaar maakt. Er wordt niet geholpen en niet om hulp gevraagd, waardoor fouten lang onopgemerkt blijven. Kritiek leidt tot conflict of terugtrekken.",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen 0.9, sectie Samenwerking (tegenpolen)",
+          "toelichting": "De term 'kwetsbaar' staat letterlijk in het formulier bij het item over belangenafweging."
+        },
+        {
+          "niveau": "2",
+          "score": 2,
+          "label": "negatieve situatie",
+          "situatieschets": "Samenwerken lukt in een vaste, kleine samenstelling met bekenden. Bij belangentegenstellingen is sturing nodig. Hulp vragen gebeurt te laat of niet. Kritiek komt hard aan en werkt dagen door in het functioneren.",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen 0.9, sectie Samenwerking (tegenpolen)",
+          "toelichting": null
+        },
+        {
+          "niveau": "3",
+          "score": 3,
+          "label": "licht negatieve situatie",
+          "situatieschets": "Samenwerken gaat goed in het dagelijkse werk; bij spanning of tijdsdruk soms stroef. Belangen worden herkend maar de afweging wordt liever aan een ander gelaten. Hulp wordt meestal op tijd gevraagd. Kritiek wordt aangenomen, al kost het moeite.",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen 0.9, sectie Samenwerking (tegenpolen)",
+          "toelichting": null
+        },
+        {
+          "niveau": "4",
+          "score": 4,
+          "label": "neutrale of gemiddelde situatie (nullijn, EUR 0)",
+          "situatieschets": "Werkt samen zoals van elke werknemer verwacht mag worden, maakt bij tegengestelde belangen een redelijke afweging, helpt collega's, vraagt om hulp wanneer nodig en gaat normaal om met kritiek in beide richtingen.",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen 0.9, sectie Samenwerking (tegenpolen)",
+          "toelichting": "NULLIJN - EUR 0."
+        },
+        {
+          "niveau": "5",
+          "score": 5,
+          "label": "positieve situatie",
+          "situatieschets": "Werkt makkelijk samen met uiteenlopende mensen, bemiddelt bij spanningen en zorgt dat vragen op tafel komen. Kritiek geven gebeurt op een manier die anderen verder helpt.",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen 0.9, sectie Samenwerking (tegenpolen)",
+          "toelichting": "EXTRAPOLATIE."
+        }
+      ],
+      "monetarisering": {
+        "document": null,
+        "eenheid": null,
+        "niveaus": [
+          {
+            "niveau": "1",
+            "score": 1,
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
+            "proxies": []
+          },
+          {
+            "niveau": "2",
+            "score": 2,
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
+            "proxies": []
+          },
+          {
+            "niveau": "3",
+            "score": 3,
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
+            "proxies": []
+          },
+          {
+            "niveau": "4",
+            "score": 4,
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
+            "proxies": []
+          },
+          {
+            "niveau": "5",
+            "score": 5,
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
+            "proxies": []
+          }
+        ]
+      }
+    },
+    {
+      "id": "EFF-08",
+      "slug": "betrouwbaarheid",
+      "uid": "arbeidsvaardigheden:betrouwbaarheid",
+      "effect": "Betrouwbaarheid",
+      "categorie": "arbeidsvaardigheden",
+      "typeEffect": "zelfstandig effect",
+      "definitie": "De mate waarin de deelnemer op tijd komt, zich houdt aan pauzetijden en bedrijfsregels, en gemaakte afspraken nakomt.",
+      "bronDefinitie": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Betrouwbaarheid (afgeleid, niet letterlijk overgenomen)",
+      "doelgroep": "deelnemers met een afstand tot de arbeidsmarkt in een ontwikkeltraject bij Werkbedrijf Rijk van Nijmegen",
+      "relevantieSector": "hoog",
+      "crossSectorBenchmarkbaar": "nee",
+      "herkomstBestaandeStandaard": "nee - afgeleid van Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9",
+      "monetariseerbaarheid": "n.v.t. - monetarisering vervallen 2026-08-28",
+      "document": null,
+      "stellingen": [
+        {
+          "nummer": 1,
+          "stelling": "Ik kom op tijd",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Betrouwbaarheid",
+          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "letterlijkOvergenomen": false,
+          "toelichting": "Afgeleid van het tegenpolenpaar: Komt op tijd / Komt niet op tijd. Raakt de factor netto werktijd van de uniforme loonwaardebepaling (route 2)."
+        },
+        {
+          "nummer": 2,
+          "stelling": "Ik houd me aan de pauzetijden",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Betrouwbaarheid",
+          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "letterlijkOvergenomen": false,
+          "toelichting": "Afgeleid van het tegenpolenpaar: Houdt zich aan pauzetijden / Houdt zich niet aan pauzetijden."
+        },
+        {
+          "nummer": 3,
+          "stelling": "Ik houd me aan de regels van het bedrijf",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Betrouwbaarheid",
+          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "letterlijkOvergenomen": false,
+          "toelichting": "Afgeleid van het tegenpolenpaar: Houdt zich aan bedrijfsregels / Houdt zich niet aan bedrijfsregels."
+        },
+        {
+          "nummer": 4,
+          "stelling": "Ik kom mijn afspraken na",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Betrouwbaarheid",
+          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "letterlijkOvergenomen": false,
+          "toelichting": "Afgeleid van het tegenpolenpaar: Komt afspraken na / Komt afspraken niet na."
+        }
+      ],
+      "situatieschetsen": [
+        {
+          "niveau": "1",
+          "score": 1,
+          "label": "sterk negatieve situatie",
+          "situatieschets": "Komt structureel te laat of verschijnt zonder bericht niet. Pauzes duren langer dan afgesproken en worden op eigen momenten genomen. Bedrijfsregels worden niet gevolgd, ook niet na herhaalde correctie. Afspraken worden niet nagekomen. Niet inplanbaar.",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen 0.9, sectie Betrouwbaarheid (tegenpolen) + Besluit loonkostensubsidie Participatiewet 2021, art. 1 en 5",
+          "toelichting": "Grootste verlies van netto werktijd; hoogste risico op beeindiging van de plaatsing."
+        },
+        {
+          "niveau": "2",
+          "score": 2,
+          "label": "negatieve situatie",
+          "situatieschets": "Te laat komen gebeurt regelmatig maar niet dagelijks, meestal met bericht. Pauzes lopen structureel uit. Bedrijfsregels worden gevolgd zolang er toezicht is. Afspraken worden nagekomen als ze kort tevoren worden herbevestigd.",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen 0.9, sectie Betrouwbaarheid (tegenpolen) + Besluit loonkostensubsidie Participatiewet 2021, art. 1 en 5",
+          "toelichting": null
+        },
+        {
+          "niveau": "3",
+          "score": 3,
+          "label": "licht negatieve situatie",
+          "situatieschets": "Komt in de regel op tijd met een enkele uitschieter. Pauzetijden worden aangehouden. Bedrijfsregels bekend en gevolgd, soms met een herinnering. Afspraken worden nagekomen; bij wijziging niet altijd zelf gemeld.",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen 0.9, sectie Betrouwbaarheid (tegenpolen) + Besluit loonkostensubsidie Participatiewet 2021, art. 1 en 5",
+          "toelichting": null
+        },
+        {
+          "niveau": "4",
+          "score": 4,
+          "label": "neutrale of gemiddelde situatie (nullijn, EUR 0)",
+          "situatieschets": "Komt op tijd, houdt zich aan pauzetijden en bedrijfsregels en komt afspraken na, zoals van elke werknemer verwacht mag worden.",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen 0.9, sectie Betrouwbaarheid (tegenpolen) + Besluit loonkostensubsidie Participatiewet 2021, art. 1 en 5",
+          "toelichting": "NULLIJN - EUR 0."
+        },
+        {
+          "niveau": "5",
+          "score": 5,
+          "label": "positieve situatie",
+          "situatieschets": "Uitzonderlijk betrouwbaar: altijd op tijd, meldt zelf vooraf als er iets is, spreekt anderen zo nodig aan op de regels. Afspraken worden nagekomen zonder dat erop hoeft te worden teruggekomen.",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen 0.9, sectie Betrouwbaarheid (tegenpolen) + Besluit loonkostensubsidie Participatiewet 2021, art. 1 en 5",
+          "toelichting": "EXTRAPOLATIE. Van alle negen effecten het eenvoudigst objectief te registreren."
+        }
+      ],
+      "monetarisering": {
+        "document": null,
+        "eenheid": null,
+        "niveaus": [
+          {
+            "niveau": "1",
+            "score": 1,
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
+            "proxies": []
+          },
+          {
+            "niveau": "2",
+            "score": 2,
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
+            "proxies": []
+          },
+          {
+            "niveau": "3",
+            "score": 3,
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
+            "proxies": []
+          },
+          {
+            "niveau": "4",
+            "score": 4,
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
+            "proxies": []
+          },
+          {
+            "niveau": "5",
+            "score": 5,
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
+            "proxies": []
+          }
+        ]
+      }
+    },
+    {
+      "id": "EFF-09",
+      "slug": "presentatie-en-contact",
+      "uid": "arbeidsvaardigheden:presentatie-en-contact",
+      "effect": "Presentatie en contact",
+      "categorie": "arbeidsvaardigheden",
+      "typeEffect": "mediator",
+      "definitie": "De mate waarin de deelnemer contact legt met collega's en met mensen van buiten het bedrijf.",
+      "bronDefinitie": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Presentatie (afgeleid, niet letterlijk overgenomen)",
+      "doelgroep": "deelnemers met een afstand tot de arbeidsmarkt in een ontwikkeltraject bij Werkbedrijf Rijk van Nijmegen",
+      "relevantieSector": "middel",
+      "crossSectorBenchmarkbaar": "nee",
+      "herkomstBestaandeStandaard": "nee - afgeleid van Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9",
+      "monetariseerbaarheid": "n.v.t. - monetarisering vervallen 2026-08-28",
+      "document": "BESLUIT OPDRACHTGEVER 2026-08-27: EFF-09 wordt NIET gemonetariseerd. Blijft in de standaard, wordt uitgevraagd, zichtbaar voor de begeleiding, maar krijgt geen bedrag op enig niveau en geen post in het aggregatiemodel; ook niet indirect via een domeingemiddelde. Redenen: 2 scorende stellingen (onder de ondergrens 3), mediator dus dubbeltelling met loonwaarde en begeleiding, en geen bron voor directe monetarisering. Stellingen 3-4 hebben in het formulier geen tegenpool: zwakste herkomst van de lijst.",
+      "stellingen": [
+        {
+          "nummer": 1,
+          "stelling": "Ik zie er verzorgd uit op mijn werk",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Presentatie",
+          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "richting": "geen",
+          "negatiefGeformuleerd": false,
+          "letterlijkOvergenomen": false,
+          "toelichting": "Afgeleid van het tegenpolenpaar: Ziet er schoon en verzorgd uit / Ziet er niet schoon en verzorgd uit. TELT NIET MEE. Uiterlijke verzorging is normatief niet houdbaar als tekortkoming."
+        },
+        {
+          "nummer": 2,
+          "stelling": "Ik kan mezelf goed presenteren",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Presentatie",
+          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "richting": "geen",
+          "negatiefGeformuleerd": false,
+          "letterlijkOvergenomen": false,
+          "toelichting": "Afgeleid van het tegenpolenpaar: Kan zich goed presenteren / Kan zich niet goed presenteren. TELT NIET MEE. Zie audit bevinding 17: deze stelling ontbreekt in de motivering bij de regel voor niet-scorende stellingen, maar is in de tabel wel op 'nee' gezet."
+        },
+        {
+          "nummer": 3,
+          "stelling": "Ik leg makkelijk contact met collega's",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Presentatie",
+          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "letterlijkOvergenomen": false,
+          "toelichting": "Afgeleid van het tegenpolenpaar: Contactvaardigheid met collega's (GEEN tegenpool in het formulier). Het formulieritem heeft geen negatieve pool; de polen zijn bij de omzetting toegevoegd, niet afgeleid. Zwakste herkomst van de hele lijst. Zie audit bevinding 3."
+        },
+        {
+          "nummer": 4,
+          "stelling": "Ik leg makkelijk contact met mensen van buiten het bedrijf",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Presentatie",
+          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "letterlijkOvergenomen": false,
+          "toelichting": "Afgeleid van het tegenpolenpaar: Contactvaardigheid met derden (GEEN tegenpool in het formulier). Het formulieritem heeft geen negatieve pool; de polen zijn bij de omzetting toegevoegd, niet afgeleid. Zie audit bevinding 3."
+        }
+      ],
+      "situatieschetsen": [
+        {
+          "niveau": "1",
+          "score": 1,
+          "label": "sterk negatieve situatie",
+          "situatieschets": "Contact met collega's komt niet tot stand; werkt geisoleerd, ook binnen een team. Contact met mensen van buiten het bedrijf is niet mogelijk of leidt tot ongemakkelijke situaties.",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen 0.9, sectie Presentatie (tegenpolen)",
+          "toelichting": "NIET GEMONETARISEERD (besluit 2026-08-27). Zwakste herkomst van de lijst: de formulieritems hebben geen tegenpool."
+        },
+        {
+          "niveau": "2",
+          "score": 2,
+          "label": "negatieve situatie",
+          "situatieschets": "Contact met bekende collega's lukt beperkt en op initiatief van de ander. Contact met buitenstaanders wordt vermeden en moet worden overgenomen door een collega.",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen 0.9, sectie Presentatie (tegenpolen)",
+          "toelichting": "NIET GEMONETARISEERD."
+        },
+        {
+          "niveau": "3",
+          "score": 3,
+          "label": "licht negatieve situatie",
+          "situatieschets": "Contact met collega's verloopt goed binnen de eigen vaste groep, moeizamer daarbuiten. Contact met buitenstaanders lukt in korte, voorspelbare situaties.",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen 0.9, sectie Presentatie (tegenpolen)",
+          "toelichting": "NIET GEMONETARISEERD."
+        },
+        {
+          "niveau": "4",
+          "score": 4,
+          "label": "neutrale of gemiddelde situatie (nullijn, EUR 0)",
+          "situatieschets": "Legt contact met collega's en met mensen van buiten het bedrijf zoals van elke werknemer verwacht mag worden.",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen 0.9, sectie Presentatie (tegenpolen)",
+          "toelichting": "NIET GEMONETARISEERD. Nullijn zou hier EUR 0 zijn."
+        },
+        {
+          "niveau": "5",
+          "score": 5,
+          "label": "positieve situatie",
+          "situatieschets": "Legt makkelijk contact met iedereen, ook nieuwe mensen en buitenstaanders, en neemt nieuwe collega's op in het team.",
+          "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen 0.9, sectie Presentatie (tegenpolen)",
+          "toelichting": "NIET GEMONETARISEERD."
+        }
+      ],
+      "monetarisering": {
+        "document": null,
+        "eenheid": null,
+        "niveaus": [
+          {
+            "niveau": "1",
+            "score": 1,
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
+            "proxies": []
+          },
+          {
+            "niveau": "2",
+            "score": 2,
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
+            "proxies": []
+          },
+          {
+            "niveau": "3",
+            "score": 3,
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
+            "proxies": []
+          },
+          {
+            "niveau": "4",
+            "score": 4,
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
+            "proxies": []
+          },
+          {
+            "niveau": "5",
+            "score": 5,
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
+            "proxies": []
+          }
+        ]
+      }
+    }
+  ],
+  "bronnen": {
+    "BR-01": {
+      "id": "BR-01",
+      "apaReferentie": "Werkbedrijf Rijk van Nijmegen. (z.j.). Formulier arbeidsvaardigheden (versie 0.9) [Formulier].",
+      "bestand": "raw/Arbeidsvaardigheden werkbedrijf Nijmegen.md",
+      "typeBron": "praktijkinstrument, primair voor de herkomst",
+      "relevantVoor": [
+        "herkomst van alle 46 stellingen",
+        "begeleidingsladder (route 1)",
+        "arrangementen loonwaarde"
+      ],
+      "pagina": "acht aspectsecties; onderdeel 'Welke begeleiding op de werkplek is nodig?'",
+      "betrouwbaarheid": "laag als meetinstrument, hoog als herkomstbron",
+      "opmerkingen": "Niet psychometrisch gevalideerd: geen betrouwbaarheid, validiteit of normgroep. Versie 0.9, niet definitief. Meetobject verschoven van begeleidersoordeel naar zelfrapportage. Bepaalt de bovengrens van elke aannamescore."
+    },
+    "BR-02": {
+      "id": "BR-02",
+      "apaReferentie": "Interne notitie. (2026). Bronnen voor het monetariseren van arbeidsvaardigheden - een gestructureerd overzicht.",
+      "bestand": "raw/Bronnen voor het monetariseren van arbeidsvaardigheden - een gestructureerd overzicht.md",
+      "typeBron": "secundair onderzoeksmemo",
+      "relevantVoor": [
+        "onderzoeksagenda",
+        "vindplaatsen",
+        "richting van de drie routes"
+      ],
+      "pagina": "hele document",
+      "betrouwbaarheid": "niet zelfstandig bruikbaar voor een bedrag",
+      "opmerkingen": "WEGWIJZER, GEEN BRON. Citeert documenten die niet in raw/ staan. Geen bedrag hieruit mag in een monetariseringsdocument of in dit bestand worden opgenomen zolang het onderliggende document ontbreekt."
+    },
+    "BR-03": {
+      "id": "BR-03",
+      "apaReferentie": "UWV. (2026). Vergoedingen jobcoaching; Inkoopkader re-integratiediensten; Regeling beloning curatoren, bewindvoerders en mentoren. Verwerkt in de Maatschappelijke prijslijst.",
+      "bestand": "raw/universele bronnen/UNIVERSEEL_Maatschappelijke prijslijst.xlsx",
+      "typeBron": "kengetallenlijst (bundeling)",
+      "relevantVoor": [
+        "route 1 jobcoachtarieven",
+        "route 3 re-integratietarieven",
+        "bijstands- en Wajongnormen"
+      ],
+      "pagina": "tabblad 'Prijzen participatiewet en inko', rijen 21-51",
+      "betrouwbaarheid": "hoog voor de wettelijke bedragen, middel voor de inkooptarieven",
+      "opmerkingen": "Peiljaar 1-1-2026. Bundeling, geen primaire bron: voor claims die zwaar op een bedrag leunen de primaire regelingstekst raadplegen. Vijf overige tabbladen (Wlz, Zvw, Wmo, Jeugdwet, Justitie) beoordeeld en niet verwerkt."
+    },
+    "BR-04": {
+      "id": "BR-04",
+      "apaReferentie": "Koopmans, C., Heyma, A., Hof, B., Imandt, M., Kok, L., & Pomp, M. (2016). Werkwijzer voor kosten-batenanalyse in het sociale domein - Hoofdrapport (SEO-rapport 2016-11A). SEO Economisch Onderzoek.",
+      "bestand": "raw/universele bronnen/UNIVERSEEL_MKBA - Hoofdrapport werkwijzer Sociaal domein.pdf",
+      "typeBron": "methodische rijksrichtlijn met kengetallenbijlage",
+      "relevantVoor": [
+        "discontovoet",
+        "verdringing",
+        "QALY-waarde",
+        "waardering vrijwilligerswerk",
+        "kengetallen sociaal domein"
+      ],
+      "pagina": "hoofdstuk 6 en tabel 6.11; bijlage B; bijlage E; bijlage I tabellen I.1 en I.2",
+      "betrouwbaarheid": "hoog - voorgeschreven methodiek voor het sociaal domein",
+      "opmerkingen": "LEIDEND bij tegenstrijdigheid met de Kostenhandleiding. Kengetallen hebben peiljaar 2012-2015 en zijn verouderd voor niveaubedragen; de verhoudingen zijn houdbaarder. Vier van de overgenomen regels noemen 'aanname' als bron."
+    },
+    "BR-05": {
+      "id": "BR-05",
+      "apaReferentie": "Romijn, G., & Renes, G. (2013). Algemene leidraad voor maatschappelijke kosten-batenanalyse. CPB & PBL.",
+      "bestand": "raw/universele bronnen/UNIVERSEEL_MKBA - blg-270482.pdf",
+      "typeBron": "overkoepelende rijksmethodiek",
+      "relevantVoor": [
+        "disconteren met risico-opslag",
+        "dubbeltelling",
+        "kwalificatie kengetallen-KBA",
+        "verdringing op korte termijn"
+      ],
+      "pagina": "paragraaf 7.4.2; hoofdstuk 10; aanbeveling 9",
+      "betrouwbaarheid": "hoog",
+      "opmerkingen": "Moederleidraad van BR-04. Levert methode, geen bedragen. Kwalificeert deze standaard als kengetallen-KBA, niet als MKBA."
+    },
+    "BR-06": {
+      "id": "BR-06",
+      "apaReferentie": "Zorginstituut Nederland. (2024). Kostenhandleiding voor economische evaluaties in de gezondheidszorg: Methodologie en referentieprijzen (versie 2024).",
+      "bestand": "raw/universele bronnen/UNIVERSEEL_Zorg - Verdiepingsmodule+Kostenhandleiding+(versie+2024).pdf",
+      "typeBron": "nationale referentieprijzenlijst en methodologie",
+      "relevantVoor": [
+        "productiviteitskosten per uur (EUR 39",
+        "88)",
+        "frictiekostenmethode",
+        "discontering",
+        "waardering informele tijd"
+      ],
+      "pagina": "tabel 6-2; tabel 6-1; paragraaf 2.6.1.2; paragraaf 5.3.2",
+      "betrouwbaarheid": "hoog voor referentieprijzen",
+      "opmerkingen": "Enige bron in raw/ met een nationale referentieprijs voor arbeidsproductiviteit. Schrijft 1,5% disconto voor effecten voor; daarin NIET gevolgd (zie audit bevinding 8). De productiviteitsprijs is een populatiegemiddelde en vermoedelijk te hoog voor deze doelgroep."
+    },
+    "BR-07": {
+      "id": "BR-07",
+      "apaReferentie": "Streefkerk, E. (2023). Handboek Meting Regeldrukkosten (versie 2.1). Ministerie van Economische Zaken en Klimaat.",
+      "bestand": "raw/universele bronnen/UNIVERSEEL_Loonkosten - 05-12-2023-Handboek-Meting-Regeldrukkosten-2023-DEF.pdf",
+      "typeBron": "rijksmethodiek met standaard uurtarieventabel",
+      "relevantVoor": [
+        "uurtarief werkgever- en begeleiderstijd",
+        "uurtarief laaggeschoold personeel",
+        "uurtarief burgertijd"
+      ],
+      "pagina": "deel 4.C, tabellen standaard uurtarieven bedrijven, overheidsprofessionals en burgers",
+      "betrouwbaarheid": "hoog - interdepartementaal afgestemd, CBS-gebaseerd",
+      "opmerkingen": "Kostentarief inclusief 40% werkgeverslasten en 25% overhead. Meet iets anders dan de bruto toegevoegde waarde uit BR-06; niet door elkaar gebruiken. Bevat geen categorie jobcoach of werkbegeleider."
+    },
+    "BR-08": {
+      "id": "BR-08",
+      "apaReferentie": "UWV. (2025). UWV in cijfers - grafieken en tabellen [Dataset].",
+      "bestand": "raw/universele bronnen/UNIVERSEEL_UWV Uitkeringen - download-uwv-grafieken-2025.xlsx",
+      "typeBron": "primaire statistiek van de uitvoerder",
+      "relevantVoor": [
+        "gemiddelde jaaruitkering Wajong (overdracht)",
+        "UWV-uitgaven re-integratie en voorzieningen"
+      ],
+      "pagina": "tabblad 'Uitgek. bedragen Wajong'; tabblad 'Kosten re-integratie en voorz.'",
+      "betrouwbaarheid": "hoog",
+      "opmerkingen": "48 tabbladen, drie verwerkt. De kolom na 2024 mist een jaarlabel en is niet gebruikt (audit bevinding 9). Re-integratie-uitgaven zijn LANDELIJKE TOTALEN, geen per-persoonsbedragen."
+    },
+    "BR-09": {
+      "id": "BR-09",
+      "apaReferentie": "TNO. (2024). Arbobalans 2024. In opdracht van het ministerie van Sociale Zaken en Werkgelegenheid.",
+      "bestand": "raw/universele bronnen/UNIVERSEEL_Werkgerelateerd - Arbobalans 2024.pdf",
+      "typeBron": "periodieke monitor met kengetallen",
+      "relevantVoor": [
+        "ziekteverzuimpercentage en verzuimkosten - VOORLOPIG NIET GEBRUIKT"
+      ],
+      "pagina": "hoofdstuk 3, tabel bij H3.2 en de kostenparagrafen",
+      "betrouwbaarheid": "hoog voor de kengetallen",
+      "opmerkingen": "Verzuim wordt niet als zelfstandige proxy opgenomen: dubbeltelling met netto werktijd in route 2 en overlap met de Meetstandaard Arbeidsparticipatie (aanname A6). Populatie is werkenden, niet deze doelgroep. Bevat landelijke totalen naast per-werknemerbedragen."
+    },
+    "BR-10": {
+      "id": "BR-10",
+      "apaReferentie": "Van der Ploeg, K., Houtman, I., Couzy, P., De Vroome, E., & Eysink, P. (2025). Maatschappelijke werkgerelateerde kosten van arbeidsongeschiktheid en zorg (TNO 2025 R10810). TNO.",
+      "bestand": "raw/universele bronnen/UNIVERSEEL_Werkgerelateerd - Maatschappelijke werkgerelateerde kosten.pdf",
+      "typeBron": "primaire kostentoerekeningsstudie op macroniveau",
+      "relevantVoor": [
+        "context en proportiecheck - GEEN per-persoonsproxy"
+      ],
+      "pagina": "samenvatting; figuren 1 en 2",
+      "betrouwbaarheid": "hoog op macroniveau",
+      "opmerkingen": "Uitsluitend macrototalen. Klassieke bron voor een schaalfout: elke verwijzing moet de gebruikte volumedeling expliciet vermelden. Peiljaren lopen uiteen (2012, 2019, 2022); optellen zonder indexering is fout."
+    },
+    "BR-13": {
+      "id": "BR-13",
+      "apaReferentie": "UWV. (2025). Beleidsregel Protocol Interne Jobcoach UWV 2025 (Stcrt. 2025, 7088); UWV. (2026). Besluit Normbedragen Voorzieningen UWV 2026 (Stcrt. 2026, 12114-n1).",
+      "bestand": "raw/wetgeving-2026-08-27/",
+      "typeBron": "wetgeving en beleidsregel - primaire bron",
+      "relevantVoor": [
+        "route 1: begeleidingsregimes als percentage van de gewerkte uren",
+        "en de normbedragen per regime"
+      ],
+      "pagina": "Beleidsregel par. 2.4.1 en tabel 1; Besluit Normbedragen bijlage codes Q1 en Q2",
+      "betrouwbaarheid": "hoogst mogelijk",
+      "opmerkingen": "LEIDEND voor de jobcoachtarieven. De Maatschappelijke prijslijst (BR-03) bevat afgeronde versies van dezelfde normbedragen en is daarmee bevestigd, maar is een bundeling; voor berekeningen geldt dit normbedragenbesluit."
+    },
+    "BR-14": {
+      "id": "BR-14",
+      "apaReferentie": "Besluit loonkostensubsidie en minimumbedragen studietoeslag Participatiewet 2021 (BWBR0044894); Regeling loonkostensubsidie Participatiewet 2021 (BWBR0044901).",
+      "bestand": "raw/wetgeving-2026-08-27/",
+      "typeBron": "wetgeving - primaire bron",
+      "relevantVoor": [
+        "route 2: de loonwaardeformule AP = T x K x N x BT",
+        "de normfunctie",
+        "en de kwalificaties van de loonwaardedeskundige"
+      ],
+      "pagina": "Besluit art. 1, 3, 4, 5 en 7; Regeling art. 1-3 en bijlage",
+      "betrouwbaarheid": "hoogst mogelijk",
+      "opmerkingen": "Artikel 5 lid 3 bevat een wettelijke ontdubbelingsregel: een factor die meer dan een van T, K of N beinvloedt komt in slechts een ervan tot uitdrukking. Er bestaat GEEN wettelijke certificering van loonwaardedeskundigen; zie BEV-23."
+    },
+    "BR-15": {
+      "id": "BR-15",
+      "apaReferentie": "Deccos. (2026). deccos-projects productiedatabase [Firestore]. Vulgraadtelling 27 augustus 2026.",
+      "bestand": "geen bestand - levende database, tellingen vastgelegd in wiki/bronnen/deccos-registratiedata.md",
+      "typeBron": "primaire registratiedata",
+      "relevantVoor": [
+        "verzuim 6",
+        "2% (gemeten)",
+        "4",
+        "87 geroosterde uren per dag (gemeten)",
+        "afwezigheid van begeleidingsuren"
+      ],
+      "pagina": "collecties PersonaPresenceReports, Tasks (personaSchedule), PersonaAbsences, Outputs, QuestionnairesResponses, ParticipationMeasurements",
+      "betrouwbaarheid": "hoog voor wat geregistreerd wordt",
+      "opmerkingen": "NIET in raw/: er is geen bestand, en een kopie van productiedata in een projectmap zou een verwerking zijn die hier niet thuishoort. Alleen aggregaten zijn vastgelegd, met peildatum."
+    },
+    "BR-12": {
+      "id": "BR-12",
+      "apaReferentie": "Deccos. (2026). Meetstandaard Arbeidsparticipatie (versie 2.0, 16 juli 2026) [Interne meetstandaard].",
+      "bestand": "raw/meetstandaard-arbeidsparticipatie-snapshot-2026-08-27/ (8 bestanden)",
+      "typeBron": "zusterstandaard - methodisch kader en uitgewerkte monetarisering",
+      "relevantVoor": [
+        "SROI-percentages",
+        "tijdsdimensie",
+        "QALY-conventie EUR 75.000",
+        "prijspeil en indexering 2025",
+        "situatieschetsen",
+        "OVERLAPREGISTER"
+      ],
+      "pagina": "sroi-correcties.md; tijdsdimensie.md; aggregatieregel-componenten.md; methodiek-monetarisering.md; effect-arbeidsvaardigheden.md; effect-participatieladder.md",
+      "betrouwbaarheid": "hoog voor de kaders; bedragen dragen aannamescore 4,7-4,9",
+      "opmerkingen": "MOMENTOPNAME, toegevoegd aan raw/ omdat de originelen daar worden doorontwikkeld. Alle drie de routes hier overlappen volledig met posten die deze standaard al claimt (EFF-16 en EFF-19); zie BEV-21. SROI- en tijdsparameters staan er zelf op needs verification (aannamescore 7-8) en zijn met die status overgenomen. Rekent met een verouderd jobcoachtarief; zie BEV-19."
+    },
+    "BR-11": {
+      "id": "BR-11",
+      "apaReferentie": "Nationale-Nederlanden. (2025). Tarieven Medisch Specialistische Zorg per 1 januari 2025.",
+      "bestand": "raw/universele bronnen/UNIVERSEEL_Zorg - NN - Tarieven Medische Specialistische Zorg per 1-jan-2025.pdf",
+      "typeBron": "contracttarievenlijst van een verzekeraar",
+      "relevantVoor": [
+        "BEOORDEELD EN NIET GEBRUIKT"
+      ],
+      "pagina": "hele document",
+      "betrouwbaarheid": "hoog als tarievenlijst, irrelevant hier",
+      "opmerkingen": "Geen enkel effect claimt medisch-specialistisch zorggebruik. Bij een toekomstige zorgpost geldt eerst BR-06 (nationale referentieprijzen); een verzekeraarstarief is een contractprijs, geen maatschappelijke kostprijs."
+    }
+  },
+  "parameters": [
+    {
+      "id": "jobcoaching-extern-persoonlijke-ondersteuning-uurtarief",
+      "parameter": "Jobcoaching extern / persoonlijke ondersteuning, uurtarief",
+      "centraleWaarde": 117.89,
+      "centraleWaardeTekst": 117.89,
+      "peiljaar": "2026",
+      "rangeLaag": 111.57,
+      "rangeLaagTekst": 111.57,
+      "rangeHoog": null,
+      "rangeHoogTekst": null,
+      "bron": "BR-13, Besluit Normbedragen Voorzieningen UWV 2026, code Q1",
+      "gevoeligheid": true,
+      "opmerking": "EUR per uur, exclusief btw. Range laag = normbedrag 2025. De prijslijst rondde af op EUR 118."
+    },
+    {
+      "id": "jobcoaching-intern-jaar-1-regime-licht",
+      "parameter": "Jobcoaching intern jaar 1, regime licht",
+      "centraleWaarde": 3742.45,
+      "centraleWaardeTekst": 3742.45,
+      "peiljaar": "2026",
+      "rangeLaag": 3541.97,
+      "rangeLaagTekst": 3541.97,
+      "rangeHoog": null,
+      "rangeHoogTekst": null,
+      "bron": "BR-13, code Q2",
+      "gevoeligheid": true,
+      "opmerking": "EUR per jaar; 6% van de gewerkte uren."
+    },
+    {
+      "id": "jobcoaching-intern-jaar-1-regime-midden",
+      "parameter": "Jobcoaching intern jaar 1, regime midden",
+      "centraleWaarde": 6376.03,
+      "centraleWaardeTekst": 6376.03,
+      "peiljaar": "2026",
+      "rangeLaag": 3742.45,
+      "rangeLaagTekst": 3742.45,
+      "rangeHoog": 9425.44,
+      "rangeHoogTekst": 9425.44,
+      "bron": "BR-13, code Q2",
+      "gevoeligheid": true,
+      "opmerking": "EUR per jaar; 10% van de gewerkte uren. Range = spreiding licht-intensief. Standaardregime volgens UWV."
+    },
+    {
+      "id": "jobcoaching-intern-jaar-1-regime-intensief",
+      "parameter": "Jobcoaching intern jaar 1, regime intensief",
+      "centraleWaarde": 9425.44,
+      "centraleWaardeTekst": 9425.44,
+      "peiljaar": "2026",
+      "rangeLaag": 8920.51,
+      "rangeLaagTekst": 8920.51,
+      "rangeHoog": null,
+      "rangeHoogTekst": null,
+      "bron": "BR-13, code Q2",
+      "gevoeligheid": true,
+      "opmerking": "EUR per jaar; 15% = wettelijk maximum (Reintegratiebesluit art. 12 lid 2)."
+    },
+    {
+      "id": "jobcoaching-intern-jaar-2-regime-midden",
+      "parameter": "Jobcoaching intern jaar 2, regime midden",
+      "centraleWaarde": 3188.02,
+      "centraleWaardeTekst": 3188.02,
+      "peiljaar": "2026",
+      "rangeLaag": 1940.53,
+      "rangeLaagTekst": 1940.53,
+      "rangeHoog": 4712.72,
+      "rangeHoogTekst": 4712.72,
+      "bron": "BR-13, code Q2",
+      "gevoeligheid": false,
+      "opmerking": "5% van de gewerkte uren; de degressie komt van halvering van de UREN, niet van het tarief. Zie BEV-06."
+    },
+    {
+      "id": "jobcoaching-intern-jaar-3-regime-midden",
+      "parameter": "Jobcoaching intern jaar 3, regime midden",
+      "centraleWaarde": 1940.53,
+      "centraleWaardeTekst": 1940.53,
+      "peiljaar": "2026",
+      "rangeLaag": 1940.53,
+      "rangeLaagTekst": 1940.53,
+      "rangeHoog": 3742.45,
+      "rangeHoogTekst": 3742.45,
+      "bron": "BR-13, code Q2",
+      "gevoeligheid": false,
+      "opmerking": "3% - gelijk aan licht; een stap midden naar licht is in jaar 3 EUR 0 waard. Zie BEV-06."
+    },
+    {
+      "id": "uitvoering-re-integratiediensten-uurtarief",
+      "parameter": "Uitvoering re-integratiediensten, uurtarief",
+      "centraleWaarde": 90,
+      "centraleWaardeTekst": 90,
+      "peiljaar": "2026",
+      "rangeLaag": null,
+      "rangeLaagTekst": null,
+      "rangeHoog": null,
+      "rangeHoogTekst": null,
+      "bron": "BR-03, rij 45 (primair: Inkoopkader re-integratiediensten)",
+      "gevoeligheid": false,
+      "opmerking": "EUR per uur. Route 3, reeel."
+    },
+    {
+      "id": "re-integratiedienst-praktijkassessment",
+      "parameter": "Re-integratiedienst praktijkassessment",
+      "centraleWaarde": 1879,
+      "centraleWaardeTekst": 1879,
+      "peiljaar": "2026",
+      "rangeLaag": null,
+      "rangeLaagTekst": null,
+      "rangeHoog": null,
+      "rangeHoogTekst": null,
+      "bron": "BR-03, rij 46",
+      "gevoeligheid": false,
+      "opmerking": "EUR per traject, exclusief btw. Route 3, reeel."
+    },
+    {
+      "id": "productiviteitskosten-per-uur-betaald-werkende",
+      "parameter": "Productiviteitskosten per uur betaald werkende",
+      "centraleWaarde": 39.88,
+      "centraleWaardeTekst": 39.88,
+      "peiljaar": "2022",
+      "rangeLaag": 23,
+      "rangeLaagTekst": 23,
+      "rangeHoog": 47,
+      "rangeHoogTekst": 47,
+      "bron": "BR-06, tabel 6-2 (primair: CBS 2023 Arbeidskosten)",
+      "gevoeligheid": true,
+      "opmerking": "EUR per uur, bruto toegevoegde waarde. POPULATIEGEMIDDELDE: vermoedelijk te hoog voor deze doelgroep. Range drukt de keuze tussen deze prijs en het laaggeschoolden-tarief uit. Zie BEV-15. Geindexeerd naar 2025 (x1,15): EUR 45,86."
+    },
+    {
+      "id": "uurtarief-laaggeschoold-en-ongeschoold-personeel",
+      "parameter": "Uurtarief laaggeschoold en ongeschoold personeel",
+      "centraleWaarde": 23,
+      "centraleWaardeTekst": 23,
+      "peiljaar": "2020",
+      "rangeLaag": null,
+      "rangeLaagTekst": null,
+      "rangeHoog": null,
+      "rangeHoogTekst": null,
+      "bron": "BR-07, deel 4.C, tabel 'bruto uurlonen ... naar beroepsgroep, 2020'",
+      "gevoeligheid": true,
+      "opmerking": "EUR per uur. KOSTENTARIEF incl. 40% werkgeverslasten en 25% overhead; meet iets anders dan de bruto toegevoegde waarde hierboven. PEILJAAR GECORRIGEERD van 2023 naar 2020 (BEV-20). Geindexeerd naar prijspeil 2025 (x1,20): EUR 28."
+    },
+    {
+      "id": "uurtarief-bedrijven-totaal",
+      "parameter": "Uurtarief bedrijven, totaal",
+      "centraleWaarde": 47,
+      "centraleWaardeTekst": 47,
+      "peiljaar": "2020",
+      "rangeLaag": 23,
+      "rangeLaagTekst": 23,
+      "rangeHoog": 77,
+      "rangeHoogTekst": 77,
+      "bron": "BR-07, deel 4.C",
+      "gevoeligheid": false,
+      "opmerking": "EUR per uur. Range = spreiding functiecategorieen, AFGELEID. Geindexeerd naar 2025: EUR 56."
+    },
+    {
+      "id": "uurtarief-burgers",
+      "parameter": "Uurtarief burgers",
+      "centraleWaarde": 17,
+      "centraleWaardeTekst": 17,
+      "peiljaar": "2019",
+      "rangeLaag": null,
+      "rangeLaagTekst": null,
+      "rangeHoog": null,
+      "rangeHoogTekst": null,
+      "bron": "BR-07, deel 4.C",
+      "gevoeligheid": false,
+      "opmerking": "EUR per uur, voor tijd van de deelnemer zelf. NIET voor de productiewaarde van verricht werk. Peiljaar = het inkomensjaar waarop het handboek zich baseert."
+    },
+    {
+      "id": "werkgeverslasten-als-brutoloon",
+      "parameter": "Werkgeverslasten als % brutoloon",
+      "centraleWaarde": 0.309,
+      "centraleWaardeTekst": 0.309,
+      "peiljaar": "2012",
+      "rangeLaag": null,
+      "rangeLaagTekst": null,
+      "rangeHoog": null,
+      "rangeHoogTekst": null,
+      "bron": "BR-04, tabel I.1",
+      "gevoeligheid": false,
+      "opmerking": "Verouderd niveau; de verhouding is houdbaarder dan het bedrag."
+    },
+    {
+      "id": "frictieperiode",
+      "parameter": "Frictieperiode",
+      "centraleWaarde": null,
+      "centraleWaardeTekst": "115 dagen (16,4 weken)",
+      "peiljaar": "2018-2022",
+      "rangeLaag": 102,
+      "rangeLaagTekst": 102,
+      "rangeHoog": 136,
+      "rangeHoogTekst": 136,
+      "bron": "BR-06, tabel 6-1 (primair: CBS Statline vacatures)",
+      "gevoeligheid": false,
+      "opmerking": "5-jaarsgemiddelde. Range = jaarwaarden 2020 en 2022."
+    },
+    {
+      "id": "bijstand-alleenstaand-21-jaar-tot-aow-netto-incl-vakantie-uitkering",
+      "parameter": "Bijstand alleenstaand 21 jaar tot AOW, netto incl. vakantie-uitkering",
+      "centraleWaarde": 1564,
+      "centraleWaardeTekst": 1564,
+      "peiljaar": "1-1-2026",
+      "rangeLaag": null,
+      "rangeLaagTekst": null,
+      "rangeHoog": null,
+      "rangeHoogTekst": null,
+      "bron": "BR-03, rij 22",
+      "gevoeligheid": false,
+      "opmerking": "EUR per maand (EUR 18.768 per jaar). OVERDRACHTSBETALING - telt niet mee in het netto maatschappelijk totaal."
+    },
+    {
+      "id": "bijstand-gehuwd-samenwonend",
+      "parameter": "Bijstand gehuwd/samenwonend",
+      "centraleWaarde": 2144,
+      "centraleWaardeTekst": 2144,
+      "peiljaar": "1-1-2026",
+      "rangeLaag": null,
+      "rangeLaagTekst": null,
+      "rangeHoog": null,
+      "rangeHoogTekst": null,
+      "bron": "BR-03, rij 21",
+      "gevoeligheid": false,
+      "opmerking": "EUR per maand. OVERDRACHTSBETALING."
+    },
+    {
+      "id": "bijstand-alleenstaand-18-t-m-20-jaar",
+      "parameter": "Bijstand alleenstaand 18 t/m 20 jaar",
+      "centraleWaarde": 346,
+      "centraleWaardeTekst": 346,
+      "peiljaar": "1-1-2026",
+      "rangeLaag": null,
+      "rangeLaagTekst": null,
+      "rangeHoog": null,
+      "rangeHoogTekst": null,
+      "bron": "BR-03, rij 24",
+      "gevoeligheid": false,
+      "opmerking": "EUR per maand. OVERDRACHTSBETALING."
+    },
+    {
+      "id": "wajong-21-jaar-en-ouder",
+      "parameter": "Wajong 21 jaar en ouder",
+      "centraleWaarde": 105,
+      "centraleWaardeTekst": 105,
+      "peiljaar": "1-1-2026",
+      "rangeLaag": null,
+      "rangeLaagTekst": null,
+      "rangeHoog": null,
+      "rangeHoogTekst": null,
+      "bron": "BR-03, rij 51",
+      "gevoeligheid": false,
+      "opmerking": "EUR per dag. OVERDRACHTSBETALING."
+    },
+    {
+      "id": "gemiddelde-jaaruitkering-wajong",
+      "parameter": "Gemiddelde jaaruitkering Wajong",
+      "centraleWaarde": 17851,
+      "centraleWaardeTekst": 17851,
+      "peiljaar": "2024",
+      "rangeLaag": null,
+      "rangeLaagTekst": null,
+      "rangeHoog": null,
+      "rangeHoogTekst": null,
+      "bron": "BR-08, tabblad 'Uitgek. bedragen Wajong'",
+      "gevoeligheid": false,
+      "opmerking": "EUR per jaar. OVERDRACHTSBETALING. De kolom na 2024 mist een jaarlabel en is niet gebruikt (BEV-09)."
+    },
+    {
+      "id": "discontovoet-reeel",
+      "parameter": "Discontovoet, reeel",
+      "centraleWaarde": 0.03,
+      "centraleWaardeTekst": 0.03,
+      "peiljaar": "2015",
+      "rangeLaag": 0.025,
+      "rangeLaagTekst": 0.025,
+      "rangeHoog": 0.055,
+      "rangeHoogTekst": 0.055,
+      "bron": "BR-04, tabel 6.11 (primair: Werkgroep Discontovoet 2015)",
+      "gevoeligheid": true,
+      "opmerking": "Voor kosten en effecten. Wijkt bewust af van de 1,5% voor effecten uit BR-06; zie BEV-08."
+    },
+    {
+      "id": "looptijd-t",
+      "parameter": "Looptijd T",
+      "centraleWaarde": 1,
+      "centraleWaardeTekst": 1,
+      "peiljaar": "n.v.t.",
+      "rangeLaag": null,
+      "rangeLaagTekst": null,
+      "rangeHoog": null,
+      "rangeHoogTekst": null,
+      "bron": "sectorconfiguratie, eenjaarslezing",
+      "gevoeligheid": false,
+      "opmerking": "Jaar. Bij T=1 speelt discontering geen rol."
+    },
+    {
+      "id": "belasting-over-extra-gewerkte-uren-incl-toeslagen",
+      "parameter": "Belasting over extra gewerkte uren, incl. toeslagen",
+      "centraleWaarde": 0.48,
+      "centraleWaardeTekst": 0.48,
+      "peiljaar": "2015",
+      "rangeLaag": null,
+      "rangeLaagTekst": null,
+      "rangeHoog": null,
+      "rangeHoogTekst": null,
+      "bron": "BR-04, tabel I.1 (Quist 2015)",
+      "gevoeligheid": false,
+      "opmerking": "OVERDRACHT. Nooit als extra reele baat bovenop productiviteit boeken."
+    },
+    {
+      "id": "belasting-over-alle-uren-gemiddeld",
+      "parameter": "Belasting over alle uren, gemiddeld",
+      "centraleWaarde": 0.197,
+      "centraleWaardeTekst": 0.197,
+      "peiljaar": "2013",
+      "rangeLaag": null,
+      "rangeLaagTekst": null,
+      "rangeHoog": null,
+      "rangeHoogTekst": null,
+      "bron": "BR-04, tabel I.1",
+      "gevoeligheid": false,
+      "opmerking": "OVERDRACHT."
+    },
+    {
+      "id": "belasting-bij-combinatie-extra-uren-en-extra-werkenden",
+      "parameter": "Belasting bij combinatie extra uren en extra werkenden",
+      "centraleWaarde": 0.34,
+      "centraleWaardeTekst": 0.34,
+      "peiljaar": "n.v.t.",
+      "rangeLaag": null,
+      "rangeLaagTekst": null,
+      "rangeHoog": null,
+      "rangeHoogTekst": null,
+      "bron": "BR-04, tabel I.1 (gemiddelde van de twee hierboven)",
+      "gevoeligheid": false,
+      "opmerking": "OVERDRACHT."
+    },
+    {
+      "id": "waarde-van-een-qaly-centraal",
+      "parameter": "Waarde van een QALY, centraal",
+      "centraleWaarde": 75000,
+      "centraleWaardeTekst": 75000,
+      "peiljaar": "2025",
+      "rangeLaag": 50000,
+      "rangeLaagTekst": 50000,
+      "rangeHoog": 100000,
+      "rangeHoogTekst": 100000,
+      "bron": "BR-12 (Ryen & Svensson 2015 via BR-04, pp. 63-64)",
+      "gevoeligheid": true,
+      "opmerking": "Middenwaarde tussen de twee MKBA-waarden EUR 50.000 en EUR 100.000; overgenomen uit de zusterstandaard voor vergelijkbaarheid. TERUGVALOPTIE: de sectorconfiguratie schrijft de ziektelastafhankelijke Zorginstituut-waarde voor, die niet in raw/ staat (BEV-08). Gevoeligheid: EUR 20.000 - EUR 200.000."
+    },
+    {
+      "id": "waardering-informele-vervangende-tijd",
+      "parameter": "Waardering informele/vervangende tijd",
+      "centraleWaarde": 18.8,
+      "centraleWaardeTekst": 18.8,
+      "peiljaar": "2022",
+      "rangeLaag": null,
+      "rangeLaagTekst": null,
+      "rangeHoog": null,
+      "rangeHoogTekst": null,
+      "bron": "BR-06, paragraaf 5.3.2",
+      "gevoeligheid": false,
+      "opmerking": "EUR per uur. Kandidaat voor waardering van vrijwilligerswerk."
+    },
+    {
+      "id": "waardering-vrijwilligerswerk-alternatief",
+      "parameter": "Waardering vrijwilligerswerk, alternatief",
+      "centraleWaarde": null,
+      "centraleWaardeTekst": "helft van het minimumuurloon",
+      "peiljaar": "2016",
+      "rangeLaag": null,
+      "rangeLaagTekst": "10% WML",
+      "rangeHoog": null,
+      "rangeHoogTekst": "90% WML",
+      "bron": "BR-04, bijlage E",
+      "gevoeligheid": false,
+      "opmerking": "Bandbreedte van factor 9: een puntschatting hierop is per definitie zwak onderbouwd."
+    },
+    {
+      "id": "ziekteverzuimpercentage-werknemers-deeltijdgecorrigeerd",
+      "parameter": "Ziekteverzuimpercentage werknemers (deeltijdgecorrigeerd)",
+      "centraleWaarde": 0.0475,
+      "centraleWaardeTekst": 0.0475,
+      "peiljaar": "2023",
+      "rangeLaag": null,
+      "rangeLaagTekst": null,
+      "rangeHoog": null,
+      "rangeHoogTekst": null,
+      "bron": "BR-09, hoofdstuk 3",
+      "gevoeligheid": false,
+      "opmerking": "VOORLOPIG NIET GEBRUIKT: verzuim wordt geen zelfstandige proxy (aanname A6, BEV-14)."
+    },
+    {
+      "id": "normduur-per-begeleidingssessie-jobcoaching",
+      "parameter": "Normduur per begeleidingssessie - jobcoaching",
+      "centraleWaarde": 1,
+      "centraleWaardeTekst": 1,
+      "peiljaar": "2026-08-27",
+      "rangeLaag": 0.5,
+      "rangeLaagTekst": 0.5,
+      "rangeHoog": 1.5,
+      "rangeHoogTekst": 1.5,
+      "bron": "AANNAME OPDRACHTGEVER 2026-08-27 - geen bron",
+      "gevoeligheid": true,
+      "opmerking": "Uren per sessie. NIET GEBROND: er bestaat geen Nederlandse bron voor de gemiddelde duur van een begeleidingssessie. Aannamescore 8. Bandbreedte is een factor drie en bepaalt in zijn eentje de orde van grootte van elk bedrag uit route 1. Zie BEV-27."
+    },
+    {
+      "id": "normduur-per-begeleidingssessie-individual-guidance",
+      "parameter": "Normduur per begeleidingssessie - individual_guidance",
+      "centraleWaarde": 1,
+      "centraleWaardeTekst": 1,
+      "peiljaar": "2026-08-27",
+      "rangeLaag": 0.5,
+      "rangeLaagTekst": 0.5,
+      "rangeHoog": 1.5,
+      "rangeHoogTekst": 1.5,
+      "bron": "AANNAME OPDRACHTGEVER 2026-08-27 - geen bron",
+      "gevoeligheid": true,
+      "opmerking": "Idem. Aannamescore 8."
+    },
+    {
+      "id": "impliciet-uurtarief-interne-begeleiding",
+      "parameter": "Impliciet uurtarief interne begeleiding",
+      "centraleWaarde": 55,
+      "centraleWaardeTekst": 55,
+      "peiljaar": "2026",
+      "rangeLaag": 51,
+      "rangeLaagTekst": 51,
+      "rangeHoog": 58,
+      "rangeHoogTekst": 58,
+      "bron": "AFGELEID uit BR-12/UWV: jaarbedrag / regimepercentage over 9 combinaties",
+      "gevoeligheid": true,
+      "opmerking": "EUR per uur. Spreiding van de afleiding EUR 62.374-64.684 (+/-1,8%), wat de afleiding bevestigt. Enige eigen aanname: aantal werkbare weken bij 24 uur/week. Aannamescore 4. Eerste prijs in deze standaard die is afgeleid in plaats van overgenomen."
+    },
+    {
+      "id": "prijspeil-standaard-rapportagejaar",
+      "parameter": "PRIJSPEIL - standaard rapportagejaar",
+      "centraleWaarde": 2025,
+      "centraleWaardeTekst": "2025",
+      "peiljaar": "2025",
+      "rangeLaag": null,
+      "rangeLaagTekst": null,
+      "rangeHoog": null,
+      "rangeHoogTekst": null,
+      "bron": "BR-12, methodiek-monetarisering.md",
+      "gevoeligheid": false,
+      "opmerking": "Indexfactoren naar 2025: regeldrukhandboek 2020 x1,20; Kostenhandleiding productiviteit 2022 x1,15; Kostenhandleiding zorgtarieven 2022 x1,10; Berenschot 2018 x1,20; prijslijst en UWV x1,00; Arbobalans 2023 x1,05."
+    },
+    {
+      "id": "jaarloonwaarde-laaggeschoold-all-in",
+      "parameter": "Jaarloonwaarde laaggeschoold, all-in",
+      "centraleWaarde": 49280,
+      "centraleWaardeTekst": 49280,
+      "peiljaar": "2025",
+      "rangeLaag": null,
+      "rangeLaagTekst": null,
+      "rangeHoog": null,
+      "rangeHoogTekst": null,
+      "bron": "BR-12 - EUR 28/uur x 8 uur x 220 dagen",
+      "gevoeligheid": true,
+      "opmerking": "EUR per jaar. EUR 28 = EUR 23 (2020) x 1,20. Rekenbasis voor alle productiviteitscomponenten in de zusterstandaard."
+    },
+    {
+      "id": "uitvoeringskosten-uitkering",
+      "parameter": "Uitvoeringskosten uitkering",
+      "centraleWaarde": 3500,
+      "centraleWaardeTekst": 3500,
+      "peiljaar": "2025",
+      "rangeLaag": null,
+      "rangeLaagTekst": null,
+      "rangeHoog": null,
+      "rangeHoogTekst": null,
+      "bron": "BR-12; Berenschot (2018) EUR 2.883 x 1,20",
+      "gevoeligheid": false,
+      "opmerking": "EUR per jaar. SECUNDAIR CITAAT: de Berenschot-bron staat niet in raw/. Primair bronnen voordat dit in een bedrag doorwerkt."
+    },
+    {
+      "id": "waardering-vrijwilligerswerk-effectief",
+      "parameter": "Waardering vrijwilligerswerk, effectief",
+      "centraleWaarde": 11,
+      "centraleWaardeTekst": 11,
+      "peiljaar": "2025",
+      "rangeLaag": null,
+      "rangeLaagTekst": null,
+      "rangeHoog": null,
+      "rangeHoogTekst": null,
+      "bron": "BR-12 - 50% x EUR 22 vervangingstarief",
+      "gevoeligheid": false,
+      "opmerking": "EUR per uur. EUR 22 = EUR 18,80 (2022) x 1,15. Zelfde orde als de helft-van-het-minimumuurloon-regel uit BR-04 bijlage E."
+    },
+    {
+      "id": "gewogen-uitkeringsmix-doelgroep",
+      "parameter": "Gewogen uitkeringsmix doelgroep",
+      "centraleWaarde": 20000,
+      "centraleWaardeTekst": 20000,
+      "peiljaar": "2025",
+      "rangeLaag": null,
+      "rangeLaagTekst": null,
+      "rangeHoog": null,
+      "rangeHoogTekst": null,
+      "bron": "BR-12 - bijstand 18.768, WW 25.578, Wajong 17.851",
+      "gevoeligheid": false,
+      "opmerking": "EUR per jaar. OVERDRACHTSBETALING. De mix is de aanname en is doelgroepafhankelijk."
+    },
+    {
+      "id": "deadweight-grote-afstand-tot-de-arbeidsmarkt",
+      "parameter": "Deadweight - grote afstand tot de arbeidsmarkt",
+      "centraleWaarde": 0.25,
+      "centraleWaardeTekst": 0.25,
+      "peiljaar": "2026",
+      "rangeLaag": 0.1,
+      "rangeLaagTekst": 0.1,
+      "rangeHoog": 0.5,
+      "rangeHoogTekst": 0.5,
+      "bron": "BR-12, sroi-correcties.md",
+      "gevoeligheid": true,
+      "opmerking": "Voorstelpercentage, needs verification, aannamescore 7. Doelgroep van deze standaard."
+    },
+    {
+      "id": "deadweight-korte-afstand",
+      "parameter": "Deadweight - korte afstand",
+      "centraleWaarde": 0.5,
+      "centraleWaardeTekst": 0.5,
+      "peiljaar": "2026",
+      "rangeLaag": 0.3,
+      "rangeLaagTekst": 0.3,
+      "rangeHoog": 0.7,
+      "rangeHoogTekst": 0.7,
+      "bron": "BR-12, sroi-correcties.md",
+      "gevoeligheid": true,
+      "opmerking": "Voorstelpercentage, needs verification, aannamescore 7."
+    },
+    {
+      "id": "attributie-aan-de-organisatie",
+      "parameter": "Attributie aan de organisatie",
+      "centraleWaarde": 0.75,
+      "centraleWaardeTekst": 0.75,
+      "peiljaar": "2026",
+      "rangeLaag": 0.5,
+      "rangeLaagTekst": 0.5,
+      "rangeHoog": 0.9,
+      "rangeHoogTekst": 0.9,
+      "bron": "BR-12, sroi-correcties.md",
+      "gevoeligheid": true,
+      "opmerking": "Voorstelpercentage, needs verification, aannamescore 8."
+    },
+    {
+      "id": "verdringing-uitkeringsgerelateerde-baten",
+      "parameter": "Verdringing - uitkeringsgerelateerde baten",
+      "centraleWaarde": 0.15,
+      "centraleWaardeTekst": 0.15,
+      "peiljaar": "2026",
+      "rangeLaag": 0,
+      "rangeLaagTekst": 0,
+      "rangeHoog": 0.3,
+      "rangeHoogTekst": 0.3,
+      "bron": "BR-12, sroi-correcties.md",
+      "gevoeligheid": true,
+      "opmerking": "Voorstelpercentage, needs verification, aannamescore 7. Geharmoniseerd over alle drie de routes; staat op gespannen voet met BR-04 bijlage B (aanbodbeleid hoger, productiviteitsbeleid lager). Zie BEV-13."
+    },
+    {
+      "id": "verdringing-zorg-welzijns-en-qaly-baten",
+      "parameter": "Verdringing - zorg-, welzijns- en QALY-baten",
+      "centraleWaarde": 0,
+      "centraleWaardeTekst": 0,
+      "peiljaar": "2026",
+      "rangeLaag": null,
+      "rangeLaagTekst": null,
+      "rangeHoog": null,
+      "rangeHoogTekst": null,
+      "bron": "BR-12, sroi-correcties.md",
+      "gevoeligheid": false,
+      "opmerking": "Onderbouwd, aannamescore 2. Gezondheidswinst van de een verdringt geen gezondheid van een ander."
+    },
+    {
+      "id": "gecombineerde-toerekeningsfactor-uitkeringsgerelateerd",
+      "parameter": "Gecombineerde toerekeningsfactor - uitkeringsgerelateerd",
+      "centraleWaarde": 0.48,
+      "centraleWaardeTekst": 0.48,
+      "peiljaar": "2026",
+      "rangeLaag": null,
+      "rangeLaagTekst": null,
+      "rangeHoog": null,
+      "rangeHoogTekst": null,
+      "bron": "BR-12 - (1-0,25) x 0,75 x (1-0,15)",
+      "gevoeligheid": true,
+      "opmerking": "Voor de doelgroep met grote afstand tot de arbeidsmarkt."
+    },
+    {
+      "id": "looptijd-t-effectgroep-vaardigheden",
+      "parameter": "Looptijd T - effectgroep vaardigheden",
+      "centraleWaarde": 5,
+      "centraleWaardeTekst": 5,
+      "peiljaar": "2026",
+      "rangeLaag": null,
+      "rangeLaagTekst": null,
+      "rangeHoog": null,
+      "rangeHoogTekst": null,
+      "bron": "BR-12, tijdsdimensie.md",
+      "gevoeligheid": false,
+      "opmerking": "Jaren. Voorstelparameter, needs verification, aannamescore 8. Human-capital-argument: verworven vaardigheden slijten langzaam."
+    },
+    {
+      "id": "drop-off-per-jaar-vaardigheden",
+      "parameter": "Drop-off per jaar - vaardigheden",
+      "centraleWaarde": 0.1,
+      "centraleWaardeTekst": 0.1,
+      "peiljaar": "2026",
+      "rangeLaag": null,
+      "rangeLaagTekst": null,
+      "rangeHoog": null,
+      "rangeHoogTekst": null,
+      "bron": "BR-12, tijdsdimensie.md",
+      "gevoeligheid": true,
+      "opmerking": "Voorstelparameter, needs verification, aannamescore 8."
+    },
+    {
+      "id": "looptijd-t-arbeidspositie-route-3",
+      "parameter": "Looptijd T - arbeidspositie (route 3)",
+      "centraleWaarde": 3,
+      "centraleWaardeTekst": 3,
+      "peiljaar": "2026",
+      "rangeLaag": null,
+      "rangeLaagTekst": null,
+      "rangeHoog": null,
+      "rangeHoogTekst": null,
+      "bron": "BR-12, tijdsdimensie.md",
+      "gevoeligheid": false,
+      "opmerking": "Jaren. Voorstelparameter, aannamescore 7."
+    },
+    {
+      "id": "drop-off-per-jaar-arbeidspositie",
+      "parameter": "Drop-off per jaar - arbeidspositie",
+      "centraleWaarde": 0.3,
+      "centraleWaardeTekst": 0.3,
+      "peiljaar": "2026",
+      "rangeLaag": null,
+      "rangeLaagTekst": null,
+      "rangeHoog": null,
+      "rangeHoogTekst": null,
+      "bron": "BR-12, tijdsdimensie.md",
+      "gevoeligheid": true,
+      "opmerking": "Voorstelparameter, aannamescore 7. Substantiele terugval in de eerste jaren na uitstroom."
+    },
+    {
+      "id": "uren-begeleiding-per-ladderstap",
+      "parameter": "Uren begeleiding per ladderstap",
+      "centraleWaarde": null,
+      "centraleWaardeTekst": null,
+      "peiljaar": null,
+      "rangeLaag": null,
+      "rangeLaagTekst": null,
+      "rangeHoog": null,
+      "rangeHoogTekst": null,
+      "bron": "needs verification - geen bron in raw/",
+      "gevoeligheid": true,
+      "opmerking": "DRAGENDE AANNAME, ONTBREEKT. Benodigd: definitie van de UWV-begeleidingsregimes in uren, of registratie van het formulierveld 'hoeveel uur per week'."
+    },
+    {
+      "id": "koppeling-formuliertrede-aan-uwv-begeleidingsregime",
+      "parameter": "Koppeling formuliertrede aan UWV-begeleidingsregime",
+      "centraleWaarde": null,
+      "centraleWaardeTekst": null,
+      "peiljaar": null,
+      "rangeLaag": null,
+      "rangeLaagTekst": null,
+      "rangeHoog": null,
+      "rangeHoogTekst": null,
+      "bron": "needs verification - geen gepubliceerde mapping",
+      "gevoeligheid": true,
+      "opmerking": "DRAGENDE AANNAME, ONTBREEKT. Vier treden versus drie regimes; trede L1 heeft geen regime. Zie BEV-05."
+    },
+    {
+      "id": "koppeling-effectscore-aan-positie-op-de-begeleidingsladder",
+      "parameter": "Koppeling effectscore aan positie op de begeleidingsladder",
+      "centraleWaarde": null,
+      "centraleWaardeTekst": null,
+      "peiljaar": null,
+      "rangeLaag": null,
+      "rangeLaagTekst": null,
+      "rangeHoog": null,
+      "rangeHoogTekst": null,
+      "bron": "needs verification - geen bron in raw/",
+      "gevoeligheid": true,
+      "opmerking": "DRAGENDE AANNAME, ONTBREEKT. Benodigd: empirische data uit twee metingen of expertvalidatie."
+    },
+    {
+      "id": "loonwaardeaanname",
+      "parameter": "Loonwaardeaanname",
+      "centraleWaarde": null,
+      "centraleWaardeTekst": null,
+      "peiljaar": null,
+      "rangeLaag": null,
+      "rangeLaagTekst": null,
+      "rangeHoog": null,
+      "rangeHoogTekst": null,
+      "bron": "needs verification - Besluit loonkostensubsidie Participatiewet niet in raw/",
+      "gevoeligheid": true,
+      "opmerking": "DRAGENDE AANNAME, ONTBREEKT. Het bedrag komt hoe dan ook uit de formele meting door een gecertificeerde deskundige, niet uit dit instrument. Zie BEV-07."
+    },
+    {
+      "id": "kans-op-plaatsing",
+      "parameter": "Kans op plaatsing",
+      "centraleWaarde": null,
+      "centraleWaardeTekst": null,
+      "peiljaar": null,
+      "rangeLaag": null,
+      "rangeLaagTekst": null,
+      "rangeHoog": null,
+      "rangeHoogTekst": null,
+      "bron": "needs verification - ook BR-12 legt de OVERGANGSKANS niet vast",
+      "gevoeligheid": true,
+      "opmerking": "DRAGENDE AANNAME, ONTBREEKT. De treden en tredebedragen van EFF-19 zijn nu bekend via BR-12 en worden hergebruikt, maar de kans dat een deelnemer een trede stijgt bij een gegeven effectverandering staat daar ook niet."
+    },
+    {
+      "id": "alpha-overlapfactoren",
+      "parameter": "Alpha-overlapfactoren",
+      "centraleWaarde": null,
+      "centraleWaardeTekst": null,
+      "peiljaar": null,
+      "rangeLaag": null,
+      "rangeLaagTekst": null,
+      "rangeHoog": null,
+      "rangeHoogTekst": null,
+      "bron": "open besluit - hangt af van de oplossing voor de dubbeltelling",
+      "gevoeligheid": true,
+      "opmerking": "DRAGENDE AANNAME, ONTBREEKT. Zie BEV-21 en tabblad 8."
+    },
+    {
+      "id": "verdringing-gedifferentieerd-naar-route",
+      "parameter": "Verdringing gedifferentieerd naar route",
+      "centraleWaarde": null,
+      "centraleWaardeTekst": null,
+      "peiljaar": null,
+      "rangeLaag": null,
+      "rangeLaagTekst": null,
+      "rangeHoog": null,
+      "rangeHoogTekst": null,
+      "bron": "open punt - de geharmoniseerde 15% geldt; differentiatie is zelf niet gebronnd",
+      "gevoeligheid": false,
+      "opmerking": "De 15% van BR-12 is een middenwaarde. BR-04 bijlage B impliceert hoger voor route 3 en lager voor route 1 en 2. Differentiatie hoort in een volgende versie van het kader. Zie BEV-13."
+    },
+    {
+      "id": "normbedrag-beschut-werk-per-plek",
+      "parameter": "Normbedrag beschut werk per plek",
+      "centraleWaarde": null,
+      "centraleWaardeTekst": null,
+      "peiljaar": null,
+      "rangeLaag": null,
+      "rangeLaagTekst": null,
+      "rangeHoog": null,
+      "rangeHoogTekst": null,
+      "bron": "needs verification - alleen als secundair citaat bekend",
+      "gevoeligheid": false,
+      "opmerking": "ONTBREEKT. Het bedrag circa EUR 12.485-15.500 uit BR-02 is een citaat uit een document dat niet in raw/ staat en is dus niet bruikbaar."
+    }
+  ],
+  "aggregatie": {
+    "overlapgroepen": [],
+    "voorbeeld": {
+      "titel": null,
+      "regels": [],
+      "totaal": null,
+      "overlapcorrectie": null
+    }
+  },
+  "gevoeligheid": {
+    "interpretatie": null,
+    "scenarios": []
+  },
+  "audit": [
+    {
+      "onderdeel": "Integriteit vastgestelde lijst",
+      "itemId": "BEV-01",
+      "probleem": "Het tegenpolenpaar 'Overziet wat er moet gebeuren' staat twee keer in het formulier (secties Zelfstandigheid/Kwaliteit en Tempo); formulier telt 47 items, lijst 46.",
+      "ernst": "laag",
+      "voorgesteldeActie": "Vastgelegd in de bronpagina van het formulier. Lijst niet wijzigen: eenmaal opnemen is correct.",
+      "status": "opgelost door vastlegging"
+    },
+    {
+      "onderdeel": "Integriteit vastgestelde lijst",
+      "itemId": "BEV-02",
+      "probleem": "Een formuliersectie (Stressbestendigheid / Flexibiliteit, 9 items) is gesplitst over EFF-05 en EFF-06. Die herindeling volgt niet uit het formulier en is nergens onderbouwd.",
+      "ernst": "middel",
+      "voorgesteldeActie": "Splitsing niet wijzigen. Bij aggregatie EFF-05 en EFF-06 als een cluster behandelen tot het tegendeel is aangetoond.",
+      "status": "open - actie bij aggregatie"
+    },
+    {
+      "onderdeel": "Integriteit vastgestelde lijst",
+      "itemId": "BEV-03",
+      "probleem": "EFF-09 stellingen 3 en 4 komen van formulieritems ZONDER tegenpool; de polen zijn bij de omzetting toegevoegd, niet afgeleid. Zwakste herkomst van de lijst.",
+      "ernst": "middel",
+      "voorgesteldeActie": "Aannamescore voor EFF-09 minimaal 8. Betrokken bij het besluit over EFF-09 (BEV-04).",
+      "status": "opgelost via BEV-04"
+    },
+    {
+      "onderdeel": "Integriteit vastgestelde lijst",
+      "itemId": "BEV-04",
+      "probleem": "EFF-09 houdt na uitsluiting twee scorende stellingen over: onder de ondergrens van drie per effect.",
+      "ernst": "hoog",
+      "voorgesteldeActie": "BESLUIT OPDRACHTGEVER 2026-08-27: EFF-09 wordt niet gemonetariseerd. Blijft in de standaard, wordt uitgevraagd, zichtbaar voor de begeleiding, geen bedrag op enig niveau, geen post in het aggregatiemodel, ook niet indirect via een domeingemiddelde.",
+      "status": "opgelost"
+    },
+    {
+      "onderdeel": "Monetariseringslogica",
+      "itemId": "BEV-05",
+      "probleem": "Route 1 mist de koppeling tussen de VIER treden van de begeleidingsladder en de DRIE UWV-begeleidingsregimes. Trede L1 heeft geen corresponderend regime.",
+      "ernst": "hoog",
+      "voorgesteldeActie": "Primaire UWV-jobcoachregeling naar raw/. Tot dan blijft de mapping needs verification en levert route 1 geen bedrag.",
+      "status": "open - geblokkeerd op bronverwerving"
+    },
+    {
+      "onderdeel": "Monetariseringslogica",
+      "itemId": "BEV-06",
+      "probleem": "Jobcoachtarieven zijn degressief over de begeleidingsjaren (regime midden: 6.375 / 3.188 / 1.941). De eenjaarslezing bepaalt de looptijd maar niet welk begeleidingsjaar geldt; route 1 is daardoor onbepaald binnen een factor twee.",
+      "ernst": "hoog",
+      "voorgesteldeActie": "Het monetariseringsdocument van route 1 moet expliciet kiezen (jaar 1, gewogen gemiddelde, of verdeling naar instroomjaar) en die keuze als dragende aanname met bandbreedte opnemen.",
+      "status": "open"
+    },
+    {
+      "onderdeel": "Bronvoering",
+      "itemId": "BEV-07",
+      "probleem": "Het Besluit loonkostensubsidie Participatiewet staat niet in raw/. De formule tempo x kwaliteit x netto werktijd is nu alleen bekend uit een secundair memo, wat de opdracht expliciet verbiedt.",
+      "ernst": "hoog",
+      "voorgesteldeActie": "Het Besluit naar raw/ en de factoren daartegen verifieren voordat de koppeling met EFF-01, EFF-03 en EFF-05 wordt gelegd.",
+      "status": "open - geblokkeerd op bronverwerving"
+    },
+    {
+      "onderdeel": "Rekenketen",
+      "itemId": "BEV-08",
+      "probleem": "Twee universele bronnen schrijven een verschillende discontovoet voor effecten voor: werkwijzer sociaal domein 3%, Kostenhandleiding 1,5%. Daarnaast lopen de QALY-kaders uiteen en ontbreken de ziektelastafhankelijke Zorginstituut-referentiewaarden in raw/.",
+      "ernst": "middel",
+      "voorgesteldeActie": "Werkwijzer sociaal domein leidend voor de discontovoet (3% voor kosten en effecten), vastgelegd als aanname A2. Voor de QALY-waarde geldt de MKBA-lijn als terugvaloptie, expliciet als afwijking vastgelegd.",
+      "status": "discontovoet opgelost; QALY open"
+    },
+    {
+      "onderdeel": "Bronvoering",
+      "itemId": "BEV-09",
+      "probleem": "Het UWV-tabblad 'Uitgek. bedragen Wajong' bevat een kolom na 2024 zonder jaarlabel (EUR 18.834).",
+      "ernst": "laag",
+      "voorgesteldeActie": "EUR 17.851 (2024) als leidende waarde; de ongelabelde kolom niet gebruiken tot het jaar geverifieerd is.",
+      "status": "opgelost via conservatieve keuze"
+    },
+    {
+      "onderdeel": "Overlap",
+      "itemId": "BEV-10",
+      "probleem": "De Meetstandaard Arbeidsparticipatie staat niet in raw/. Daardoor kan de verplichte overlapcontrole niet worden uitgevoerd en kunnen de bestaande participatieladderparameters niet worden hergebruikt.",
+      "ernst": "hoog",
+      "voorgesteldeActie": "OPGELOST 2026-08-27: de zusterstandaard staat als momentopname in raw/ (BR-12). Overlapcontrole uitgevoerd, register in wiki/monetarisering/aggregatiemodel.md. Participatieladderparameters worden hergebruikt. Wat resteert is een besluit, zie BEV-21.",
+      "status": "opgelost"
+    },
+    {
+      "onderdeel": "Bronvoering",
+      "itemId": "BEV-11",
+      "probleem": "Geen enkele bron in raw/ onderbouwt een situatieschets per Likert-niveau. Het bronformulier bevat geen ankerpunten; de universele bronnen bevatten geen niveaubeschrijvingen voor arbeidsvaardigheden.",
+      "ernst": "hoog",
+      "voorgesteldeActie": "GROTENDEELS OPGELOST 2026-08-27: BR-12 bevat vijf gebronde situatieschetsen op dezelfde 5-puntsschaal met dezelfde nullijn. Kanttekening: die hangen aan VIER stellingen en zijn algemener dan wat negen effecten met 46 stellingen nodig hebben. Verfijning: Zelfredzaamheid-Matrix verwerven (openbaar).",
+      "status": "grotendeels opgelost; verfijning open"
+    },
+    {
+      "onderdeel": "Rekenketen",
+      "itemId": "BEV-12",
+      "probleem": "Geen bron in raw/ levert een deadweight- of attributiepercentage voor arbeidsvaardighedeninterventies.",
+      "ernst": "middel",
+      "voorgesteldeActie": "Percentages leeg laten. Geen toegerekende waarde rapporteren tot ze onderbouwd zijn; alleen de ongecorrigeerde meetwaarde is publiceerbaar, met vermelding dat stap 3 niet is uitgevoerd.",
+      "status": "open - correct afgehandeld door leeg te laten"
+    },
+    {
+      "onderdeel": "Rekenketen",
+      "itemId": "BEV-13",
+      "probleem": "Verdringing mag niet sectorbreed op een percentage en niet op nul. De werkwijzer stelt dat verdringing hoog is bij aanbodbeleid (route 3) en dicht bij nul bij productiviteitsbeleid (route 1 en 2). De eenjaarslezing is juist de termijn waarop verdringing speelt.",
+      "ernst": "middel",
+      "voorgesteldeActie": "Percentages per route vaststellen in plaats van per sector. Kader aangepast in wiki/monetarisering/sroi-correcties.md.",
+      "status": "kader aangepast; percentages open"
+    },
+    {
+      "onderdeel": "Monetariseringslogica",
+      "itemId": "BEV-14",
+      "probleem": "Drie bronnen bevatten overwegend landelijke totalen naast per-persoonsbedragen in dezelfde tabellen (TNO 2025, Arbobalans, UWV). Risico op schaalfouten.",
+      "ernst": "middel",
+      "voorgesteldeActie": "Op elke bronpagina is gemarkeerd welke bedragen macro zijn. Elke verwijzing in een monetariseringsdocument moet de gebruikte volumedeling expliciet vermelden.",
+      "status": "preventief afgedekt"
+    },
+    {
+      "onderdeel": "Monetariseringslogica",
+      "itemId": "BEV-15",
+      "probleem": "De productiviteitsprijs van EUR 39,88/uur is een gemiddelde over alle betaald werkenden en vermoedelijk te hoog voor deze doelgroep. Het alternatief van EUR 23/uur meet iets anders (kostentarief in plaats van bruto toegevoegde waarde).",
+      "ernst": "middel",
+      "voorgesteldeActie": "Keuze per proxy expliciet motiveren. In het parameterregister opgenomen met range 23-47 en gemarkeerd als dragende aanname in de gevoeligheidsanalyse.",
+      "status": "afgedekt via bandbreedte; keuze per proxy open"
+    },
+    {
+      "onderdeel": "Wiki-hygiene",
+      "itemId": "BEV-16",
+      "probleem": "Het zipbestand drive-download-20260827T104313Z-1-001.zip in de projectmap dupliceert de negen universele bronnen die al in raw/universele bronnen/ staan.",
+      "ernst": "laag",
+      "voorgesteldeActie": "Zipbestand verwijderen of buiten de projectmap archiveren. Raakt raw/ niet.",
+      "status": "open - actie bij de opdrachtgever"
+    },
+    {
+      "onderdeel": "Integriteit vastgestelde lijst",
+      "itemId": "BEV-17",
+      "probleem": "De toelichting bij de vastgestelde lijst spreekt van ZES niet-scorende stellingen maar noemt en markeert er VIJF. Er zijn 41 scorende stellingen, niet 40. De motivering noemt EFF-09 #2 niet apart hoewel die stelling wel is uitgesloten.",
+      "ernst": "middel",
+      "voorgesteldeActie": "De tabellen zijn leidend; er is geen zesde uitsluiting. De toelichtende zin corrigeren van 'Zes' naar 'Vijf' en de motivering aanvullen met EFF-09 #2. Correctie in de brontekst van de opdracht, dus beslissing van de opdrachtgever.",
+      "status": "open - actie bij de opdrachtgever"
+    },
+    {
+      "onderdeel": "Bronvoering",
+      "itemId": "BEV-19",
+      "probleem": "De zusterstandaard rekent met jobcoach licht = EUR 3.185; de Maatschappelijke prijslijst (dezelfde universele bron, in beide raw/-mappen) geeft EUR 3.742. MSI Wijkbedrijven bevestigt EUR 3.742. Midden en zwaar komen wel exact overeen.",
+      "ernst": "middel",
+      "voorgesteldeActie": "Melden aan de beheerder van de zusterstandaard; hun L3-post wordt dan -EUR 1.871 in plaats van -EUR 1.600. Deze standaard wijzigt daar niets en hanteert EUR 3.742.",
+      "status": "gemeld - actie elders"
+    },
+    {
+      "onderdeel": "Bronvoering",
+      "itemId": "BEV-20",
+      "probleem": "Peiljaarfout in het eigen parameterregister: de uurtarieventabel van het regeldrukhandboek is genoteerd als 2023 (jaar van het document) maar staat expliciet op 2020. Het laaggeschoolden-tarief gaat daarmee van EUR 23 naar EUR 28 in prijspeil 2025 - een verschil van 20% aan de basis van route 2.",
+      "ernst": "middel",
+      "voorgesteldeActie": "GECORRIGEERD in tabblad 9 en in de wiki; indexeringstabel toegevoegd. Ontdekt doordat BR-12 deze bron als prijspeil 2020 indexeert.",
+      "status": "opgelost"
+    },
+    {
+      "onderdeel": "Overlap",
+      "itemId": "BEV-21",
+      "probleem": "Alle drie de routes overlappen volledig met de zusterstandaard: jobcoach, re-integratie, vermeden uitkering, uitvoeringskosten en IB zijn eigendom van EFF-19 Participatieladder; het loon-/werkkanseffect van vaardigheden van EFF-16. Er is geen route waarlangs deze standaard een euro kan claimen die daar niet al ergens staat. EFF-16 waardeert hetzelfde construct standalone op -EUR 35.000 tot +EUR 6.000 en houdt na eigen ontdubbeling -EUR 1.500 tot +EUR 1.400 over.",
+      "ernst": "hoog",
+      "voorgesteldeActie": "BESLUIT OPDRACHTGEVER 2026-08-27: aparte standaard, standalone en ongecorrigeerd waarderen; overlap vastleggen, niet wegrekenen. Hoe de dubbeltelling wordt opgelost is een LATER besluit (EFF-16 vervalt / eigenaarregel op standaardniveau / gescheiden inzet). Per direct geldt: beide standaarden niet optellen bij dezelfde deelnemer.",
+      "status": "open - bewust uitgesteld"
+    },
+    {
+      "onderdeel": "Overlap",
+      "itemId": "BEV-24",
+      "probleem": "Overlapcorrectie wordt niet toegepast (alpha=1,00) op instructie van de opdrachtgever, volgend op advies van TNO: dubbeltellingen zijn niet te berekenen en worden voor lief genomen. De positie zelf staat NIET in raw/ - de TNO-sessiestukken in MSI Energiearmoede zijn de agenda en de uitleg vooraf van sessie 2 (13-7-2026), niet de uitkomst. Daarmee is de keuze die het hoogste aggregatieniveau bepaalt de enige zonder vindplaats.",
+      "ernst": "hoog",
+      "voorgesteldeActie": "DOORGEVOERD als werkende lijn, aannamescore 8. Vastgelegd: (a) de som over effecten heet een BOVENGRENS, niet een netto maatschappelijk totaal per persoon - overlap kan een som alleen opblazen, dus de richting is bekend en de omvang niet; (b) de plausibiliteitsgrens blijft als controlemiddel gelden (een persoon heeft per jaar een bijstandsuitkering, een belastingafdracht, een jobcoachvergoeding); (c) het overlapregister blijft volledig in stand. Voor herziening: de letterlijke TNO-formulering en reikwijdte vastleggen, en het onderscheid wegen tussen de OMVANG van de overlap (niet te berekenen) en de vraag WAAR een gedeelde euro geteld wordt (een afspraak, geen schatting).",
+      "status": "doorgevoerd als werkende lijn - herziening voorzien"
+    },
+    {
+      "onderdeel": "Bronvoering",
+      "itemId": "BEV-27",
+      "probleem": "De normduur per begeleidingssessie is op 2026-08-27 door de opdrachtgever vastgesteld op EEN UUR. Er bestaat geen Nederlandse bron voor de gemiddelde duur van een begeleidingssessie; dit is dus een vastgestelde werkende norm, geen meting en geen afleiding. Regel 3 van deze standaard schrijft voor dat een veld zonder bron leeg blijft - dit is een gemarkeerde uitzondering daarop.",
+      "ernst": "hoog",
+      "voorgesteldeActie": "Vastgelegd met bron 'aanname opdrachtgever 2026-08-27', aannamescore 8, en in de code als commentaarregel bij de waarde. Bandbreedte 0,5-1,5 uur is VERPLICHT in de gevoeligheidsanalyse: een factor drie bepaalt in zijn eentje de orde van grootte van elk bedrag uit route 1. Plausibiliteitscheck: een uur begeleiding per week is 4,1% van de gewerkte uren, onder het lichte UWV-regime van 6% - de norm ligt dus eerder behoudend. Verlaagbaar naar 2 a 3 door een kwartaal werkelijke duren te registreren.",
+      "status": "doorgevoerd als vastgestelde norm - onderbouwing open"
+    },
+    {
+      "onderdeel": "Bronvoering",
+      "itemId": "BEV-22",
+      "probleem": "De loonwaardeformule heeft VIER factoren, niet drie: AP = T x K x N x BT per hoofdtaak (maximaal vijf), gesommeerd tot de loonwaarde, alle uitgedrukt ten opzichte van een normfunctie die voor ten minste 60% moet overeenkomen met het feitelijke werk. Het secundaire memo vermeldde er drie.",
+      "ernst": "middel",
+      "voorgesteldeActie": "Verwerkt in de bronpagina en het parameterregister. Artikel 5 lid 3 bevat bovendien een wettelijke ontdubbelingsregel: een factor die meer dan een van T, K of N beinvloedt komt in slechts een ervan tot uitdrukking. EFF-03 raakt twee factoren (stelling 1 is T, stellingen 2-3 zijn N); die splitsing moet expliciet zijn.",
+      "status": "opgelost; toepassing bij EFF-03 open"
+    },
+    {
+      "onderdeel": "Bronvoering",
+      "itemId": "BEV-23",
+      "probleem": "Er bestaat GEEN wettelijke certificering of register van loonwaardedeskundigen. De opdrachttekst baseert de begrenzing van route 2 daarop. De Regeling stelt alleen minimumkwalificaties (hbo/wo of gelijkwaardig naar oordeel van het college, twee jaar ervaring, aantoonbare kennis) en de deskundige wordt door het COLLEGE aangewezen.",
+      "ernst": "middel",
+      "voorgesteldeActie": "De conclusie blijft overeind maar op hardere gronden: de methode ligt wettelijk vast, de meting vereist werkplekobservatie plus gesprekken met werknemer en werkgever, en de rapportage volgt een voorgeschreven model. Formulering aangescherpt in de bronpagina; correctie van de opdrachttekst is een beslissing van de opdrachtgever.",
+      "status": "open - actie bij de opdrachtgever"
+    },
+    {
+      "onderdeel": "Monetariseringslogica",
+      "itemId": "BEV-25",
+      "probleem": "Begeleidingsuren worden niet geregistreerd - bevestigd door de opdrachtgever. De UWV-regimes zijn een percentage van de gewerkte uren, dus route 1 heeft een breuk nodig. De NOEMER is er (468 roosterregels, 30.636 dagregistraties, gemiddeld 4,87 uur), de TELLER niet. Begeleiding wordt in sessies geteld en het Unit-veld op Outputs is in 1.624 van 1.626 gevallen leeg.",
+      "ernst": "hoog",
+      "voorgesteldeActie": "Aanbeveling A1 herzien: de teller staat als vrije tekst in het formulier, de noemer als data in de software, en ze komen elkaar nergens tegen. Alternatief uitgewerkt in output/voorstel-begeleidingsuren-normering.md: normeer de uren via de activiteitentaxonomie in plaats van ze te registreren.",
+      "status": "open"
+    },
+    {
+      "onderdeel": "Bronvoering",
+      "itemId": "BEV-26",
+      "probleem": "De registratiedocumentatie wijkt af van de productiedata: docs/database.md beschrijft een veld Absent dat in productie NUL keer gevuld is (afwezigheid zit in Type: absent), en een Reason-enum met vier waarden die in werkelijkheid vrije tekst is met ruim 150 schrijfwijzen. Die vrije tekst bevat bovendien gezondheidsgegevens, religieuze praktijk en gezinsomstandigheden van individuele deelnemers.",
+      "ernst": "middel",
+      "voorgesteldeActie": "Melden aan de beheerder van deccos-projects, samen met de correcties uit aanbeveling A5. Wie op de documentatie afgaat en op Absent filtert krijgt nul resultaten zonder foutmelding, terwijl er 1.986 afwezigheidsdagen zijn. De verwerkingsvraag bij de vrije tekst verdient eigen aandacht.",
+      "status": "open"
+    },
+    {
+      "onderdeel": "Bronvoering",
+      "itemId": "BEV-28",
+      "probleem": "De herkomststempel op meetstandaardantwoorden wordt niet geschreven: EffectUid, Standaard en StandaardVersion zijn NUL keer gevuld op 85.219 antwoorden waarvan 24.538 matrixantwoorden. Van die antwoorden is dus niet af te leiden welke bij welke meetstandaard horen, laat staan bij welk effect of welke stelling.",
+      "ernst": "hoog",
+      "voorgesteldeActie": "URGENT - dit is het enige onderdeel dat NU aandacht vraagt en niet later kan worden ingehaald. Alles wat de komende maanden binnenkomt komt ongestempeld binnen. Deels herstelbaar zolang de koppeling RowID naar meetstandaarddocument compleet is, maar dat degradeert. Een aparte sessie is gestart om dit uit te zoeken en de bestaande backfill te draaien.",
+      "status": "open - aparte sessie gestart"
+    },
+    {
+      "onderdeel": "Overlap",
+      "itemId": "BEV-29",
+      "probleem": "De twee koppelingen voor route 2 en route 3 zijn OVERGENOMEN uit de Meetstandaard Arbeidsparticipatie, niet gemeten: productiviteitsverschil per niveau (-20/-20/-15/0/+10%) en kans op bijstandsafhankelijkheid (62/30/5/0/0%).",
+      "ernst": "hoog",
+      "voorgesteldeActie": "Overname in plaats van keuze, omdat deze twee de causale claim van de standaard zelf zijn - per decreet invullen zou er een rekenmachine met voorkeursuitkomst van maken. Aannamescore 7, een punt slechter dan de bron, wegens doelgroepoverdracht. Drie zwaktes blijven staan: niveau 1 en 2 zijn gelijk op route 2, het uurtarief is een markttarief dat de productiewaarde bij een werkbedrijf overschat, en de enige reele post van route 3 rust op een secundair citaat.",
+      "status": "doorgevoerd; onderbouwing overgenomen, niet gemeten"
+    },
+    {
+      "onderdeel": "Monetariseringslogica",
+      "itemId": "BEV-30",
+      "probleem": "Twee verschillende prijzen voor dezelfde universele component 'arbeidsproductiviteit per uur': EUR 39,88 (2022) geindexeerd EUR 45,86 uit de Kostenhandleiding (bruto toegevoegde waarde) in tabblad 9, tegenover EUR 23 (2020) geindexeerd EUR 28 uit het regeldrukhandboek (kostentarief incl. overhead) in de route 2-berekening. De regel luidt: zelfde component = overal dezelfde bron, definitie en waarde.",
+      "ernst": "hoog",
+      "voorgesteldeActie": "BESLISSING VEREIST. Omvang: jaarloonwaarde EUR 30.000 versus EUR 49.135, een verschil van 64%; route 2 op niveau 1 wordt -EUR 6.000 of -EUR 9.827. Conceptueel is de bruto toegevoegde waarde juist voor productiviteitsverlies en het kostentarief voor bespaarde begeleiding; daartegen pleit dat EUR 45,86 een populatiegemiddelde is dat deze doelgroep overschat. Dit is de onopgeloste spanning uit BEV-15, die bij het opstellen van koppelingen.md impliciet is beslecht. NIET stilzwijgend gecorrigeerd.",
+      "status": "open - beslissing vereist"
+    },
+    {
+      "onderdeel": "Wiki-hygiene",
+      "itemId": "BEV-31",
+      "probleem": "wiki/stakeholders/ is leeg terwijl er sinds 2026-08-27 drie stakeholders in proxy's voorkomen: UWV, werkgever en gemeente. De opdracht schrijft pagina's voor party's die daadwerkelijk in een proxy voorkomen.",
+      "ernst": "middel",
+      "voorgesteldeActie": "Drie stakeholderpagina's aanmaken met de posten die bij elke partij landen en de overlapgroepen waarin zij voorkomen. Onder de TNO-lijn is de verdeling per stakeholder de enige overgebleven controle op stapeling.",
+      "status": "open"
+    },
+    {
+      "onderdeel": "Monetariseringslogica",
+      "itemId": "BEV-32",
+      "probleem": "De gevoeligheidsanalyse is niet uitvoerbaar: van de 12 drivers in tabblad 10 heeft er 1 een ingevulde uitkomst, en 8 parameters staan op gevoeligheid=ja zonder range_laag en range_hoog (extern jobcoachtarief, drie interne tarieven, laaggeschoolden-uurtarief, jaarloonwaarde, gecombineerde toerekeningsfactor, beide drop-offs).",
+      "ernst": "middel",
+      "voorgesteldeActie": "Uitkomsten doorrekenen voor de drivers die op een bedrag aangrijpen - dat kan sinds er 35 bedragen zijn. Bandbreedtes vaststellen, of de markering gevoeligheid=ja intrekken waar er geen zinnige bandbreedte is.",
+      "status": "open"
+    },
+    {
+      "onderdeel": "Integriteit vastgestelde lijst",
+      "itemId": "BEV-33",
+      "probleem": "De toegekende aannamescores (6 voor EFF-01, 7 voor de overige zes) zijn opgebouwd uit de bronkwaliteit van het bedrag en de kwaliteit van de koppeling, maar verdisconteren NIET dat het instrument een niet-gevalideerd praktijkinstrument in versie 0.9 is met een verschoven meetobject. De structurele beperking van dit rapport stelt dat een bedrag nooit beter onderbouwd kan zijn dan de score waar het aan hangt.",
+      "ernst": "middel",
+      "voorgesteldeActie": "BESLISSING VEREIST. Alle scores een punt verhogen: EFF-01 naar 7, de overige zes naar 8. Verschuift alle scores in de standaard en is een oordeel, geen rekenfout - hoort dus expliciet te gebeuren.",
+      "status": "open - beslissing vereist"
+    },
+    {
+      "onderdeel": "Bronvoering",
+      "itemId": "BEV-34",
+      "probleem": "Twee vormen van drift tussen artefacten van dezelfde standaard. (a) Parameterregister en tabblad 9 stonden nog op de afgeronde prijslijstwaarden (EUR 3.742 / 6.375 / 9.425 / 118) terwijl de bronpagina, effectpagina's en monetariseringsdocumenten met de exacte UWV-normbedragen rekenen (EUR 3.742,45 / 6.376,03 / 9.425,44 / 117,89). Oorzaak: een eerdere tekstvervanging vond geen match, meldde geen fout, en is als doorgevoerd gerapporteerd. (b) Drie sinds 2026-08-27 toegevoegde bronnen ontbraken in tabblad 6.",
+      "ernst": "middel",
+      "voorgesteldeActie": "GECORRIGEERD tijdens de audit van 2026-08-28: beide artefacten bijgewerkt naar het primaire normbedragenbesluit; BR-13, BR-14 en BR-15 toegevoegd. Les: een tekstvervanging die niets vindt faalt stil - verifieer wijzigingen op de waarde zelf, niet op het uitblijven van een foutmelding.",
+      "status": "gecorrigeerd"
+    },
+    {
+      "onderdeel": "AANBEVELING",
+      "itemId": "A1",
+      "probleem": "Het bronformulier bevat al het veld 'Welke begeleiding wordt er voor bovenstaande extra ingezet en voor hoeveel uur per week?' - de enige plek waar begeleiding NUMERIEK wordt vastgelegd. Het wordt nu niet als variabele gebruikt. De UWV-regimes zijn zelf gedefinieerd als percentage van de gewerkte uren, dus het veld staat al in de juiste eenheid.",
+      "ernst": "hoog effect",
+      "voorgesteldeActie": "Het veld consequent invullen (ook een nul), uitleesbaar registreren in plaats van als vrije tekst, en aanvullen met wie de begeleiding levert en in welk begeleidingsjaar de deelnemer zit. Vervangt de aannameketen effectscore-ladderpositie-regime-uren door een meting; aannamescore route 1 van 6 naar circa 3. Lost tegelijk BEV-05 (vier treden versus drie regimes) en BEV-06 (welk begeleidingsjaar) op. Kanttekening: geregistreerde uren zijn INGEZETTE, niet NOODZAKELIJKE begeleiding.",
+      "status": "aanbeveling - actie bij opdrachtgever en uitvoerder"
+    },
+    {
+      "onderdeel": "AANBEVELING",
+      "itemId": "A2",
+      "probleem": "EFF-08 Betrouwbaarheid meet de grootheid die het eenvoudigst objectief registreerbaar is (te laat gekomen minuten, uitgelopen pauzes) en die de meest letterlijke invulling is van factor N. Het formulier registreert die niet en dit instrument is zelfrapportage - juist hier kwetsbaar omdat op tijd komen sociaal wenselijk is om te bevestigen.",
+      "ernst": "middel effect",
+      "voorgesteldeActie": "Aanwezigheidsregistratie beschikbaar maken. Tweede effect dat van aanname naar meting kan.",
+      "status": "aanbeveling"
+    },
+    {
+      "onderdeel": "AANBEVELING",
+      "itemId": "A3",
+      "probleem": "De situatieschetsen rusten deels op de niveaubeschrijvingen van EFF-16 in de zusterstandaard; die hangen daar aan VIER stellingen en zijn algemener dan wat negen effecten met 46 stellingen vragen.",
+      "ernst": "middel effect",
+      "voorgesteldeActie": "De Zelfredzaamheid-Matrix verwerven: openbaar, 13 domeinen op een 5-puntsschaal met gelabelde niveaus, deels gevalideerd. Melba/IMBA en Dariuz zijn sterker maar licentiegebonden respectievelijk proprietair en dus ongeschikt voor een transparantiestandaard.",
+      "status": "aanbeveling - optioneel"
+    },
+    {
+      "onderdeel": "AANBEVELING",
+      "itemId": "A4",
+      "probleem": "Route 1 gebruikt het UWV-normbedrag omdat er geen alternatief in raw/ is. De uitvoeringscontext is Werkbedrijf Rijk van Nijmegen, en voor deelnemers onder de Participatiewet betaalt de GEMEENTE de begeleiding, niet UWV.",
+      "ernst": "middel effect",
+      "voorgesteldeActie": "Gemeentelijke inkooptarieven voor begeleiding in Nijmegen verwerven.",
+      "status": "aanbeveling"
+    },
+    {
+      "onderdeel": "AANBEVELING",
+      "itemId": "A5",
+      "probleem": "Drie correcties raken documenten buiten deze standaard en kunnen hier niet worden doorgevoerd.",
+      "ernst": "middel effect",
+      "voorgesteldeActie": "Melden: (a) aan de beheerder van de Meetstandaard Arbeidsparticipatie dat jobcoach licht daar op EUR 3.185 staat terwijl de prijslijst EUR 3.742,45 geeft (BEV-19); (b) aan de opdrachtgever dat 'Zes stellingen' 'Vijf' moet zijn (BEV-17); (c) aan de opdrachtgever dat de route 2-begrenzing berust op certificering die niet bestaat (BEV-23).",
+      "status": "aanbeveling"
+    },
+    {
+      "onderdeel": "Integriteit vastgestelde lijst",
+      "itemId": "BEV-18",
+      "probleem": "EFF-01 heeft 8 scorende stellingen en valt daarmee BOVEN de bandbreedte 3-5. Het effect mengt zelfstandigheid, kwaliteit en overzicht in een score.",
+      "ernst": "middel",
+      "voorgesteldeActie": "Lijst niet wijzigen. De brede samenstelling vermelden in het monetariseringsdocument van EFF-01: een halve punt stijging kan uit heel verschillende onderliggende veranderingen komen.",
+      "status": "open"
+    }
+  ],
+  "controle": {
+    "toelichting": "Automatische controles op deze versie. `nietGemonetariseerd` bevat proxyregels waarvan het bedrag geen enkelvoudig geldbedrag is (PM, n.v.t., een percentage); die tellen als 0 mee in de som. `somAfwijkingen` bevat niveaus waar de opgegeven `totaleWaardeIndicatief` afwijkt van de som van de proxybedragen — dat is een inconsistentie in de bron, niet in de conversie.",
+    "nietGemonetariseerd": [],
+    "somAfwijkingen": []
+  }
+}
