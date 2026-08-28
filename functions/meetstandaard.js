@@ -4,7 +4,6 @@ import milieuCirculariteit09 from "./data/interventiebibliotheek-milieu-circular
 import arbeidsparticipatie09 from "./data/meetstandaard-arbeidsparticipatie-0.9.json" with { type: "json" };
 import gelijkeKansen10 from "./data/meetstandaard-gelijke-kansen-1.0.json" with { type: "json" };
 import arbeidsvaardigheden09 from "./data/meetstandaard-arbeidsvaardigheden-0.9.json" with { type: "json" };
-import arbeidsvaardigheden10 from "./data/meetstandaard-arbeidsvaardigheden-1.0.json" with { type: "json" };
 
 // The published standaarden, each served as one versioned document per version.
 //
@@ -38,7 +37,7 @@ export const STANDAARDEN = {
     sector: "arbeidsvaardigheden",
     label: "Arbeidsvaardigheden",
     collection: "MeetstandaardArbeidsvaardigheden",
-    documenten: [arbeidsvaardigheden09, arbeidsvaardigheden10],
+    documenten: [arbeidsvaardigheden09],
   },
   "milieu-circulariteit": {
     sector: "milieu-circulariteit",

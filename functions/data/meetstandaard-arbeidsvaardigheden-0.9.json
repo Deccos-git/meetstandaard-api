@@ -6,7 +6,7 @@
     "releasedAt": "2026-08-28",
     "source": "Meetstandaard arbeidsvaardigheden (meetstandaard.xlsx)",
     "generatedBy": "tools/build-meetstandaard.py",
-    "toelichting": "Release candidate voor versie 1.0. De inhoud is compleet en intern geauditeerd (zie `audit`), maar nog niet extern gevalideerd; onderdelen gemarkeerd als 'needs verification' (nv) kunnen in 1.0 nog wijzigen. Bedragen zijn indicatieve maatschappelijke kosten (negatief) of baten (positief) per persoon per jaar ten opzichte van de nullijn. Tel proxybedragen niet zonder meer op: pas eerst de overlapcorrectie uit `aggregatie` toe."
+    "toelichting": "Meetstandaard arbeidsvaardigheden. Negen effecten met 46 tegenpolenparen, letterlijk overgenomen uit het Formulier arbeidsvaardigheden Werkbedrijf Nijmegen 0.9, en situatieschetsen voor elk van de vijf Likert-niveaus. De begeleider beoordeelt de deelnemer per regel op een schaal tussen twee polen; de positieve pool staat links. 41 van de 46 regels tellen mee in de effectscore - vijf niet, omdat hun positieve pool normatief niet houdbaar is. Deze standaard monetariseert niet: de velden monetarisering, aggregatie en gevoeligheid zijn leeg. Bronnen, parameters en het auditspoor gelden wel."
   },
   "effecten": [
     {
@@ -22,96 +22,104 @@
       "relevantieSector": "hoog",
       "crossSectorBenchmarkbaar": "nee",
       "herkomstBestaandeStandaard": "nee - afgeleid van Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9",
-      "monetariseerbaarheid": "hoog — route 1 (begeleidingsintensiteit) en route 2 (kwaliteitsfactor loonwaarde)",
+      "monetariseerbaarheid": "n.v.t. - monetarisering vervallen 2026-08-28",
       "document": "8 scorende stellingen: BOVEN de bandbreedte 3-5. Zie audit bevinding integriteitscontrole. Het effect mengt zelfstandigheid, kwaliteit en overzicht in een score; vermeld dit in het monetariseringsdocument.",
       "stellingen": [
         {
           "nummer": 1,
-          "stelling": "Ik heb geen begeleiding nodig bij mijn werk",
+          "stelling": "Heeft geen begeleiding nodig",
+          "stellingRechts": "Heeft veel begeleiding nodig",
           "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Zelfstandigheid / Kwaliteit",
-          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
-          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "origineleSchaal": "tegenpolenpaar met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5) tussen de twee polen; oordeel van de begeleider over de deelnemer",
           "richting": "positief",
           "negatiefGeformuleerd": false,
-          "letterlijkOvergenomen": false,
-          "toelichting": "Afgeleid van het tegenpolenpaar: Heeft geen begeleiding nodig / Heeft veel begeleiding nodig. Sluit direct aan op de begeleidingsladder van het formulier en daarmee op monetariseringsroute 1."
+          "letterlijkOvergenomen": true,
+          "toelichting": null
         },
         {
           "nummer": 2,
-          "stelling": "Mijn werk hoeft niet gecontroleerd te worden",
+          "stelling": "Hoeft niet gecontroleerd te worden",
+          "stellingRechts": "Moet door de begeleiding gecontroleerd worden",
           "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Zelfstandigheid / Kwaliteit",
-          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
-          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "origineleSchaal": "tegenpolenpaar met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5) tussen de twee polen; oordeel van de begeleider over de deelnemer",
           "richting": "positief",
           "negatiefGeformuleerd": false,
-          "letterlijkOvergenomen": false,
-          "toelichting": "Afgeleid van het tegenpolenpaar: Hoeft niet gecontroleerd te worden / Moet door de begeleiding gecontroleerd worden. Controletijd is begeleidingstijd; raakt route 1."
+          "letterlijkOvergenomen": true,
+          "toelichting": null
         },
         {
           "nummer": 3,
-          "stelling": "Ik los problemen zelf op",
+          "stelling": "Lost problemen zelfstandig op",
+          "stellingRechts": "Lost zelf geen problemen op",
           "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Zelfstandigheid / Kwaliteit",
-          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
-          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "origineleSchaal": "tegenpolenpaar met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5) tussen de twee polen; oordeel van de begeleider over de deelnemer",
           "richting": "positief",
           "negatiefGeformuleerd": false,
-          "letterlijkOvergenomen": false,
-          "toelichting": "Afgeleid van het tegenpolenpaar: Lost problemen zelfstandig op / Lost zelf geen problemen op."
+          "letterlijkOvergenomen": true,
+          "toelichting": null
         },
         {
           "nummer": 4,
-          "stelling": "Ik overzie wat er moet gebeuren en wat belangrijk is",
+          "stelling": "Overziet wat er moet gebeuren, wat belangrijk is",
+          "stellingRechts": "Overziet niet wat er moet gebeuren",
           "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Zelfstandigheid / Kwaliteit",
-          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
-          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "origineleSchaal": "tegenpolenpaar met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5) tussen de twee polen; oordeel van de begeleider over de deelnemer",
           "richting": "positief",
           "negatiefGeformuleerd": false,
-          "letterlijkOvergenomen": false,
-          "toelichting": "Afgeleid van het tegenpolenpaar: Overziet wat er moet gebeuren, wat belangrijk is / Overziet niet wat er moet gebeuren. Dit tegenpolenpaar staat in het formulier TWEE keer: in de sectie Zelfstandigheid / Kwaliteit en in de sectie Tempo. Het is bij de omzetting terecht eenmaal opgenomen. Zie audit bevinding 1."
+          "letterlijkOvergenomen": true,
+          "toelichting": "Dit tegenpolenpaar staat in het formulier TWEE keer, in de secties Zelfstandigheid / Kwaliteit en Tempo. Eenmaal opgenomen; zie audit bevinding 1."
         },
         {
           "nummer": 5,
-          "stelling": "Mijn werk is kwalitatief goed",
+          "stelling": "Het werk is kwalitatief goed",
+          "stellingRechts": "Het werk is kwalitatief onvoldoende",
           "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Zelfstandigheid / Kwaliteit",
-          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
-          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "origineleSchaal": "tegenpolenpaar met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5) tussen de twee polen; oordeel van de begeleider over de deelnemer",
           "richting": "positief",
           "negatiefGeformuleerd": false,
-          "letterlijkOvergenomen": false,
-          "toelichting": "Afgeleid van het tegenpolenpaar: Het werk is kwalitatief goed / Het werk is kwalitatief onvoldoende. Raakt de kwaliteitsfactor van de uniforme loonwaardebepaling (route 2)."
+          "letterlijkOvergenomen": true,
+          "toelichting": null
         },
         {
           "nummer": 6,
-          "stelling": "Ik merk het als er iets fout gaat",
+          "stelling": "Ziet fouten",
+          "stellingRechts": "Ziet geen fouten",
           "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Zelfstandigheid / Kwaliteit",
-          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
-          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "origineleSchaal": "tegenpolenpaar met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5) tussen de twee polen; oordeel van de begeleider over de deelnemer",
           "richting": "positief",
           "negatiefGeformuleerd": false,
-          "letterlijkOvergenomen": false,
-          "toelichting": "Afgeleid van het tegenpolenpaar: Ziet fouten / Ziet geen fouten."
+          "letterlijkOvergenomen": true,
+          "toelichting": null
         },
         {
           "nummer": 7,
-          "stelling": "Ik begin uit mezelf aan mijn werk",
+          "stelling": "Begint uit zichzelf aan werkzaamheden",
+          "stellingRechts": "Begint niet uit zichzelf aan werkzaamheden",
           "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Zelfstandigheid / Kwaliteit",
-          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
-          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "origineleSchaal": "tegenpolenpaar met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5) tussen de twee polen; oordeel van de begeleider over de deelnemer",
           "richting": "positief",
           "negatiefGeformuleerd": false,
-          "letterlijkOvergenomen": false,
-          "toelichting": "Afgeleid van het tegenpolenpaar: Begint uit zichzelf aan werkzaamheden / Begint niet uit zichzelf aan werkzaamheden."
+          "letterlijkOvergenomen": true,
+          "toelichting": null
         },
         {
           "nummer": 8,
-          "stelling": "Als een taak af is, wacht ik tot iemand mij iets nieuws geeft",
+          "stelling": "Wacht niet af bij einde taak",
+          "stellingRechts": "Is afwachtend bij einde taak",
           "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Zelfstandigheid / Kwaliteit",
-          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
-          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
-          "richting": "negatief",
-          "negatiefGeformuleerd": true,
-          "letterlijkOvergenomen": false,
-          "toelichting": "Afgeleid van het tegenpolenpaar: Wacht niet af bij einde taak / Is afwachtend bij einde taak. Polariteit omgekeerd ten opzichte van het formulier: de stelling is negatief geformuleerd en moet bij de scoreberekening worden gespiegeld."
+          "origineleSchaal": "tegenpolenpaar met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5) tussen de twee polen; oordeel van de begeleider over de deelnemer",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "letterlijkOvergenomen": true,
+          "toelichting": null
         }
       ],
       "situatieschetsen": [
@@ -157,110 +165,62 @@
         }
       ],
       "monetarisering": {
-        "document": "wiki/effecten/zelfstandigheid-en-kwaliteit.md",
-        "eenheid": "EUR per persoon per jaar",
+        "document": null,
+        "eenheid": null,
         "niveaus": [
           {
             "niveau": "1",
             "score": 1,
-            "totaleWaardeIndicatief": -9425.44,
-            "waarvanReeel": -9425.44,
-            "waarvanOverdracht": 0,
-            "berekening": "Normbedrag interne jobcoaching, regime intensief (15% van de gewerkte uren), begeleidingsjaar 1 - rechtstreeks uit Besluit Normbedragen Voorzieningen UWV 2026 code Q2. Geen tussenstappen.",
-            "belangrijksteAannames": "Koppeling Likert-niveau naar begeleidingsregime via de begeleidingsladder van het formulier (aannamescore 6 bij EFF-01, 7 bij EFF-02/06). Dienstbetrekking >=24 uur per week, anders pro rata. Begeleidingsjaar 1. Kans op toekenning van het regime NIET toegepast - het bedrag is een bovengrens.",
-            "aannamescore": 6,
-            "proxies": [
-              {
-                "stakeholder": "UWV",
-                "proxy": "Interne jobcoaching, regime intensief, begeleidingsjaar 1",
-                "bedrag": -9425.44,
-                "bedragTekst": -9425.44,
-                "eenheid": "EUR per persoon per jaar",
-                "typePost": "reeel",
-                "bronBedrag": "Besluit Normbedragen Voorzieningen UWV 2026 (Stcrt. 2026, 12114-n1), bijlage code Q2",
-                "bronEffectProxyRelatie": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen 0.9, begeleidingsladder; Beleidsregel Protocol Interne Jobcoach UWV 2025 par. 2.4.1 tabel 1",
-                "toelichtingProxykeuze": "Wettelijk vastgesteld tarief per begeleidingsregime; het regime is gedefinieerd als percentage van de gewerkte uren en drukt daarmee dezelfde grootheid uit als de ladder: hoeveel van de tijd een begeleider aanwezig moet zijn.",
-                "berekening": "Normbedrag rechtstreeks - geen tussenstappen",
-                "aannames": "Koppeling niveau naar regime; dienstbetrekking >=24 uur/week; begeleidingsjaar 1; kans op toekenning niet toegepast (bovengrens)",
-                "aannamescore": 6,
-                "overlapgroep": "uwv_jobcoach"
-              }
-            ]
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
+            "proxies": []
           },
           {
             "niveau": "2",
             "score": 2,
-            "totaleWaardeIndicatief": -6376.03,
-            "waarvanReeel": -6376.03,
-            "waarvanOverdracht": 0,
-            "berekening": "Normbedrag interne jobcoaching, regime midden (10%), begeleidingsjaar 1 - rechtstreeks uit Besluit Normbedragen Voorzieningen UWV 2026 code Q2. Geen tussenstappen.",
-            "belangrijksteAannames": "Koppeling Likert-niveau naar begeleidingsregime via de begeleidingsladder van het formulier (aannamescore 6 bij EFF-01, 7 bij EFF-02/06). Dienstbetrekking >=24 uur per week, anders pro rata. Begeleidingsjaar 1. Kans op toekenning van het regime NIET toegepast - het bedrag is een bovengrens.",
-            "aannamescore": 6,
-            "proxies": [
-              {
-                "stakeholder": "UWV",
-                "proxy": "Interne jobcoaching, regime midden, begeleidingsjaar 1",
-                "bedrag": -6376.03,
-                "bedragTekst": -6376.03,
-                "eenheid": "EUR per persoon per jaar",
-                "typePost": "reeel",
-                "bronBedrag": "Besluit Normbedragen Voorzieningen UWV 2026 (Stcrt. 2026, 12114-n1), bijlage code Q2",
-                "bronEffectProxyRelatie": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen 0.9, begeleidingsladder; Beleidsregel Protocol Interne Jobcoach UWV 2025 par. 2.4.1 tabel 1",
-                "toelichtingProxykeuze": "Wettelijk vastgesteld tarief per begeleidingsregime; het regime is gedefinieerd als percentage van de gewerkte uren en drukt daarmee dezelfde grootheid uit als de ladder: hoeveel van de tijd een begeleider aanwezig moet zijn.",
-                "berekening": "Normbedrag rechtstreeks - geen tussenstappen",
-                "aannames": "Koppeling niveau naar regime; dienstbetrekking >=24 uur/week; begeleidingsjaar 1; kans op toekenning niet toegepast (bovengrens)",
-                "aannamescore": 6,
-                "overlapgroep": "uwv_jobcoach"
-              }
-            ]
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
+            "proxies": []
           },
           {
             "niveau": "3",
             "score": 3,
-            "totaleWaardeIndicatief": -3742.45,
-            "waarvanReeel": -3742.45,
-            "waarvanOverdracht": 0,
-            "berekening": "Normbedrag interne jobcoaching, regime licht (6%), begeleidingsjaar 1 - rechtstreeks uit Besluit Normbedragen Voorzieningen UWV 2026 code Q2. Geen tussenstappen.",
-            "belangrijksteAannames": "Koppeling Likert-niveau naar begeleidingsregime via de begeleidingsladder van het formulier (aannamescore 6 bij EFF-01, 7 bij EFF-02/06). Dienstbetrekking >=24 uur per week, anders pro rata. Begeleidingsjaar 1. Kans op toekenning van het regime NIET toegepast - het bedrag is een bovengrens.",
-            "aannamescore": 6,
-            "proxies": [
-              {
-                "stakeholder": "UWV",
-                "proxy": "Interne jobcoaching, regime licht, begeleidingsjaar 1",
-                "bedrag": -3742.45,
-                "bedragTekst": -3742.45,
-                "eenheid": "EUR per persoon per jaar",
-                "typePost": "reeel",
-                "bronBedrag": "Besluit Normbedragen Voorzieningen UWV 2026 (Stcrt. 2026, 12114-n1), bijlage code Q2",
-                "bronEffectProxyRelatie": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen 0.9, begeleidingsladder; Beleidsregel Protocol Interne Jobcoach UWV 2025 par. 2.4.1 tabel 1",
-                "toelichtingProxykeuze": "Wettelijk vastgesteld tarief per begeleidingsregime; het regime is gedefinieerd als percentage van de gewerkte uren en drukt daarmee dezelfde grootheid uit als de ladder: hoeveel van de tijd een begeleider aanwezig moet zijn.",
-                "berekening": "Normbedrag rechtstreeks - geen tussenstappen",
-                "aannames": "Koppeling niveau naar regime; dienstbetrekking >=24 uur/week; begeleidingsjaar 1; kans op toekenning niet toegepast (bovengrens)",
-                "aannamescore": 6,
-                "overlapgroep": "uwv_jobcoach"
-              }
-            ]
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
+            "proxies": []
           },
           {
             "niveau": "4",
             "score": 4,
-            "totaleWaardeIndicatief": 0,
-            "waarvanReeel": 0,
-            "waarvanOverdracht": 0,
-            "berekening": "Normbedrag interne jobcoaching, regime geen, begeleidingsjaar 1 - rechtstreeks uit Besluit Normbedragen Voorzieningen UWV 2026 code Q2. Geen tussenstappen.",
-            "belangrijksteAannames": "Bij ladder-trede 1 wordt geen jobcoaching vergoed, dus geen bedrag. Route 1 is asymmetrisch: bij niveau 4 valt er niets meer te besparen, dus de stap 4->5 is EUR 0 waard.",
-            "aannamescore": 6,
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
             "proxies": []
           },
           {
             "niveau": "5",
             "score": 5,
-            "totaleWaardeIndicatief": 0,
-            "waarvanReeel": 0,
-            "waarvanOverdracht": 0,
-            "berekening": "Normbedrag interne jobcoaching, regime geen, begeleidingsjaar 1 - rechtstreeks uit Besluit Normbedragen Voorzieningen UWV 2026 code Q2. Geen tussenstappen.",
-            "belangrijksteAannames": "Bij ladder-trede 1 wordt geen jobcoaching vergoed, dus geen bedrag. Route 1 is asymmetrisch: bij niveau 4 valt er niets meer te besparen, dus de stap 4->5 is EUR 0 waard.",
-            "aannamescore": 6,
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
             "proxies": []
           }
         ]
@@ -279,74 +239,80 @@
       "relevantieSector": "hoog",
       "crossSectorBenchmarkbaar": "nee",
       "herkomstBestaandeStandaard": "nee - afgeleid van Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9",
-      "monetariseerbaarheid": "middel — indirect, via begeleidingstijd (route 1) en via uitstroomkans (route 3)",
+      "monetariseerbaarheid": "n.v.t. - monetarisering vervallen 2026-08-28",
       "document": "Stelling 3 telt niet mee (leerstijl, normatief niet houdbaar).",
       "stellingen": [
         {
           "nummer": 1,
-          "stelling": "Ik leer gemakkelijk nieuwe werkzaamheden aan",
+          "stelling": "Leert gemakkelijk nieuwe werkzaamheden aan",
+          "stellingRechts": "Heeft moeite met aanleren nieuwe werkzaamheden",
           "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Leerbaarheid en motivatie",
-          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
-          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "origineleSchaal": "tegenpolenpaar met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5) tussen de twee polen; oordeel van de begeleider over de deelnemer",
           "richting": "positief",
           "negatiefGeformuleerd": false,
-          "letterlijkOvergenomen": false,
-          "toelichting": "Afgeleid van het tegenpolenpaar: Leert gemakkelijk nieuwe werkzaamheden aan / Heeft moeite met aanleren nieuwe werkzaamheden."
+          "letterlijkOvergenomen": true,
+          "toelichting": null
         },
         {
           "nummer": 2,
-          "stelling": "Ik heb genoeg aan een eenmalige uitleg",
+          "stelling": "Heeft genoeg aan eenmalige uitleg",
+          "stellingRechts": "Heeft veel herhaling nodig",
           "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Leerbaarheid en motivatie",
-          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
-          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "origineleSchaal": "tegenpolenpaar met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5) tussen de twee polen; oordeel van de begeleider over de deelnemer",
           "richting": "positief",
           "negatiefGeformuleerd": false,
-          "letterlijkOvergenomen": false,
-          "toelichting": "Afgeleid van het tegenpolenpaar: Heeft genoeg aan eenmalige uitleg / Heeft veel herhaling nodig. Herhaling van uitleg is begeleidingstijd; raakt route 1."
+          "letterlijkOvergenomen": true,
+          "toelichting": null
         },
         {
           "nummer": 3,
-          "stelling": "Ik leer beter als iets wordt voorgedaan of getekend dan alleen verteld",
+          "stelling": "Heeft genoeg aan mondelinge uitleg",
+          "stellingRechts": "Heeft visualisatie nodig",
           "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Leerbaarheid en motivatie",
-          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
-          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "origineleSchaal": "tegenpolenpaar met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5) tussen de twee polen; oordeel van de begeleider over de deelnemer",
           "richting": "geen",
           "negatiefGeformuleerd": false,
-          "letterlijkOvergenomen": false,
-          "toelichting": "Afgeleid van het tegenpolenpaar: Heeft genoeg aan mondelinge uitleg / Heeft visualisatie nodig. TELT NIET MEE. De positieve pool is normatief niet houdbaar: leren via beeld is geen tekortkoming maar een leerstijl en een fit-vraag met de werkplek. Polariteit bovendien omgekeerd ten opzichte van het formulier."
+          "letterlijkOvergenomen": true,
+          "toelichting": "TELT NIET MEE. De positieve pool is normatief niet houdbaar: leren via beeld is een leerstijl en een fit-vraag met de werkplek, geen tekortkoming."
         },
         {
           "nummer": 4,
-          "stelling": "Ik begrijp waaróm ik een taak doe",
+          "stelling": "Heeft inzicht in taak",
+          "stellingRechts": "Heeft geen inzicht in taak",
           "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Leerbaarheid en motivatie",
-          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
-          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "origineleSchaal": "tegenpolenpaar met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5) tussen de twee polen; oordeel van de begeleider over de deelnemer",
           "richting": "positief",
           "negatiefGeformuleerd": false,
-          "letterlijkOvergenomen": false,
-          "toelichting": "Afgeleid van het tegenpolenpaar: Heeft inzicht in taak / Heeft geen inzicht in taak."
+          "letterlijkOvergenomen": true,
+          "toelichting": null
         },
         {
           "nummer": 5,
-          "stelling": "Ik ben gemotiveerd voor mijn huidige werkzaamheden",
+          "stelling": "Is gemotiveerd voor huidige werkzaamheden",
+          "stellingRechts": "Is niet gemotiveerd voor huidige werkzaamheden",
           "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Leerbaarheid en motivatie",
-          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
-          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "origineleSchaal": "tegenpolenpaar met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5) tussen de twee polen; oordeel van de begeleider over de deelnemer",
           "richting": "positief",
           "negatiefGeformuleerd": false,
-          "letterlijkOvergenomen": false,
-          "toelichting": "Afgeleid van het tegenpolenpaar: Is gemotiveerd voor huidige werkzaamheden / Is niet gemotiveerd voor huidige werkzaamheden."
+          "letterlijkOvergenomen": true,
+          "toelichting": null
         },
         {
           "nummer": 6,
-          "stelling": "Ik ben gemotiveerd om nieuwe werkzaamheden te leren",
+          "stelling": "Is gemotiveerd voor nieuwe werkzaamheden",
+          "stellingRechts": "Is niet gemotiveerd voor nieuwe werkzaamheden",
           "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Leerbaarheid en motivatie",
-          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
-          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "origineleSchaal": "tegenpolenpaar met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5) tussen de twee polen; oordeel van de begeleider over de deelnemer",
           "richting": "positief",
           "negatiefGeformuleerd": false,
-          "letterlijkOvergenomen": false,
-          "toelichting": "Afgeleid van het tegenpolenpaar: Is gemotiveerd voor nieuwe werkzaamheden / Is niet gemotiveerd voor nieuwe werkzaamheden."
+          "letterlijkOvergenomen": true,
+          "toelichting": null
         }
       ],
       "situatieschetsen": [
@@ -392,110 +358,62 @@
         }
       ],
       "monetarisering": {
-        "document": "wiki/effecten/leerbaarheid-en-motivatie.md",
-        "eenheid": "EUR per persoon per jaar",
+        "document": null,
+        "eenheid": null,
         "niveaus": [
           {
             "niveau": "1",
             "score": 1,
-            "totaleWaardeIndicatief": -9425.44,
-            "waarvanReeel": -9425.44,
-            "waarvanOverdracht": 0,
-            "berekening": "Normbedrag interne jobcoaching, regime intensief (15% van de gewerkte uren), begeleidingsjaar 1 - rechtstreeks uit Besluit Normbedragen Voorzieningen UWV 2026 code Q2. Geen tussenstappen.",
-            "belangrijksteAannames": "Koppeling Likert-niveau naar begeleidingsregime via de begeleidingsladder van het formulier (aannamescore 6 bij EFF-01, 7 bij EFF-02/06). Dienstbetrekking >=24 uur per week, anders pro rata. Begeleidingsjaar 1. Kans op toekenning van het regime NIET toegepast - het bedrag is een bovengrens.",
-            "aannamescore": 7,
-            "proxies": [
-              {
-                "stakeholder": "UWV",
-                "proxy": "Interne jobcoaching, regime intensief, begeleidingsjaar 1",
-                "bedrag": -9425.44,
-                "bedragTekst": -9425.44,
-                "eenheid": "EUR per persoon per jaar",
-                "typePost": "reeel",
-                "bronBedrag": "Besluit Normbedragen Voorzieningen UWV 2026 (Stcrt. 2026, 12114-n1), bijlage code Q2",
-                "bronEffectProxyRelatie": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen 0.9, begeleidingsladder; Beleidsregel Protocol Interne Jobcoach UWV 2025 par. 2.4.1 tabel 1",
-                "toelichtingProxykeuze": "Wettelijk vastgesteld tarief per begeleidingsregime; het regime is gedefinieerd als percentage van de gewerkte uren en drukt daarmee dezelfde grootheid uit als de ladder: hoeveel van de tijd een begeleider aanwezig moet zijn.",
-                "berekening": "Normbedrag rechtstreeks - geen tussenstappen",
-                "aannames": "Koppeling niveau naar regime; dienstbetrekking >=24 uur/week; begeleidingsjaar 1; kans op toekenning niet toegepast (bovengrens)",
-                "aannamescore": 7,
-                "overlapgroep": "uwv_jobcoach"
-              }
-            ]
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
+            "proxies": []
           },
           {
             "niveau": "2",
             "score": 2,
-            "totaleWaardeIndicatief": -6376.03,
-            "waarvanReeel": -6376.03,
-            "waarvanOverdracht": 0,
-            "berekening": "Normbedrag interne jobcoaching, regime midden (10%), begeleidingsjaar 1 - rechtstreeks uit Besluit Normbedragen Voorzieningen UWV 2026 code Q2. Geen tussenstappen.",
-            "belangrijksteAannames": "Koppeling Likert-niveau naar begeleidingsregime via de begeleidingsladder van het formulier (aannamescore 6 bij EFF-01, 7 bij EFF-02/06). Dienstbetrekking >=24 uur per week, anders pro rata. Begeleidingsjaar 1. Kans op toekenning van het regime NIET toegepast - het bedrag is een bovengrens.",
-            "aannamescore": 7,
-            "proxies": [
-              {
-                "stakeholder": "UWV",
-                "proxy": "Interne jobcoaching, regime midden, begeleidingsjaar 1",
-                "bedrag": -6376.03,
-                "bedragTekst": -6376.03,
-                "eenheid": "EUR per persoon per jaar",
-                "typePost": "reeel",
-                "bronBedrag": "Besluit Normbedragen Voorzieningen UWV 2026 (Stcrt. 2026, 12114-n1), bijlage code Q2",
-                "bronEffectProxyRelatie": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen 0.9, begeleidingsladder; Beleidsregel Protocol Interne Jobcoach UWV 2025 par. 2.4.1 tabel 1",
-                "toelichtingProxykeuze": "Wettelijk vastgesteld tarief per begeleidingsregime; het regime is gedefinieerd als percentage van de gewerkte uren en drukt daarmee dezelfde grootheid uit als de ladder: hoeveel van de tijd een begeleider aanwezig moet zijn.",
-                "berekening": "Normbedrag rechtstreeks - geen tussenstappen",
-                "aannames": "Koppeling niveau naar regime; dienstbetrekking >=24 uur/week; begeleidingsjaar 1; kans op toekenning niet toegepast (bovengrens)",
-                "aannamescore": 7,
-                "overlapgroep": "uwv_jobcoach"
-              }
-            ]
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
+            "proxies": []
           },
           {
             "niveau": "3",
             "score": 3,
-            "totaleWaardeIndicatief": -3742.45,
-            "waarvanReeel": -3742.45,
-            "waarvanOverdracht": 0,
-            "berekening": "Normbedrag interne jobcoaching, regime licht (6%), begeleidingsjaar 1 - rechtstreeks uit Besluit Normbedragen Voorzieningen UWV 2026 code Q2. Geen tussenstappen.",
-            "belangrijksteAannames": "Koppeling Likert-niveau naar begeleidingsregime via de begeleidingsladder van het formulier (aannamescore 6 bij EFF-01, 7 bij EFF-02/06). Dienstbetrekking >=24 uur per week, anders pro rata. Begeleidingsjaar 1. Kans op toekenning van het regime NIET toegepast - het bedrag is een bovengrens.",
-            "aannamescore": 7,
-            "proxies": [
-              {
-                "stakeholder": "UWV",
-                "proxy": "Interne jobcoaching, regime licht, begeleidingsjaar 1",
-                "bedrag": -3742.45,
-                "bedragTekst": -3742.45,
-                "eenheid": "EUR per persoon per jaar",
-                "typePost": "reeel",
-                "bronBedrag": "Besluit Normbedragen Voorzieningen UWV 2026 (Stcrt. 2026, 12114-n1), bijlage code Q2",
-                "bronEffectProxyRelatie": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen 0.9, begeleidingsladder; Beleidsregel Protocol Interne Jobcoach UWV 2025 par. 2.4.1 tabel 1",
-                "toelichtingProxykeuze": "Wettelijk vastgesteld tarief per begeleidingsregime; het regime is gedefinieerd als percentage van de gewerkte uren en drukt daarmee dezelfde grootheid uit als de ladder: hoeveel van de tijd een begeleider aanwezig moet zijn.",
-                "berekening": "Normbedrag rechtstreeks - geen tussenstappen",
-                "aannames": "Koppeling niveau naar regime; dienstbetrekking >=24 uur/week; begeleidingsjaar 1; kans op toekenning niet toegepast (bovengrens)",
-                "aannamescore": 7,
-                "overlapgroep": "uwv_jobcoach"
-              }
-            ]
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
+            "proxies": []
           },
           {
             "niveau": "4",
             "score": 4,
-            "totaleWaardeIndicatief": 0,
-            "waarvanReeel": 0,
-            "waarvanOverdracht": 0,
-            "berekening": "Normbedrag interne jobcoaching, regime geen, begeleidingsjaar 1 - rechtstreeks uit Besluit Normbedragen Voorzieningen UWV 2026 code Q2. Geen tussenstappen.",
-            "belangrijksteAannames": "Bij ladder-trede 1 wordt geen jobcoaching vergoed, dus geen bedrag. Route 1 is asymmetrisch: bij niveau 4 valt er niets meer te besparen, dus de stap 4->5 is EUR 0 waard.",
-            "aannamescore": 7,
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
             "proxies": []
           },
           {
             "niveau": "5",
             "score": 5,
-            "totaleWaardeIndicatief": 0,
-            "waarvanReeel": 0,
-            "waarvanOverdracht": 0,
-            "berekening": "Normbedrag interne jobcoaching, regime geen, begeleidingsjaar 1 - rechtstreeks uit Besluit Normbedragen Voorzieningen UWV 2026 code Q2. Geen tussenstappen.",
-            "belangrijksteAannames": "Bij ladder-trede 1 wordt geen jobcoaching vergoed, dus geen bedrag. Route 1 is asymmetrisch: bij niveau 4 valt er niets meer te besparen, dus de stap 4->5 is EUR 0 waard.",
-            "aannamescore": 7,
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
             "proxies": []
           }
         ]
@@ -514,63 +432,68 @@
       "relevantieSector": "hoog",
       "crossSectorBenchmarkbaar": "nee",
       "herkomstBestaandeStandaard": "nee - afgeleid van Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9",
-      "monetariseerbaarheid": "hoog — route 2, raakt de tempofactor en de factor netto werktijd van de uniforme loonwaardebepaling",
+      "monetariseerbaarheid": "n.v.t. - monetarisering vervallen 2026-08-28",
       "document": "Het formulieritem 'Overziet wat er moet gebeuren' uit de formuliersectie Tempo is niet apart overgenomen; het staat als EFF-01 stelling 4. Zie audit bevinding 1.",
       "stellingen": [
         {
           "nummer": 1,
-          "stelling": "Ik werk snel en ben op tijd klaar",
+          "stelling": "Werkt snel, is op tijd klaar",
+          "stellingRechts": "Werkt langzaam",
           "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Tempo",
-          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
-          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "origineleSchaal": "tegenpolenpaar met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5) tussen de twee polen; oordeel van de begeleider over de deelnemer",
           "richting": "positief",
           "negatiefGeformuleerd": false,
-          "letterlijkOvergenomen": false,
-          "toelichting": "Afgeleid van het tegenpolenpaar: Werkt snel, is op tijd klaar / Werkt langzaam. Raakt de tempofactor van de uniforme loonwaardebepaling (route 2)."
+          "letterlijkOvergenomen": true,
+          "toelichting": null
         },
         {
           "nummer": 2,
-          "stelling": "Ik heb genoeg energie voor mijn werkdag",
+          "stelling": "Heeft voldoende energie",
+          "stellingRechts": "Heeft weinig energie / vaak pauze nodig",
           "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Tempo",
-          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
-          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "origineleSchaal": "tegenpolenpaar met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5) tussen de twee polen; oordeel van de begeleider over de deelnemer",
           "richting": "positief",
           "negatiefGeformuleerd": false,
-          "letterlijkOvergenomen": false,
-          "toelichting": "Afgeleid van het tegenpolenpaar: Heeft voldoende energie / Heeft weinig energie, vaak pauze nodig. Raakt de factor netto werktijd van de uniforme loonwaardebepaling (route 2)."
+          "letterlijkOvergenomen": true,
+          "toelichting": null
         },
         {
           "nummer": 3,
-          "stelling": "Ik kan een uur achter elkaar doorwerken",
+          "stelling": "Kan 1 uur aaneengesloten werken",
+          "stellingRechts": "Kan niet 1 uur aandacht bij werk houden",
           "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Tempo",
-          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
-          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "origineleSchaal": "tegenpolenpaar met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5) tussen de twee polen; oordeel van de begeleider over de deelnemer",
           "richting": "positief",
           "negatiefGeformuleerd": false,
-          "letterlijkOvergenomen": false,
-          "toelichting": "Afgeleid van het tegenpolenpaar: Kan 1 uur aaneengesloten werken / Kan niet 1 uur aandacht bij werk houden."
+          "letterlijkOvergenomen": true,
+          "toelichting": null
         },
         {
           "nummer": 4,
-          "stelling": "Mijn tempo wisselt sterk per dag",
+          "stelling": "Heeft een regelmatig tempo",
+          "stellingRechts": "Heeft een onregelmatig tempo",
           "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Tempo",
-          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
-          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
-          "richting": "negatief",
-          "negatiefGeformuleerd": true,
-          "letterlijkOvergenomen": false,
-          "toelichting": "Afgeleid van het tegenpolenpaar: Heeft een regelmatig tempo / Heeft een onregelmatig tempo. Polariteit omgekeerd ten opzichte van het formulier: negatief geformuleerd, spiegelen bij de scoreberekening."
+          "origineleSchaal": "tegenpolenpaar met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5) tussen de twee polen; oordeel van de begeleider over de deelnemer",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "letterlijkOvergenomen": true,
+          "toelichting": null
         },
         {
           "nummer": 5,
-          "stelling": "Ik kan het aan als er druk op het tempo staat",
+          "stelling": "Kan druk op tempo aan",
+          "stellingRechts": "Kan druk op tempo niet aan",
           "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Tempo",
-          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
-          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "origineleSchaal": "tegenpolenpaar met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5) tussen de twee polen; oordeel van de begeleider over de deelnemer",
           "richting": "positief",
           "negatiefGeformuleerd": false,
-          "letterlijkOvergenomen": false,
-          "toelichting": "Afgeleid van het tegenpolenpaar: Kan druk op tempo aan / Kan druk op tempo niet aan."
+          "letterlijkOvergenomen": true,
+          "toelichting": null
         }
       ],
       "situatieschetsen": [
@@ -616,127 +539,63 @@
         }
       ],
       "monetarisering": {
-        "document": "wiki/effecten/tempo-en-energie.md",
-        "eenheid": "EUR per persoon per jaar",
+        "document": null,
+        "eenheid": null,
         "niveaus": [
           {
             "niveau": "1",
             "score": 1,
-            "totaleWaardeIndicatief": -6000,
-            "waarvanReeel": -6000,
-            "waarvanOverdracht": 0,
-            "berekening": "Productiviteitsverschil t.o.v. de normfunctie x jaarloonwaarde EUR 30.000 (= EUR 28/uur x 4,87 gemeten geroosterde uren x 220 dagen). Reeks: -20% / -20% / -15% / 0 / +10%.",
-            "belangrijksteAannames": "Koppeling overgenomen uit Meetstandaard Arbeidsparticipatie 2.0 (aldaar aannamescore 5). Werkend-aandeel CONSTANT gehouden - varierend maakt de reeks niet-monotoon en mengt participatiepositie met vaardigheid. LKS niet apart geboekt: dat is de overdrachtskant van dezelfde grootheid. Stap 1->2 is EUR 0 waard; de bron onderscheidt die niveaus niet. Uurtarief is een MARKTtarief en overschat vermoedelijk de productiewaarde van werk bij een werkbedrijf.",
-            "aannamescore": 7,
-            "proxies": [
-              {
-                "stakeholder": "werkgever",
-                "proxy": "Arbeidsproductiviteit t.o.v. de normfunctie",
-                "bedrag": -6000,
-                "bedragTekst": -6000,
-                "eenheid": "EUR per persoon per jaar",
-                "typePost": "reeel",
-                "bronBedrag": "Handboek Meting Regeldrukkosten 2023 deel 4.C (EUR 23/uur laaggeschoold, peiljaar 2020, geindexeerd x1,20) x 4,87 gemeten uren x 220 dagen",
-                "bronEffectProxyRelatie": "Meetstandaard Arbeidsparticipatie 2.0, rekenbasis-tabel v2.0 (productiviteitsreeks, aldaar aannamescore 5); Besluit loonkostensubsidie Participatiewet 2021 art. 5 (factoren T/K/N)",
-                "toelichtingProxykeuze": "De loonwaardeformule drukt prestatie uit als percentage van een normfunctie; niveau 4 IS de normfunctie. Het productiviteitsverschil per niveau vertaalt dat naar euro's via de jaarloonwaarde.",
-                "berekening": "-20% x EUR 30.000",
-                "aannames": "Koppeling overgenomen uit een andere doelgroep; werkend-aandeel constant gehouden; markttarief overschat vermoedelijk de productiewaarde bij een werkbedrijf",
-                "aannamescore": 7,
-                "overlapgroep": "werkgever_productiviteit"
-              }
-            ]
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
+            "proxies": []
           },
           {
             "niveau": "2",
             "score": 2,
-            "totaleWaardeIndicatief": -6000,
-            "waarvanReeel": -6000,
-            "waarvanOverdracht": 0,
-            "berekening": "Productiviteitsverschil t.o.v. de normfunctie x jaarloonwaarde EUR 30.000 (= EUR 28/uur x 4,87 gemeten geroosterde uren x 220 dagen). Reeks: -20% / -20% / -15% / 0 / +10%.",
-            "belangrijksteAannames": "Koppeling overgenomen uit Meetstandaard Arbeidsparticipatie 2.0 (aldaar aannamescore 5). Werkend-aandeel CONSTANT gehouden - varierend maakt de reeks niet-monotoon en mengt participatiepositie met vaardigheid. LKS niet apart geboekt: dat is de overdrachtskant van dezelfde grootheid. Stap 1->2 is EUR 0 waard; de bron onderscheidt die niveaus niet. Uurtarief is een MARKTtarief en overschat vermoedelijk de productiewaarde van werk bij een werkbedrijf.",
-            "aannamescore": 7,
-            "proxies": [
-              {
-                "stakeholder": "werkgever",
-                "proxy": "Arbeidsproductiviteit t.o.v. de normfunctie",
-                "bedrag": -6000,
-                "bedragTekst": -6000,
-                "eenheid": "EUR per persoon per jaar",
-                "typePost": "reeel",
-                "bronBedrag": "Handboek Meting Regeldrukkosten 2023 deel 4.C (EUR 23/uur laaggeschoold, peiljaar 2020, geindexeerd x1,20) x 4,87 gemeten uren x 220 dagen",
-                "bronEffectProxyRelatie": "Meetstandaard Arbeidsparticipatie 2.0, rekenbasis-tabel v2.0 (productiviteitsreeks, aldaar aannamescore 5); Besluit loonkostensubsidie Participatiewet 2021 art. 5 (factoren T/K/N)",
-                "toelichtingProxykeuze": "De loonwaardeformule drukt prestatie uit als percentage van een normfunctie; niveau 4 IS de normfunctie. Het productiviteitsverschil per niveau vertaalt dat naar euro's via de jaarloonwaarde.",
-                "berekening": "-20% x EUR 30.000",
-                "aannames": "Koppeling overgenomen uit een andere doelgroep; werkend-aandeel constant gehouden; markttarief overschat vermoedelijk de productiewaarde bij een werkbedrijf",
-                "aannamescore": 7,
-                "overlapgroep": "werkgever_productiviteit"
-              }
-            ]
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
+            "proxies": []
           },
           {
             "niveau": "3",
             "score": 3,
-            "totaleWaardeIndicatief": -4500,
-            "waarvanReeel": -4500,
-            "waarvanOverdracht": 0,
-            "berekening": "Productiviteitsverschil t.o.v. de normfunctie x jaarloonwaarde EUR 30.000 (= EUR 28/uur x 4,87 gemeten geroosterde uren x 220 dagen). Reeks: -20% / -20% / -15% / 0 / +10%.",
-            "belangrijksteAannames": "Koppeling overgenomen uit Meetstandaard Arbeidsparticipatie 2.0 (aldaar aannamescore 5). Werkend-aandeel CONSTANT gehouden - varierend maakt de reeks niet-monotoon en mengt participatiepositie met vaardigheid. LKS niet apart geboekt: dat is de overdrachtskant van dezelfde grootheid. Stap 1->2 is EUR 0 waard; de bron onderscheidt die niveaus niet. Uurtarief is een MARKTtarief en overschat vermoedelijk de productiewaarde van werk bij een werkbedrijf.",
-            "aannamescore": 7,
-            "proxies": [
-              {
-                "stakeholder": "werkgever",
-                "proxy": "Arbeidsproductiviteit t.o.v. de normfunctie",
-                "bedrag": -4500,
-                "bedragTekst": -4500,
-                "eenheid": "EUR per persoon per jaar",
-                "typePost": "reeel",
-                "bronBedrag": "Handboek Meting Regeldrukkosten 2023 deel 4.C (EUR 23/uur laaggeschoold, peiljaar 2020, geindexeerd x1,20) x 4,87 gemeten uren x 220 dagen",
-                "bronEffectProxyRelatie": "Meetstandaard Arbeidsparticipatie 2.0, rekenbasis-tabel v2.0 (productiviteitsreeks, aldaar aannamescore 5); Besluit loonkostensubsidie Participatiewet 2021 art. 5 (factoren T/K/N)",
-                "toelichtingProxykeuze": "De loonwaardeformule drukt prestatie uit als percentage van een normfunctie; niveau 4 IS de normfunctie. Het productiviteitsverschil per niveau vertaalt dat naar euro's via de jaarloonwaarde.",
-                "berekening": "-15% x EUR 30.000",
-                "aannames": "Koppeling overgenomen uit een andere doelgroep; werkend-aandeel constant gehouden; markttarief overschat vermoedelijk de productiewaarde bij een werkbedrijf",
-                "aannamescore": 7,
-                "overlapgroep": "werkgever_productiviteit"
-              }
-            ]
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
+            "proxies": []
           },
           {
             "niveau": "4",
             "score": 4,
-            "totaleWaardeIndicatief": 0,
-            "waarvanReeel": 0,
-            "waarvanOverdracht": 0,
-            "berekening": "Productiviteitsverschil t.o.v. de normfunctie x jaarloonwaarde EUR 30.000 (= EUR 28/uur x 4,87 gemeten geroosterde uren x 220 dagen). Reeks: -20% / -20% / -15% / 0 / +10%.",
-            "belangrijksteAannames": "Koppeling overgenomen uit Meetstandaard Arbeidsparticipatie 2.0 (aldaar aannamescore 5). Werkend-aandeel CONSTANT gehouden - varierend maakt de reeks niet-monotoon en mengt participatiepositie met vaardigheid. LKS niet apart geboekt: dat is de overdrachtskant van dezelfde grootheid. Stap 1->2 is EUR 0 waard; de bron onderscheidt die niveaus niet. Uurtarief is een MARKTtarief en overschat vermoedelijk de productiewaarde van werk bij een werkbedrijf.",
-            "aannamescore": 7,
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
             "proxies": []
           },
           {
             "niveau": "5",
             "score": 5,
-            "totaleWaardeIndicatief": 3000,
-            "waarvanReeel": 3000,
-            "waarvanOverdracht": 0,
-            "berekening": "Productiviteitsverschil t.o.v. de normfunctie x jaarloonwaarde EUR 30.000 (= EUR 28/uur x 4,87 gemeten geroosterde uren x 220 dagen). Reeks: -20% / -20% / -15% / 0 / +10%.",
-            "belangrijksteAannames": "Koppeling overgenomen uit Meetstandaard Arbeidsparticipatie 2.0 (aldaar aannamescore 5). Werkend-aandeel CONSTANT gehouden - varierend maakt de reeks niet-monotoon en mengt participatiepositie met vaardigheid. LKS niet apart geboekt: dat is de overdrachtskant van dezelfde grootheid. Stap 1->2 is EUR 0 waard; de bron onderscheidt die niveaus niet. Uurtarief is een MARKTtarief en overschat vermoedelijk de productiewaarde van werk bij een werkbedrijf.",
-            "aannamescore": 7,
-            "proxies": [
-              {
-                "stakeholder": "werkgever",
-                "proxy": "Arbeidsproductiviteit t.o.v. de normfunctie",
-                "bedrag": 3000,
-                "bedragTekst": 3000,
-                "eenheid": "EUR per persoon per jaar",
-                "typePost": "reeel",
-                "bronBedrag": "Handboek Meting Regeldrukkosten 2023 deel 4.C (EUR 23/uur laaggeschoold, peiljaar 2020, geindexeerd x1,20) x 4,87 gemeten uren x 220 dagen",
-                "bronEffectProxyRelatie": "Meetstandaard Arbeidsparticipatie 2.0, rekenbasis-tabel v2.0 (productiviteitsreeks, aldaar aannamescore 5); Besluit loonkostensubsidie Participatiewet 2021 art. 5 (factoren T/K/N)",
-                "toelichtingProxykeuze": "De loonwaardeformule drukt prestatie uit als percentage van een normfunctie; niveau 4 IS de normfunctie. Het productiviteitsverschil per niveau vertaalt dat naar euro's via de jaarloonwaarde.",
-                "berekening": "+10% x EUR 30.000",
-                "aannames": "Koppeling overgenomen uit een andere doelgroep; werkend-aandeel constant gehouden; markttarief overschat vermoedelijk de productiewaarde bij een werkbedrijf",
-                "aannamescore": 7,
-                "overlapgroep": "werkgever_productiviteit"
-              }
-            ]
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
+            "proxies": []
           }
         ]
       }
@@ -754,63 +613,68 @@
       "relevantieSector": "middel",
       "crossSectorBenchmarkbaar": "nee",
       "herkomstBestaandeStandaard": "nee - afgeleid van Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9",
-      "monetariseerbaarheid": "laag — mediator; geen zelfstandig bedrag, waarde loopt via loonwaarde en begeleidingsintensiteit",
+      "monetariseerbaarheid": "n.v.t. - monetarisering vervallen 2026-08-28",
       "document": "Stellingen 1-3 raken Fysieke gezondheid in de Meetstandaard Arbeidsparticipatie. Geen eigen monetarisering zonder expliciete overlapanalyse.",
       "stellingen": [
         {
           "nummer": 1,
-          "stelling": "Ik beweeg soepel bij werk waarbij ik til, buk of sta",
+          "stelling": "Heeft een goede grove motoriek",
+          "stellingRechts": "Heeft een slechte grove motoriek",
           "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Handigheid",
-          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
-          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "origineleSchaal": "tegenpolenpaar met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5) tussen de twee polen; oordeel van de begeleider over de deelnemer",
           "richting": "positief",
           "negatiefGeformuleerd": false,
-          "letterlijkOvergenomen": false,
-          "toelichting": "Afgeleid van het tegenpolenpaar: Heeft een goede grove motoriek / Heeft een slechte grove motoriek. Mediator, geen zelfstandig maatschappelijk effect. Raakt Fysieke gezondheid in de Meetstandaard Arbeidsparticipatie."
+          "letterlijkOvergenomen": true,
+          "toelichting": null
         },
         {
           "nummer": 2,
-          "stelling": "Ik werk nauwkeurig met mijn handen bij fijn werk",
+          "stelling": "Heeft een goede fijne motoriek",
+          "stellingRechts": "Heeft een slechte fijne motoriek",
           "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Handigheid",
-          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
-          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "origineleSchaal": "tegenpolenpaar met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5) tussen de twee polen; oordeel van de begeleider over de deelnemer",
           "richting": "positief",
           "negatiefGeformuleerd": false,
-          "letterlijkOvergenomen": false,
-          "toelichting": "Afgeleid van het tegenpolenpaar: Heeft een goede fijne motoriek / Heeft een slechte fijne motoriek. Mediator. Raakt Fysieke gezondheid in de Meetstandaard Arbeidsparticipatie."
+          "letterlijkOvergenomen": true,
+          "toelichting": null
         },
         {
           "nummer": 3,
-          "stelling": "Ik kan mijn kracht goed doseren",
+          "stelling": "Kan kracht doseren",
+          "stellingRechts": "Kan kracht niet doseren",
           "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Handigheid",
-          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
-          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "origineleSchaal": "tegenpolenpaar met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5) tussen de twee polen; oordeel van de begeleider over de deelnemer",
           "richting": "positief",
           "negatiefGeformuleerd": false,
-          "letterlijkOvergenomen": false,
-          "toelichting": "Afgeleid van het tegenpolenpaar: Kan kracht doseren / Kan kracht niet doseren. Mediator. Raakt Fysieke gezondheid in de Meetstandaard Arbeidsparticipatie."
+          "letterlijkOvergenomen": true,
+          "toelichting": null
         },
         {
           "nummer": 4,
-          "stelling": "Ik ga veilig om met machines en apparaten",
+          "stelling": "Gaat veilig/goed om met apparaten",
+          "stellingRechts": "Kan niet veilig/goed omgaan met apparaten",
           "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Handigheid",
-          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
-          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "origineleSchaal": "tegenpolenpaar met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5) tussen de twee polen; oordeel van de begeleider over de deelnemer",
           "richting": "positief",
           "negatiefGeformuleerd": false,
-          "letterlijkOvergenomen": false,
-          "toelichting": "Afgeleid van het tegenpolenpaar: Gaat veilig/goed om met apparaten / Kan niet veilig/goed omgaan met apparaten."
+          "letterlijkOvergenomen": true,
+          "toelichting": null
         },
         {
           "nummer": 5,
-          "stelling": "Ik werk ordelijk en netjes",
+          "stelling": "Werkt ordelijk en netjes",
+          "stellingRechts": "Werkt chaotisch en slordig",
           "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Handigheid",
-          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
-          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "origineleSchaal": "tegenpolenpaar met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5) tussen de twee polen; oordeel van de begeleider over de deelnemer",
           "richting": "positief",
           "negatiefGeformuleerd": false,
-          "letterlijkOvergenomen": false,
-          "toelichting": "Afgeleid van het tegenpolenpaar: Werkt ordelijk en netjes / Werkt chaotisch en slordig."
+          "letterlijkOvergenomen": true,
+          "toelichting": null
         }
       ],
       "situatieschetsen": [
@@ -856,8 +720,8 @@
         }
       ],
       "monetarisering": {
-        "document": "wiki/effecten/handigheid.md",
-        "eenheid": "EUR per persoon per jaar",
+        "document": null,
+        "eenheid": null,
         "niveaus": [
           {
             "niveau": "1",
@@ -866,7 +730,7 @@
             "waarvanReeel": null,
             "waarvanOverdracht": null,
             "berekening": null,
-            "belangrijksteAannames": "MEDIATOR - geen zelfstandig bedrag. Waarde loopt via loonwaarde (EFF-01, EFF-03) en via Fysieke gezondheid in de zusterstandaard.",
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
             "aannamescore": null,
             "proxies": []
           },
@@ -877,7 +741,7 @@
             "waarvanReeel": null,
             "waarvanOverdracht": null,
             "berekening": null,
-            "belangrijksteAannames": "MEDIATOR - geen zelfstandig bedrag. Waarde loopt via loonwaarde (EFF-01, EFF-03) en via Fysieke gezondheid in de zusterstandaard.",
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
             "aannamescore": null,
             "proxies": []
           },
@@ -888,7 +752,7 @@
             "waarvanReeel": null,
             "waarvanOverdracht": null,
             "berekening": null,
-            "belangrijksteAannames": "MEDIATOR - geen zelfstandig bedrag. Waarde loopt via loonwaarde (EFF-01, EFF-03) en via Fysieke gezondheid in de zusterstandaard.",
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
             "aannamescore": null,
             "proxies": []
           },
@@ -899,7 +763,7 @@
             "waarvanReeel": null,
             "waarvanOverdracht": null,
             "berekening": null,
-            "belangrijksteAannames": "MEDIATOR - geen zelfstandig bedrag. Waarde loopt via loonwaarde (EFF-01, EFF-03) en via Fysieke gezondheid in de zusterstandaard.",
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
             "aannamescore": null,
             "proxies": []
           },
@@ -910,7 +774,7 @@
             "waarvanReeel": null,
             "waarvanOverdracht": null,
             "berekening": null,
-            "belangrijksteAannames": "MEDIATOR - geen zelfstandig bedrag. Waarde loopt via loonwaarde (EFF-01, EFF-03) en via Fysieke gezondheid in de zusterstandaard.",
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
             "aannamescore": null,
             "proxies": []
           }
@@ -930,52 +794,56 @@
       "relevantieSector": "hoog",
       "crossSectorBenchmarkbaar": "nee",
       "herkomstBestaandeStandaard": "nee - afgeleid van Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9",
-      "monetariseerbaarheid": "middel — route 2, via inzetbaarheid en netto werktijd",
+      "monetariseerbaarheid": "n.v.t. - monetarisering vervallen 2026-08-28",
       "document": "Stelling 1 telt niet mee (behoefte aan structuur). 3 scorende stellingen: op de ondergrens. Afkomstig uit dezelfde formuliersectie als EFF-06; zie audit bevinding 2.",
       "stellingen": [
         {
           "nummer": 1,
-          "stelling": "Ik werk het best met een vaste structuur",
+          "stelling": "Heeft geen behoefte aan structuur",
+          "stellingRechts": "Heeft behoefte aan structuur",
           "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Stressbestendigheid / Flexibiliteit",
-          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
-          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "origineleSchaal": "tegenpolenpaar met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5) tussen de twee polen; oordeel van de begeleider over de deelnemer",
           "richting": "geen",
           "negatiefGeformuleerd": false,
-          "letterlijkOvergenomen": false,
-          "toelichting": "Afgeleid van het tegenpolenpaar: Heeft geen behoefte aan structuur / Heeft behoefte aan structuur. TELT NIET MEE. Behoefte aan structuur is geen tekortkoming maar een kenmerk en een fit-vraag met de werkplek. Polariteit omgekeerd ten opzichte van het formulier."
+          "letterlijkOvergenomen": true,
+          "toelichting": "TELT NIET MEE. Behoefte aan structuur is een kenmerk en een fit-vraag met de werkplek, geen tekortkoming."
         },
         {
           "nummer": 2,
-          "stelling": "Ik kan goed omgaan met veranderingen",
+          "stelling": "Kan tegen veranderingen",
+          "stellingRechts": "Kan niet tegen veranderingen",
           "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Stressbestendigheid / Flexibiliteit",
-          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
-          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "origineleSchaal": "tegenpolenpaar met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5) tussen de twee polen; oordeel van de begeleider over de deelnemer",
           "richting": "positief",
           "negatiefGeformuleerd": false,
-          "letterlijkOvergenomen": false,
-          "toelichting": "Afgeleid van het tegenpolenpaar: Kan tegen veranderingen / Kan niet tegen veranderingen."
+          "letterlijkOvergenomen": true,
+          "toelichting": null
         },
         {
           "nummer": 3,
-          "stelling": "Ik blijf rustig als er iets tegenzit",
+          "stelling": "Blijft rustig in lastige situaties / bij tegenvallers",
+          "stellingRechts": "Wordt onrustig in lastige situaties / bij tegenvallers",
           "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Stressbestendigheid / Flexibiliteit",
-          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
-          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "origineleSchaal": "tegenpolenpaar met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5) tussen de twee polen; oordeel van de begeleider over de deelnemer",
           "richting": "positief",
           "negatiefGeformuleerd": false,
-          "letterlijkOvergenomen": false,
-          "toelichting": "Afgeleid van het tegenpolenpaar: Blijft rustig in lastige situaties / bij tegenvallers // Wordt onrustig in lastige situaties / bij tegenvallers."
+          "letterlijkOvergenomen": true,
+          "toelichting": null
         },
         {
           "nummer": 4,
-          "stelling": "Mijn stemming wisselt vaak",
+          "stelling": "Heeft geen stemmingswisselingen",
+          "stellingRechts": "Wisselt vaak van stemming",
           "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Stressbestendigheid / Flexibiliteit",
-          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
-          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
-          "richting": "negatief",
-          "negatiefGeformuleerd": true,
-          "letterlijkOvergenomen": false,
-          "toelichting": "Afgeleid van het tegenpolenpaar: Heeft geen stemmingswisselingen / Wisselt vaak van stemming. Polariteit omgekeerd; negatief geformuleerd. Raakt Mentale gezondheid in de Meetstandaard Arbeidsparticipatie."
+          "origineleSchaal": "tegenpolenpaar met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5) tussen de twee polen; oordeel van de begeleider over de deelnemer",
+          "richting": "positief",
+          "negatiefGeformuleerd": false,
+          "letterlijkOvergenomen": true,
+          "toelichting": null
         }
       ],
       "situatieschetsen": [
@@ -1021,127 +889,63 @@
         }
       ],
       "monetarisering": {
-        "document": "wiki/effecten/omgaan-met-verandering-en-spanning.md",
-        "eenheid": "EUR per persoon per jaar",
+        "document": null,
+        "eenheid": null,
         "niveaus": [
           {
             "niveau": "1",
             "score": 1,
-            "totaleWaardeIndicatief": -6000,
-            "waarvanReeel": -6000,
-            "waarvanOverdracht": 0,
-            "berekening": "Productiviteitsverschil t.o.v. de normfunctie x jaarloonwaarde EUR 30.000 (= EUR 28/uur x 4,87 gemeten geroosterde uren x 220 dagen). Reeks: -20% / -20% / -15% / 0 / +10%.",
-            "belangrijksteAannames": "Koppeling overgenomen uit Meetstandaard Arbeidsparticipatie 2.0 (aldaar aannamescore 5). Werkend-aandeel CONSTANT gehouden - varierend maakt de reeks niet-monotoon en mengt participatiepositie met vaardigheid. LKS niet apart geboekt: dat is de overdrachtskant van dezelfde grootheid. Stap 1->2 is EUR 0 waard; de bron onderscheidt die niveaus niet. Uurtarief is een MARKTtarief en overschat vermoedelijk de productiewaarde van werk bij een werkbedrijf.",
-            "aannamescore": 7,
-            "proxies": [
-              {
-                "stakeholder": "werkgever",
-                "proxy": "Arbeidsproductiviteit t.o.v. de normfunctie",
-                "bedrag": -6000,
-                "bedragTekst": -6000,
-                "eenheid": "EUR per persoon per jaar",
-                "typePost": "reeel",
-                "bronBedrag": "Handboek Meting Regeldrukkosten 2023 deel 4.C (EUR 23/uur laaggeschoold, peiljaar 2020, geindexeerd x1,20) x 4,87 gemeten uren x 220 dagen",
-                "bronEffectProxyRelatie": "Meetstandaard Arbeidsparticipatie 2.0, rekenbasis-tabel v2.0 (productiviteitsreeks, aldaar aannamescore 5); Besluit loonkostensubsidie Participatiewet 2021 art. 5 (factoren T/K/N)",
-                "toelichtingProxykeuze": "De loonwaardeformule drukt prestatie uit als percentage van een normfunctie; niveau 4 IS de normfunctie. Het productiviteitsverschil per niveau vertaalt dat naar euro's via de jaarloonwaarde.",
-                "berekening": "-20% x EUR 30.000",
-                "aannames": "Koppeling overgenomen uit een andere doelgroep; werkend-aandeel constant gehouden; markttarief overschat vermoedelijk de productiewaarde bij een werkbedrijf",
-                "aannamescore": 7,
-                "overlapgroep": "werkgever_productiviteit"
-              }
-            ]
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
+            "proxies": []
           },
           {
             "niveau": "2",
             "score": 2,
-            "totaleWaardeIndicatief": -6000,
-            "waarvanReeel": -6000,
-            "waarvanOverdracht": 0,
-            "berekening": "Productiviteitsverschil t.o.v. de normfunctie x jaarloonwaarde EUR 30.000 (= EUR 28/uur x 4,87 gemeten geroosterde uren x 220 dagen). Reeks: -20% / -20% / -15% / 0 / +10%.",
-            "belangrijksteAannames": "Koppeling overgenomen uit Meetstandaard Arbeidsparticipatie 2.0 (aldaar aannamescore 5). Werkend-aandeel CONSTANT gehouden - varierend maakt de reeks niet-monotoon en mengt participatiepositie met vaardigheid. LKS niet apart geboekt: dat is de overdrachtskant van dezelfde grootheid. Stap 1->2 is EUR 0 waard; de bron onderscheidt die niveaus niet. Uurtarief is een MARKTtarief en overschat vermoedelijk de productiewaarde van werk bij een werkbedrijf.",
-            "aannamescore": 7,
-            "proxies": [
-              {
-                "stakeholder": "werkgever",
-                "proxy": "Arbeidsproductiviteit t.o.v. de normfunctie",
-                "bedrag": -6000,
-                "bedragTekst": -6000,
-                "eenheid": "EUR per persoon per jaar",
-                "typePost": "reeel",
-                "bronBedrag": "Handboek Meting Regeldrukkosten 2023 deel 4.C (EUR 23/uur laaggeschoold, peiljaar 2020, geindexeerd x1,20) x 4,87 gemeten uren x 220 dagen",
-                "bronEffectProxyRelatie": "Meetstandaard Arbeidsparticipatie 2.0, rekenbasis-tabel v2.0 (productiviteitsreeks, aldaar aannamescore 5); Besluit loonkostensubsidie Participatiewet 2021 art. 5 (factoren T/K/N)",
-                "toelichtingProxykeuze": "De loonwaardeformule drukt prestatie uit als percentage van een normfunctie; niveau 4 IS de normfunctie. Het productiviteitsverschil per niveau vertaalt dat naar euro's via de jaarloonwaarde.",
-                "berekening": "-20% x EUR 30.000",
-                "aannames": "Koppeling overgenomen uit een andere doelgroep; werkend-aandeel constant gehouden; markttarief overschat vermoedelijk de productiewaarde bij een werkbedrijf",
-                "aannamescore": 7,
-                "overlapgroep": "werkgever_productiviteit"
-              }
-            ]
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
+            "proxies": []
           },
           {
             "niveau": "3",
             "score": 3,
-            "totaleWaardeIndicatief": -4500,
-            "waarvanReeel": -4500,
-            "waarvanOverdracht": 0,
-            "berekening": "Productiviteitsverschil t.o.v. de normfunctie x jaarloonwaarde EUR 30.000 (= EUR 28/uur x 4,87 gemeten geroosterde uren x 220 dagen). Reeks: -20% / -20% / -15% / 0 / +10%.",
-            "belangrijksteAannames": "Koppeling overgenomen uit Meetstandaard Arbeidsparticipatie 2.0 (aldaar aannamescore 5). Werkend-aandeel CONSTANT gehouden - varierend maakt de reeks niet-monotoon en mengt participatiepositie met vaardigheid. LKS niet apart geboekt: dat is de overdrachtskant van dezelfde grootheid. Stap 1->2 is EUR 0 waard; de bron onderscheidt die niveaus niet. Uurtarief is een MARKTtarief en overschat vermoedelijk de productiewaarde van werk bij een werkbedrijf.",
-            "aannamescore": 7,
-            "proxies": [
-              {
-                "stakeholder": "werkgever",
-                "proxy": "Arbeidsproductiviteit t.o.v. de normfunctie",
-                "bedrag": -4500,
-                "bedragTekst": -4500,
-                "eenheid": "EUR per persoon per jaar",
-                "typePost": "reeel",
-                "bronBedrag": "Handboek Meting Regeldrukkosten 2023 deel 4.C (EUR 23/uur laaggeschoold, peiljaar 2020, geindexeerd x1,20) x 4,87 gemeten uren x 220 dagen",
-                "bronEffectProxyRelatie": "Meetstandaard Arbeidsparticipatie 2.0, rekenbasis-tabel v2.0 (productiviteitsreeks, aldaar aannamescore 5); Besluit loonkostensubsidie Participatiewet 2021 art. 5 (factoren T/K/N)",
-                "toelichtingProxykeuze": "De loonwaardeformule drukt prestatie uit als percentage van een normfunctie; niveau 4 IS de normfunctie. Het productiviteitsverschil per niveau vertaalt dat naar euro's via de jaarloonwaarde.",
-                "berekening": "-15% x EUR 30.000",
-                "aannames": "Koppeling overgenomen uit een andere doelgroep; werkend-aandeel constant gehouden; markttarief overschat vermoedelijk de productiewaarde bij een werkbedrijf",
-                "aannamescore": 7,
-                "overlapgroep": "werkgever_productiviteit"
-              }
-            ]
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
+            "proxies": []
           },
           {
             "niveau": "4",
             "score": 4,
-            "totaleWaardeIndicatief": 0,
-            "waarvanReeel": 0,
-            "waarvanOverdracht": 0,
-            "berekening": "Productiviteitsverschil t.o.v. de normfunctie x jaarloonwaarde EUR 30.000 (= EUR 28/uur x 4,87 gemeten geroosterde uren x 220 dagen). Reeks: -20% / -20% / -15% / 0 / +10%.",
-            "belangrijksteAannames": "Koppeling overgenomen uit Meetstandaard Arbeidsparticipatie 2.0 (aldaar aannamescore 5). Werkend-aandeel CONSTANT gehouden - varierend maakt de reeks niet-monotoon en mengt participatiepositie met vaardigheid. LKS niet apart geboekt: dat is de overdrachtskant van dezelfde grootheid. Stap 1->2 is EUR 0 waard; de bron onderscheidt die niveaus niet. Uurtarief is een MARKTtarief en overschat vermoedelijk de productiewaarde van werk bij een werkbedrijf.",
-            "aannamescore": 7,
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
             "proxies": []
           },
           {
             "niveau": "5",
             "score": 5,
-            "totaleWaardeIndicatief": 3000,
-            "waarvanReeel": 3000,
-            "waarvanOverdracht": 0,
-            "berekening": "Productiviteitsverschil t.o.v. de normfunctie x jaarloonwaarde EUR 30.000 (= EUR 28/uur x 4,87 gemeten geroosterde uren x 220 dagen). Reeks: -20% / -20% / -15% / 0 / +10%.",
-            "belangrijksteAannames": "Koppeling overgenomen uit Meetstandaard Arbeidsparticipatie 2.0 (aldaar aannamescore 5). Werkend-aandeel CONSTANT gehouden - varierend maakt de reeks niet-monotoon en mengt participatiepositie met vaardigheid. LKS niet apart geboekt: dat is de overdrachtskant van dezelfde grootheid. Stap 1->2 is EUR 0 waard; de bron onderscheidt die niveaus niet. Uurtarief is een MARKTtarief en overschat vermoedelijk de productiewaarde van werk bij een werkbedrijf.",
-            "aannamescore": 7,
-            "proxies": [
-              {
-                "stakeholder": "werkgever",
-                "proxy": "Arbeidsproductiviteit t.o.v. de normfunctie",
-                "bedrag": 3000,
-                "bedragTekst": 3000,
-                "eenheid": "EUR per persoon per jaar",
-                "typePost": "reeel",
-                "bronBedrag": "Handboek Meting Regeldrukkosten 2023 deel 4.C (EUR 23/uur laaggeschoold, peiljaar 2020, geindexeerd x1,20) x 4,87 gemeten uren x 220 dagen",
-                "bronEffectProxyRelatie": "Meetstandaard Arbeidsparticipatie 2.0, rekenbasis-tabel v2.0 (productiviteitsreeks, aldaar aannamescore 5); Besluit loonkostensubsidie Participatiewet 2021 art. 5 (factoren T/K/N)",
-                "toelichtingProxykeuze": "De loonwaardeformule drukt prestatie uit als percentage van een normfunctie; niveau 4 IS de normfunctie. Het productiviteitsverschil per niveau vertaalt dat naar euro's via de jaarloonwaarde.",
-                "berekening": "+10% x EUR 30.000",
-                "aannames": "Koppeling overgenomen uit een andere doelgroep; werkend-aandeel constant gehouden; markttarief overschat vermoedelijk de productiewaarde bij een werkbedrijf",
-                "aannamescore": 7,
-                "overlapgroep": "werkgever_productiviteit"
-              }
-            ]
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
+            "proxies": []
           }
         ]
       }
@@ -1159,63 +963,68 @@
       "relevantieSector": "middel",
       "crossSectorBenchmarkbaar": "nee",
       "herkomstBestaandeStandaard": "nee - afgeleid van Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9",
-      "monetariseerbaarheid": "middel — route 1 en 2",
+      "monetariseerbaarheid": "n.v.t. - monetarisering vervallen 2026-08-28",
       "document": "Stelling 3 telt niet mee (voorkeur voor een taak tegelijk). Afkomstig uit dezelfde formuliersectie als EFF-05; bij aggregatie als een cluster behandelen tot het tegendeel is aangetoond. Zie audit bevinding 2.",
       "stellingen": [
         {
           "nummer": 1,
-          "stelling": "Ik schakel gemakkelijk over naar een volgende taak",
+          "stelling": "Schakelt gemakkelijk over naar de volgende taak",
+          "stellingRechts": "Schakelt moeilijk over naar de volgende taak",
           "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Stressbestendigheid / Flexibiliteit",
-          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
-          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "origineleSchaal": "tegenpolenpaar met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5) tussen de twee polen; oordeel van de begeleider over de deelnemer",
           "richting": "positief",
           "negatiefGeformuleerd": false,
-          "letterlijkOvergenomen": false,
-          "toelichting": "Afgeleid van het tegenpolenpaar: Schakelt gemakkelijk over naar de volgende taak / Schakelt moeilijk over naar de volgende taak."
+          "letterlijkOvergenomen": true,
+          "toelichting": null
         },
         {
           "nummer": 2,
-          "stelling": "Ik kan een opdracht tussendoor aan",
+          "stelling": "Kan opdrachten tussendoor aan",
+          "stellingRechts": "Kan geen opdrachten tussendoor aan",
           "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Stressbestendigheid / Flexibiliteit",
-          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
-          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "origineleSchaal": "tegenpolenpaar met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5) tussen de twee polen; oordeel van de begeleider over de deelnemer",
           "richting": "positief",
           "negatiefGeformuleerd": false,
-          "letterlijkOvergenomen": false,
-          "toelichting": "Afgeleid van het tegenpolenpaar: Kan opdrachten tussendoor aan / Kan geen opdrachten tussendoor aan."
+          "letterlijkOvergenomen": true,
+          "toelichting": null
         },
         {
           "nummer": 3,
-          "stelling": "Ik werk het liefst aan één taak tegelijk",
+          "stelling": "Kan aan 2 of meer taken tegelijk werken",
+          "stellingRechts": "Kan aan 1 taak tegelijk werken",
           "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Stressbestendigheid / Flexibiliteit",
-          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
-          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "origineleSchaal": "tegenpolenpaar met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5) tussen de twee polen; oordeel van de begeleider over de deelnemer",
           "richting": "geen",
           "negatiefGeformuleerd": false,
-          "letterlijkOvergenomen": false,
-          "toelichting": "Afgeleid van het tegenpolenpaar: Kan aan 2 of meer taken tegelijk werken / Kan aan 1 taak tegelijk werken. TELT NIET MEE. Liever één taak tegelijk werken is geen tekortkoming maar een kenmerk en een fit-vraag met de werkplek. Polariteit omgekeerd ten opzichte van het formulier."
+          "letterlijkOvergenomen": true,
+          "toelichting": "TELT NIET MEE. Liever aan een taak tegelijk werken is een kenmerk en een fit-vraag met de werkplek, geen tekortkoming."
         },
         {
           "nummer": 4,
-          "stelling": "Ik kan me goed concentreren bij een enkelvoudige opdracht",
+          "stelling": "Kan zich concentreren bij enkelvoudige opdracht",
+          "stellingRechts": "Kan zich niet concentreren / snel afgeleid",
           "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Stressbestendigheid / Flexibiliteit",
-          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
-          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "origineleSchaal": "tegenpolenpaar met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5) tussen de twee polen; oordeel van de begeleider over de deelnemer",
           "richting": "positief",
           "negatiefGeformuleerd": false,
-          "letterlijkOvergenomen": false,
-          "toelichting": "Afgeleid van het tegenpolenpaar: Kan zich concentreren bij enkelvoudige opdracht / Kan zich niet concentreren, snel afgeleid."
+          "letterlijkOvergenomen": true,
+          "toelichting": null
         },
         {
           "nummer": 5,
-          "stelling": "Ik kan me goed concentreren bij een opdracht met meerdere stappen",
+          "stelling": "Kan zich concentreren bij meervoudige opdracht",
+          "stellingRechts": "Kan zich niet concentreren / snel afgeleid",
           "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Stressbestendigheid / Flexibiliteit",
-          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
-          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "origineleSchaal": "tegenpolenpaar met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5) tussen de twee polen; oordeel van de begeleider over de deelnemer",
           "richting": "positief",
           "negatiefGeformuleerd": false,
-          "letterlijkOvergenomen": false,
-          "toelichting": "Afgeleid van het tegenpolenpaar: Kan zich concentreren bij meervoudige opdracht / Kan zich niet concentreren, snel afgeleid."
+          "letterlijkOvergenomen": true,
+          "toelichting": null
         }
       ],
       "situatieschetsen": [
@@ -1261,110 +1070,62 @@
         }
       ],
       "monetarisering": {
-        "document": "wiki/effecten/concentratie-en-taakwisseling.md",
-        "eenheid": "EUR per persoon per jaar",
+        "document": null,
+        "eenheid": null,
         "niveaus": [
           {
             "niveau": "1",
             "score": 1,
-            "totaleWaardeIndicatief": -9425.44,
-            "waarvanReeel": -9425.44,
-            "waarvanOverdracht": 0,
-            "berekening": "Normbedrag interne jobcoaching, regime intensief (15% van de gewerkte uren), begeleidingsjaar 1 - rechtstreeks uit Besluit Normbedragen Voorzieningen UWV 2026 code Q2. Geen tussenstappen.",
-            "belangrijksteAannames": "Koppeling Likert-niveau naar begeleidingsregime via de begeleidingsladder van het formulier (aannamescore 6 bij EFF-01, 7 bij EFF-02/06). Dienstbetrekking >=24 uur per week, anders pro rata. Begeleidingsjaar 1. Kans op toekenning van het regime NIET toegepast - het bedrag is een bovengrens.",
-            "aannamescore": 7,
-            "proxies": [
-              {
-                "stakeholder": "UWV",
-                "proxy": "Interne jobcoaching, regime intensief, begeleidingsjaar 1",
-                "bedrag": -9425.44,
-                "bedragTekst": -9425.44,
-                "eenheid": "EUR per persoon per jaar",
-                "typePost": "reeel",
-                "bronBedrag": "Besluit Normbedragen Voorzieningen UWV 2026 (Stcrt. 2026, 12114-n1), bijlage code Q2",
-                "bronEffectProxyRelatie": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen 0.9, begeleidingsladder; Beleidsregel Protocol Interne Jobcoach UWV 2025 par. 2.4.1 tabel 1",
-                "toelichtingProxykeuze": "Wettelijk vastgesteld tarief per begeleidingsregime; het regime is gedefinieerd als percentage van de gewerkte uren en drukt daarmee dezelfde grootheid uit als de ladder: hoeveel van de tijd een begeleider aanwezig moet zijn.",
-                "berekening": "Normbedrag rechtstreeks - geen tussenstappen",
-                "aannames": "Koppeling niveau naar regime; dienstbetrekking >=24 uur/week; begeleidingsjaar 1; kans op toekenning niet toegepast (bovengrens)",
-                "aannamescore": 7,
-                "overlapgroep": "uwv_jobcoach"
-              }
-            ]
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
+            "proxies": []
           },
           {
             "niveau": "2",
             "score": 2,
-            "totaleWaardeIndicatief": -6376.03,
-            "waarvanReeel": -6376.03,
-            "waarvanOverdracht": 0,
-            "berekening": "Normbedrag interne jobcoaching, regime midden (10%), begeleidingsjaar 1 - rechtstreeks uit Besluit Normbedragen Voorzieningen UWV 2026 code Q2. Geen tussenstappen.",
-            "belangrijksteAannames": "Koppeling Likert-niveau naar begeleidingsregime via de begeleidingsladder van het formulier (aannamescore 6 bij EFF-01, 7 bij EFF-02/06). Dienstbetrekking >=24 uur per week, anders pro rata. Begeleidingsjaar 1. Kans op toekenning van het regime NIET toegepast - het bedrag is een bovengrens.",
-            "aannamescore": 7,
-            "proxies": [
-              {
-                "stakeholder": "UWV",
-                "proxy": "Interne jobcoaching, regime midden, begeleidingsjaar 1",
-                "bedrag": -6376.03,
-                "bedragTekst": -6376.03,
-                "eenheid": "EUR per persoon per jaar",
-                "typePost": "reeel",
-                "bronBedrag": "Besluit Normbedragen Voorzieningen UWV 2026 (Stcrt. 2026, 12114-n1), bijlage code Q2",
-                "bronEffectProxyRelatie": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen 0.9, begeleidingsladder; Beleidsregel Protocol Interne Jobcoach UWV 2025 par. 2.4.1 tabel 1",
-                "toelichtingProxykeuze": "Wettelijk vastgesteld tarief per begeleidingsregime; het regime is gedefinieerd als percentage van de gewerkte uren en drukt daarmee dezelfde grootheid uit als de ladder: hoeveel van de tijd een begeleider aanwezig moet zijn.",
-                "berekening": "Normbedrag rechtstreeks - geen tussenstappen",
-                "aannames": "Koppeling niveau naar regime; dienstbetrekking >=24 uur/week; begeleidingsjaar 1; kans op toekenning niet toegepast (bovengrens)",
-                "aannamescore": 7,
-                "overlapgroep": "uwv_jobcoach"
-              }
-            ]
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
+            "proxies": []
           },
           {
             "niveau": "3",
             "score": 3,
-            "totaleWaardeIndicatief": -3742.45,
-            "waarvanReeel": -3742.45,
-            "waarvanOverdracht": 0,
-            "berekening": "Normbedrag interne jobcoaching, regime licht (6%), begeleidingsjaar 1 - rechtstreeks uit Besluit Normbedragen Voorzieningen UWV 2026 code Q2. Geen tussenstappen.",
-            "belangrijksteAannames": "Koppeling Likert-niveau naar begeleidingsregime via de begeleidingsladder van het formulier (aannamescore 6 bij EFF-01, 7 bij EFF-02/06). Dienstbetrekking >=24 uur per week, anders pro rata. Begeleidingsjaar 1. Kans op toekenning van het regime NIET toegepast - het bedrag is een bovengrens.",
-            "aannamescore": 7,
-            "proxies": [
-              {
-                "stakeholder": "UWV",
-                "proxy": "Interne jobcoaching, regime licht, begeleidingsjaar 1",
-                "bedrag": -3742.45,
-                "bedragTekst": -3742.45,
-                "eenheid": "EUR per persoon per jaar",
-                "typePost": "reeel",
-                "bronBedrag": "Besluit Normbedragen Voorzieningen UWV 2026 (Stcrt. 2026, 12114-n1), bijlage code Q2",
-                "bronEffectProxyRelatie": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen 0.9, begeleidingsladder; Beleidsregel Protocol Interne Jobcoach UWV 2025 par. 2.4.1 tabel 1",
-                "toelichtingProxykeuze": "Wettelijk vastgesteld tarief per begeleidingsregime; het regime is gedefinieerd als percentage van de gewerkte uren en drukt daarmee dezelfde grootheid uit als de ladder: hoeveel van de tijd een begeleider aanwezig moet zijn.",
-                "berekening": "Normbedrag rechtstreeks - geen tussenstappen",
-                "aannames": "Koppeling niveau naar regime; dienstbetrekking >=24 uur/week; begeleidingsjaar 1; kans op toekenning niet toegepast (bovengrens)",
-                "aannamescore": 7,
-                "overlapgroep": "uwv_jobcoach"
-              }
-            ]
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
+            "proxies": []
           },
           {
             "niveau": "4",
             "score": 4,
-            "totaleWaardeIndicatief": 0,
-            "waarvanReeel": 0,
-            "waarvanOverdracht": 0,
-            "berekening": "Normbedrag interne jobcoaching, regime geen, begeleidingsjaar 1 - rechtstreeks uit Besluit Normbedragen Voorzieningen UWV 2026 code Q2. Geen tussenstappen.",
-            "belangrijksteAannames": "Bij ladder-trede 1 wordt geen jobcoaching vergoed, dus geen bedrag. Route 1 is asymmetrisch: bij niveau 4 valt er niets meer te besparen, dus de stap 4->5 is EUR 0 waard.",
-            "aannamescore": 7,
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
             "proxies": []
           },
           {
             "niveau": "5",
             "score": 5,
-            "totaleWaardeIndicatief": 0,
-            "waarvanReeel": 0,
-            "waarvanOverdracht": 0,
-            "berekening": "Normbedrag interne jobcoaching, regime geen, begeleidingsjaar 1 - rechtstreeks uit Besluit Normbedragen Voorzieningen UWV 2026 code Q2. Geen tussenstappen.",
-            "belangrijksteAannames": "Bij ladder-trede 1 wordt geen jobcoaching vergoed, dus geen bedrag. Route 1 is asymmetrisch: bij niveau 4 valt er niets meer te besparen, dus de stap 4->5 is EUR 0 waard.",
-            "aannamescore": 7,
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
             "proxies": []
           }
         ]
@@ -1383,63 +1144,68 @@
       "relevantieSector": "hoog",
       "crossSectorBenchmarkbaar": "nee",
       "herkomstBestaandeStandaard": "nee - afgeleid van Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9",
-      "monetariseerbaarheid": "middel — indirect, via baanbehoud en plaatsingskans",
+      "monetariseerbaarheid": "n.v.t. - monetarisering vervallen 2026-08-28",
       "document": "Raakt Sociale vaardigheden in de Meetstandaard Arbeidsparticipatie.",
       "stellingen": [
         {
           "nummer": 1,
-          "stelling": "Ik kan goed samenwerken",
+          "stelling": "Kan samenwerken",
+          "stellingRechts": "Kan niet samenwerken",
           "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Samenwerking",
-          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
-          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "origineleSchaal": "tegenpolenpaar met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5) tussen de twee polen; oordeel van de begeleider over de deelnemer",
           "richting": "positief",
           "negatiefGeformuleerd": false,
-          "letterlijkOvergenomen": false,
-          "toelichting": "Afgeleid van het tegenpolenpaar: Kan samenwerken / Kan niet samenwerken. Raakt Sociale vaardigheden in de Meetstandaard Arbeidsparticipatie."
+          "letterlijkOvergenomen": true,
+          "toelichting": null
         },
         {
           "nummer": 2,
-          "stelling": "Als er verschillende belangen spelen, maak ik daarin een goede afweging",
+          "stelling": "Kan bij belangen juiste afweging maken",
+          "stellingRechts": "Kan niet de juiste afweging maken (kwetsbaar)",
           "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Samenwerking",
-          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
-          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "origineleSchaal": "tegenpolenpaar met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5) tussen de twee polen; oordeel van de begeleider over de deelnemer",
           "richting": "positief",
           "negatiefGeformuleerd": false,
-          "letterlijkOvergenomen": false,
-          "toelichting": "Afgeleid van het tegenpolenpaar: Kan bij belangen juiste afweging maken / Kan niet de juiste afweging maken (kwetsbaar)."
+          "letterlijkOvergenomen": true,
+          "toelichting": null
         },
         {
           "nummer": 3,
-          "stelling": "Ik help collega's",
+          "stelling": "Is behulpzaam",
+          "stellingRechts": "Is niet behulpzaam",
           "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Samenwerking",
-          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
-          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "origineleSchaal": "tegenpolenpaar met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5) tussen de twee polen; oordeel van de begeleider over de deelnemer",
           "richting": "positief",
           "negatiefGeformuleerd": false,
-          "letterlijkOvergenomen": false,
-          "toelichting": "Afgeleid van het tegenpolenpaar: Is behulpzaam / Is niet behulpzaam."
+          "letterlijkOvergenomen": true,
+          "toelichting": null
         },
         {
           "nummer": 4,
-          "stelling": "Ik vraag om hulp als ik iets niet weet",
+          "stelling": "Stelt hulpvragen",
+          "stellingRechts": "Stelt geen hulpvragen",
           "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Samenwerking",
-          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
-          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "origineleSchaal": "tegenpolenpaar met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5) tussen de twee polen; oordeel van de begeleider over de deelnemer",
           "richting": "positief",
           "negatiefGeformuleerd": false,
-          "letterlijkOvergenomen": false,
-          "toelichting": "Afgeleid van het tegenpolenpaar: Stelt hulpvragen / Stelt geen hulpvragen."
+          "letterlijkOvergenomen": true,
+          "toelichting": null
         },
         {
           "nummer": 5,
-          "stelling": "Ik kan omgaan met kritiek, zowel geven als krijgen",
+          "stelling": "Kan omgaan met kritiek (geven en ontvangen)",
+          "stellingRechts": "Kan niet omgaan met kritiek",
           "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Samenwerking",
-          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
-          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "origineleSchaal": "tegenpolenpaar met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5) tussen de twee polen; oordeel van de begeleider over de deelnemer",
           "richting": "positief",
           "negatiefGeformuleerd": false,
-          "letterlijkOvergenomen": false,
-          "toelichting": "Afgeleid van het tegenpolenpaar: Kan omgaan met kritiek (geven en ontvangen) / Kan niet omgaan met kritiek."
+          "letterlijkOvergenomen": true,
+          "toelichting": null
         }
       ],
       "situatieschetsen": [
@@ -1485,155 +1251,62 @@
         }
       ],
       "monetarisering": {
-        "document": "wiki/effecten/samenwerking.md",
-        "eenheid": "EUR per persoon per jaar",
+        "document": null,
+        "eenheid": null,
         "niveaus": [
           {
             "niveau": "1",
             "score": 1,
-            "totaleWaardeIndicatief": -13806,
-            "waarvanReeel": -2170,
-            "waarvanOverdracht": -11636,
-            "berekening": "Kans op volledige bijstandsafhankelijkheid (62%) x bijstand EUR 18.768 (overdracht) en x uitvoeringskosten EUR 3.500 (reeel).",
-            "belangrijksteAannames": "Koppeling overgenomen uit Meetstandaard Arbeidsparticipatie 2.0 (aldaar aannamescore 6). LET OP: het grootste getal is de OVERDRACHT en telt niet mee in een netto totaal. De enige reele post - uitvoeringskosten - rust op een SECUNDAIR CITAAT: de Berenschot-bron staat niet in raw/.",
-            "aannamescore": 7,
-            "proxies": [
-              {
-                "stakeholder": "gemeente",
-                "proxy": "Vermeden bijstand",
-                "bedrag": -11636,
-                "bedragTekst": -11636,
-                "eenheid": "EUR per persoon per jaar",
-                "typePost": "overdrachtsbetaling",
-                "bronBedrag": "Maatschappelijke prijslijst, tabblad Prijzen participatiewet en inko - bijstand alleenstaand per 1-1-2026",
-                "bronEffectProxyRelatie": "Meetstandaard Arbeidsparticipatie 2.0, opbouwtabellen L1-L3 (kans op bijstand, aldaar aannamescore 6)",
-                "toelichtingProxykeuze": "Wettelijk vastgesteld uitkeringsbedrag; de kans modelleert dat niet iedereen op dit niveau volledig bijstandsafhankelijk is. TELT NIET MEE in een netto maatschappelijk totaal.",
-                "berekening": "62% x EUR 18.768",
-                "aannames": "Kans overgenomen uit een andere doelgroep",
-                "aannamescore": 7,
-                "overlapgroep": "gemeente_bijstand"
-              },
-              {
-                "stakeholder": "gemeente",
-                "proxy": "Bijstandsuitvoeringskosten",
-                "bedrag": -2170,
-                "bedragTekst": -2170,
-                "eenheid": "EUR per persoon per jaar",
-                "typePost": "reeel",
-                "bronBedrag": "Meetstandaard Arbeidsparticipatie 2.0 (Berenschot 2018 x 1,20) - SECUNDAIR CITAAT, primaire bron niet in raw/",
-                "bronEffectProxyRelatie": "idem, opbouwtabellen L1-L3",
-                "toelichtingProxykeuze": "Elk bijstandsdossier vergt casemanagement, beschikkingen en herbeoordelingen - werkelijke inzet van mensen. Dit is de ENIGE reele post van route 3.",
-                "berekening": "62% x EUR 3.500",
-                "aannames": "Kans overgenomen; tarief is een secundair citaat",
-                "aannamescore": 7,
-                "overlapgroep": "gemeente_reintegratiekosten"
-              }
-            ]
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
+            "proxies": []
           },
           {
             "niveau": "2",
             "score": 2,
-            "totaleWaardeIndicatief": -6680,
-            "waarvanReeel": -1050,
-            "waarvanOverdracht": -5630,
-            "berekening": "Kans op volledige bijstandsafhankelijkheid (30%) x bijstand EUR 18.768 (overdracht) en x uitvoeringskosten EUR 3.500 (reeel).",
-            "belangrijksteAannames": "Koppeling overgenomen uit Meetstandaard Arbeidsparticipatie 2.0 (aldaar aannamescore 6). LET OP: het grootste getal is de OVERDRACHT en telt niet mee in een netto totaal. De enige reele post - uitvoeringskosten - rust op een SECUNDAIR CITAAT: de Berenschot-bron staat niet in raw/.",
-            "aannamescore": 7,
-            "proxies": [
-              {
-                "stakeholder": "gemeente",
-                "proxy": "Vermeden bijstand",
-                "bedrag": -5630,
-                "bedragTekst": -5630,
-                "eenheid": "EUR per persoon per jaar",
-                "typePost": "overdrachtsbetaling",
-                "bronBedrag": "Maatschappelijke prijslijst, tabblad Prijzen participatiewet en inko - bijstand alleenstaand per 1-1-2026",
-                "bronEffectProxyRelatie": "Meetstandaard Arbeidsparticipatie 2.0, opbouwtabellen L1-L3 (kans op bijstand, aldaar aannamescore 6)",
-                "toelichtingProxykeuze": "Wettelijk vastgesteld uitkeringsbedrag; de kans modelleert dat niet iedereen op dit niveau volledig bijstandsafhankelijk is. TELT NIET MEE in een netto maatschappelijk totaal.",
-                "berekening": "30% x EUR 18.768",
-                "aannames": "Kans overgenomen uit een andere doelgroep",
-                "aannamescore": 7,
-                "overlapgroep": "gemeente_bijstand"
-              },
-              {
-                "stakeholder": "gemeente",
-                "proxy": "Bijstandsuitvoeringskosten",
-                "bedrag": -1050,
-                "bedragTekst": -1050,
-                "eenheid": "EUR per persoon per jaar",
-                "typePost": "reeel",
-                "bronBedrag": "Meetstandaard Arbeidsparticipatie 2.0 (Berenschot 2018 x 1,20) - SECUNDAIR CITAAT, primaire bron niet in raw/",
-                "bronEffectProxyRelatie": "idem, opbouwtabellen L1-L3",
-                "toelichtingProxykeuze": "Elk bijstandsdossier vergt casemanagement, beschikkingen en herbeoordelingen - werkelijke inzet van mensen. Dit is de ENIGE reele post van route 3.",
-                "berekening": "30% x EUR 3.500",
-                "aannames": "Kans overgenomen; tarief is een secundair citaat",
-                "aannamescore": 7,
-                "overlapgroep": "gemeente_reintegratiekosten"
-              }
-            ]
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
+            "proxies": []
           },
           {
             "niveau": "3",
             "score": 3,
-            "totaleWaardeIndicatief": -1113,
-            "waarvanReeel": -175,
-            "waarvanOverdracht": -938,
-            "berekening": "Kans op volledige bijstandsafhankelijkheid (5%) x bijstand EUR 18.768 (overdracht) en x uitvoeringskosten EUR 3.500 (reeel).",
-            "belangrijksteAannames": "Koppeling overgenomen uit Meetstandaard Arbeidsparticipatie 2.0 (aldaar aannamescore 6). LET OP: het grootste getal is de OVERDRACHT en telt niet mee in een netto totaal. De enige reele post - uitvoeringskosten - rust op een SECUNDAIR CITAAT: de Berenschot-bron staat niet in raw/.",
-            "aannamescore": 7,
-            "proxies": [
-              {
-                "stakeholder": "gemeente",
-                "proxy": "Vermeden bijstand",
-                "bedrag": -938,
-                "bedragTekst": -938,
-                "eenheid": "EUR per persoon per jaar",
-                "typePost": "overdrachtsbetaling",
-                "bronBedrag": "Maatschappelijke prijslijst, tabblad Prijzen participatiewet en inko - bijstand alleenstaand per 1-1-2026",
-                "bronEffectProxyRelatie": "Meetstandaard Arbeidsparticipatie 2.0, opbouwtabellen L1-L3 (kans op bijstand, aldaar aannamescore 6)",
-                "toelichtingProxykeuze": "Wettelijk vastgesteld uitkeringsbedrag; de kans modelleert dat niet iedereen op dit niveau volledig bijstandsafhankelijk is. TELT NIET MEE in een netto maatschappelijk totaal.",
-                "berekening": "5% x EUR 18.768",
-                "aannames": "Kans overgenomen uit een andere doelgroep",
-                "aannamescore": 7,
-                "overlapgroep": "gemeente_bijstand"
-              },
-              {
-                "stakeholder": "gemeente",
-                "proxy": "Bijstandsuitvoeringskosten",
-                "bedrag": -175,
-                "bedragTekst": -175,
-                "eenheid": "EUR per persoon per jaar",
-                "typePost": "reeel",
-                "bronBedrag": "Meetstandaard Arbeidsparticipatie 2.0 (Berenschot 2018 x 1,20) - SECUNDAIR CITAAT, primaire bron niet in raw/",
-                "bronEffectProxyRelatie": "idem, opbouwtabellen L1-L3",
-                "toelichtingProxykeuze": "Elk bijstandsdossier vergt casemanagement, beschikkingen en herbeoordelingen - werkelijke inzet van mensen. Dit is de ENIGE reele post van route 3.",
-                "berekening": "5% x EUR 3.500",
-                "aannames": "Kans overgenomen; tarief is een secundair citaat",
-                "aannamescore": 7,
-                "overlapgroep": "gemeente_reintegratiekosten"
-              }
-            ]
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
+            "proxies": []
           },
           {
             "niveau": "4",
             "score": 4,
-            "totaleWaardeIndicatief": 0,
-            "waarvanReeel": 0,
-            "waarvanOverdracht": 0,
-            "berekening": "Kans op volledige bijstandsafhankelijkheid (0%) x bijstand EUR 18.768 (overdracht) en x uitvoeringskosten EUR 3.500 (reeel).",
-            "belangrijksteAannames": "Koppeling overgenomen uit Meetstandaard Arbeidsparticipatie 2.0 (aldaar aannamescore 6). LET OP: het grootste getal is de OVERDRACHT en telt niet mee in een netto totaal. De enige reele post - uitvoeringskosten - rust op een SECUNDAIR CITAAT: de Berenschot-bron staat niet in raw/.",
-            "aannamescore": 7,
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
             "proxies": []
           },
           {
             "niveau": "5",
             "score": 5,
-            "totaleWaardeIndicatief": 0,
-            "waarvanReeel": 0,
-            "waarvanOverdracht": 0,
-            "berekening": "Kans op volledige bijstandsafhankelijkheid (0%) x bijstand EUR 18.768 (overdracht) en x uitvoeringskosten EUR 3.500 (reeel).",
-            "belangrijksteAannames": "Koppeling overgenomen uit Meetstandaard Arbeidsparticipatie 2.0 (aldaar aannamescore 6). LET OP: het grootste getal is de OVERDRACHT en telt niet mee in een netto totaal. De enige reele post - uitvoeringskosten - rust op een SECUNDAIR CITAAT: de Berenschot-bron staat niet in raw/.",
-            "aannamescore": 7,
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
             "proxies": []
           }
         ]
@@ -1652,52 +1325,56 @@
       "relevantieSector": "hoog",
       "crossSectorBenchmarkbaar": "nee",
       "herkomstBestaandeStandaard": "nee - afgeleid van Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9",
-      "monetariseerbaarheid": "middel — route 2, via netto werktijd; sterk onderbouwd in de literatuur over conscientiousness maar zonder Nederlands kengetal",
+      "monetariseerbaarheid": "n.v.t. - monetarisering vervallen 2026-08-28",
       "document": null,
       "stellingen": [
         {
           "nummer": 1,
-          "stelling": "Ik kom op tijd",
+          "stelling": "Komt op tijd",
+          "stellingRechts": "Komt niet op tijd",
           "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Betrouwbaarheid",
-          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
-          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "origineleSchaal": "tegenpolenpaar met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5) tussen de twee polen; oordeel van de begeleider over de deelnemer",
           "richting": "positief",
           "negatiefGeformuleerd": false,
-          "letterlijkOvergenomen": false,
-          "toelichting": "Afgeleid van het tegenpolenpaar: Komt op tijd / Komt niet op tijd. Raakt de factor netto werktijd van de uniforme loonwaardebepaling (route 2)."
+          "letterlijkOvergenomen": true,
+          "toelichting": null
         },
         {
           "nummer": 2,
-          "stelling": "Ik houd me aan de pauzetijden",
+          "stelling": "Houdt zich aan pauzetijden",
+          "stellingRechts": "Houdt zich niet aan pauzetijden",
           "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Betrouwbaarheid",
-          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
-          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "origineleSchaal": "tegenpolenpaar met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5) tussen de twee polen; oordeel van de begeleider over de deelnemer",
           "richting": "positief",
           "negatiefGeformuleerd": false,
-          "letterlijkOvergenomen": false,
-          "toelichting": "Afgeleid van het tegenpolenpaar: Houdt zich aan pauzetijden / Houdt zich niet aan pauzetijden."
+          "letterlijkOvergenomen": true,
+          "toelichting": null
         },
         {
           "nummer": 3,
-          "stelling": "Ik houd me aan de regels van het bedrijf",
+          "stelling": "Houdt zich aan bedrijfsregels",
+          "stellingRechts": "Houdt zich niet aan bedrijfsregels",
           "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Betrouwbaarheid",
-          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
-          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "origineleSchaal": "tegenpolenpaar met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5) tussen de twee polen; oordeel van de begeleider over de deelnemer",
           "richting": "positief",
           "negatiefGeformuleerd": false,
-          "letterlijkOvergenomen": false,
-          "toelichting": "Afgeleid van het tegenpolenpaar: Houdt zich aan bedrijfsregels / Houdt zich niet aan bedrijfsregels."
+          "letterlijkOvergenomen": true,
+          "toelichting": null
         },
         {
           "nummer": 4,
-          "stelling": "Ik kom mijn afspraken na",
+          "stelling": "Komt afspraken na",
+          "stellingRechts": "Komt afspraken niet na",
           "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Betrouwbaarheid",
-          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
-          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "origineleSchaal": "tegenpolenpaar met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5) tussen de twee polen; oordeel van de begeleider over de deelnemer",
           "richting": "positief",
           "negatiefGeformuleerd": false,
-          "letterlijkOvergenomen": false,
-          "toelichting": "Afgeleid van het tegenpolenpaar: Komt afspraken na / Komt afspraken niet na."
+          "letterlijkOvergenomen": true,
+          "toelichting": null
         }
       ],
       "situatieschetsen": [
@@ -1743,127 +1420,63 @@
         }
       ],
       "monetarisering": {
-        "document": "wiki/effecten/betrouwbaarheid.md",
-        "eenheid": "EUR per persoon per jaar",
+        "document": null,
+        "eenheid": null,
         "niveaus": [
           {
             "niveau": "1",
             "score": 1,
-            "totaleWaardeIndicatief": -6000,
-            "waarvanReeel": -6000,
-            "waarvanOverdracht": 0,
-            "berekening": "Productiviteitsverschil t.o.v. de normfunctie x jaarloonwaarde EUR 30.000 (= EUR 28/uur x 4,87 gemeten geroosterde uren x 220 dagen). Reeks: -20% / -20% / -15% / 0 / +10%.",
-            "belangrijksteAannames": "Koppeling overgenomen uit Meetstandaard Arbeidsparticipatie 2.0 (aldaar aannamescore 5). Werkend-aandeel CONSTANT gehouden - varierend maakt de reeks niet-monotoon en mengt participatiepositie met vaardigheid. LKS niet apart geboekt: dat is de overdrachtskant van dezelfde grootheid. Stap 1->2 is EUR 0 waard; de bron onderscheidt die niveaus niet. Uurtarief is een MARKTtarief en overschat vermoedelijk de productiewaarde van werk bij een werkbedrijf.",
-            "aannamescore": 7,
-            "proxies": [
-              {
-                "stakeholder": "werkgever",
-                "proxy": "Arbeidsproductiviteit t.o.v. de normfunctie",
-                "bedrag": -6000,
-                "bedragTekst": -6000,
-                "eenheid": "EUR per persoon per jaar",
-                "typePost": "reeel",
-                "bronBedrag": "Handboek Meting Regeldrukkosten 2023 deel 4.C (EUR 23/uur laaggeschoold, peiljaar 2020, geindexeerd x1,20) x 4,87 gemeten uren x 220 dagen",
-                "bronEffectProxyRelatie": "Meetstandaard Arbeidsparticipatie 2.0, rekenbasis-tabel v2.0 (productiviteitsreeks, aldaar aannamescore 5); Besluit loonkostensubsidie Participatiewet 2021 art. 5 (factoren T/K/N)",
-                "toelichtingProxykeuze": "De loonwaardeformule drukt prestatie uit als percentage van een normfunctie; niveau 4 IS de normfunctie. Het productiviteitsverschil per niveau vertaalt dat naar euro's via de jaarloonwaarde.",
-                "berekening": "-20% x EUR 30.000",
-                "aannames": "Koppeling overgenomen uit een andere doelgroep; werkend-aandeel constant gehouden; markttarief overschat vermoedelijk de productiewaarde bij een werkbedrijf",
-                "aannamescore": 7,
-                "overlapgroep": "werkgever_productiviteit"
-              }
-            ]
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
+            "proxies": []
           },
           {
             "niveau": "2",
             "score": 2,
-            "totaleWaardeIndicatief": -6000,
-            "waarvanReeel": -6000,
-            "waarvanOverdracht": 0,
-            "berekening": "Productiviteitsverschil t.o.v. de normfunctie x jaarloonwaarde EUR 30.000 (= EUR 28/uur x 4,87 gemeten geroosterde uren x 220 dagen). Reeks: -20% / -20% / -15% / 0 / +10%.",
-            "belangrijksteAannames": "Koppeling overgenomen uit Meetstandaard Arbeidsparticipatie 2.0 (aldaar aannamescore 5). Werkend-aandeel CONSTANT gehouden - varierend maakt de reeks niet-monotoon en mengt participatiepositie met vaardigheid. LKS niet apart geboekt: dat is de overdrachtskant van dezelfde grootheid. Stap 1->2 is EUR 0 waard; de bron onderscheidt die niveaus niet. Uurtarief is een MARKTtarief en overschat vermoedelijk de productiewaarde van werk bij een werkbedrijf.",
-            "aannamescore": 7,
-            "proxies": [
-              {
-                "stakeholder": "werkgever",
-                "proxy": "Arbeidsproductiviteit t.o.v. de normfunctie",
-                "bedrag": -6000,
-                "bedragTekst": -6000,
-                "eenheid": "EUR per persoon per jaar",
-                "typePost": "reeel",
-                "bronBedrag": "Handboek Meting Regeldrukkosten 2023 deel 4.C (EUR 23/uur laaggeschoold, peiljaar 2020, geindexeerd x1,20) x 4,87 gemeten uren x 220 dagen",
-                "bronEffectProxyRelatie": "Meetstandaard Arbeidsparticipatie 2.0, rekenbasis-tabel v2.0 (productiviteitsreeks, aldaar aannamescore 5); Besluit loonkostensubsidie Participatiewet 2021 art. 5 (factoren T/K/N)",
-                "toelichtingProxykeuze": "De loonwaardeformule drukt prestatie uit als percentage van een normfunctie; niveau 4 IS de normfunctie. Het productiviteitsverschil per niveau vertaalt dat naar euro's via de jaarloonwaarde.",
-                "berekening": "-20% x EUR 30.000",
-                "aannames": "Koppeling overgenomen uit een andere doelgroep; werkend-aandeel constant gehouden; markttarief overschat vermoedelijk de productiewaarde bij een werkbedrijf",
-                "aannamescore": 7,
-                "overlapgroep": "werkgever_productiviteit"
-              }
-            ]
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
+            "proxies": []
           },
           {
             "niveau": "3",
             "score": 3,
-            "totaleWaardeIndicatief": -4500,
-            "waarvanReeel": -4500,
-            "waarvanOverdracht": 0,
-            "berekening": "Productiviteitsverschil t.o.v. de normfunctie x jaarloonwaarde EUR 30.000 (= EUR 28/uur x 4,87 gemeten geroosterde uren x 220 dagen). Reeks: -20% / -20% / -15% / 0 / +10%.",
-            "belangrijksteAannames": "Koppeling overgenomen uit Meetstandaard Arbeidsparticipatie 2.0 (aldaar aannamescore 5). Werkend-aandeel CONSTANT gehouden - varierend maakt de reeks niet-monotoon en mengt participatiepositie met vaardigheid. LKS niet apart geboekt: dat is de overdrachtskant van dezelfde grootheid. Stap 1->2 is EUR 0 waard; de bron onderscheidt die niveaus niet. Uurtarief is een MARKTtarief en overschat vermoedelijk de productiewaarde van werk bij een werkbedrijf.",
-            "aannamescore": 7,
-            "proxies": [
-              {
-                "stakeholder": "werkgever",
-                "proxy": "Arbeidsproductiviteit t.o.v. de normfunctie",
-                "bedrag": -4500,
-                "bedragTekst": -4500,
-                "eenheid": "EUR per persoon per jaar",
-                "typePost": "reeel",
-                "bronBedrag": "Handboek Meting Regeldrukkosten 2023 deel 4.C (EUR 23/uur laaggeschoold, peiljaar 2020, geindexeerd x1,20) x 4,87 gemeten uren x 220 dagen",
-                "bronEffectProxyRelatie": "Meetstandaard Arbeidsparticipatie 2.0, rekenbasis-tabel v2.0 (productiviteitsreeks, aldaar aannamescore 5); Besluit loonkostensubsidie Participatiewet 2021 art. 5 (factoren T/K/N)",
-                "toelichtingProxykeuze": "De loonwaardeformule drukt prestatie uit als percentage van een normfunctie; niveau 4 IS de normfunctie. Het productiviteitsverschil per niveau vertaalt dat naar euro's via de jaarloonwaarde.",
-                "berekening": "-15% x EUR 30.000",
-                "aannames": "Koppeling overgenomen uit een andere doelgroep; werkend-aandeel constant gehouden; markttarief overschat vermoedelijk de productiewaarde bij een werkbedrijf",
-                "aannamescore": 7,
-                "overlapgroep": "werkgever_productiviteit"
-              }
-            ]
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
+            "proxies": []
           },
           {
             "niveau": "4",
             "score": 4,
-            "totaleWaardeIndicatief": 0,
-            "waarvanReeel": 0,
-            "waarvanOverdracht": 0,
-            "berekening": "Productiviteitsverschil t.o.v. de normfunctie x jaarloonwaarde EUR 30.000 (= EUR 28/uur x 4,87 gemeten geroosterde uren x 220 dagen). Reeks: -20% / -20% / -15% / 0 / +10%.",
-            "belangrijksteAannames": "Koppeling overgenomen uit Meetstandaard Arbeidsparticipatie 2.0 (aldaar aannamescore 5). Werkend-aandeel CONSTANT gehouden - varierend maakt de reeks niet-monotoon en mengt participatiepositie met vaardigheid. LKS niet apart geboekt: dat is de overdrachtskant van dezelfde grootheid. Stap 1->2 is EUR 0 waard; de bron onderscheidt die niveaus niet. Uurtarief is een MARKTtarief en overschat vermoedelijk de productiewaarde van werk bij een werkbedrijf.",
-            "aannamescore": 7,
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
             "proxies": []
           },
           {
             "niveau": "5",
             "score": 5,
-            "totaleWaardeIndicatief": 3000,
-            "waarvanReeel": 3000,
-            "waarvanOverdracht": 0,
-            "berekening": "Productiviteitsverschil t.o.v. de normfunctie x jaarloonwaarde EUR 30.000 (= EUR 28/uur x 4,87 gemeten geroosterde uren x 220 dagen). Reeks: -20% / -20% / -15% / 0 / +10%.",
-            "belangrijksteAannames": "Koppeling overgenomen uit Meetstandaard Arbeidsparticipatie 2.0 (aldaar aannamescore 5). Werkend-aandeel CONSTANT gehouden - varierend maakt de reeks niet-monotoon en mengt participatiepositie met vaardigheid. LKS niet apart geboekt: dat is de overdrachtskant van dezelfde grootheid. Stap 1->2 is EUR 0 waard; de bron onderscheidt die niveaus niet. Uurtarief is een MARKTtarief en overschat vermoedelijk de productiewaarde van werk bij een werkbedrijf.",
-            "aannamescore": 7,
-            "proxies": [
-              {
-                "stakeholder": "werkgever",
-                "proxy": "Arbeidsproductiviteit t.o.v. de normfunctie",
-                "bedrag": 3000,
-                "bedragTekst": 3000,
-                "eenheid": "EUR per persoon per jaar",
-                "typePost": "reeel",
-                "bronBedrag": "Handboek Meting Regeldrukkosten 2023 deel 4.C (EUR 23/uur laaggeschoold, peiljaar 2020, geindexeerd x1,20) x 4,87 gemeten uren x 220 dagen",
-                "bronEffectProxyRelatie": "Meetstandaard Arbeidsparticipatie 2.0, rekenbasis-tabel v2.0 (productiviteitsreeks, aldaar aannamescore 5); Besluit loonkostensubsidie Participatiewet 2021 art. 5 (factoren T/K/N)",
-                "toelichtingProxykeuze": "De loonwaardeformule drukt prestatie uit als percentage van een normfunctie; niveau 4 IS de normfunctie. Het productiviteitsverschil per niveau vertaalt dat naar euro's via de jaarloonwaarde.",
-                "berekening": "+10% x EUR 30.000",
-                "aannames": "Koppeling overgenomen uit een andere doelgroep; werkend-aandeel constant gehouden; markttarief overschat vermoedelijk de productiewaarde bij een werkbedrijf",
-                "aannamescore": 7,
-                "overlapgroep": "werkgever_productiviteit"
-              }
-            ]
+            "totaleWaardeIndicatief": null,
+            "waarvanReeel": null,
+            "waarvanOverdracht": null,
+            "berekening": null,
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
+            "aannamescore": null,
+            "proxies": []
           }
         ]
       }
@@ -1881,52 +1494,56 @@
       "relevantieSector": "middel",
       "crossSectorBenchmarkbaar": "nee",
       "herkomstBestaandeStandaard": "nee - afgeleid van Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9",
-      "monetariseerbaarheid": "niet verantwoord",
+      "monetariseerbaarheid": "n.v.t. - monetarisering vervallen 2026-08-28",
       "document": "BESLUIT OPDRACHTGEVER 2026-08-27: EFF-09 wordt NIET gemonetariseerd. Blijft in de standaard, wordt uitgevraagd, zichtbaar voor de begeleiding, maar krijgt geen bedrag op enig niveau en geen post in het aggregatiemodel; ook niet indirect via een domeingemiddelde. Redenen: 2 scorende stellingen (onder de ondergrens 3), mediator dus dubbeltelling met loonwaarde en begeleiding, en geen bron voor directe monetarisering. Stellingen 3-4 hebben in het formulier geen tegenpool: zwakste herkomst van de lijst.",
       "stellingen": [
         {
           "nummer": 1,
-          "stelling": "Ik zie er verzorgd uit op mijn werk",
+          "stelling": "Ziet er schoon en verzorgd uit",
+          "stellingRechts": "Ziet er niet schoon en verzorgd uit",
           "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Presentatie",
-          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
-          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "origineleSchaal": "tegenpolenpaar met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5) tussen de twee polen; oordeel van de begeleider over de deelnemer",
           "richting": "geen",
           "negatiefGeformuleerd": false,
-          "letterlijkOvergenomen": false,
-          "toelichting": "Afgeleid van het tegenpolenpaar: Ziet er schoon en verzorgd uit / Ziet er niet schoon en verzorgd uit. TELT NIET MEE. Uiterlijke verzorging is normatief niet houdbaar als tekortkoming."
+          "letterlijkOvergenomen": true,
+          "toelichting": "TELT NIET MEE. Uiterlijke verzorging is normatief niet houdbaar als tekortkoming."
         },
         {
           "nummer": 2,
-          "stelling": "Ik kan mezelf goed presenteren",
+          "stelling": "Kan zich goed presenteren",
+          "stellingRechts": "Kan zich niet goed presenteren",
           "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Presentatie",
-          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
-          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "origineleSchaal": "tegenpolenpaar met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5) tussen de twee polen; oordeel van de begeleider over de deelnemer",
           "richting": "geen",
           "negatiefGeformuleerd": false,
-          "letterlijkOvergenomen": false,
-          "toelichting": "Afgeleid van het tegenpolenpaar: Kan zich goed presenteren / Kan zich niet goed presenteren. TELT NIET MEE. Zie audit bevinding 17: deze stelling ontbreekt in de motivering bij de regel voor niet-scorende stellingen, maar is in de tabel wel op 'nee' gezet."
+          "letterlijkOvergenomen": true,
+          "toelichting": "TELT NIET MEE. Zie audit bevinding 17."
         },
         {
           "nummer": 3,
-          "stelling": "Ik leg makkelijk contact met collega's",
+          "stelling": "Contactvaardigheid met collega’s",
+          "stellingRechts": null,
           "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Presentatie",
-          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
-          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "origineleSchaal": "tegenpolenpaar met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5) tussen de twee polen; oordeel van de begeleider over de deelnemer",
           "richting": "positief",
           "negatiefGeformuleerd": false,
           "letterlijkOvergenomen": false,
-          "toelichting": "Afgeleid van het tegenpolenpaar: Contactvaardigheid met collega's (GEEN tegenpool in het formulier). Het formulieritem heeft geen negatieve pool; de polen zijn bij de omzetting toegevoegd, niet afgeleid. Zwakste herkomst van de hele lijst. Zie audit bevinding 3."
+          "toelichting": "Het formulier kent hier GEEN tegenpool; dit is een enkelzijdige beoordelingsregel. Daarom niet als tegenpolenpaar over te nemen en letterlijk_overgenomen = nee."
         },
         {
           "nummer": 4,
-          "stelling": "Ik leg makkelijk contact met mensen van buiten het bedrijf",
+          "stelling": "Contactvaardigheid met derden",
+          "stellingRechts": null,
           "bron": "Formulier arbeidsvaardigheden Werkbedrijf Nijmegen, versie 0.9, sectie Presentatie",
-          "origineleSchaal": "tegenpolenparen met aankruisvakjes, zonder gelabelde niveaus",
-          "gebruikteSchaal": "5-punt Likert (1-5), zelfrapportage in ik-vorm",
+          "origineleSchaal": "tegenpolenpaar met aankruisvakjes, zonder gelabelde niveaus",
+          "gebruikteSchaal": "5-punt Likert (1-5) tussen de twee polen; oordeel van de begeleider over de deelnemer",
           "richting": "positief",
           "negatiefGeformuleerd": false,
           "letterlijkOvergenomen": false,
-          "toelichting": "Afgeleid van het tegenpolenpaar: Contactvaardigheid met derden (GEEN tegenpool in het formulier). Het formulieritem heeft geen negatieve pool; de polen zijn bij de omzetting toegevoegd, niet afgeleid. Zie audit bevinding 3."
+          "toelichting": "Idem: geen tegenpool in het formulier."
         }
       ],
       "situatieschetsen": [
@@ -1972,8 +1589,8 @@
         }
       ],
       "monetarisering": {
-        "document": "wiki/effecten/presentatie-en-contact.md",
-        "eenheid": "EUR per persoon per jaar",
+        "document": null,
+        "eenheid": null,
         "niveaus": [
           {
             "niveau": "1",
@@ -1982,7 +1599,7 @@
             "waarvanReeel": null,
             "waarvanOverdracht": null,
             "berekening": null,
-            "belangrijksteAannames": "NIET GEMONETARISEERD - besluit opdrachtgever 2026-08-27. Twee scorende stellingen, mediator, en geen bron voor directe monetarisering.",
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
             "aannamescore": null,
             "proxies": []
           },
@@ -1993,7 +1610,7 @@
             "waarvanReeel": null,
             "waarvanOverdracht": null,
             "berekening": null,
-            "belangrijksteAannames": "NIET GEMONETARISEERD - besluit opdrachtgever 2026-08-27. Twee scorende stellingen, mediator, en geen bron voor directe monetarisering.",
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
             "aannamescore": null,
             "proxies": []
           },
@@ -2004,7 +1621,7 @@
             "waarvanReeel": null,
             "waarvanOverdracht": null,
             "berekening": null,
-            "belangrijksteAannames": "NIET GEMONETARISEERD - besluit opdrachtgever 2026-08-27. Twee scorende stellingen, mediator, en geen bron voor directe monetarisering.",
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
             "aannamescore": null,
             "proxies": []
           },
@@ -2015,7 +1632,7 @@
             "waarvanReeel": null,
             "waarvanOverdracht": null,
             "berekening": null,
-            "belangrijksteAannames": "NIET GEMONETARISEERD - besluit opdrachtgever 2026-08-27. Twee scorende stellingen, mediator, en geen bron voor directe monetarisering.",
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
             "aannamescore": null,
             "proxies": []
           },
@@ -2026,7 +1643,7 @@
             "waarvanReeel": null,
             "waarvanOverdracht": null,
             "berekening": null,
-            "belangrijksteAannames": "NIET GEMONETARISEERD - besluit opdrachtgever 2026-08-27. Twee scorende stellingen, mediator, en geen bron voor directe monetarisering.",
+            "belangrijksteAannames": "VERVALLEN - de monetarisering is op 2026-08-28 uit de standaard gehaald. Zie wiki/monetarisering/README.md.",
             "aannamescore": null,
             "proxies": []
           }
@@ -3007,190 +2624,7 @@
     }
   ],
   "aggregatie": {
-    "overlapgroepen": [
-      {
-        "overlapgroep": "uwv_jobcoach",
-        "cluster": "begeleidingsintensiteit (route 1)",
-        "aantalEffecten": null,
-        "effecten": [
-          "alle effecten die op de begeleidingsladder doorwerken - nog niet vastgesteld"
-        ],
-        "alpha": 1,
-        "methode": "geen correctie (alpha=1,00)",
-        "correctieNodig": false
-      },
-      {
-        "overlapgroep": "gemeente_begeleidingskosten",
-        "cluster": "begeleidingsintensiteit (route 1)",
-        "aantalEffecten": null,
-        "effecten": [
-          "idem",
-          "voor gemeentelijk gefinancierde begeleiding"
-        ],
-        "alpha": 1,
-        "methode": "geen correctie (alpha=1,00)",
-        "correctieNodig": false
-      },
-      {
-        "overlapgroep": "werkgever_productiviteit",
-        "cluster": "loonwaarde (route 2)",
-        "aantalEffecten": 3,
-        "effecten": [
-          "EFF-01",
-          "EFF-03",
-          "EFF-05"
-        ],
-        "alpha": 1,
-        "methode": "geen correctie (alpha=1,00)",
-        "correctieNodig": false
-      },
-      {
-        "overlapgroep": "gemeente_reintegratiekosten",
-        "cluster": "uitstroom en plaatsing (route 3)",
-        "aantalEffecten": null,
-        "effecten": [
-          "nog niet vastgesteld"
-        ],
-        "alpha": 1,
-        "methode": "geen correctie (alpha=1,00)",
-        "correctieNodig": false
-      },
-      {
-        "overlapgroep": "gemeente_bijstand",
-        "cluster": "uitstroom en plaatsing (route 3) - OVERDRACHT",
-        "aantalEffecten": null,
-        "effecten": [
-          "nog niet vastgesteld"
-        ],
-        "alpha": 1,
-        "methode": "geen correctie (alpha=1,00)",
-        "correctieNodig": false
-      },
-      {
-        "overlapgroep": "uwv_wajong",
-        "cluster": "uitstroom en plaatsing (route 3) - OVERDRACHT",
-        "aantalEffecten": null,
-        "effecten": [
-          "nog niet vastgesteld"
-        ],
-        "alpha": 1,
-        "methode": "geen correctie (alpha=1,00)",
-        "correctieNodig": false
-      },
-      {
-        "overlapgroep": "rijk_belasting",
-        "cluster": "afgeleid van productiviteit - OVERDRACHT",
-        "aantalEffecten": null,
-        "effecten": [
-          "volgt de effecten in werkgever_productiviteit"
-        ],
-        "alpha": 1,
-        "methode": "geen correctie (alpha=1,00)",
-        "correctieNodig": false
-      },
-      {
-        "overlapgroep": "cluster EFF-05 + EFF-06",
-        "cluster": "meetconstruct, geen proxy",
-        "aantalEffecten": 2,
-        "effecten": [
-          "EFF-05",
-          "EFF-06"
-        ],
-        "alpha": 1,
-        "methode": "Beide effecten komen uit dezelfde formuliersectie; als een cluster behandelen tot het tegendeel is aangetoond (audit bevinding BEV-02)",
-        "correctieNodig": false
-      },
-      {
-        "overlapgroep": "EXTERN: jobcoach, alle regimes",
-        "cluster": "route 1 - eigendom van EFF-19 Participatieladder in de zusterstandaard",
-        "aantalEffecten": null,
-        "effecten": [
-          "alle effecten die op de begeleidingsladder doorwerken"
-        ],
-        "alpha": 1,
-        "methode": "VOLLEDIGE OVERLAP met BR-12. Niet corrigeren binnen een los effect; besluit uitgesteld (BEV-21)",
-        "correctieNodig": false
-      },
-      {
-        "overlapgroep": "EXTERN: re-integratiedienst / assessment",
-        "cluster": "route 1 en 3 - eigendom van EFF-19",
-        "aantalEffecten": null,
-        "effecten": [
-          "nog niet vastgesteld"
-        ],
-        "alpha": 1,
-        "methode": "VOLLEDIGE OVERLAP met BR-12",
-        "correctieNodig": false
-      },
-      {
-        "overlapgroep": "EXTERN: vermeden uitkering",
-        "cluster": "route 3 - eigendom van EFF-19 - OVERDRACHT",
-        "aantalEffecten": null,
-        "effecten": [
-          "nog niet vastgesteld"
-        ],
-        "alpha": 1,
-        "methode": "VOLLEDIGE OVERLAP met BR-12",
-        "correctieNodig": false
-      },
-      {
-        "overlapgroep": "EXTERN: uitvoeringskosten uitkering",
-        "cluster": "route 3 - eigendom van EFF-19",
-        "aantalEffecten": null,
-        "effecten": [
-          "nog niet vastgesteld"
-        ],
-        "alpha": 1,
-        "methode": "VOLLEDIGE OVERLAP met BR-12 (EUR 3.500/jaar)",
-        "correctieNodig": false
-      },
-      {
-        "overlapgroep": "EXTERN: inkomstenbelasting en premies",
-        "cluster": "afgeleid van productiviteit - eigendom van EFF-19 - OVERDRACHT",
-        "aantalEffecten": null,
-        "effecten": [
-          "volgt werkgever_productiviteit"
-        ],
-        "alpha": 1,
-        "methode": "VOLLEDIGE OVERLAP met BR-12",
-        "correctieNodig": false
-      },
-      {
-        "overlapgroep": "EXTERN: loon-/werkkanseffect vaardigheden",
-        "cluster": "route 2 - eigendom van EFF-16 Arbeidsvaardigheden",
-        "aantalEffecten": 3,
-        "effecten": [
-          "EFF-01",
-          "EFF-03",
-          "EFF-05"
-        ],
-        "alpha": 1,
-        "methode": "VOLLEDIGE OVERLAP met BR-12. Dit is het construct dat deze hele standaard meet",
-        "correctieNodig": false
-      },
-      {
-        "overlapgroep": "EXTERN: QALY mentaal-sociaal",
-        "cluster": "eigendom van EFF-11 Mentale gezondheid",
-        "aantalEffecten": 1,
-        "effecten": [
-          "EFF-05 stelling 4"
-        ],
-        "alpha": 1,
-        "methode": "Overlap via stemmingswisselingen",
-        "correctieNodig": false
-      },
-      {
-        "overlapgroep": "EXTERN: verzuim somatische route",
-        "cluster": "eigendom van EFF-10 Fysieke gezondheid",
-        "aantalEffecten": 1,
-        "effecten": [
-          "EFF-04 stellingen 1-3"
-        ],
-        "alpha": 1,
-        "methode": "Overlap via motoriek en kracht",
-        "correctieNodig": false
-      }
-    ],
+    "overlapgroepen": [],
     "voorbeeld": {
       "titel": null,
       "regels": [],
@@ -3200,212 +2634,7 @@
   },
   "gevoeligheid": {
     "interpretatie": null,
-    "scenarios": [
-      {
-        "driver": "Jobcoachtarief / begeleidingsregime",
-        "uitkomstMaat": null,
-        "laag": {
-          "waarde": "regime licht (EUR 3.742)",
-          "uitkomst": null
-        },
-        "midden": {
-          "waarde": "regime midden (EUR 6.375)",
-          "uitkomst": null
-        },
-        "hoog": {
-          "waarde": "regime zwaar (EUR 9.425)",
-          "uitkomst": null
-        },
-        "toelichting": "Uitkomstmaat kan pas worden ingevuld als de koppeling ladder-regime vaststaat (BEV-05)."
-      },
-      {
-        "driver": "Begeleidingsjaar (degressie)",
-        "uitkomstMaat": null,
-        "laag": {
-          "waarde": "jaar 3",
-          "uitkomst": null
-        },
-        "midden": {
-          "waarde": "jaar 2",
-          "uitkomst": null
-        },
-        "hoog": {
-          "waarde": "jaar 1",
-          "uitkomst": null
-        },
-        "toelichting": "Zelfde ladderstap levert een bedrag dat per begeleidingsjaar met een factor twee verschilt (BEV-06)."
-      },
-      {
-        "driver": "Arbeidsproductiviteit per uur",
-        "uitkomstMaat": null,
-        "laag": {
-          "waarde": "EUR 23,00",
-          "uitkomst": null
-        },
-        "midden": {
-          "waarde": "EUR 39,88",
-          "uitkomst": null
-        },
-        "hoog": {
-          "waarde": "EUR 47,00",
-          "uitkomst": null
-        },
-        "toelichting": "Keuze tussen doelgroepspecifiek kostentarief en populatiegemiddelde bruto toegevoegde waarde (BEV-15)."
-      },
-      {
-        "driver": "Discontovoet",
-        "uitkomstMaat": null,
-        "laag": {
-          "waarde": "2,5%",
-          "uitkomst": null
-        },
-        "midden": {
-          "waarde": "3,0%",
-          "uitkomst": null
-        },
-        "hoog": {
-          "waarde": "5,5%",
-          "uitkomst": null
-        },
-        "toelichting": "Geen effect bij T=1; relevant zodra een meerjarenmodule wordt geactiveerd."
-      },
-      {
-        "driver": "Waarde van een QALY",
-        "uitkomstMaat": null,
-        "laag": {
-          "waarde": "EUR 20.000",
-          "uitkomst": null
-        },
-        "midden": {
-          "waarde": "EUR 50.000",
-          "uitkomst": null
-        },
-        "hoog": {
-          "waarde": "EUR 200.000",
-          "uitkomst": null
-        },
-        "toelichting": "Alleen relevant als kwaliteit van leven een post wordt."
-      },
-      {
-        "driver": "Deadweight",
-        "uitkomstMaat": null,
-        "laag": {
-          "waarde": "10%",
-          "uitkomst": null
-        },
-        "midden": {
-          "waarde": "25%",
-          "uitkomst": null
-        },
-        "hoog": {
-          "waarde": "50%",
-          "uitkomst": null
-        },
-        "toelichting": "Doelgroep grote afstand tot de arbeidsmarkt (BR-12). Voorstelpercentage, aannamescore 7."
-      },
-      {
-        "driver": "Attributie",
-        "uitkomstMaat": null,
-        "laag": {
-          "waarde": "50%",
-          "uitkomst": null
-        },
-        "midden": {
-          "waarde": "75%",
-          "uitkomst": null
-        },
-        "hoog": {
-          "waarde": "90%",
-          "uitkomst": null
-        },
-        "toelichting": "BR-12. Voorstelpercentage, aannamescore 8."
-      },
-      {
-        "driver": "Verdringing",
-        "uitkomstMaat": null,
-        "laag": {
-          "waarde": "0%",
-          "uitkomst": null
-        },
-        "midden": {
-          "waarde": "15%",
-          "uitkomst": null
-        },
-        "hoog": {
-          "waarde": "30%",
-          "uitkomst": null
-        },
-        "toelichting": "Uitkeringsgerelateerde baten (BR-12). Geharmoniseerd over alle routes; differentiatie naar route is een open punt (BEV-13)."
-      },
-      {
-        "driver": "Gecombineerde toerekeningsfactor",
-        "uitkomstMaat": null,
-        "laag": {
-          "waarde": "0,32",
-          "uitkomst": null
-        },
-        "midden": {
-          "waarde": "0,48",
-          "uitkomst": null
-        },
-        "hoog": {
-          "waarde": "0,68",
-          "uitkomst": null
-        },
-        "toelichting": "Doorwerking van de drie bovenstaande bandbreedtes: (1-dw) x attr x (1-vd)."
-      },
-      {
-        "driver": "Normduur per begeleidingssessie",
-        "uitkomstMaat": "kosten begeleiding per sessie",
-        "laag": {
-          "waarde": "0,5 uur",
-          "uitkomst": null
-        },
-        "midden": {
-          "waarde": "1,0 uur",
-          "uitkomst": null
-        },
-        "hoog": {
-          "waarde": "1,5 uur",
-          "uitkomst": null
-        },
-        "toelichting": "DRAGEND. Aanname opdrachtgever, geen bron (BEV-27). Factor drie tussen boven- en ondergrens; bepaalt de orde van grootte van elk bedrag uit route 1. Bij extern tarief EUR 117,89/uur: EUR 58,95 / 117,89 / 176,84 per sessie."
-      },
-      {
-        "driver": "Uurtarief begeleiding",
-        "uitkomstMaat": "kosten per uur",
-        "laag": {
-          "waarde": "EUR 51 intern",
-          "uitkomst": null
-        },
-        "midden": {
-          "waarde": "EUR 55 intern",
-          "uitkomst": null
-        },
-        "hoog": {
-          "waarde": "EUR 117,89 extern",
-          "uitkomst": null
-        },
-        "toelichting": "Intern afgeleid uit de UWV-jaarbedragen (bandbreedte 51-58); extern is het gepubliceerde normbedrag Q1. Welk tarief geldt hangt af van wie de begeleiding levert - zie aanbeveling A1."
-      },
-      {
-        "driver": "Drop-off vaardigheden (bij meerjarenmodule)",
-        "uitkomstMaat": null,
-        "laag": {
-          "waarde": "5%",
-          "uitkomst": null
-        },
-        "midden": {
-          "waarde": "10%",
-          "uitkomst": null
-        },
-        "hoog": {
-          "waarde": "20%",
-          "uitkomst": null
-        },
-        "toelichting": "BR-12, T=5 jaar. Alleen relevant als de meerjarenmodule wordt geactiveerd; de eenjaarslezing blijft de norm."
-      }
-    ]
+    "scenarios": []
   },
   "audit": [
     {

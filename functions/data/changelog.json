@@ -147,41 +147,21 @@
     ],
     "arbeidsvaardigheden": [
       {
-        "versie": "1.0",
-        "datum": "2026-08-28",
-        "soort": "publicatie",
-        "samenvatting": "De monetarisering is uit de standaard gehaald. Wat blijft is de meting: negen effecten, 46 stellingen en situatieschetsen per Likert-niveau.",
-        "wijzigingen": [
-          "Geen bedragen meer. De velden monetarisering, aggregatie en gevoeligheid zijn leeg; bronnen, parameters en het auditspoor blijven.",
-          "Aanleiding: alle drie de gebruikte routes waren kostenvermijdingsroutes, en die kunnen per definitie geen waarde boven de nullijn uitdrukken - bij niveau 4 valt er niets meer te vermijden. De standaard kende in 0.9 drie positieve bedragen, alle drie uit de zwakst onderbouwde route.",
-          "Van de reele claim op niveau 1 in 0.9 rustte 37% op een markttarief van EUR 28 per uur, toegepast op werk bij een werkbedrijf dat vaak bestaat omdat er een traject is; en de opvallendste post, EUR 11.636 vermeden bijstand, was een overdrachtsbetaling die per definitie niet meetelt.",
-          "Versie 0.9 blijft opvraagbaar als historisch record; een gepubliceerde versie is onveranderlijk.",
-          "meta.toelichting beschrijft nu wat het document wel en niet bevat, in plaats van de standaardtekst over indicatieve bedragen."
-        ],
-        "besluiten": [],
-        "feedback": [],
-        "commit": "d9939d4"
-      },
-      {
         "versie": "0.9",
         "datum": "2026-08-28",
         "soort": "publicatie",
-        "samenvatting": "Eerste publicatie. Negen effecten en 46 stellingen, afgeleid van het Formulier arbeidsvaardigheden Werkbedrijf Nijmegen 0.9; zeven effecten met bedragen per Likert-niveau.",
+        "samenvatting": "Eerste publicatie. Negen effecten met 46 tegenpolenparen, letterlijk overgenomen uit het Formulier arbeidsvaardigheden Werkbedrijf Nijmegen 0.9, beoordeeld door de begeleider.",
         "wijzigingen": [
-          "Negen effecten met 46 stellingen, waarvan 41 scorend. Geen stelling is letterlijk overgenomen: het bronformulier is derdepersoons en is omgezet naar zelfrapportage in ik-vorm.",
-          "Situatieschetsen voor alle vijf de Likert-niveaus per effect, elk met bronvermelding.",
-          "Bedragen voor zeven effecten langs drie routes: begeleidingsintensiteit (UWV-normbedragen per begeleidingsregime), arbeidsproductiviteit (loonwaardefactoren T, K en N) en plaatsingskans.",
-          "Alle 27 proxyregels dragen twee bronnen: een voor het bedrag en een voor de relatie tussen effect en proxy.",
-          "Overdrachtsbetalingen zijn apart geboekt en tellen niet mee in een netto totaal; bij EFF-07 is dat de grootste post van de standaard.",
-          "EFF-09 Presentatie en contact is niet gemonetariseerd: na uitsluiting van twee niet-scorende stellingen blijven er twee over, onder de ondergrens van drie per effect, en het effect is een mediator.",
-          "EFF-04 Handigheid krijgt geen eigen bedrag: mediator waarvan de waarde al via loonwaarde en begeleidingsintensiteit loopt.",
-          "Overlap tussen effecten is vastgelegd maar niet gecorrigeerd (alpha = 1,00), op advies van TNO. Een som over effecten heen is daarmee een bovengrens, geen netto maatschappelijk totaal.",
-          "De koppelingen van effectscore naar productiviteit en naar plaatsingskans zijn overgenomen uit de Meetstandaard Arbeidsparticipatie 2.0, niet zelf vastgesteld. Aannamescore 7.",
-          "De onderbouwing per effect, de aannamescores en het auditrapport staan in het bronproject MSI Arbeidsvaardigheden; dit document is de gepubliceerde neerslag daarvan."
+          "46 tegenpolenparen in de derde persoon, waarvan 44 letterlijk uit het bronformulier. Twee items kennen daar geen tegenpool en blijven enkelzijdig.",
+          "41 van de 46 regels tellen mee in de effectscore. De vijf die niet meetellen worden wel uitgevraagd en zijn zichtbaar voor de begeleiding; hun positieve pool is normatief niet houdbaar.",
+          "Geen negatief geformuleerde regels: bij een tegenpolenpaar zit de polariteit in de kant, en de positieve pool staat overal links.",
+          "Situatieschetsen voor alle vijf de Likert-niveaus per effect, met bronvermelding.",
+          "Deze standaard monetariseert niet. De velden monetarisering, aggregatie en gevoeligheid zijn leeg; bronnen, parameters en het auditspoor gelden wel.",
+          "Twee eerder vandaag gepubliceerde versies (0.9 met bedragen, 1.0 zonder) zijn ingetrokken voordat er iets van consumeerde. Zij bevatten de stellingen in ik-vorm, een omzetting die met deze versie is teruggedraaid."
         ],
         "besluiten": [],
         "feedback": [],
-        "commit": "c181406"
+        "commit": "(nog niet gecommit)"
       }
     ]
   }

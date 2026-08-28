@@ -125,6 +125,12 @@ def build_effecten(wb, sector):
             OrderedDict(
                 nummer=to_int(row.get("stelling_nummer")),
                 stelling=row.get("stelling"),
+                # De tweede pool van een tegenpolenpaar. Zonder dit veld
+                # publiceert een bipolaire standaard halve vragen: "Heeft geen
+                # begeleiding nodig" zonder "Heeft veel begeleiding nodig" is
+                # geen schaal maar een bewering. Leeg waar het item enkelzijdig
+                # is, of waar het workbook de kolom niet heeft.
+                stellingRechts=row.get("stelling_rechts"),
                 bron=row.get("bron_stelling"),
                 origineleSchaal=row.get("originele_schaal"),
                 gebruikteSchaal=row.get("gebruikte_schaal"),
