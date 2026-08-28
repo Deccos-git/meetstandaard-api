@@ -42,14 +42,27 @@ const listVersions = async (firestore, collection) => {
   return snapshot.docs.map((doc) => doc.id).sort(compareVersions);
 };
 
+// A pinned version is immutable (ADR-001), so it can be cached for a year.
+// Everything else is an index that changes the moment a version is published:
+// the sector list, the version list, and the unpinned "latest" body. Caching
+// those for a day would mean a new version stays invisible for a day — which is
+// most of what publishing without a deploy is for.
+//
+// The unpinned body is the trap here. It resolves to a concrete version and so
+// carries one, but the *answer to the question asked* changes on publication.
+// Cache duration follows the question, not the payload.
+const MAX_AGE_IMMUTABLE = 31536000;
+const MAX_AGE_INDEX = 300;
+
 // Send JSON with caching headers + ETag / If-None-Match handling. `version` is
 // echoed in a header so a client that did not pin can still see, and log, which
-// version it actually received.
-export const sendCached = (request, response, payload, version) => {
+// version it actually received. `immutable` says the caller asked for one
+// specific version and can therefore never get a different answer.
+export const sendCached = (request, response, payload, version, immutable = false) => {
   const body = JSON.stringify(payload);
   const etag = `"${crypto.createHash("sha1").update(body).digest("hex")}"`;
 
-  response.set("Cache-Control", "public, max-age=86400");
+  response.set("Cache-Control", `public, max-age=${immutable ? MAX_AGE_IMMUTABLE : MAX_AGE_INDEX}`);
   response.set("ETag", etag);
   if (version) response.set("X-Meetstandaard-Version", version);
 
@@ -64,7 +77,7 @@ export const sendCached = (request, response, payload, version) => {
 export const sendError = (response, status, body) =>
   response.status(status).json(typeof body === "string" ? { error: body } : body);
 
-const sendVersion = async (firestore, collection, request, response, version, versions) => {
+const sendVersion = async (firestore, collection, request, response, version, versions, immutable) => {
   if (!VERSION_FORMAT.test(version)) {
     return sendError(response, 404, { error: `Unknown version: ${version}`, versions });
   }
@@ -74,7 +87,7 @@ const sendVersion = async (firestore, collection, request, response, version, ve
     // List what does exist, so picking the right version takes one request.
     return sendError(response, 404, { error: `Unknown version: ${version}`, versions });
   }
-  return sendCached(request, response, doc.data(), version);
+  return sendCached(request, response, doc.data(), version, immutable);
 };
 
 // Routing matches the trailing path segments, so it works regardless of how the
@@ -113,5 +126,5 @@ export const handleVersionedResource = async ({
   }
 
   const version = isResource ? latest : decodeURIComponent(last);
-  return sendVersion(firestore, collection, request, response, version, versions);
+  return sendVersion(firestore, collection, request, response, version, versions, isPinned);
 };

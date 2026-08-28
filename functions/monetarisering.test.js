@@ -151,7 +151,7 @@ test("GET .../onderbouwing serves the latest version with cache headers", async 
   await handleMonetarisering(fakeFirestore(docs), { path: "/api/v1/monetarisering/onderbouwing", headers: {} }, res);
   assert.equal(res.statusCode, 200);
   assert.equal(JSON.parse(res.body).meta.version, "1.1");
-  assert.equal(res.headers["Cache-Control"], "public, max-age=86400");
+  assert.equal(res.headers["Cache-Control"], "public, max-age=300");
   assert.ok(res.headers.ETag);
 });
 

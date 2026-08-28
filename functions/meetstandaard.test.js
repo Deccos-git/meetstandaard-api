@@ -195,7 +195,8 @@ test("GET /meetstandaard/{sector}/{version} pins a version", async () => {
   const res = await get("/api/v1/meetstandaard/energiearmoede/0.9");
   assert.equal(res.statusCode, 200);
   assert.equal(res.headers["X-Meetstandaard-Version"], "0.9");
-  assert.equal(res.headers["Cache-Control"], "public, max-age=86400");
+  // Pinned: immutable, so it may be cached for a year.
+  assert.equal(res.headers["Cache-Control"], "public, max-age=31536000");
 });
 
 // Hitting the bare function URL gives request.path === "/", and that is exactly

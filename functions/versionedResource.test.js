@@ -94,12 +94,27 @@ test("GET .../versions lists the versions and which one is latest", async () => 
   assert.deepEqual(JSON.parse(res.body), { versions: ["0.9", "1.0", "1.10"], latest: "1.10" });
 });
 
+// The distinction that makes publishing without a deploy work: a pinned version
+// can never change, an unpinned one changes the day a version is published. Same
+// document, same bytes — different question, so a different cache lifetime.
+test("a pinned version caches far longer than an unpinned one", async () => {
+  const gepind = await get("/api/v1/test/standaard/1.10");
+  const laatste = await get("/api/v1/test/standaard");
+  const versies = await get("/api/v1/test/standaard/versions");
+
+  assert.equal(JSON.parse(gepind.body).meta.version, JSON.parse(laatste.body).meta.version);
+  assert.equal(gepind.headers["Cache-Control"], "public, max-age=31536000");
+  assert.equal(laatste.headers["Cache-Control"], "public, max-age=300");
+  assert.equal(versies.headers["Cache-Control"], "public, max-age=300");
+});
+
 test("GET .../{resource} serves the latest version and names it in a header", async () => {
   const res = await get("/api/v1/test/standaard");
   assert.equal(res.statusCode, 200);
   assert.equal(JSON.parse(res.body).meta.version, "1.10");
   assert.equal(res.headers["X-Meetstandaard-Version"], "1.10");
-  assert.equal(res.headers["Cache-Control"], "public, max-age=86400");
+  // Unpinned: the answer changes on publication, so it may only be cached briefly.
+  assert.equal(res.headers["Cache-Control"], "public, max-age=300");
 });
 
 // The point of the whole thing: pinning an old version keeps working, and the
