@@ -21,25 +21,23 @@ const firestore = admin.firestore();
 const settings = { timestampsInSnapshots: true };
 firestore.settings(settings);
 
-// CORS handler
-const corsHandler = cors({
-  origin: [
-    "http://localhost:3000",
-    "http://localhost:3001",
-    "http://localhost:5173",
-    "http://impactdashboard.deccos.nl",
-    "http://staging.deccos.nl",
-    "http://app.deccos.nl",
-    "http://test.deccos.nl",
-    "http://deccos.nl",
-    "https://alexanderimpactdashboard.nl",
-    /\.deccos\.nl$/,
-  ],
-});
+// Open CORS for the public, read-only reference-data endpoints. No credentials are
+// involved, so `*` is safe and avoids app-origin whitelist gaps (e.g. apex domains).
+// This guarantees Access-Control-Allow-Origin is present on the actual GET response,
+// not just the OPTIONS preflight.
+//
+// `database` and `benchmark` used to carry their own allowlist of deccos.nl
+// origins. It never was a security boundary — both are unauthenticated GETs that
+// anyone can fetch outside a browser — but it did decide which of our own
+// front-ends could read them, and that list only ever grew by incident: a
+// white-label domain (fixtool.nl) went dark on the Maatschappelijke waarde card
+// until someone read the console. Every other reference-data endpoint is already
+// open, so these two now are too.
+const publicCorsHandler = cors({ origin: "*" });
 
 // Database endpoint
 export const database = functions.https.onRequest((request, response) => {
-  corsHandler(request, response, async () => {
+  publicCorsHandler(request, response, async () => {
     try {
       if (request.method !== "GET") {
         return response.status(405).send("Method Not Allowed");
@@ -131,12 +129,6 @@ export const database = functions.https.onRequest((request, response) => {
     }
   });
 });
-
-// Open CORS for the public, read-only reference-data endpoint. No credentials are
-// involved, so `*` is safe and avoids app-origin whitelist gaps (e.g. apex domains).
-// This guarantees Access-Control-Allow-Origin is present on the actual GET response,
-// not just the OPTIONS preflight.
-const publicCorsHandler = cors({ origin: "*" });
 
 // Every endpoint here is an unauthenticated read. `maxInstances` is the hard
 // ceiling on what the project can serve at once, and so on what a flood can
@@ -354,7 +346,7 @@ export const meetstandaard = publicEndpoint(
 );
 
 // Benchmark endpoint
-export const benchmark = publicEndpoint(corsHandler, "benchmark", async (request, response) => {
+export const benchmark = publicEndpoint(publicCorsHandler, "benchmark", async (request, response) => {
   const benchmarksData = await benchmarks({ firestore });
 
   if (!benchmarksData) {

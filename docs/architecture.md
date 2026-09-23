@@ -72,7 +72,7 @@ Nine, all `onRequest`, and three wrappers in `index.js` that differ only in who 
 | `meetstandaard` | published standaarden (registry-driven) |
 | `monetarisering` | monetarisering onderbouwing |
 | `arbeidsparticipatie` | participatieladder parameters |
-| `database` | panel data as one tree (origin-allowlisted CORS) |
+| `database` | panel data as one tree |
 | `benchmark` | dataset benchmarks |
 | `feedback` | reviewed feedback on a standaard, public and unauthenticated |
 | `changelog` | what changed between versions — **not versioned**, see below |
