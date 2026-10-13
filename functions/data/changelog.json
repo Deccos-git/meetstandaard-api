@@ -33,6 +33,24 @@
     ],
     "milieu-circulariteit": [
       {
+        "versie": "0.10",
+        "datum": "2026-10-13",
+        "soort": "publicatie",
+        "samenvatting": "Klimaat & Energie volgt de officiële lijst 'Impactmeting overzicht en indeling effectieve maatregelen': zes categorieën en 19 nieuwe maatregelen.",
+        "wijzigingen": [
+          "Nieuwe velden per interventie: `categorie` (Verwarming, Elektra, Comfort, Water, Koken, Luchtkwaliteit), `herkomst` (officiële lijst of aanvulling), `kosten` en `installatietijdMinuten`. Buiten Klimaat & Energie zijn ze `null`.",
+          "19 nieuwe interventies: ET03a-d (tochtband, kaderprofielen, kit, deurdorpels), ET25 ramen beter sluitend, ET26 hang- en sluitwerk, ET27 voorzetraam, ET13a/ET13b, EG20 energiedisplay, EG04b persoonlijke warmteproducten, LK01-LK04, CF01-CF03 en VL01 rook- en CO-melders.",
+          "Met een gebrond kengetal: voorzetraam 9 m3 gas per m2 enkel glas (Milieu Centraal) en energiedisplay -6,9% gas / -2,2% stroom (PBL-RCT 2021). Zonder bron of zonder energie-effect blijven de cijfers `null` met de reden in de tekstvelden; voor de rookmelder staat een indicatieve waarde in `nietCo2Monetair`.",
+          "Hernoemd naar de officiële lijst: ET24 heet 'Deuren beter sluitend maken'; WG08-WG10 heten 'Inductiekookplaat (i.p.v. ...)'. Ids zijn ongewijzigd.",
+          "ET03 kierdichting: bewijssterkte Hoog -> Middel en status herleidbare omrekening. Het per-woningtotaal is gebrond, de omrekening naar per meter steunt op een kierlengte zonder bron. Kengetal en bedragen ongewijzigd.",
+          "Afbakening: status 'geen energie-effect' en regels 17-22, waaronder ET13 of ET23 nooit samen (de eco-stand zit in ET13) en een kierdichtingscap van 50 in plaats van 70 m3 per woning.",
+          "Geen enkel bedrag of kengetal van een bestaande interventie is veranderd."
+        ],
+        "besluiten": [],
+        "feedback": [],
+        "commit": "(nog niet gecommit)"
+      },
+      {
         "versie": "0.9",
         "datum": "2026-08-17",
         "soort": "correctie-in-plaats",

@@ -287,6 +287,14 @@ def build_interventies(wb, a):
                     statusKengetal=STATUS_ALIASES.get(status, status),
                     statusKengetalBron=status,
                     afbakening=row.get("Afbakening / overlap"),
+                    # From 0.10 the Klimaat & Energie rows follow the official list of
+                    # measures: its category, and whether a row comes from that list or
+                    # was added on top. The other sheets have neither column, so these
+                    # stay null there rather than guessed.
+                    categorie=row.get("Categorie"),
+                    herkomst=row.get("Herkomst"),
+                    kosten=row.get("Kosten"),
+                    installatietijdMinuten=to_number(row.get("Installatietijd in minuten")),
                     nietCo2Monetair=row.get("Niet-CO2 monetair (laag C)"),
                     wikipagina=row.get("Wikipagina"),
                     kengetallen=kengetallen,
