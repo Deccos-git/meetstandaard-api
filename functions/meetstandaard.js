@@ -1,5 +1,6 @@
 import { handleVersionedResource, sendCached, sendError } from "./versionedResource.js";
 import energiearmoede09 from "./data/meetstandaard-energiearmoede-0.9.json" with { type: "json" };
+import energiearmoede010 from "./data/meetstandaard-energiearmoede-0.10.json" with { type: "json" };
 import milieuCirculariteit09 from "./data/interventiebibliotheek-milieu-circulariteit-0.9.json" with { type: "json" };
 import milieuCirculariteit010 from "./data/interventiebibliotheek-milieu-circulariteit-0.10.json" with { type: "json" };
 import arbeidsparticipatie09 from "./data/meetstandaard-arbeidsparticipatie-0.9.json" with { type: "json" };
@@ -32,7 +33,7 @@ export const STANDAARDEN = {
     sector: "energiearmoede",
     label: "Energiearmoede",
     collection: "MeetstandaardEnergiearmoede",
-    documenten: [energiearmoede09],
+    documenten: [energiearmoede09, energiearmoede010],
   },
   arbeidsvaardigheden: {
     sector: "arbeidsvaardigheden",
@@ -66,6 +67,7 @@ export const STANDAARDEN = {
 };
 
 export const MEETSTANDAARD_ENERGIEARMOEDE_0_9 = energiearmoede09;
+export const MEETSTANDAARD_ENERGIEARMOEDE_0_10 = energiearmoede010;
 export const INTERVENTIEBIBLIOTHEEK_MILIEU_CIRCULARITEIT_0_9 = milieuCirculariteit09;
 
 const basePath = (request) => {

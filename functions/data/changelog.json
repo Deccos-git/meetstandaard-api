@@ -3,6 +3,24 @@
   "standaarden": {
     "energiearmoede": [
       {
+        "versie": "0.10",
+        "datum": "2026-10-13",
+        "soort": "publicatie",
+        "samenvatting": "Stellingen in B1-taal en bedragen op prijspeil 2025. Dezelfde 13 effecten en 198 proxyregels.",
+        "wijzigingen": [
+          "15 stellingen herschreven naar B1-niveau na feedback uit het veld (Bijlage 3b Meetplan, tabblad Bewonersniveau). Bij deze stellingen staat `letterlijkOvergenomen` nu op `false` en `toelichting` noemt de oude formulering.",
+          "6 stellingen bijgewerkt naar de september-set van Meetstandaard Social Impact (workbook 2026-09-21). De oude formulering staat in `toelichting`.",
+          "Kostenhandleiding-tarieven van prijspeil 2022 naar 2025: zorg x1,10, productiviteit en onbetaalde arbeid x1,15. Uitvoeringskosten uitkering EUR 2.900 -> EUR 3.500, vrijwilligerswaarde EUR 10 -> EUR 11. Dat raakt 83 proxybedragen, 40 niveautotalen, 9 parameters en de gevoeligheidsanalyse. Geen bedrag verandert van teken of wordt `null`.",
+          "Twee nieuwe auditregels.",
+          "Elk effect draagt nu `uid` (`energiearmoede:{slug}`) in het document zelf, niet alleen in Firestore.",
+          "Nieuwe velden `stellingRechts`, `typePost`, `waarvanReeel` en `waarvanOverdracht` zijn `null`: het workbook heeft die kolommen niet. Dat betekent onbekend, niet nee of nul.",
+          "De scores van een stelling met een nieuwe formulering zijn niet zonder meer vergelijkbaar met metingen op 0.9."
+        ],
+        "besluiten": [],
+        "feedback": [],
+        "commit": "(nog niet gecommit)"
+      },
+      {
         "versie": "0.9",
         "datum": "2026-08-17",
         "soort": "correctie-in-plaats",
