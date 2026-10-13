@@ -2,7 +2,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { CHANGELOG, GEDEKTE_STANDAARDEN, handleChangelog } from "./changelog.js";
 import { STANDAARDEN } from "./meetstandaard.js";
-import { PARAMETERS_2026_1 } from "./arbeidsparticipatie.js";
+import { PARAMETERS_2026_1, PARAMETERS_2026_2 } from "./arbeidsparticipatie.js";
 import { fakeResponse } from "./versionedResource.test.js";
 
 const SOORTEN = ["publicatie", "correctie-in-plaats"];
@@ -38,7 +38,7 @@ test("elke genoemde versie bestaat ook echt", () => {
         documenten.map((d) => d.meta.version),
       ])
     ),
-    participatieladder: [PARAMETERS_2026_1.meta.version],
+    participatieladder: [PARAMETERS_2026_1.meta.version, PARAMETERS_2026_2.meta.version],
   };
 
   for (const [standaard, entry] of alleEntries) {

@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { PARAMETERS_2026_1 } from "./arbeidsparticipatie.js";
+import { PARAMETERS_2026_1, PARAMETERS_2026_2 } from "./arbeidsparticipatie.js";
 
 // Reproduce the consumer's documented calculation.
 const grossIncome = (p, education, hoursBand) =>
@@ -103,4 +103,39 @@ test("ladder breakdowns sum to the trede valuation", () => {
     const sum = Object.values(lvl.breakdown).reduce((a, b) => a + b, 0);
     assert.equal(sum, lvl.valuePerYear, `trede ${lvl.trede} breakdown must sum to valuePerYear`);
   }
+});
+
+// --- 2026.2: gedeeltelijke bijstand naast werk ---
+
+const benefitCost = (p, benefitType, share) => {
+  if (benefitType === "Geen") return 0;
+  const factor = p.benefitRules.shareAppliesTo.includes(benefitType) ? share : 1;
+  const uitvoering = benefitType === "Bijstandsuitkering" ? p.bijstandUitvoeringskostenPerYear : 0;
+  return p.benefitAmountPerYear[benefitType] * factor + uitvoering;
+};
+
+test("2026.2 laat alle bedragen van 2026.1 ongemoeid", () => {
+  const { meta: _a, options: _b, benefitRules, ...rest2 } = PARAMETERS_2026_2;
+  const { meta: _c, options: _d, ...rest1 } = PARAMETERS_2026_1;
+  assert.deepEqual(rest2, rest1);
+  assert.ok(benefitRules);
+  assert.equal(PARAMETERS_2026_1.meta.version, "2026.1");
+  assert.equal(PARAMETERS_2026_1.options.benefitShare, undefined);
+  assert.equal(PARAMETERS_2026_2.meta.version, "2026.2");
+});
+
+test("2026.2 vraagt de uitkering ook bij werk", () => {
+  const p = PARAMETERS_2026_2;
+  assert.deepEqual(p.options.benefitShare, [1, 0.75, 0.5, 0.25]);
+  assert.ok(p.benefitRules.askedForMainActivity.includes("Werk"));
+  assert.deepEqual(p.benefitRules.askedForMainActivity, p.options.mainActivity);
+  for (const t of p.benefitRules.shareAppliesTo) assert.ok(p.options.benefitType.includes(t));
+});
+
+test("halve bijstand naast werk kost de helft van de norm plus volledige uitvoering", () => {
+  const p = PARAMETERS_2026_2;
+  assert.equal(benefitCost(p, "Bijstandsuitkering", 1), -18768 - 2900);
+  assert.equal(benefitCost(p, "Bijstandsuitkering", 0.5), -9384 - 2900);
+  // Arbeidsongeschiktheid: het UWV-gemiddelde bevat al gedeeltelijke uitkeringen.
+  assert.equal(benefitCost(p, "WAO/WIA/WAZ/WAJONG", 0.5), -21123);
 });

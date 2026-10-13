@@ -10,7 +10,7 @@
 
 import admin from "firebase-admin";
 import serviceAccount from "./serviceAcountSecretKey.json" with { type: "json" };
-import { PARAMETERS_2026_1 } from "./arbeidsparticipatie.js";
+import { PARAMETERS_2026_2 } from "./arbeidsparticipatie.js";
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
@@ -18,12 +18,12 @@ admin.initializeApp({
 
 const firestore = admin.firestore();
 
-const version = PARAMETERS_2026_1.meta.version;
+const version = PARAMETERS_2026_2.meta.version;
 
 await firestore
   .collection("MeetstandaardParameters")
   .doc(version)
-  .set(PARAMETERS_2026_1);
+  .set(PARAMETERS_2026_2);
 
 console.log(`Seeded MeetstandaardParameters/${version}`);
 process.exit(0);

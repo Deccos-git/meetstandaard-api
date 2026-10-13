@@ -167,6 +167,21 @@
     ],
     "participatieladder": [
       {
+        "versie": "2026.2",
+        "datum": "2026-10-13",
+        "soort": "publicatie",
+        "samenvatting": "Gedeeltelijke bijstand naast werk is te registreren. Alle bedragen gelijk aan 2026.1.",
+        "wijzigingen": [
+          "De uitkeringsvraag geldt bij elke hoofdactiviteit, ook bij werk (`benefitRules.askedForMainActivity`). In 2026.1 kreeg wie werkte automatisch geen uitkeringskosten.",
+          "Nieuwe antwoordklasse `options.benefitShare` (1; 0,75; 0,5; 0,25): welk deel van de volledige bijstand iemand ontvangt. Alleen op `Bijstandsuitkering` (`benefitRules.shareAppliesTo`); het WAO/WIA/WAZ/WAJONG-bedrag is een UWV-gemiddelde dat gedeeltelijke uitkeringen al bevat.",
+          "Uitvoeringskosten bijstand schalen niet mee met de factor (`benefitRules.uitvoeringskostenScaleWithShare: false`). Aanname, needs verification.",
+          "Een 0-meting op 2026.1 met werk heeft geen bekende factor: lees die als onbekend, niet als nul."
+        ],
+        "besluiten": [],
+        "feedback": [],
+        "commit": "(nog niet gecommit)"
+      },
+      {
         "versie": "2026.1",
         "datum": "2026-06-08",
         "soort": "publicatie",

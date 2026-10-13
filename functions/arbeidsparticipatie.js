@@ -211,6 +211,39 @@ export const PARAMETERS_2026_1 = {
   },
 };
 
+// 2026.2: iemand die deels werkt en aanvullende bijstand houdt, was in 2026.1 niet
+// te registreren — de uitkeringsvraag gold alleen bij "geen werk", en een
+// uitkering telde altijd volledig. Alle bedragen zijn ongewijzigd ten opzichte van
+// 2026.1; alleen de uitvraag en de rekenregel voor uitkeringskosten veranderen.
+export const PARAMETERS_2026_2 = {
+  ...PARAMETERS_2026_1,
+  meta: {
+    ...PARAMETERS_2026_1.meta,
+    version: "2026.2",
+    updatedAt: "2026-10-13",
+  },
+
+  options: {
+    ...PARAMETERS_2026_1.options,
+    // Antwoordklassen zoals employabilityFactor, geen kengetal: welk deel van de
+    // volledige bijstandsnorm iemand nog ontvangt.
+    benefitShare: [1, 0.75, 0.5, 0.25],
+  },
+
+  benefitRules: {
+    // De uitkeringsvraag wordt bij elke hoofdactiviteit gesteld, ook bij werk.
+    askedForMainActivity: [...PARAMETERS_2026_1.options.mainActivity],
+    // Alleen bijstand: het WAO/WIA/WAZ/WAJONG-bedrag is een UWV-gemiddelde dat
+    // gedeeltelijke uitkeringen al bevat, dus een factor zou dubbel korten.
+    shareAppliesTo: ["Bijstandsuitkering"],
+    // Een gedeeltelijke uitkering vraagt dezelfde uitvoering (inkomstenverrekening),
+    // dus de uitvoeringskosten schalen niet mee. Aanname, needs verification.
+    uitvoeringskostenScaleWithShare: false,
+    calculation:
+      "uitkeringskosten = benefitAmountPerYear[benefitType] × (benefitType in shareAppliesTo ? benefitShare : 1), plus bijstandUitvoeringskostenPerYear (onverkort) bij een Bijstandsuitkering",
+  },
+};
+
 const COLLECTION = "MeetstandaardParameters";
 
 // The contract path is /api/v1/arbeidsparticipatie/...:
