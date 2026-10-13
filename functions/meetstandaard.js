@@ -1,8 +1,10 @@
 import { handleVersionedResource, sendCached, sendError } from "./versionedResource.js";
 import energiearmoede09 from "./data/meetstandaard-energiearmoede-0.9.json" with { type: "json" };
 import energiearmoede010 from "./data/meetstandaard-energiearmoede-0.10.json" with { type: "json" };
+import energiearmoede011 from "./data/meetstandaard-energiearmoede-0.11.json" with { type: "json" };
 import milieuCirculariteit09 from "./data/interventiebibliotheek-milieu-circulariteit-0.9.json" with { type: "json" };
 import milieuCirculariteit010 from "./data/interventiebibliotheek-milieu-circulariteit-0.10.json" with { type: "json" };
+import milieuCirculariteit011 from "./data/interventiebibliotheek-milieu-circulariteit-0.11.json" with { type: "json" };
 import arbeidsparticipatie09 from "./data/meetstandaard-arbeidsparticipatie-0.9.json" with { type: "json" };
 import gelijkeKansen10 from "./data/meetstandaard-gelijke-kansen-1.0.json" with { type: "json" };
 import arbeidsvaardigheden09 from "./data/meetstandaard-arbeidsvaardigheden-0.9.json" with { type: "json" };
@@ -33,7 +35,7 @@ export const STANDAARDEN = {
     sector: "energiearmoede",
     label: "Energiearmoede",
     collection: "MeetstandaardEnergiearmoede",
-    documenten: [energiearmoede09, energiearmoede010],
+    documenten: [energiearmoede09, energiearmoede010, energiearmoede011],
   },
   arbeidsvaardigheden: {
     sector: "arbeidsvaardigheden",
@@ -45,7 +47,7 @@ export const STANDAARDEN = {
     sector: "milieu-circulariteit",
     label: "Milieu & circulariteit",
     collection: "MeetstandaardMilieuCirculariteit",
-    documenten: [milieuCirculariteit09, milieuCirculariteit010],
+    documenten: [milieuCirculariteit09, milieuCirculariteit010, milieuCirculariteit011],
   },
   // Snapshots of the two standaarden that still live as a sector tag on the
   // shared `effects` collection. They are here so that every standaard states
@@ -68,6 +70,7 @@ export const STANDAARDEN = {
 
 export const MEETSTANDAARD_ENERGIEARMOEDE_0_9 = energiearmoede09;
 export const MEETSTANDAARD_ENERGIEARMOEDE_0_10 = energiearmoede010;
+export const MEETSTANDAARD_ENERGIEARMOEDE_0_11 = energiearmoede011;
 export const INTERVENTIEBIBLIOTHEEK_MILIEU_CIRCULARITEIT_0_9 = milieuCirculariteit09;
 
 const basePath = (request) => {

@@ -4,6 +4,7 @@ import {
   STANDAARDEN,
   MEETSTANDAARD_ENERGIEARMOEDE_0_9,
   MEETSTANDAARD_ENERGIEARMOEDE_0_10,
+  MEETSTANDAARD_ENERGIEARMOEDE_0_11,
   INTERVENTIEBIBLIOTHEEK_MILIEU_CIRCULARITEIT_0_9,
   handleMeetstandaard,
 } from "./meetstandaard.js";
@@ -13,7 +14,7 @@ import { fakeFirestore, fakeResponse } from "./versionedResource.test.js";
 
 // Every published version is held to the same invariants: a regeneration that
 // drops a sign or an effect must fail no matter which version it produced.
-for (const doc of [MEETSTANDAARD_ENERGIEARMOEDE_0_9, MEETSTANDAARD_ENERGIEARMOEDE_0_10]) {
+for (const doc of [MEETSTANDAARD_ENERGIEARMOEDE_0_9, MEETSTANDAARD_ENERGIEARMOEDE_0_10, MEETSTANDAARD_ENERGIEARMOEDE_0_11]) {
   const versie = doc.meta.version;
 
   test(`${versie}: meta pins the published version and sector`, () => {
@@ -154,6 +155,42 @@ for (const doc of [MEETSTANDAARD_ENERGIEARMOEDE_0_9, MEETSTANDAARD_ENERGIEARMOED
 // --- HTTP handler routing ---
 
 const COLLECTION = STANDAARDEN.energiearmoede.collection;
+// --- Overlapregel (2026-10-13) ---
+
+// From 0.11 overlap is shown, never corrected: no factor may come back in through
+// a regenerated sheet 8, and every proxy must say how strong its overlap is.
+test("0.11: aggregatie shows overlap without correcting it", () => {
+  const { overlapgroepen } = MEETSTANDAARD_ENERGIEARMOEDE_0_11.aggregatie;
+  assert.ok(overlapgroepen.length > 0);
+  for (const groep of overlapgroepen) {
+    assert.equal(groep.correctiefactor, "geen", `${groep.overlapgroep} carries a correction`);
+    assert.equal(groep.correctieNodig, false, `${groep.overlapgroep} asks for a correction`);
+    assert.ok(groep.overlapSterkte, `${groep.overlapgroep} has no overlapSterkte`);
+    assert.equal("alpha" in groep, false, `${groep.overlapgroep} still has an alpha`);
+  }
+});
+
+test("0.11: every proxy states its overlap strength and post type", () => {
+  for (const effect of MEETSTANDAARD_ENERGIEARMOEDE_0_11.effecten) {
+    for (const niveau of effect.monetarisering.niveaus) {
+      for (const proxy of niveau.proxies) {
+        assert.ok(proxy.overlapSterkte, `${effect.id} ${niveau.niveau} "${proxy.proxy}" has no overlapSterkte`);
+        assert.ok(["reeel", "overdracht"].includes(proxy.typePost), `${effect.id} "${proxy.proxy}" typePost ${proxy.typePost}`);
+      }
+    }
+  }
+});
+
+test("0.11: reeel plus overdracht equals the niveau total", () => {
+  for (const effect of MEETSTANDAARD_ENERGIEARMOEDE_0_11.effecten) {
+    for (const niveau of effect.monetarisering.niveaus) {
+      if (niveau.totaleWaardeIndicatief === null) continue;
+      const som = niveau.waarvanReeel + niveau.waarvanOverdracht;
+      assert.ok(Math.abs(som - niveau.totaleWaardeIndicatief) <= 0.01, `${effect.id} ${niveau.niveau}: ${som}`);
+    }
+  }
+});
+
 const docs = { "0.9": { meta: { version: "0.9", releasedAt: "2026-08-17" } } };
 
 const get = async (path, headers = {}) => {

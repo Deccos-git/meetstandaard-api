@@ -182,6 +182,11 @@ def build_effecten(wb, sector):
                 aannames=row.get("aannames"),
                 aannamescore=to_int(row.get("aannamescore")),
                 overlapgroep=row.get("overlapgroep"),
+                # Sinds de overlapregel van 2026-10-13 wordt overlap niet verrekend
+                # maar zichtbaar gemaakt: met welke effecten deze post overlapt en
+                # hoe sterk. Leeg in workbooks van voor die regel.
+                overlaptMetEffect=split_list(row.get("overlapt_met_effect")),
+                overlapSterkte=row.get("overlap_sterkte"),
             )
         )
 
@@ -283,8 +288,17 @@ def build_bronnen(wb):
 
 
 def build_aggregatie(wb):
-    """Sheet 8 holds the overlap table, then a worked example under its own header."""
+    """Sheet 8 holds the overlap table, then (before 2026-10-13) a worked example.
+
+    Two layouts exist. Up to energiearmoede 0.10 column 5 is `alpha`, a factor
+    that removed double counting when effects were summed. From the overlap rule
+    of 2026-10-13 nothing is corrected: column 5 is `correctiefactor` (always
+    "geen") and columns 8-9 say how strong the overlap is and why.
+    """
     ws = wb[SHEETS["aggregatie"]]
+    header = [clean(c) for c in next(ws.iter_rows(max_row=1, values_only=True))]
+    if len(header) > 4 and header[4] == "correctiefactor":
+        return build_overlapoverzicht(ws)
     overlapgroepen, voorbeeld = [], OrderedDict(titel=None, regels=[], totaal=None, overlapcorrectie=None)
     section = "overlap"
 
@@ -329,6 +343,36 @@ def build_aggregatie(wb):
             )
 
     return OrderedDict(overlapgroepen=overlapgroepen, voorbeeld=voorbeeld)
+
+
+def build_overlapoverzicht(ws):
+    overlapgroepen = []
+    for row in ws.iter_rows(min_row=2, values_only=True):
+        cells = [clean(c) for c in row] + [None] * 9
+        if all(c is None for c in cells):
+            continue
+        overlapgroepen.append(
+            OrderedDict(
+                overlapgroep=cells[0],
+                cluster=cells[1],
+                aantalEffecten=to_int(cells[2]),
+                effecten=split_list(cells[3]),
+                correctiefactor=cells[4],
+                methode=cells[5],
+                correctieNodig=(cells[6] or "").lower() == "ja",
+                overlapSterkte=cells[7],
+                motivering=cells[8],
+            )
+        )
+    return OrderedDict(
+        toelichting=(
+            "Overlap wordt niet financieel gecorrigeerd, ook niet bij optellen. Per overlapgroep staat "
+            "met welke effecten een kostenpost overlapt en hoe sterk (hoog/middel/laag/geen). Wie "
+            "bedragen van meerdere effecten optelt, rapporteert een som zonder overlapcorrectie en "
+            "noemt deze groepen erbij."
+        ),
+        overlapgroepen=overlapgroepen,
+    )
 
 
 def build_parameters(wb):
@@ -419,8 +463,10 @@ def main():
                 "(zie `audit`), maar nog niet extern gevalideerd; onderdelen gemarkeerd als "
                 "'needs verification' (nv) kunnen in 1.0 nog wijzigen. Bedragen zijn indicatieve "
                 "maatschappelijke kosten (negatief) of baten (positief) per persoon per jaar ten "
-                "opzichte van de nullijn. Tel proxybedragen niet zonder meer op: pas eerst de "
-                "overlapcorrectie uit `aggregatie` toe."
+                "opzichte van de nullijn. Overlap tussen effecten wordt niet verrekend: elk bedrag is "
+                "de som van alle proxyregels van dat niveau. Tel bedragen van verschillende effecten "
+                "niet zonder meer op; `aggregatie` en `overlapSterkte` per proxy laten zien waar ze "
+                "overlappen. Overdrachten (`waarvanOverdracht`) horen niet in een maatschappelijk totaal."
             ),
         ),
         effecten=effecten,

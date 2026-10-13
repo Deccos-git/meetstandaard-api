@@ -3,6 +3,23 @@
   "standaarden": {
     "energiearmoede": [
       {
+        "versie": "0.11",
+        "datum": "2026-10-13",
+        "soort": "publicatie",
+        "samenvatting": "Overlapregel: overlap tussen effecten wordt niet meer verrekend maar zichtbaar gemaakt. Overdrachten apart en drie tarieven gelijkgetrokken. Dezelfde 13 effecten, 52 stellingen en 198 proxyregels.",
+        "wijzigingen": [
+          "`aggregatie` is een overlapoverzicht zonder correctie: per overlapgroep `correctiefactor` (\"geen\"), `overlapSterkte` (hoog/middel/laag/geen) en `motivering`. Het rekenvoorbeeld en de factor `alpha` zijn vervallen (besluit 2026-10-13, MSI `gedeeld/wiki/methodiek/aggregatiemodel.md`).",
+          "Elke proxy draagt `overlaptMetEffect` en `overlapSterkte`, en `typePost` (reeel/overdracht). Elk niveau draagt `waarvanReeel` en `waarvanOverdracht`; in 0.10 waren die `null`.",
+          "Nieuwe overlapgroep `nulregel` voor de referentieregels van EUR 0.",
+          "Drie tarieven gelijk aan de rest van de sector: huisarts EUR 33,96 i.p.v. 30,87 (EFF-06 niveau 1, 2, 5), vrijwilligersuur EUR 11 i.p.v. 10 (EFF-10 niveau 3), uitvoeringskosten bijstand EUR 3.500 i.p.v. 2.900 (EFF-13 niveau 1). Niveautotalen: EFF-06 -20.465,20 -> -20.496,10, -12.442,15 -> -12.457,60, +1.927,01 -> +1.936,28; EFF-10 niveau 3 -8.234,90 -> -8.130,90; EFF-13 niveau 1 -27.499 -> -28.099. Geen bedrag wisselt van teken.",
+          "Twee niveautotalen zijn `null` met de tekst in de bron: EFF-07 niveau 5 (was 4,6, een percentage) en EFF-11 'Naar betaald werk' (was 10.588, de som van twee ondergrenzen).",
+          "Stellingen ongewijzigd ten opzichte van 0.10; metingen blijven vergelijkbaar. Bedragen zijn niet vergelijkbaar voor de vijf genoemde niveaus."
+        ],
+        "besluiten": [],
+        "feedback": [],
+        "commit": "(nog niet gecommit)"
+      },
+      {
         "versie": "0.10",
         "datum": "2026-10-13",
         "soort": "publicatie",
@@ -50,6 +67,21 @@
       }
     ],
     "milieu-circulariteit": [
+      {
+        "versie": "0.11",
+        "datum": "2026-10-13",
+        "soort": "publicatie",
+        "samenvatting": "Overlapsterkte per interventie en per afbakeningsregel. Interventies, kengetallen en bedragen gelijk aan 0.10.",
+        "wijzigingen": [
+          "Nieuwe velden per interventie: `overlapSterkte` (hoog/middel/laag/geen) en `overlapMotivering`, voor alle 133 interventies.",
+          "Elke genummerde regel in `afbakening` (1-22) draagt `overlapSterkte`.",
+          "De afbakeningsregels zelf zijn ongewijzigd: binnen een overlapcluster gaat het om dezelfde fysieke stroom, en die wordt een keer geteld.",
+          "Geen enkel kengetal of bedrag is veranderd."
+        ],
+        "besluiten": [],
+        "feedback": [],
+        "commit": "(nog niet gecommit)"
+      },
       {
         "versie": "0.10",
         "datum": "2026-10-13",

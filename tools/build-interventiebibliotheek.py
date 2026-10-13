@@ -35,6 +35,7 @@ generated JSON is committed and imported directly.
 
 import argparse
 import json
+import re
 from collections import Counter, OrderedDict
 
 import openpyxl
@@ -287,6 +288,10 @@ def build_interventies(wb, a):
                     statusKengetal=STATUS_ALIASES.get(status, status),
                     statusKengetalBron=status,
                     afbakening=row.get("Afbakening / overlap"),
+                    # Overlapregel 2026-10-13: hoe sterk de overlap met andere
+                    # interventies is en waarom. Leeg in workbooks van daarvoor.
+                    overlapSterkte=row.get("overlap_sterkte"),
+                    overlapMotivering=row.get("overlap_motivering"),
                     # From 0.10 the Klimaat & Energie rows follow the official list of
                     # measures: its category, and whether a row comes from that list or
                     # was added on top. The other sheets have neither column, so these
@@ -303,6 +308,27 @@ def build_interventies(wb, a):
             )
 
     return interventies
+
+
+def build_afbakening(ws):
+    """Rows of the Afbakening sheet.
+
+    From 2026-10-13 column C holds, for each numbered cluster rule, how strong the
+    overlap is that the rule guards against. On other rows it is either empty or a
+    continuation of the explanation, so only numbered rules get `overlapSterkte`.
+    """
+    regels = []
+    for row in ([clean(c) for c in r] + [None, None, None] for r in ws.iter_rows(values_only=True)):
+        onderwerp, toelichting, kolom_c = row[0], row[1], row[2]
+        if not (onderwerp or toelichting):
+            continue
+        regel = OrderedDict(onderwerp=onderwerp, toelichting=toelichting)
+        if isinstance(onderwerp, str) and re.match(r"\d+\.", onderwerp):
+            regel["overlapSterkte"] = kolom_c
+        elif kolom_c and toelichting:
+            regel["toelichting"] = f"{toelichting} {kolom_c}"
+        regels.append(regel)
+    return regels
 
 
 def build_berekening():
@@ -418,7 +444,7 @@ def main():
                 "`aannames` volgens `berekening` — pas een prijs daar aan en alles schuift mee. Niet elk "
                 "kengetal is hard: zie `bewijssterkte` en `statusKengetal` per interventie en het "
                 "`controle`-blok. Tel binnen een overlapcluster niet op zonder de regels in `afbakening` "
-                "toe te passen."
+                "toe te passen; `overlapSterkte` per interventie en per regel zegt hoe sterk de overlap is."
             ),
         ),
         domeinen=list(dict.fromkeys(i["domein"] for i in interventies if i["domein"])),
@@ -436,11 +462,7 @@ def main():
             )
             for row in rows(wb["Bronnen"])
         ],
-        afbakening=[
-            OrderedDict(onderwerp=row[0], toelichting=row[1])
-            for row in ([clean(c) for c in r] for r in wb["Afbakening"].iter_rows(values_only=True))
-            if row[0] or row[1]
-        ],
+        afbakening=build_afbakening(wb["Afbakening"]),
         leeswijzer=[clean(r[0]) for r in wb["Leeswijzer"].iter_rows(values_only=True) if clean(r[0])],
         controle=build_controle(interventies, aannames),
     )
