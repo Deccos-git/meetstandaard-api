@@ -41,7 +41,7 @@ SHEETS = {
     "gevoeligheid": "10-Gevoeligheid",
 }
 
-SECTOR_LABELS = {"energiearmoede": "Energiearmoede"}
+SECTOR_LABELS = {"energiearmoede": "Energiearmoede", "wijkbedrijven": "Wijkbedrijven"}
 
 
 def slug_from_path(path, fallback):

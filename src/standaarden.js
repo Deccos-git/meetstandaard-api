@@ -1,6 +1,6 @@
-// The six meetstandaarden, for both the public site and the panel.
+// The seven meetstandaarden, for both the public site and the panel.
 //
-// All six are now published documents: one Firestore collection per standaard,
+// All seven are now published documents: one Firestore collection per standaard,
 // one document per version, generated and seeded via the Admin SDK. The version
 // numbers that used to be hardcoded here for arbeidsparticipatie and gelijke
 // kansen are gone — those two are snapshotted into versioned documents by
@@ -49,6 +49,13 @@ export const STANDAARDEN = [
     collection: 'MeetstandaardMilieuCirculariteit',
     api: { functie: 'meetstandaard', resource: 'milieu-circulariteit' },
     render: 'interventies',
+  },
+  {
+    key: 'wijkbedrijven',
+    label: 'Wijkbedrijven',
+    omschrijving: 'Effecten van bewonersbedrijven en wijkondernemingen, van buurtcohesie tot arbeidsvaardigheden.',
+    collection: 'MeetstandaardWijkbedrijven',
+    api: { functie: 'meetstandaard', resource: 'wijkbedrijven' },
   },
   {
     key: 'participatieladder',

@@ -246,6 +246,26 @@
         "feedback": [],
         "commit": "97ede00"
       }
+    ],
+    "wijkbedrijven": [
+      {
+        "versie": "0.1",
+        "datum": "2026-10-15",
+        "soort": "publicatie",
+        "samenvatting": "Eerste publicatie. Dertien individuele effecten met 56 stellingen en 186 proxyregels; twaalf effecten gemonetariseerd per Likert-niveau, met niveau 4 als nullijn (EUR 0).",
+        "wijzigingen": [
+          "Elf effecten letterlijk en in dezelfde volgorde uit Meetstandaard Social Impact 1.0 (september-2026-set): mentale gezondheid, zingeving, sociale contacten, integratie, zelfvertrouwen, zelf-effectiviteit/empowerment, sociale, arbeids-, digitale en taalvaardigheden, financiële gezondheid. Deze zijn cross-sector benchmarkbaar.",
+          "Buurtcohesie (EFF-04) is letterlijk overgenomen uit energiearmoede EFF-04: stellingen, situatieschetsen, proxyregels en bedragen. Alleen stakeholderlabels en overlapgroepen volgen de indeling van deze sector.",
+          "Leefbaarheid van de buurt (EFF-06) is wijkspecifiek: vijf stellingen uit Leefbaarometer 3.0 / WoON 2018 (vragen 13.2, 13.3, 13.4, 13.7, 13.16), schaalvolgorde omgekeerd naar 1 = helemaal mee oneens. Niet gemonetariseerd; geen monetarisering-niveaus.",
+          "Elke proxy is hoeveelheid × kans × canonieke eenheidsprijs uit het gedeelde parameterregister van MSI (tabblad 9 / `parameters`). Bedragen zijn bruto per persoon per jaar, vóór de rekenregels.",
+          "Overlap zichtbaar gemaakt, niet gecorrigeerd: 15 overlapgroepen in `aggregatie` (inclusief `nulregel`), met `overlaptMetEffect` en `overlapSterkte` per proxy. Bijstand en WIA zijn overdracht (`typePost`), apart in `waarvanOverdracht`.",
+          "Taalvaardigheid heeft geen negatief geformuleerde stelling, net als in MSI 1.0. De afwijking is gemotiveerd in de bron (MSI `sectoren/wijkbedrijven/wiki/effecten/taalvaardigheid.md`).",
+          "Bron: MSI commit 4fbd5c0, workbook `sectoren/wijkbedrijven/output/meetstandaard.xlsx`, gegenereerd door `sectoren/wijkbedrijven/output/build/bouw.py`."
+        ],
+        "besluiten": [],
+        "feedback": [],
+        "commit": "(nog niet gecommit)"
+      }
     ]
   }
 }
