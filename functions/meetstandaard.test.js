@@ -6,6 +6,7 @@ import {
   MEETSTANDAARD_ENERGIEARMOEDE_0_10,
   MEETSTANDAARD_ENERGIEARMOEDE_0_11,
   MEETSTANDAARD_WIJKBEDRIJVEN_0_1,
+  MEETSTANDAARD_WIJKBEDRIJVEN_0_2,
   INTERVENTIEBIBLIOTHEEK_MILIEU_CIRCULARITEIT_0_9,
   handleMeetstandaard,
 } from "./meetstandaard.js";
@@ -518,4 +519,47 @@ test("wijkbedrijven 0.1: every proxy is traceable and its overlap is shown, not 
     assert.equal(g.correctiefactor, "geen", g.overlapgroep);
     assert.equal(g.correctieNodig, false, g.overlapgroep);
   }
+});
+
+// 0.2 adds the cohesielaag. The thirteen effects of 0.1 keep their stellingen, so
+// measurements stay comparable; only the shape of the new layer is pinned here,
+// the invariants above hold for 0.2 as well.
+const wijk02 = MEETSTANDAARD_WIJKBEDRIJVEN_0_2;
+const wijk02Proxies = wijk02.effecten.flatMap((e) => e.monetarisering.niveaus.flatMap((n) => n.proxies));
+
+test("wijkbedrijven 0.2: 19 effecten, 80 stellingen, 199 proxyregels", () => {
+  assert.equal(wijk02.meta.version, "0.2");
+  assert.equal(wijk02.effecten.length, 19);
+  assert.equal(wijk02.effecten.reduce((n, e) => n + e.stellingen.length, 0), 80);
+  assert.equal(wijk02Proxies.length, 199);
+  assert.deepEqual(wijk02.controle.somAfwijkingen, []);
+  for (const e of wijk02.effecten) {
+    assert.equal(e.uid, `wijkbedrijven:${e.slug}`);
+    assert.ok(e.stellingen.length >= 3 && e.stellingen.length <= 5, `${e.id}: ${e.stellingen.length} stellingen`);
+    assert.deepEqual(e.situatieschetsen.map((s) => s.score), [1, 2, 3, 4, 5], e.id);
+    const niveaus = e.monetarisering.niveaus;
+    if (niveaus.length === 0) {
+      assert.equal(e.monetariseerbaarheid, "niet verantwoord", `${e.id} has no niveaus but claims to be monetised`);
+      continue;
+    }
+    assert.equal(niveaus.find((n) => n.niveau === "4").totaleWaardeIndicatief, 0, e.id);
+    assert.ok(niveaus.find((n) => n.niveau === "1").waarvanReeel < 0, `${e.id} niveau 1`);
+    assert.ok(niveaus.find((n) => n.niveau === "5").waarvanReeel > 0, `${e.id} niveau 5`);
+  }
+});
+test("wijkbedrijven 0.2 keeps the stellingen of 0.1", () => {
+  const vorige = new Map(wijk.effecten.map((e) => [e.id, e.stellingen.map((s) => s.stelling)]));
+  for (const e of wijk02.effecten.filter((x) => vorige.has(x.id))) {
+    assert.deepEqual(e.stellingen.map((s) => s.stelling), vorige.get(e.id), e.id);
+  }
+});
+test("wijkbedrijven 0.2: every proxy is traceable and its overlap is shown, not corrected", () => {
+  const groepen = new Set(wijk02.aggregatie.overlapgroepen.map((g) => g.overlapgroep));
+  for (const p of wijk02Proxies) {
+    assert.ok(p.bronBedrag && p.berekening && p.aannames, `"${p.proxy}" is not traceable`);
+    assert.ok(["reeel", "overdracht"].includes(p.typePost), `"${p.proxy}" typePost ${p.typePost}`);
+    assert.ok(p.overlapSterkte, `"${p.proxy}" has no overlapSterkte`);
+    assert.ok(groepen.has(p.overlapgroep), `overlapgroep "${p.overlapgroep}" missing from aggregatie`);
+  }
+  for (const g of wijk02.aggregatie.overlapgroepen) assert.equal(g.correctiefactor, "geen", g.overlapgroep);
 });

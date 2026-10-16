@@ -9,6 +9,7 @@ import arbeidsparticipatie09 from "./data/meetstandaard-arbeidsparticipatie-0.9.
 import gelijkeKansen10 from "./data/meetstandaard-gelijke-kansen-1.0.json" with { type: "json" };
 import arbeidsvaardigheden09 from "./data/meetstandaard-arbeidsvaardigheden-0.9.json" with { type: "json" };
 import wijkbedrijven01 from "./data/meetstandaard-wijkbedrijven-0.1.json" with { type: "json" };
+import wijkbedrijven02 from "./data/meetstandaard-wijkbedrijven-0.2.json" with { type: "json" };
 
 // The published standaarden, each served as one versioned document per version.
 //
@@ -54,7 +55,7 @@ export const STANDAARDEN = {
     sector: "wijkbedrijven",
     label: "Wijkbedrijven",
     collection: "MeetstandaardWijkbedrijven",
-    documenten: [wijkbedrijven01],
+    documenten: [wijkbedrijven01, wijkbedrijven02],
   },
   // Snapshots of the two standaarden that still live as a sector tag on the
   // shared `effects` collection. They are here so that every standaard states
@@ -79,6 +80,7 @@ export const MEETSTANDAARD_ENERGIEARMOEDE_0_9 = energiearmoede09;
 export const MEETSTANDAARD_ENERGIEARMOEDE_0_10 = energiearmoede010;
 export const MEETSTANDAARD_ENERGIEARMOEDE_0_11 = energiearmoede011;
 export const MEETSTANDAARD_WIJKBEDRIJVEN_0_1 = wijkbedrijven01;
+export const MEETSTANDAARD_WIJKBEDRIJVEN_0_2 = wijkbedrijven02;
 export const INTERVENTIEBIBLIOTHEEK_MILIEU_CIRCULARITEIT_0_9 = milieuCirculariteit09;
 
 const basePath = (request) => {

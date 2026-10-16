@@ -249,6 +249,24 @@
     ],
     "wijkbedrijven": [
       {
+        "versie": "0.2",
+        "datum": "2026-10-16",
+        "soort": "publicatie",
+        "samenvatting": "Sociale-cohesielaag: zes effecten erbij. 19 individuele effecten met 80 stellingen en 199 proxyregels; veertien effecten gemonetariseerd. De stellingen van de dertien effecten uit 0.1 zijn ongewijzigd.",
+        "wijzigingen": [
+          "Zes nieuwe effecten, met stellingen letterlijk uit bestaande vragenlijsten: Gevoel van erbij horen (EFF-14, SCP Burgerperspectieven, tabel 1.2), Sociaal vertrouwen (EFF-15, SCP en CBS Veiligheidsmonitor 2025), Openheid voor andersdenkenden (EFF-16, SCP tabel 1.4), Omgang tussen groepen in de buurt (EFF-17, Wijkonderzoek Rotterdam 17e, 17g en 20c; intercultureel en intergenerationeel samengevoegd), Burenhulp (EFF-18) en Bureninzet (EFF-19), beide met items uit MSI 1.0, Oranje Fonds, Wijkonderzoek Rotterdam en WoON 2024.",
+          "Burenhulp en Bureninzet zijn gemonetariseerd via uren informele hulp en vrijwilligerswerk (overlapgroepen `samenleving_informele_hulp` en `samenleving_vrijwilligerswerk`). EFF-14 t/m EFF-17 zijn niet gemonetariseerd (`monetariseerbaarheid` 'niet verantwoord', geen niveaus); de motivering staat in de bron.",
+          "Vier Oranje Fonds-items hebben een 4-punts oorspronkelijke schaal en worden op de 5-punts schaal afgenomen met letterlijke tekst; vastgelegd per stelling in `origineleSchaal`.",
+          "Sociale contacten (EFF-03): de GGZ-post voor eenzaamheid is herberekend uit Meisters e.a. (2021), tabel 4, model 6, per ernstcategorie (EUR 103 / 74 / 52 per persoon per jaar) in plaats van EUR 1.250. Niveautotalen: -4.749,72 -> -3.602,72, -2.197,36 -> -1.646,36, -621,46 -> -485,96, +958,96 -> +833,96. Bronnotitie bij twee stellingen (De Jong Gierveld); de tekst is ongewijzigd, zodat de benchmark met MSI 1.0 blijft.",
+          "Overlap: proxies van bestaande effecten noemen waar van toepassing EFF-18 of EFF-19 in `overlaptMetEffect`; bij buurtcohesie niveau 5 en digitale vaardigheden niveau 1 is `overlapSterkte` verhoogd. Geen correctie; elk bedrag is de som van zijn proxyregels.",
+          "Metingen met 0.1 blijven vergelijkbaar voor de dertien bestaande effecten; bedragen van Sociale contacten zijn niet vergelijkbaar.",
+          "Bron: MSI commit 1d660d8, workbook `sectoren/wijkbedrijven/output/meetstandaard.xlsx`, gegenereerd door `sectoren/wijkbedrijven/output/build/bouw.py`."
+        ],
+        "besluiten": [],
+        "feedback": [],
+        "commit": "(nog niet gecommit)"
+      },
+      {
         "versie": "0.1",
         "datum": "2026-10-15",
         "soort": "publicatie",
