@@ -22,7 +22,7 @@ Cloud Functions — the generated JSON is committed and imported directly.
 import argparse
 import json
 import re
-from collections import OrderedDict, defaultdict
+from collections import Counter, OrderedDict, defaultdict
 
 import openpyxl
 
@@ -195,12 +195,15 @@ def build_effecten(wb, sector):
         niveau = str(row.get("likert_niveau")) if row.get("likert_niveau") is not None else None
         monetarisering = effecten[eid]["monetarisering"]
         monetarisering["document"] = row.get("monetarisering_document")
-        monetarisering["eenheid"] = row.get("eenheid")
         monetarisering["niveaus"].append(
             OrderedDict(
                 niveau=niveau,
                 score=score_of(row.get("likert_niveau")),
                 totaleWaardeIndicatief=to_number(row.get("totale_waarde_niveau_indicatief")),
+                # De eenheid hoort bij het niveau, niet bij het effect: een
+                # effect kan op één niveau een percentage hebben en op de andere
+                # euro's (EFF-07 niveau 5 in energiearmoede).
+                eenheid=row.get("eenheid"),
                 # De splitsing die bepaalt wat een consument mag optellen. Staat
                 # hier en niet alleen op de proxyregels, zodat het antwoord op
                 # "welk deel is maatschappelijk" geen inspectie van elke proxy
@@ -213,6 +216,15 @@ def build_effecten(wb, sector):
                 proxies=proxies.pop((eid, niveau), []),
             )
         )
+
+    # Tot 0.11 won hier de laatste rij, waardoor de eenheid van niveau 5 voor het
+    # hele effect gold. Nu de eenheid van de meeste niveaus; bij een gelijke
+    # stand die van het eerste niveau. Lees bij twijfel de eenheid per niveau.
+    for effect in effecten.values():
+        monetarisering = effect["monetarisering"]
+        eenheden = [n["eenheid"] for n in monetarisering["niveaus"] if n["eenheid"]]
+        if eenheden:
+            monetarisering["eenheid"] = Counter(eenheden).most_common(1)[0][0]
 
     if proxies:
         raise SystemExit(f"proxy rows without a matching monetarisering niveau: {sorted(proxies)}")

@@ -5,6 +5,7 @@ import {
   MEETSTANDAARD_ENERGIEARMOEDE_0_9,
   MEETSTANDAARD_ENERGIEARMOEDE_0_10,
   MEETSTANDAARD_ENERGIEARMOEDE_0_11,
+  MEETSTANDAARD_ENERGIEARMOEDE_0_12,
   MEETSTANDAARD_WIJKBEDRIJVEN_0_1,
   MEETSTANDAARD_WIJKBEDRIJVEN_0_2,
   INTERVENTIEBIBLIOTHEEK_MILIEU_CIRCULARITEIT_0_9,
@@ -16,7 +17,12 @@ import { fakeFirestore, fakeResponse } from "./versionedResource.test.js";
 
 // Every published version is held to the same invariants: a regeneration that
 // drops a sign or an effect must fail no matter which version it produced.
-for (const doc of [MEETSTANDAARD_ENERGIEARMOEDE_0_9, MEETSTANDAARD_ENERGIEARMOEDE_0_10, MEETSTANDAARD_ENERGIEARMOEDE_0_11]) {
+for (const doc of [
+  MEETSTANDAARD_ENERGIEARMOEDE_0_9,
+  MEETSTANDAARD_ENERGIEARMOEDE_0_10,
+  MEETSTANDAARD_ENERGIEARMOEDE_0_11,
+  MEETSTANDAARD_ENERGIEARMOEDE_0_12,
+]) {
   const versie = doc.meta.version;
 
   test(`${versie}: meta pins the published version and sector`, () => {
@@ -161,35 +167,82 @@ const COLLECTION = STANDAARDEN.energiearmoede.collection;
 
 // From 0.11 overlap is shown, never corrected: no factor may come back in through
 // a regenerated sheet 8, and every proxy must say how strong its overlap is.
-test("0.11: aggregatie shows overlap without correcting it", () => {
-  const { overlapgroepen } = MEETSTANDAARD_ENERGIEARMOEDE_0_11.aggregatie;
-  assert.ok(overlapgroepen.length > 0);
-  for (const groep of overlapgroepen) {
-    assert.equal(groep.correctiefactor, "geen", `${groep.overlapgroep} carries a correction`);
-    assert.equal(groep.correctieNodig, false, `${groep.overlapgroep} asks for a correction`);
-    assert.ok(groep.overlapSterkte, `${groep.overlapgroep} has no overlapSterkte`);
-    assert.equal("alpha" in groep, false, `${groep.overlapgroep} still has an alpha`);
-  }
-});
+for (const doc of [MEETSTANDAARD_ENERGIEARMOEDE_0_11, MEETSTANDAARD_ENERGIEARMOEDE_0_12]) {
+  test(`${doc.meta.version}: aggregatie shows overlap without correcting it`, () => {
+    const { overlapgroepen } = doc.aggregatie;
+    assert.ok(overlapgroepen.length > 0);
+    for (const groep of overlapgroepen) {
+      assert.equal(groep.correctiefactor, "geen", `${groep.overlapgroep} carries a correction`);
+      assert.equal(groep.correctieNodig, false, `${groep.overlapgroep} asks for a correction`);
+      assert.ok(groep.overlapSterkte, `${groep.overlapgroep} has no overlapSterkte`);
+      assert.equal("alpha" in groep, false, `${groep.overlapgroep} still has an alpha`);
+    }
+  });
 
-test("0.11: every proxy states its overlap strength and post type", () => {
-  for (const effect of MEETSTANDAARD_ENERGIEARMOEDE_0_11.effecten) {
-    for (const niveau of effect.monetarisering.niveaus) {
-      for (const proxy of niveau.proxies) {
-        assert.ok(proxy.overlapSterkte, `${effect.id} ${niveau.niveau} "${proxy.proxy}" has no overlapSterkte`);
-        assert.ok(["reeel", "overdracht"].includes(proxy.typePost), `${effect.id} "${proxy.proxy}" typePost ${proxy.typePost}`);
+  test(`${doc.meta.version}: every proxy states its overlap strength and post type`, () => {
+    for (const effect of doc.effecten) {
+      for (const niveau of effect.monetarisering.niveaus) {
+        for (const proxy of niveau.proxies) {
+          assert.ok(proxy.overlapSterkte, `${effect.id} ${niveau.niveau} "${proxy.proxy}" has no overlapSterkte`);
+          assert.ok(["reeel", "overdracht"].includes(proxy.typePost), `${effect.id} "${proxy.proxy}" typePost ${proxy.typePost}`);
+        }
       }
     }
+  });
+
+  test(`${doc.meta.version}: reeel plus overdracht equals the niveau total`, () => {
+    for (const effect of doc.effecten) {
+      for (const niveau of effect.monetarisering.niveaus) {
+        if (niveau.totaleWaardeIndicatief === null) continue;
+        const som = niveau.waarvanReeel + niveau.waarvanOverdracht;
+        assert.ok(Math.abs(som - niveau.totaleWaardeIndicatief) <= 0.01, `${effect.id} ${niveau.niveau}: ${som}`);
+      }
+    }
+  });
+}
+
+// --- Eenheid per niveau (0.12) ---
+
+// Up to 0.11 the last row's eenheid stood for the whole effect, so the euros of
+// EFF-07 niveau 1-4 were announced as a percentage. From 0.12 every niveau
+// carries its own eenheid.
+test("0.12: every monetarisering niveau states its own eenheid", () => {
+  for (const effect of MEETSTANDAARD_ENERGIEARMOEDE_0_12.effecten) {
+    const { eenheid, niveaus } = effect.monetarisering;
+    for (const niveau of niveaus) {
+      assert.ok(niveau.eenheid, `${effect.id} niveau ${niveau.niveau} has no eenheid`);
+    }
+    const aantal = (e) => niveaus.filter((n) => n.eenheid === e).length;
+    assert.ok(
+      niveaus.every((n) => aantal(n.eenheid) <= aantal(eenheid)),
+      `${effect.id}: effect-eenheid is not the eenheid of most niveaus`
+    );
   }
 });
 
-test("0.11: reeel plus overdracht equals the niveau total", () => {
-  for (const effect of MEETSTANDAARD_ENERGIEARMOEDE_0_11.effecten) {
-    for (const niveau of effect.monetarisering.niveaus) {
-      if (niveau.totaleWaardeIndicatief === null) continue;
-      const som = niveau.waarvanReeel + niveau.waarvanOverdracht;
-      assert.ok(Math.abs(som - niveau.totaleWaardeIndicatief) <= 0.01, `${effect.id} ${niveau.niveau}: ${som}`);
+test("0.12: EFF-07 is euros on niveau 1-4 and a percentage on niveau 5", () => {
+  const effect = MEETSTANDAARD_ENERGIEARMOEDE_0_12.effecten.find((e) => e.id === "EFF-07");
+  for (const niveau of effect.monetarisering.niveaus) {
+    if (niveau.niveau === "5") {
+      assert.equal(niveau.totaleWaardeIndicatief, null);
+      assert.match(niveau.eenheid, /^%/);
+    } else {
+      assert.equal(typeof niveau.totaleWaardeIndicatief, "number");
+      assert.match(niveau.eenheid, /^€/);
     }
+  }
+  assert.match(effect.monetarisering.eenheid, /^€/);
+});
+
+// Niveau 1 was missing from every Likert effect in 0.9 to 0.11 (MSI log 2026-10-15).
+test("0.12: Likert-scored effecten describe all five niveaus", () => {
+  for (const effect of MEETSTANDAARD_ENERGIEARMOEDE_0_12.effecten) {
+    if (!effect.monetarisering.niveaus.every((n) => n.score !== null)) continue;
+    assert.deepEqual(
+      effect.situatieschetsen.map((s) => s.score),
+      [1, 2, 3, 4, 5],
+      `${effect.id} situatieschetsen`
+    );
   }
 });
 

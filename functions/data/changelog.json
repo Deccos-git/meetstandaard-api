@@ -3,6 +3,22 @@
   "standaarden": {
     "energiearmoede": [
       {
+        "versie": "0.12",
+        "datum": "2026-10-18",
+        "soort": "publicatie",
+        "samenvatting": "Elk monetariseringsniveau draagt zijn eigen eenheid, en situatieschetsen hebben nu ook niveau 1. Dezelfde 13 effecten, 52 stellingen en 198 proxyregels; geen bedrag gewijzigd.",
+        "wijzigingen": [
+          "Nieuw veld `eenheid` op elk niveau in `monetarisering.niveaus`. Lees die eenheid bij `totaleWaardeIndicatief`, niet die van het effect.",
+          "`monetarisering.eenheid` op effectniveau is nu de eenheid van de meeste niveaus. Tot 0.11 was het de eenheid van de laatste rij. Daardoor zei EFF-07 \"% van de energierekening; geen eurobedrag\" terwijl niveau 1-4 euro's zijn (-3.655,88 / -577 / -279 / 0). Alleen EFF-07 verandert hierdoor; daar staat nu \"€/jaar per persoon (indicatief)\".",
+          "EFF-07 niveau 5 blijft `null` met eenheid \"% van de energierekening\": 4,6% tot 12,3% besparing (Abrahamse e.a., 2005), geen eurobedrag. EFF-11 'Naar betaald werk' blijft `null`: een bandbreedte in euro's.",
+          "Situatieschets voor niveau 1 toegevoegd bij de elf Likert-effecten (EFF-01 t/m 08, 10, 12, 13). In 0.9 t/m 0.11 ontbrak die; letterlijk uit Meetplan, tabblad Bewonersniveau. Twee nieuwe auditregels.",
+          "Stellingen, bedragen, proxyregels en overlapvelden gelijk aan 0.11; metingen en bedragen blijven vergelijkbaar."
+        ],
+        "besluiten": [],
+        "feedback": [],
+        "commit": "(nog niet gecommit)"
+      },
+      {
         "versie": "0.11",
         "datum": "2026-10-13",
         "soort": "publicatie",

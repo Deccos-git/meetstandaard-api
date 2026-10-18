@@ -2,6 +2,7 @@ import { handleVersionedResource, sendCached, sendError } from "./versionedResou
 import energiearmoede09 from "./data/meetstandaard-energiearmoede-0.9.json" with { type: "json" };
 import energiearmoede010 from "./data/meetstandaard-energiearmoede-0.10.json" with { type: "json" };
 import energiearmoede011 from "./data/meetstandaard-energiearmoede-0.11.json" with { type: "json" };
+import energiearmoede012 from "./data/meetstandaard-energiearmoede-0.12.json" with { type: "json" };
 import milieuCirculariteit09 from "./data/interventiebibliotheek-milieu-circulariteit-0.9.json" with { type: "json" };
 import milieuCirculariteit010 from "./data/interventiebibliotheek-milieu-circulariteit-0.10.json" with { type: "json" };
 import milieuCirculariteit011 from "./data/interventiebibliotheek-milieu-circulariteit-0.11.json" with { type: "json" };
@@ -37,7 +38,7 @@ export const STANDAARDEN = {
     sector: "energiearmoede",
     label: "Energiearmoede",
     collection: "MeetstandaardEnergiearmoede",
-    documenten: [energiearmoede09, energiearmoede010, energiearmoede011],
+    documenten: [energiearmoede09, energiearmoede010, energiearmoede011, energiearmoede012],
   },
   arbeidsvaardigheden: {
     sector: "arbeidsvaardigheden",
@@ -79,6 +80,7 @@ export const STANDAARDEN = {
 export const MEETSTANDAARD_ENERGIEARMOEDE_0_9 = energiearmoede09;
 export const MEETSTANDAARD_ENERGIEARMOEDE_0_10 = energiearmoede010;
 export const MEETSTANDAARD_ENERGIEARMOEDE_0_11 = energiearmoede011;
+export const MEETSTANDAARD_ENERGIEARMOEDE_0_12 = energiearmoede012;
 export const MEETSTANDAARD_WIJKBEDRIJVEN_0_1 = wijkbedrijven01;
 export const MEETSTANDAARD_WIJKBEDRIJVEN_0_2 = wijkbedrijven02;
 export const INTERVENTIEBIBLIOTHEEK_MILIEU_CIRCULARITEIT_0_9 = milieuCirculariteit09;

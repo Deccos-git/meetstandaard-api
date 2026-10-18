@@ -89,6 +89,7 @@ See [versionering.md](versionering.md) for the contract. Short version: **reques
         "niveau": "1",
         "score": 1,                        // null when the effect is not Likert-scored
         "totaleWaardeIndicatief": -15537.3,
+        "eenheid": "€/jaar per persoon (indicatief; …)",   // from 0.12; read this one, not the effect's
         "berekening": "som proxybedragen dit niveau",
         "proxies": [ /* see below */ ]
       }
@@ -130,7 +131,7 @@ Treat `null` as "no counterpart in the dashboard" and render everything else nor
 
 ## 4. Semantics of the numbers
 
-- All amounts are **per person per year**, relative to the nullijn (level 4 = national average), unless `eenheid` says otherwise. Some proxies use per-unit units such as `€ / opname` or `€ / dag` — check `eenheid` before formatting.
+- All amounts are **per person per year**, relative to the nullijn (level 4 = national average), unless `eenheid` says otherwise. From 0.12 every niveau carries its own `eenheid`; use that one. An effect can mix units: EFF-07 niveau 1–4 are euros, niveau 5 is a percentage of the energy bill with `totaleWaardeIndicatief: null`. The effect-level `monetarisering.eenheid` is the unit of most niveaus (until 0.11 it was the last row's, which for EFF-07 was wrong). Some proxies use per-unit units such as `€ / opname` or `€ / dag` — check `eenheid` before formatting.
 - **Negative = societal cost, positive = societal benefit.**
 - `totaleWaardeIndicatief` is the sum of that level's proxies. It is indicative: it mixes real costs with transfers (uitkeringen, belastingafdracht), which you should not present as one number to a funder without saying so.
 - The value of *moving* from score A to score B is the difference between the two levels, not the value of B.
