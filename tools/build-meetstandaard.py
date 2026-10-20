@@ -41,6 +41,15 @@ SHEETS = {
     "gevoeligheid": "10-Gevoeligheid",
 }
 
+# Sinds energiearmoede 0.13 (opbouw van 2026-10-20). Oudere workbooks hebben
+# deze tabbladen niet; dan ontbreekt het veld in het document in plaats van een
+# lege lijst te tonen die "geen rekenregels" zou suggereren.
+OPTIONAL_SHEETS = {
+    "rekenregels": "11-Rekenregels",
+    "organisatievragen": "12-Organisatievragen",
+    "kwalificering": "13-Kwalificering",
+}
+
 SECTOR_LABELS = {"energiearmoede": "Energiearmoede", "wijkbedrijven": "Wijkbedrijven"}
 
 
@@ -175,7 +184,16 @@ def build_effecten(wb, sector):
                 # wisselende bewoordingen. Leeg waar het workbook de kolom niet
                 # heeft: onbekend, nooit "reeel".
                 typePost=row.get("type_post"),
+                # Direct financieel, indirect financieel of niet-financieel
+                # (methodiek MSI). Leeg in workbooks van voor 2026-10-19.
+                typeWaardering=row.get("type_waardering"),
                 bronBedrag=row.get("bron_bedrag"),
+                # Sinds de opbouw van 2026-10-20 vervangt één alinea
+                # `onderbouwing` de vier velden hieronder. Die blijven in het
+                # document zodat de vorm per versie gelijk is; in nieuwe
+                # workbooks zijn ze null, in oude ontbreekt `onderbouwing`.
+                onderbouwing=row.get("onderbouwing"),
+                onderbouwingHerschreven=ja_nee(row.get("onderbouwing_herschreven")),
                 bronEffectProxyRelatie=row.get("bron_effect_proxy_relatie"),
                 toelichtingProxykeuze=row.get("toelichting_proxykeuze"),
                 berekening=row.get("berekening"),
@@ -442,6 +460,60 @@ def build_audit(wb):
     ]
 
 
+def build_rekenregels(ws):
+    return [
+        OrderedDict(
+            onderdeel=row.get("onderdeel"),
+            parameter=row.get("parameter"),
+            waarde=row.get("waarde"),
+            bron=row.get("bron"),
+            toelichting=row.get("toelichting"),
+        )
+        for row in rows(ws)
+    ]
+
+
+def build_organisatievragen(ws):
+    return [
+        OrderedDict(
+            nummer=to_int(row.get("vraag_nummer")),
+            vraag=row.get("vraag"),
+            antwoordopties=row.get("antwoordopties"),
+            soort=row.get("soort"),
+            kenmerk=row.get("kenmerk"),
+            invuller=row.get("invuller"),
+            bron=row.get("bron"),
+            toelichting=row.get("toelichting"),
+        )
+        for row in rows(ws)
+    ]
+
+
+def build_kwalificering(ws):
+    """Stellingen die controleren of de doelgroep wordt bereikt; geen effect en niet gemonetariseerd."""
+    return [
+        OrderedDict(
+            nummer=to_int(row.get("vraag_nummer")),
+            stelling=row.get("stelling"),
+            oorspronkelijkeVraag=row.get("oorspronkelijke_vraag"),
+            schaal=row.get("schaal"),
+            kenmerk=row.get("kenmerk_energiearmoede"),
+            plaatsInVragenlijst=row.get("plaats_in_vragenlijst"),
+            bron=row.get("bron"),
+            letterlijkOvergenomen=ja_nee(row.get("letterlijk_overgenomen")),
+            gebruik=row.get("gebruik"),
+        )
+        for row in rows(ws)
+    ]
+
+
+OPTIONAL_BUILDERS = {
+    "rekenregels": build_rekenregels,
+    "organisatievragen": build_organisatievragen,
+    "kwalificering": build_kwalificering,
+}
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--xlsx", required=True)
@@ -487,8 +559,11 @@ def main():
         aggregatie=build_aggregatie(wb),
         gevoeligheid=build_gevoeligheid(wb),
         audit=build_audit(wb),
-        controle=build_controle(effecten),
     )
+    for key, sheet in OPTIONAL_SHEETS.items():
+        if sheet in wb.sheetnames:
+            document[key] = OPTIONAL_BUILDERS[key](wb[sheet])
+    document["controle"] = build_controle(effecten)
 
     with open(args.out, "w", encoding="utf-8") as handle:
         json.dump(document, handle, ensure_ascii=False, indent=2)

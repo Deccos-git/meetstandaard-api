@@ -3,6 +3,22 @@
   "standaarden": {
     "energiearmoede": [
       {
+        "versie": "0.13",
+        "datum": "2026-10-20",
+        "soort": "publicatie",
+        "samenvatting": "Herziening van de monetarisering: onderbouwing Bart Maas, uitschieters gelijkgetrokken met arbeidsparticipatie en één alinea onderbouwing per proxy. Bedragen wijzigen bij twaalf van de dertien effecten; stellingen zijn gelijk aan 0.12. 209 proxyregels (was 198).",
+        "wijzigingen": [
+          "Niveaubedragen gewijzigd bij EFF-01 t/m 08, 10, 12 en 13. EFF-09 is gelijk. Metingen blijven vergelijkbaar op stellingen, maar een uitkomst in euro's verschilt per versie: reken een meting door met één versie.",
+          "Elke proxy heeft `onderbouwing` (één alinea: waarom deze proxy, bestaande onderbouwing, bron bedrag, aannames, berekening), `onderbouwingHerschreven` en `typeWaardering`. `bronEffectProxyRelatie`, `toelichtingProxykeuze`, `aannames` en `aannamescore` zijn null: de aannamescore is vervallen (besluit 2026-10-20).",
+          "EFF-07 niveau 5 is €0 met eenheid €/jaar per persoon, net als niveau 1-4 (besluit 2026-10-20). In 0.12 was dit een percentage met `totaleWaardeIndicatief` null.",
+          "EFF-11 'Verhoogde participatie' is een outputmeting: geen stellingen en geen niveaus. De waarde volgt uit het rekenmodel van de participatieladder.",
+          "Nieuw: `rekenregels` (impactclaim, looptijd, drop-off, disconto; 22 regels), `organisatievragen` (12) en `kwalificering` (3 stellingen die controleren of de doelgroep wordt bereikt; geen effect, niet gemonetariseerd)."
+        ],
+        "besluiten": [],
+        "feedback": [],
+        "commit": "(nog niet gecommit)"
+      },
+      {
         "versie": "0.12",
         "datum": "2026-10-18",
         "soort": "publicatie",

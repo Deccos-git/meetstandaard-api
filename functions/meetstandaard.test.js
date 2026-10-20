@@ -6,6 +6,7 @@ import {
   MEETSTANDAARD_ENERGIEARMOEDE_0_10,
   MEETSTANDAARD_ENERGIEARMOEDE_0_11,
   MEETSTANDAARD_ENERGIEARMOEDE_0_12,
+  MEETSTANDAARD_ENERGIEARMOEDE_0_13,
   MEETSTANDAARD_WIJKBEDRIJVEN_0_1,
   MEETSTANDAARD_WIJKBEDRIJVEN_0_2,
   INTERVENTIEBIBLIOTHEEK_MILIEU_CIRCULARITEIT_0_9,
@@ -22,6 +23,7 @@ for (const doc of [
   MEETSTANDAARD_ENERGIEARMOEDE_0_10,
   MEETSTANDAARD_ENERGIEARMOEDE_0_11,
   MEETSTANDAARD_ENERGIEARMOEDE_0_12,
+  MEETSTANDAARD_ENERGIEARMOEDE_0_13,
 ]) {
   const versie = doc.meta.version;
 
@@ -52,6 +54,9 @@ for (const doc of [
     for (const effect of doc.effecten) {
       assert.ok(effect.effect, `${effect.id} has no display name`);
       assert.ok(effect.categorie, `${effect.id} has no categorie`);
+      // From 0.13 EFF-11 is an outputmeting: asked administratively, valued by
+      // the participatieladder rekenmodel, so it has no niveaus of its own.
+      if (effect.typeEffect?.startsWith("outputmeting")) continue;
       assert.ok(effect.monetarisering.niveaus.length > 0, `${effect.id} has no monetarisering niveaus`);
     }
   });
@@ -59,7 +64,9 @@ for (const doc of [
   // EFF-09 (CO2) is measured per maatregel and EFF-11 uses the participatieladder,
   // so only the Likert-scored effects carry stellingen.
   test(`${versie}: Likert-scored effecten have stellingen and situatieschetsen`, () => {
-    const likert = doc.effecten.filter((e) => e.monetarisering.niveaus.every((n) => n.score !== null));
+    const likert = doc.effecten.filter(
+      (e) => e.monetarisering.niveaus.length > 0 && e.monetarisering.niveaus.every((n) => n.score !== null)
+    );
     assert.ok(likert.length >= 10, "expected most effecten to be Likert-scored");
 
     for (const effect of likert) {
@@ -78,7 +85,8 @@ for (const doc of [
   // rows sit at exactly 0 and legitimately have no stakeholder to attribute to.
   test(`${versie}: every value-carrying proxyregel is traceable`, () => {
     const proxies = doc.effecten.flatMap((e) => e.monetarisering.niveaus.flatMap((n) => n.proxies));
-    assert.equal(proxies.length, 198);
+    // 0.13 adds proxyregels from Bart Maas' onderbouwing (MSI log 2026-10-19).
+    assert.equal(proxies.length, versie === "0.13" ? 209 : 198);
 
     for (const proxy of proxies) {
       assert.ok(proxy.bedragTekst, `proxy "${proxy.proxy}" has no bedrag`);
@@ -167,7 +175,7 @@ const COLLECTION = STANDAARDEN.energiearmoede.collection;
 
 // From 0.11 overlap is shown, never corrected: no factor may come back in through
 // a regenerated sheet 8, and every proxy must say how strong its overlap is.
-for (const doc of [MEETSTANDAARD_ENERGIEARMOEDE_0_11, MEETSTANDAARD_ENERGIEARMOEDE_0_12]) {
+for (const doc of [MEETSTANDAARD_ENERGIEARMOEDE_0_11, MEETSTANDAARD_ENERGIEARMOEDE_0_12, MEETSTANDAARD_ENERGIEARMOEDE_0_13]) {
   test(`${doc.meta.version}: aggregatie shows overlap without correcting it`, () => {
     const { overlapgroepen } = doc.aggregatie;
     assert.ok(overlapgroepen.length > 0);
@@ -232,6 +240,46 @@ test("0.12: EFF-07 is euros on niveau 1-4 and a percentage on niveau 5", () => {
     }
   }
   assert.match(effect.monetarisering.eenheid, /^€/);
+});
+
+// --- Nieuwe opbouw (0.13) ---
+
+// From 0.13 one paragraph `onderbouwing` replaces bronEffectProxyRelatie,
+// toelichtingProxykeuze, aannames and aannamescore (MSI besluit 2026-10-20).
+test("0.13: every proxy carries its onderbouwing and type waardering", () => {
+  for (const effect of MEETSTANDAARD_ENERGIEARMOEDE_0_13.effecten) {
+    for (const niveau of effect.monetarisering.niveaus) {
+      for (const proxy of niveau.proxies) {
+        assert.ok(proxy.onderbouwing, `${effect.id} ${niveau.niveau} "${proxy.proxy}" has no onderbouwing`);
+        assert.ok(proxy.typeWaardering, `${effect.id} ${niveau.niveau} "${proxy.proxy}" has no typeWaardering`);
+        assert.equal(proxy.aannamescore, null);
+      }
+    }
+  }
+});
+
+test("0.13: EFF-07 niveau 5 is zero euros, in the same eenheid as niveau 1-4", () => {
+  const effect = MEETSTANDAARD_ENERGIEARMOEDE_0_13.effecten.find((e) => e.id === "EFF-07");
+  for (const niveau of effect.monetarisering.niveaus) {
+    assert.equal(typeof niveau.totaleWaardeIndicatief, "number");
+    assert.match(niveau.eenheid, /^€/);
+  }
+  assert.equal(effect.monetarisering.niveaus.find((n) => n.niveau === "5").totaleWaardeIndicatief, 0);
+});
+
+test("0.13: EFF-11 is an outputmeting without stellingen or niveaus", () => {
+  const effect = MEETSTANDAARD_ENERGIEARMOEDE_0_13.effecten.find((e) => e.id === "EFF-11");
+  assert.match(effect.typeEffect, /^outputmeting/);
+  assert.equal(effect.stellingen.length, 0);
+  assert.equal(effect.monetarisering.niveaus.length, 0);
+});
+
+test("0.13: rekenregels, organisatievragen and kwalificering are published", () => {
+  const doc = MEETSTANDAARD_ENERGIEARMOEDE_0_13;
+  assert.equal(doc.rekenregels.length, 22);
+  assert.equal(doc.organisatievragen.length, 12);
+  assert.equal(doc.kwalificering.length, 3);
+  for (const vraag of doc.kwalificering) assert.ok(vraag.stelling && vraag.bron, `kwalificering ${vraag.nummer}`);
 });
 
 // Niveau 1 was missing from every Likert effect in 0.9 to 0.11 (MSI log 2026-10-15).

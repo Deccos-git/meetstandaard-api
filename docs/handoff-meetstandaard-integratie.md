@@ -110,11 +110,14 @@ See [versionering.md](versionering.md) for the contract. Short version: **reques
   "bedragTekst": "-308,70",                // verbatim source text — always present
   "eenheid": "€ / jaar",
   "bronBedrag": "UNIVERSEEL_Zorg - Verdiepingsmodule+Kostenhandleiding+(versie+2024).pdf (Huisarts consult gemiddeld)",
-  "bronEffectProxyRelatie": "Kari e.a. - 2023",
-  "toelichtingProxykeuze": "Frequent huisartscontact bij multimorbiditeit",
+  "typeWaardering": "direct financieel",   // from 0.13: direct financieel / indirect financieel / niet-financieel
+  "onderbouwing": "…",                     // from 0.13: one paragraph — why this proxy, evidence, source, assumptions, calculation
+  "onderbouwingHerschreven": true,
+  "bronEffectProxyRelatie": "Kari e.a. - 2023",                  // up to 0.12; null from 0.13
+  "toelichtingProxykeuze": "Frequent huisartscontact bij multimorbiditeit",  // up to 0.12; null from 0.13
   "berekening": "10 bezoeken × € 30,87",
-  "aannames": "10 consulten per jaar",
-  "aannamescore": 6,                       // 1–10 confidence in the assumption
+  "aannames": "10 consulten per jaar",     // up to 0.12; null from 0.13 (now in onderbouwing)
+  "aannamescore": 6,                       // up to 0.12: 1–10; null from 0.13 (score dropped)
   "overlapgroep": "zorgkosten"             // ← see §5
 }
 ```
@@ -131,7 +134,7 @@ Treat `null` as "no counterpart in the dashboard" and render everything else nor
 
 ## 4. Semantics of the numbers
 
-- All amounts are **per person per year**, relative to the nullijn (level 4 = national average), unless `eenheid` says otherwise. From 0.12 every niveau carries its own `eenheid`; use that one. An effect can mix units: EFF-07 niveau 1–4 are euros, niveau 5 is a percentage of the energy bill with `totaleWaardeIndicatief: null`. The effect-level `monetarisering.eenheid` is the unit of most niveaus (until 0.11 it was the last row's, which for EFF-07 was wrong). Some proxies use per-unit units such as `€ / opname` or `€ / dag` — check `eenheid` before formatting.
+- All amounts are **per person per year**, relative to the nullijn (level 4 = national average), unless `eenheid` says otherwise. From 0.12 every niveau carries its own `eenheid`; use that one. In 0.12 an effect could mix units: EFF-07 niveau 1–4 were euros, niveau 5 a percentage of the energy bill with `totaleWaardeIndicatief: null`; from 0.13 niveau 5 is €0. From 0.13 EFF-11 is an outputmeting with no stellingen and no niveaus: it is valued by the participatieladder rekenmodel, not by a score. The effect-level `monetarisering.eenheid` is the unit of most niveaus (until 0.11 it was the last row's, which for EFF-07 was wrong). Some proxies use per-unit units such as `€ / opname` or `€ / dag` — check `eenheid` before formatting.
 - **Negative = societal cost, positive = societal benefit.**
 - `totaleWaardeIndicatief` is the sum of that level's proxies. It is indicative: it mixes real costs with transfers (uitkeringen, belastingafdracht), which you should not present as one number to a funder without saying so.
 - The value of *moving* from score A to score B is the difference between the two levels, not the value of B.
@@ -162,7 +165,7 @@ Generated automatically per version; render or log it rather than hiding it.
 1. **Measure** — for each effect, present `stellingen` on a 1–5 Likert scale; reverse-code where `negatiefGeformuleerd`; average to a score.
 2. **Interpret** — show the `situatieschets` for that score. This is what makes a number mean something to a resident or a funder.
 3. **Value** — show `totaleWaardeIndicatief` for the score, with the delta versus the baseline.
-4. **Substantiate** — behind a disclosure, list the `proxies` for that level: stakeholder, amount, `berekening`, `aannames`, `aannamescore`, and the source. This is the transparency payload; do not bury it more than one click deep.
+4. **Substantiate** — behind a disclosure, list the `proxies` for that level: stakeholder, amount, `berekening` and the source, plus `onderbouwing` (from 0.13) or `aannames` and `aannamescore` (up to 0.12). This is the transparency payload; do not bury it more than one click deep.
 5. **Aggregate** — apply §5 before showing any cross-effect total, and say that you did.
 6. **Qualify** — surface `meta.toelichting`, and `parameters[].range*` plus `gevoeligheid` wherever you present a total as a single figure. The ranges are wide and honest; presenting a point estimate as precise is the main way this data gets misused.
 
