@@ -1,5 +1,7 @@
 # Migratie: arbeidsparticipatie en gelijke kansen naar het versioned pipeline
 
+> **Stand 2026-10-20**: arbeidsparticipatie 1.0 is gepubliceerd uit het werkbestand (stap 1-4). Stap 5 was al gedaan: het panel leest versies uit de API. Open: de consumentenkant. De app haalt arbeidsparticipatie nog uit `/database` (deccos-projects, `legacyStandaardVersions.js`); overstappen op 1.0 betekent de vraagregels per organisatie omzetten volgens de MSI-migratiekaart, en daarna stap 6. Gelijke kansen staat nog op de momentopname.
+
 Energiearmoede loopt via workbook → generator → versioned document → API. Arbeidsparticipatie (0.9) en gelijke kansen (1.0) niet: die staan nog als losse records in de gedeelde `effects`-collectie. Dit is wat er nodig is om ze gelijk te trekken.
 
 ## Waarom dit nu speelt

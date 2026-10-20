@@ -8,6 +8,7 @@ import milieuCirculariteit09 from "./data/interventiebibliotheek-milieu-circular
 import milieuCirculariteit010 from "./data/interventiebibliotheek-milieu-circulariteit-0.10.json" with { type: "json" };
 import milieuCirculariteit011 from "./data/interventiebibliotheek-milieu-circulariteit-0.11.json" with { type: "json" };
 import arbeidsparticipatie09 from "./data/meetstandaard-arbeidsparticipatie-0.9.json" with { type: "json" };
+import arbeidsparticipatie10 from "./data/meetstandaard-arbeidsparticipatie-1.0.json" with { type: "json" };
 import gelijkeKansen10 from "./data/meetstandaard-gelijke-kansen-1.0.json" with { type: "json" };
 import arbeidsvaardigheden09 from "./data/meetstandaard-arbeidsvaardigheden-0.9.json" with { type: "json" };
 import wijkbedrijven01 from "./data/meetstandaard-wijkbedrijven-0.1.json" with { type: "json" };
@@ -59,17 +60,19 @@ export const STANDAARDEN = {
     collection: "MeetstandaardWijkbedrijven",
     documenten: [wijkbedrijven01, wijkbedrijven02],
   },
-  // Snapshots of the two standaarden that still live as a sector tag on the
-  // shared `effects` collection. They are here so that every standaard states
-  // its version through the API rather than through a constant in the frontend;
-  // their content is thinner than a workbook-generated one, and `controle` on
-  // each document says exactly how. See functions/exportEffectenStandaard.js.
+  // Arbeidsparticipatie 0.9 is a snapshot of the shared `effects` collection
+  // (functions/exportEffectenStandaard.js), thinner than a workbook-generated
+  // document; `controle` says how. From 1.0 it is generated from the workbook
+  // like energiearmoede (docs/migratie-standaarden.md, stap 1-4).
   arbeidsparticipatie: {
     sector: "arbeidsparticipatie",
     label: "Arbeidsparticipatie",
     collection: "MeetstandaardArbeidsparticipatie",
-    documenten: [arbeidsparticipatie09],
+    documenten: [arbeidsparticipatie09, arbeidsparticipatie10],
   },
+  // Snapshot of a standaard that still lives as a sector tag on the shared
+  // `effects` collection, so its version comes from the API rather than from a
+  // constant in the frontend. See functions/exportEffectenStandaard.js.
   "gelijke-kansen": {
     sector: "gelijke-kansen",
     label: "Gelijke kansen",
@@ -83,6 +86,7 @@ export const MEETSTANDAARD_ENERGIEARMOEDE_0_10 = energiearmoede010;
 export const MEETSTANDAARD_ENERGIEARMOEDE_0_11 = energiearmoede011;
 export const MEETSTANDAARD_ENERGIEARMOEDE_0_12 = energiearmoede012;
 export const MEETSTANDAARD_ENERGIEARMOEDE_0_13 = energiearmoede013;
+export const MEETSTANDAARD_ARBEIDSPARTICIPATIE_1_0 = arbeidsparticipatie10;
 export const MEETSTANDAARD_WIJKBEDRIJVEN_0_1 = wijkbedrijven01;
 export const MEETSTANDAARD_WIJKBEDRIJVEN_0_2 = wijkbedrijven02;
 export const INTERVENTIEBIBLIOTHEEK_MILIEU_CIRCULARITEIT_0_9 = milieuCirculariteit09;

@@ -195,6 +195,23 @@
     ],
     "arbeidsparticipatie": [
       {
+        "versie": "1.0",
+        "datum": "2026-10-20",
+        "soort": "publicatie",
+        "samenvatting": "Eerste versie uit het werkbestand in plaats van uit de effects-collectie: 20 effecten, 78 stellingen, 301 proxyregels met onderbouwing, 44 bronnen. De participatieladder is een outputmeting geworden.",
+        "wijzigingen": [
+          "Gegenereerd met tools/build-meetstandaard.py, net als energiearmoede: elke stelling met bron en vastgelegde polariteit, situatieschetsen en monetarisering op vijf niveaus, proxies met stakeholder, onderbouwing, typeWaardering, typePost en overlapgroep. 0.9 had geen proxies en geen bron per stelling.",
+          "21 naar 20 effecten: Zelf-effectiviteit (0.9 EFF-11) en Empowerment (0.9 EFF-12) zijn samengevoegd tot EFF-11 'Zelf-effectiviteit/ Empowerment'. De ids daarna schuiven één op. Elk effect noemt zijn voorganger in `effectIdsVorigeVersie`; `uid` is gelijk aan 0.9, behalve bij het samengevoegde effect.",
+          "Stellingen vastgesteld door de opdrachtgever op 2026-09-22 (86 naar 78). De overgang per stelling staat in de MSI-migratiekaart 0.9 naar 1.0; één koppeling klapt de polariteit om (Gezonde leefstijl, 'Ik beweeg weinig').",
+          "De participatieladder (EFF-18) heeft geen stellingen en geen niveaus: de waarde volgt uit /arbeidsparticipatie/parameters.",
+          "Bij EFF-01, 02, 03 en 20 wijkt de uitwerking af van het bedrag dat de bron zonder berekening vaststelde. Leidend is de uitwerking (`totaleWaardeIndicatief`); het vastgestelde bedrag staat in `bronbedragVastgesteld` (audit A-01). Elk niveau draagt ook `waarvanOverlappend`.",
+          "Nieuw op documentniveau: `rekenregels`. Geen `gevoeligheid`: parameters hebben één vaste waarde."
+        ],
+        "besluiten": [],
+        "feedback": [],
+        "commit": "(nog niet gecommit)"
+      },
+      {
         "versie": "0.9",
         "datum": "2026-08-24",
         "soort": "publicatie",

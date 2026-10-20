@@ -38,19 +38,38 @@ SHEETS = {
     "audit": "7-Audit",
     "aggregatie": "8-Aggregatie",
     "parameters": "9-Parameters",
-    "gevoeligheid": "10-Gevoeligheid",
 }
 
 # Sinds energiearmoede 0.13 (opbouw van 2026-10-20). Oudere workbooks hebben
 # deze tabbladen niet; dan ontbreekt het veld in het document in plaats van een
 # lege lijst te tonen die "geen rekenregels" zou suggereren.
 OPTIONAL_SHEETS = {
+    # Arbeidsparticipatie 1.0 heeft geen gevoeligheidsanalyse: zijn parameters
+    # hebben één vaste waarde (geen bandbreedtes, besluit opdrachtgever).
+    "gevoeligheid": "10-Gevoeligheid",
     "rekenregels": "11-Rekenregels",
     "organisatievragen": "12-Organisatievragen",
     "kwalificering": "13-Kwalificering",
 }
 
-SECTOR_LABELS = {"energiearmoede": "Energiearmoede", "wijkbedrijven": "Wijkbedrijven"}
+SECTOR_LABELS = {
+    "energiearmoede": "Energiearmoede",
+    "wijkbedrijven": "Wijkbedrijven",
+    "arbeidsparticipatie": "Arbeidsparticipatie",
+}
+
+
+def with_optional(record, row, fields):
+    """Voeg velden toe die maar sommige workbooks hebben, alleen als de kolom bestaat.
+
+    Zo blijft een herbouw van een ouder document byte-gelijk, en zegt een
+    ontbrekend veld "dit workbook kent het niet" in plaats van een null die
+    "onbekend" suggereert.
+    """
+    for key, column, parse in fields:
+        if column in row:
+            record[key] = parse(row[column])
+    return record
 
 
 def slug_from_path(path, fallback):
@@ -67,6 +86,22 @@ def score_of(niveau):
     if isinstance(niveau, (int, float)):
         return int(niveau)
     return int(niveau) if re.fullmatch(r"\d+", str(niveau).strip()) else None
+
+
+def effect_ids(value):
+    """Alle EFF-nn in een cel, in volgorde en zonder dubbelen; leeg -> []."""
+    return list(OrderedDict.fromkeys(re.findall(r"EFF-\d+", str(value or ""))))
+
+
+def type_post_from_overdracht(value):
+    """Kolom `overdracht` (ja/nee, arbeidsparticipatie) -> typePost.
+
+    Leeg blijft None: onbekend is niet hetzelfde als reeel.
+    """
+    flag = ja_nee(value)
+    if flag is None:
+        return None
+    return "overdracht" if flag else "reeel"
 
 
 def ja_nee(value):
@@ -128,6 +163,12 @@ def build_effecten(wb, sector):
             situatieschetsen=[],
             monetarisering=OrderedDict(document=None, eenheid=None, niveaus=[]),
         )
+        # Het effect-id in de vorige versie (arbeidsparticipatie 0.9 -> 1.0):
+        # ids zijn per versie hernummerd, dus zonder dit veld is de reeks van
+        # een effect over versies heen niet te volgen.
+        # Een lijst, want een effect kan uit meer effecten zijn samengevoegd
+        # ("EFF-11 (was EFF-11 Zelf-effectiviteit + EFF-12 Empowerment)").
+        with_optional(effecten[eid], row, [("effectIdsVorigeVersie", "effect_id_0_9", effect_ids)])
 
     for row in rows(wb[SHEETS["stellingen"]]):
         effecten[row["effect_id"]]["stellingen"].append(
@@ -183,7 +224,7 @@ def build_effecten(wb, sector):
                 # het niet altijd (Bijstandsuitvoeringskosten is reeel) of in
                 # wisselende bewoordingen. Leeg waar het workbook de kolom niet
                 # heeft: onbekend, nooit "reeel".
-                typePost=row.get("type_post"),
+                typePost=row.get("type_post") or type_post_from_overdracht(row.get("overdracht")),
                 # Direct financieel, indirect financieel of niet-financieel
                 # (methodiek MSI). Leeg in workbooks van voor 2026-10-19.
                 typeWaardering=row.get("type_waardering"),
@@ -207,6 +248,7 @@ def build_effecten(wb, sector):
                 overlapSterkte=row.get("overlap_sterkte"),
             )
         )
+        with_optional(proxies[(row["effect_id"], niveau)][-1], row, [("prijspeil", "prijspeil", clean)])
 
     for row in rows(wb[SHEETS["monetarisering"]]):
         eid = row["effect_id"]
@@ -233,6 +275,18 @@ def build_effecten(wb, sector):
                 aannamescore=row.get("aannamescore"),
                 proxies=proxies.pop((eid, niveau), []),
             )
+        )
+        # A-01 (arbeidsparticipatie): de bronwerkmap stelt voor enkele effecten
+        # een bedrag vast zonder berekening. Leidend is de uitwerking
+        # (totaleWaardeIndicatief, de som van de proxies); het vastgestelde
+        # bedrag staat ernaast zodat het verschil zichtbaar blijft.
+        with_optional(
+            monetarisering["niveaus"][-1],
+            row,
+            [
+                ("bronbedragVastgesteld", "bronbedrag_1_0_vastgesteld", to_number),
+                ("waarvanOverlappend", "waarvan_overlappend", to_number),
+            ],
         )
 
     # Tot 0.11 won hier de laatste rij, waardoor de eenheid van niveau 5 voor het
@@ -428,7 +482,7 @@ def build_parameters(wb):
 def build_gevoeligheid(wb):
     """Sheet 10 ends with a free-text 'Interpretatie:' footer rather than a row."""
     scenarios, interpretatie = [], None
-    for row in rows(wb[SHEETS["gevoeligheid"]]):
+    for row in rows(wb[OPTIONAL_SHEETS["gevoeligheid"]]):
         driver = row.get("driver")
         if isinstance(driver, str) and driver.startswith("Interpretatie"):
             interpretatie = driver
@@ -557,11 +611,13 @@ def main():
         bronnen=build_bronnen(wb),
         parameters=build_parameters(wb),
         aggregatie=build_aggregatie(wb),
-        gevoeligheid=build_gevoeligheid(wb),
-        audit=build_audit(wb),
     )
+    # Op de plek waar het altijd stond, zodat een herbouw van een ouder document gelijk blijft.
+    if OPTIONAL_SHEETS["gevoeligheid"] in wb.sheetnames:
+        document["gevoeligheid"] = build_gevoeligheid(wb)
+    document["audit"] = build_audit(wb)
     for key, sheet in OPTIONAL_SHEETS.items():
-        if sheet in wb.sheetnames:
+        if key != "gevoeligheid" and sheet in wb.sheetnames:
             document[key] = OPTIONAL_BUILDERS[key](wb[sheet])
     document["controle"] = build_controle(effecten)
 
