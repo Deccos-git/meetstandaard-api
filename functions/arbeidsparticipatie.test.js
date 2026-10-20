@@ -261,3 +261,12 @@ test("2026.1 and 2026.2 are unchanged by 2026.3", () => {
   assert.equal(PARAMETERS_2026_2.bijstandUitvoeringskostenPerYear, -2900);
   assert.equal(PARAMETERS_2026_2.ladderLevels[0].valuePerYear, -21150);
 });
+
+test("2026.3: the old combined benefitType maps to an option that exists", () => {
+  const p = PARAMETERS_2026_3;
+  for (const [oud, nieuw] of Object.entries(p.benefitRules.legacyBenefitType)) {
+    assert.ok(PARAMETERS_2026_2.options.benefitType.includes(oud), oud);
+    assert.ok(p.options.benefitType.includes(nieuw), nieuw);
+  }
+  assert.equal(p.benefitRules.legacyBenefitType["WAO/WIA/WAZ/WAJONG"], "WAO/WIA/WAZ");
+});

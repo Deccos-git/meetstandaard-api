@@ -254,7 +254,7 @@ export const PARAMETERS_2026_2 = {
 //   3b naast werk alleen een aanvulling tot het uitkeringsniveau; vervangt benefitShare
 //   4  vrijwilligerswaarde €11 per uur
 //   5  uitvoeringskosten bijstand €3.500
-//   6  leeftijdsovergang (alleen als regel; de app moet de overgang nog kunnen herkennen)
+//   6  leeftijdsovergang, herkend aan de geboortedatum (tab Gegevens)
 //   8  WIA en Wajong apart, bedragen uit het parameterregister
 // plus de regelingen en kosten die het rekenmodel kent: WW, IOAW, AOW,
 // loonkostensubsidie en dagbesteding. Beschut werk staat in het parameterblad
@@ -378,9 +378,15 @@ export const PARAMETERS_2026_3 = {
     ],
     // Wijziging 3: niet optellen tot één totaal; dat telt hetzelfde geld meermaals.
     result: "per stakeholder het verschil 1-meting − 0-meting, plus het verschil in reëleWaarde",
-    // Wijziging 6. Nog niet uitvoerbaar: de app moet de overgang kunnen herkennen.
-    ageTransition:
-      "Passeert een deelnemer tussen 0- en 1-meting de leeftijdsgrens van een regeling, dan krijgen beide metingen de uitkeringsgrondslag van de 1-meting; alleen het verschil dat niet uit de leeftijdsovergang volgt telt mee.",
+    // Wijziging 6.
+    ageTransition: {
+      rule: "Passeert een deelnemer tussen 0- en 1-meting de leeftijdsgrens van een regeling, dan krijgen beide metingen de uitkeringsgrondslag van de 1-meting; alleen het verschil dat niet uit de leeftijdsovergang volgt telt mee.",
+      // Besluit 2026-10-20: de geboortedatum is verplicht in de tab Gegevens.
+      detection: "geboortedatum van de deelnemer (tab Gegevens), vergeleken met de datum van de 0- en de 1-meting",
+      // De grenzen per regeling staan niet in het rekenmodel; ze worden pas met
+      // een bron toegevoegd, niet geschat.
+      ageLimits: null,
+    },
     assumptions: [
       "bruto bedragen, zonder vrijlatingsregeling",
       "de uitkering wordt als belast inkomen behandeld",
@@ -402,6 +408,9 @@ export const PARAMETERS_2026_3 = {
   benefitRules: {
     // De uitkeringsvraag wordt bij elke hoofdactiviteit gesteld, ook bij werk.
     askedForMainActivity: [...PARAMETERS_2026_1.options.mainActivity],
+    // Antwoorden van voor 2026.3 op een optie die niet meer bestaat. Besluit
+    // 2026-10-20: de samengevoegde optie wordt WAO/WIA/WAZ, ook voor wie Wajong had.
+    legacyBenefitType: { "WAO/WIA/WAZ/WAJONG": "WAO/WIA/WAZ" },
   },
 
   bronnen: BRONNEN_2026_3,
