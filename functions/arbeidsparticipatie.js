@@ -383,9 +383,10 @@ export const PARAMETERS_2026_3 = {
       rule: "Passeert een deelnemer tussen 0- en 1-meting de leeftijdsgrens van een regeling, dan krijgen beide metingen de uitkeringsgrondslag van de 1-meting; alleen het verschil dat niet uit de leeftijdsovergang volgt telt mee.",
       // Besluit 2026-10-20: de geboortedatum is verplicht in de tab Gegevens.
       detection: "geboortedatum van de deelnemer (tab Gegevens), vergeleken met de datum van de 0- en de 1-meting",
-      // Besluit 2026-10-20: één grens, 18 jaar, voor alle regelingen. Wie tussen
-      // de metingen 18 wordt, krijgt bij beide metingen de grondslag van de 1-meting.
-      ageLimit: 18,
+      // Besluit 2026-10-20: 18 jaar voor alle regelingen, 67 voor de AOW
+      // (AOW-leeftijd in belastingjaar 2026). Wie tussen de metingen de grens
+      // passeert, krijgt bij beide metingen de grondslag van de 1-meting.
+      ageLimits: { default: 18, AOW: 67 },
     },
     assumptions: [
       "bruto bedragen, zonder vrijlatingsregeling",
