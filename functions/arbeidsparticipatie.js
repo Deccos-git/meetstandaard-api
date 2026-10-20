@@ -383,9 +383,9 @@ export const PARAMETERS_2026_3 = {
       rule: "Passeert een deelnemer tussen 0- en 1-meting de leeftijdsgrens van een regeling, dan krijgen beide metingen de uitkeringsgrondslag van de 1-meting; alleen het verschil dat niet uit de leeftijdsovergang volgt telt mee.",
       // Besluit 2026-10-20: de geboortedatum is verplicht in de tab Gegevens.
       detection: "geboortedatum van de deelnemer (tab Gegevens), vergeleken met de datum van de 0- en de 1-meting",
-      // De grenzen per regeling staan niet in het rekenmodel; ze worden pas met
-      // een bron toegevoegd, niet geschat.
-      ageLimits: null,
+      // Besluit 2026-10-20: één grens, 18 jaar, voor alle regelingen. Wie tussen
+      // de metingen 18 wordt, krijgt bij beide metingen de grondslag van de 1-meting.
+      ageLimit: 18,
     },
     assumptions: [
       "bruto bedragen, zonder vrijlatingsregeling",

@@ -270,3 +270,9 @@ test("2026.3: the old combined benefitType maps to an option that exists", () =>
   }
   assert.equal(p.benefitRules.legacyBenefitType["WAO/WIA/WAZ/WAJONG"], "WAO/WIA/WAZ");
 });
+
+test("2026.3: the age transition uses one limit of 18, detected by birth date", () => {
+  const { ageTransition } = PARAMETERS_2026_3.calculation;
+  assert.equal(ageTransition.ageLimit, 18);
+  assert.match(ageTransition.detection, /geboortedatum/);
+});
