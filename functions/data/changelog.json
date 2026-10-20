@@ -298,6 +298,27 @@
     ],
     "wijkbedrijven": [
       {
+        "versie": "0.3",
+        "datum": "2026-10-20",
+        "soort": "publicatie",
+        "samenvatting": "Drie effecten erbij naar aanleiding van praktijkfeedback van deBlauweWijkEconomie: Dagelijks functioneren (MSI 1.0), Ervaren invloed op de buurt en Vertrouwen in instanties. 22 individuele effecten met 92 stellingen en 213 proxyregels; vijftien effecten gemonetariseerd. De stellingen van de negentien effecten uit 0.2 zijn ongewijzigd.",
+        "wijzigingen": [
+          "Dagelijks functioneren (EFF-20): letterlijk uit MSI 1.0, vier stellingen in dezelfde volgorde (één negatief geformuleerd), cross-sector benchmarkbaar. Monetarisering gelijk aan arbeidsparticipatie 1.0 EFF-05 (Wmo-begeleiding, huishoudelijke hulp, persoonlijke verzorging, dagbesteding, mantelzorg, QALY): -15.020 / -6.801 / -1.322 / 0 / +830. Verschil met arbeidsparticipatie: mantelzorg tegen het registertarief EUR 21,62 in plaats van EUR 22 (niveau 2: EUR 23,75 lager).",
+          "Ervaren invloed op de buurt (EFF-21): Wijkonderzoek Rotterdam 2023 vraag 54b, 21b en 55b en CBS Veiligheidsmonitor 2025 blok 8. Vraag 55b staat met neutrale plaatsnaam ('De politiek in mijn gemeente ...') en heeft `letterlijkOvergenomen` false. Niet gemonetariseerd.",
+          "Vertrouwen in instanties (EFF-22): Wijkonderzoek Rotterdam 2023 vraag 21e, 54c en 43l (negatief) en CBS Veiligheidsmonitor 2025 blok 8. Niet gemonetariseerd.",
+          "Buurtcohesie (EFF-04) volgt energiearmoede 0.13: niveau 1-3 -17.146,28 -> -15.898,89, -7.165,80 -> -6.615,48, -1.952,52 -> -1.512,26; niveau 5 ongewijzigd. Per proxy de onderbouwing uit energiearmoede; geen aannamescore.",
+          "Definities en situatieschetsen van de MSI-effecten volgen de teksten van arbeidsparticipatie 1.0; de bedragen van die effecten zijn ongewijzigd.",
+          "Nieuwe overlapgroepen `gemeente_wmo_huishoudelijk` en `naasten_mantelzorg`; proxies van bestaande effecten noemen EFF-20 in `overlaptMetEffect` waar ze dezelfde groep delen. Geen correctie.",
+          "Metingen met 0.2 blijven vergelijkbaar voor de negentien bestaande effecten; bedragen van Buurtcohesie zijn niet vergelijkbaar.",
+          "Bron: MSI commit 853100b, workbook `sectoren/wijkbedrijven/output/meetstandaard.xlsx`, gegenereerd door `sectoren/wijkbedrijven/output/build/bouw.py`."
+        ],
+        "besluiten": [],
+        "feedback": [
+          "deBlauweWijkEconomie (Patrick Hoogenbosch), 2026-10-20: tien aanvullingen; zelfredzaamheid, invloed en institutioneel vertrouwen overgenomen als effecten, organisatiegraad als output in de wiki."
+        ],
+        "commit": "(nog niet gecommit)"
+      },
+      {
         "versie": "0.2",
         "datum": "2026-10-16",
         "soort": "publicatie",

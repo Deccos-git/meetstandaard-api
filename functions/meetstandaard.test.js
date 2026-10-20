@@ -9,6 +9,7 @@ import {
   MEETSTANDAARD_ENERGIEARMOEDE_0_13,
   MEETSTANDAARD_WIJKBEDRIJVEN_0_1,
   MEETSTANDAARD_WIJKBEDRIJVEN_0_2,
+  MEETSTANDAARD_WIJKBEDRIJVEN_0_3,
   INTERVENTIEBIBLIOTHEEK_MILIEU_CIRCULARITEIT_0_9,
   handleMeetstandaard,
 } from "./meetstandaard.js";
@@ -663,4 +664,57 @@ test("wijkbedrijven 0.2: every proxy is traceable and its overlap is shown, not 
     assert.ok(groepen.has(p.overlapgroep), `overlapgroep "${p.overlapgroep}" missing from aggregatie`);
   }
   for (const g of wijk02.aggregatie.overlapgroepen) assert.equal(g.correctiefactor, "geen", g.overlapgroep);
+});
+
+// 0.3 adds Dagelijks functioneren (MSI 1.0), Ervaren invloed op de buurt and Vertrouwen in
+// instanties. The stellingen of the nineteen effects of 0.2 stay the same, so measurements stay
+// comparable; amounts of buurtcohesie follow energiearmoede 0.13 and are not comparable.
+const wijk03 = MEETSTANDAARD_WIJKBEDRIJVEN_0_3;
+const wijk03Proxies = wijk03.effecten.flatMap((e) => e.monetarisering.niveaus.flatMap((n) => n.proxies));
+
+test("wijkbedrijven 0.3: 22 effecten, 92 stellingen, 213 proxyregels", () => {
+  assert.equal(wijk03.meta.version, "0.3");
+  assert.equal(wijk03.effecten.length, 22);
+  assert.equal(wijk03.effecten.reduce((n, e) => n + e.stellingen.length, 0), 92);
+  assert.equal(wijk03Proxies.length, 213);
+  assert.deepEqual(wijk03.controle.somAfwijkingen, []);
+  for (const e of wijk03.effecten) {
+    assert.equal(e.uid, `wijkbedrijven:${e.slug}`);
+    assert.ok(e.stellingen.length >= 3 && e.stellingen.length <= 5, `${e.id}: ${e.stellingen.length} stellingen`);
+    assert.deepEqual(e.situatieschetsen.map((s) => s.score), [1, 2, 3, 4, 5], e.id);
+    for (const s of e.situatieschetsen) assert.ok(s.situatieschets, `${e.id} niveau ${s.score} has no situatieschets`);
+    const niveaus = e.monetarisering.niveaus;
+    if (niveaus.length === 0) {
+      assert.equal(e.monetariseerbaarheid, "niet verantwoord", `${e.id} has no niveaus but claims to be monetised`);
+      continue;
+    }
+    assert.equal(niveaus.find((n) => n.niveau === "4").totaleWaardeIndicatief, 0, e.id);
+    assert.ok(niveaus.find((n) => n.niveau === "1").waarvanReeel < 0, `${e.id} niveau 1`);
+    assert.ok(niveaus.find((n) => n.niveau === "5").waarvanReeel > 0, `${e.id} niveau 5`);
+  }
+});
+test("wijkbedrijven 0.3 keeps the stellingen of 0.2", () => {
+  const vorige = new Map(wijk02.effecten.map((e) => [e.id, e.stellingen.map((s) => s.stelling)]));
+  for (const e of wijk03.effecten.filter((x) => vorige.has(x.id))) {
+    assert.deepEqual(e.stellingen.map((s) => s.stelling), vorige.get(e.id), e.id);
+  }
+});
+test("wijkbedrijven 0.3: Dagelijks functioneren is MSI 1.0, the neutral Rotterdam item is marked", () => {
+  const df = wijk03.effecten.find((e) => e.id === "EFF-20");
+  assert.equal(df.crossSectorBenchmarkbaar, "ja");
+  assert.equal(df.stellingen[0].negatiefGeformuleerd, true);
+  const invloed = wijk03.effecten.find((e) => e.id === "EFF-21");
+  const neutraal = invloed.stellingen.find((s) => s.stelling.startsWith("De politiek in mijn gemeente"));
+  assert.equal(neutraal.letterlijkOvergenomen, false);
+  assert.equal(neutraal.negatiefGeformuleerd, true);
+});
+test("wijkbedrijven 0.3: every proxy is traceable and its overlap is shown, not corrected", () => {
+  const groepen = new Set(wijk03.aggregatie.overlapgroepen.map((g) => g.overlapgroep));
+  for (const p of wijk03Proxies) {
+    assert.ok(p.bronBedrag && p.berekening && p.aannames, `"${p.proxy}" is not traceable`);
+    assert.ok(["reeel", "overdracht"].includes(p.typePost), `"${p.proxy}" typePost ${p.typePost}`);
+    assert.ok(p.overlapSterkte, `"${p.proxy}" has no overlapSterkte`);
+    assert.ok(groepen.has(p.overlapgroep), `overlapgroep "${p.overlapgroep}" missing from aggregatie`);
+  }
+  for (const g of wijk03.aggregatie.overlapgroepen) assert.equal(g.correctiefactor, "geen", g.overlapgroep);
 });

@@ -13,6 +13,7 @@ import gelijkeKansen10 from "./data/meetstandaard-gelijke-kansen-1.0.json" with 
 import arbeidsvaardigheden09 from "./data/meetstandaard-arbeidsvaardigheden-0.9.json" with { type: "json" };
 import wijkbedrijven01 from "./data/meetstandaard-wijkbedrijven-0.1.json" with { type: "json" };
 import wijkbedrijven02 from "./data/meetstandaard-wijkbedrijven-0.2.json" with { type: "json" };
+import wijkbedrijven03 from "./data/meetstandaard-wijkbedrijven-0.3.json" with { type: "json" };
 
 // The published standaarden, each served as one versioned document per version.
 //
@@ -58,7 +59,7 @@ export const STANDAARDEN = {
     sector: "wijkbedrijven",
     label: "Wijkbedrijven",
     collection: "MeetstandaardWijkbedrijven",
-    documenten: [wijkbedrijven01, wijkbedrijven02],
+    documenten: [wijkbedrijven01, wijkbedrijven02, wijkbedrijven03],
   },
   // Arbeidsparticipatie 0.9 is a snapshot of the shared `effects` collection
   // (functions/exportEffectenStandaard.js), thinner than a workbook-generated
@@ -89,6 +90,7 @@ export const MEETSTANDAARD_ENERGIEARMOEDE_0_13 = energiearmoede013;
 export const MEETSTANDAARD_ARBEIDSPARTICIPATIE_1_0 = arbeidsparticipatie10;
 export const MEETSTANDAARD_WIJKBEDRIJVEN_0_1 = wijkbedrijven01;
 export const MEETSTANDAARD_WIJKBEDRIJVEN_0_2 = wijkbedrijven02;
+export const MEETSTANDAARD_WIJKBEDRIJVEN_0_3 = wijkbedrijven03;
 export const INTERVENTIEBIBLIOTHEEK_MILIEU_CIRCULARITEIT_0_9 = milieuCirculariteit09;
 
 const basePath = (request) => {
