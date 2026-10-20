@@ -244,6 +244,187 @@ export const PARAMETERS_2026_2 = {
   },
 };
 
+// 2026.3: het rekenmodel van de MSI-kennisbank is leidend (besluit 2026-10-20),
+// `sectoren/arbeidsparticipatie/output/build/bouw_outputmeting.py`. Geldt voor
+// arbeidsparticipatie EFF-18 en energiearmoede EFF-11. Wijzigingen ten opzichte
+// van 2026.2, genummerd zoals het tabblad 'Wijzigingen' van het rekenmodel:
+//   1  belasting over het loon ná de inzetbaarheidsfactor
+//   2  heffingskortingen 2026 (algemene heffingskorting, arbeidskorting)
+//   3  uitkomst per stakeholder plus een reële waarde, geen opgeteld totaal
+//   3b naast werk alleen een aanvulling tot het uitkeringsniveau; vervangt benefitShare
+//   4  vrijwilligerswaarde €11 per uur
+//   5  uitvoeringskosten bijstand €3.500
+//   6  leeftijdsovergang (alleen als regel; de app moet de overgang nog kunnen herkennen)
+//   8  WIA en Wajong apart, bedragen uit het parameterregister
+// plus de regelingen en kosten die het rekenmodel kent: WW, IOAW, AOW,
+// loonkostensubsidie en dagbesteding. Beschut werk staat in het parameterblad
+// van het rekenmodel maar het model rekent er niet mee, dus het staat hier niet.
+// Lopende metingen blijven op 2026.2.
+const BRONNEN_2026_3 = {
+  ...PARAMETERS_2026_1.bronnen,
+  "belastingdienst-heffingskortingen-2026": {
+    id: "belastingdienst-heffingskortingen-2026",
+    title: "Tabel arbeidskorting 2026; Voorlopige aanslag 2026: tarieven en heffingskortingen",
+    publisher: "Belastingdienst",
+    year: 2026,
+    url: null,
+    note: "Zoals opgenomen in het rekenmodel van de MSI-kennisbank (bouw_outputmeting.py).",
+  },
+  "msi-parameterregister": {
+    id: "msi-parameterregister",
+    title: "Gedeeld parameterregister, Meetstandaard Social Impact (gedeeld/wiki/parameters.md)",
+    publisher: "Meetstandaard Social Impact",
+    year: 2026,
+    url: null,
+    note: "Uitvoeringskosten bijstand: Berenschot (2018) €2.883, geïndexeerd naar 2025. Vrijwilligerswaarde: 50% van het vervangingstarief van €21,62. WIA/WAO: UWV, prijspeil 2025. Wajong: UWV, gemiddelde jaaruitkering 2024.",
+  },
+  "uwv-jaarverslag-2025": {
+    id: "uwv-jaarverslag-2025",
+    title: "Jaarverslag 2025 (WW-uitkering)",
+    publisher: "UWV",
+    year: 2025,
+    url: null,
+  },
+  "macrobudget-2025": {
+    id: "macrobudget-2025",
+    title: "Definitief macrobudget participatiewet 2025 (IOAW; loonkostensubsidie €13.144 per lopende subsidie)",
+    publisher: "Rijksoverheid",
+    year: 2025,
+    url: null,
+  },
+  "svb-jaarverslag-2025": {
+    id: "svb-jaarverslag-2025",
+    title: "Jaarverslag 2025 (AOW-uitkering)",
+    publisher: "SVB",
+    year: 2025,
+    url: null,
+  },
+  "maatschappelijke-prijslijst-dagbesteding": {
+    id: "maatschappelijke-prijslijst-dagbesteding",
+    title: "Maatschappelijke prijslijst — dagbesteding per dagdeel (Wmo, Jeugdwet, Wlz)",
+    publisher: "Bureau Anderzoek",
+    year: 2025,
+    url: null,
+  },
+};
+
+export const PARAMETERS_2026_3 = {
+  meta: {
+    version: "2026.3",
+    taxYear: 2026,
+    source: "Rekenmodel participatieladder, MSI-kennisbank (bouw_outputmeting.py)",
+    updatedAt: "2026-10-20",
+  },
+  weeksPerYear: 52,
+  volunteerValuePerHour: 11,
+
+  taxBrackets: PARAMETERS_2026_1.taxBrackets,
+  // Wijziging 2. belasting = schijftarief(loon + uitkering)
+  //   − algemene heffingskorting(loon + uitkering) − arbeidskorting(loon), minimaal 0.
+  taxCredits: {
+    algemeneHeffingskorting: { max: 3115, afbouwVanaf: 29736, afbouwPercentage: 0.06398 },
+    // Stuksgewijs: korting = base + rate × (loon − from) voor loon tot en met upTo,
+    // nooit onder 0. Boven de laatste grens is de korting 0.
+    arbeidskorting: [
+      { from: 0, upTo: 11965, base: 0, rate: 0.08324 },
+      { from: 11965, upTo: 25845, base: 996, rate: 0.31009 },
+      { from: 25845, upTo: 45592, base: 5300, rate: 0.0195 },
+      { from: 45592, upTo: 132920, base: 5685, rate: -0.0651 },
+      { from: 132920, upTo: null, base: 0, rate: 0 },
+    ],
+  },
+
+  incomeByEducationAndHoursBand: PARAMETERS_2026_1.incomeByEducationAndHoursBand,
+
+  // Wijziging 8: WIA en Wajong apart. Kosten negatief, zoals in 2026.1.
+  benefitAmountPerYear: {
+    Bijstandsuitkering: -18768,
+    WW: -25578,
+    "WAO/WIA/WAZ": -21123,
+    Wajong: -17851,
+    IOAW: -21500,
+    AOW: -15112,
+  },
+  // Wie de uitkering betaalt. De belasting gaat altijd naar het Rijk.
+  benefitPayer: {
+    Bijstandsuitkering: "Gemeente",
+    WW: "UWV",
+    "WAO/WIA/WAZ": "UWV",
+    Wajong: "UWV",
+    IOAW: "Gemeente",
+    AOW: "SVB",
+  },
+  bijstandUitvoeringskostenPerYear: -3500,
+  // Gemeente betaalt, werkgever ontvangt: een overdracht, telt niet in de reële waarde.
+  loonkostensubsidiePerYear: -13144,
+  dagbestedingPerDagdeel: {
+    Wmo: { amount: -49, payer: "Gemeente" },
+    Jeugdwet: { amount: -78, payer: "Gemeente" },
+    Wlz: { amount: -80, payer: "Rijk" },
+  },
+
+  calculation: {
+    stakeholders: ["Deelnemer", "Rijk", "Gemeente", "UWV", "SVB", "Werkgever"],
+    steps: [
+      "loon = incomeByEducationAndHoursBand[educationLevel][hoursBand] × employabilityFactor (0 zonder werk)",
+      "uitkering = |benefitAmountPerYear[benefitType]|; met werk: max(0, uitkering − loon) (wijziging 3b)",
+      "belasting = max(0, schijftarief(loon + uitkering) − algemeneHeffingskorting(loon + uitkering) − arbeidskorting(loon)); arbeidskorting alleen bij loon > 0 (wijziging 1 en 2)",
+      "Deelnemer = loon + uitkering − belasting; Rijk = belasting; benefitPayer[benefitType] = −uitkering",
+      "bij bijstand (uitkering > 0): Gemeente += bijstandUitvoeringskostenPerYear",
+      "bij loonkostensubsidie: Gemeente += loonkostensubsidiePerYear, Werkgever −= loonkostensubsidiePerYear",
+      "bij dagbesteding: payer += amount × dagdelenPerWeek × weeksPerYear",
+      "vrijwilligerswaarde = volunteerHoursPerWeek × volunteerValuePerHour × weeksPerYear (Gemeente, niet-financieel)",
+      "reëleWaarde = loon + vrijwilligerswaarde + uitvoeringskosten bijstand + dagbestedingskosten (kosten negatief); belasting, uitkering en loonkostensubsidie zijn overdrachten",
+    ],
+    // Wijziging 3: niet optellen tot één totaal; dat telt hetzelfde geld meermaals.
+    result: "per stakeholder het verschil 1-meting − 0-meting, plus het verschil in reëleWaarde",
+    // Wijziging 6. Nog niet uitvoerbaar: de app moet de overgang kunnen herkennen.
+    ageTransition:
+      "Passeert een deelnemer tussen 0- en 1-meting de leeftijdsgrens van een regeling, dan krijgen beide metingen de uitkeringsgrondslag van de 1-meting; alleen het verschil dat niet uit de leeftijdsovergang volgt telt mee.",
+    assumptions: [
+      "bruto bedragen, zonder vrijlatingsregeling",
+      "de uitkering wordt als belast inkomen behandeld",
+      "belasting voor één persoon zonder andere inkomsten of aftrekposten",
+    ],
+  },
+
+  // Treden met naam en omschrijving. De vaste waardering per trede (2026.1 en
+  // 2026.2) vervalt: de waarde volgt uit `calculation` (besluit 2026-10-20).
+  ladderLevels: PARAMETERS_2026_1.ladderLevels.map(({ trede, label, description }) => ({ trede, label, description })),
+
+  options: {
+    ...PARAMETERS_2026_1.options,
+    benefitType: ["Geen", "Bijstandsuitkering", "WW", "WAO/WIA/WAZ", "Wajong", "IOAW", "AOW"],
+    loonkostensubsidie: [false, true],
+    dagbesteding: ["Geen", "Wmo", "Jeugdwet", "Wlz"],
+  },
+
+  benefitRules: {
+    // De uitkeringsvraag wordt bij elke hoofdactiviteit gesteld, ook bij werk.
+    askedForMainActivity: [...PARAMETERS_2026_1.options.mainActivity],
+  },
+
+  bronnen: BRONNEN_2026_3,
+
+  sourceRefs: {
+    incomeByEducationAndHoursBand: ["cbs-inkomen"],
+    taxBrackets: ["belastingdienst-heffingskortingen-2026"],
+    taxCredits: ["belastingdienst-heffingskortingen-2026"],
+    volunteerValuePerHour: ["msi-parameterregister"],
+    benefitAmountPerYear: {
+      Bijstandsuitkering: ["bijstand-prijslijst"],
+      WW: ["uwv-jaarverslag-2025"],
+      "WAO/WIA/WAZ": ["msi-parameterregister"],
+      Wajong: ["msi-parameterregister"],
+      IOAW: ["macrobudget-2025"],
+      AOW: ["svb-jaarverslag-2025"],
+    },
+    bijstandUitvoeringskostenPerYear: ["msi-parameterregister"],
+    loonkostensubsidiePerYear: ["macrobudget-2025"],
+    dagbestedingPerDagdeel: ["maatschappelijke-prijslijst-dagbesteding"],
+  },
+};
+
 const COLLECTION = "MeetstandaardParameters";
 
 // The contract path is /api/v1/arbeidsparticipatie/...:

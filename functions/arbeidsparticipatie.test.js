@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { PARAMETERS_2026_1, PARAMETERS_2026_2 } from "./arbeidsparticipatie.js";
+import { PARAMETERS_2026_1, PARAMETERS_2026_2, PARAMETERS_2026_3 } from "./arbeidsparticipatie.js";
 
 // Reproduce the consumer's documented calculation.
 const grossIncome = (p, education, hoursBand) =>
@@ -138,4 +138,126 @@ test("halve bijstand naast werk kost de helft van de norm plus volledige uitvoer
   assert.equal(benefitCost(p, "Bijstandsuitkering", 0.5), -9384 - 2900);
   // Arbeidsongeschiktheid: het UWV-gemiddelde bevat al gedeeltelijke uitkeringen.
   assert.equal(benefitCost(p, "WAO/WIA/WAZ/WAJONG", 0.5), -21123);
+});
+
+// --- 2026.3: het rekenmodel van de kennisbank ---
+
+// Reference implementation of `calculation.steps`, reading only the parameters.
+// It mirrors situatie() in the MSI rekenmodel (bouw_outputmeting.py); the six
+// cases below are the ones in output/api-wijziging-participatieladder-2026-10-20.md.
+const schijftarief = (p, inkomen) => progressiveTax(p, inkomen);
+
+const algemeneHeffingskorting = (p, inkomen) => {
+  const { max, afbouwVanaf, afbouwPercentage } = p.taxCredits.algemeneHeffingskorting;
+  return Math.max(0, max - Math.max(0, inkomen - afbouwVanaf) * afbouwPercentage);
+};
+
+const arbeidskorting = (p, loon) => {
+  const schijf = p.taxCredits.arbeidskorting.find(({ upTo }) => upTo === null || loon <= upTo);
+  return Math.max(0, schijf.base + schijf.rate * (loon - schijf.from));
+};
+
+const situatie = (p, { werk, opleiding = "Geen startkwalificatie", inzetbaar = 1, uitkering = "Geen", vrijwilligersuren = 0 }) => {
+  const loon = werk ? p.incomeByEducationAndHoursBand[opleiding][werk] * inzetbaar : 0;
+  let uit = uitkering === "Geen" ? 0 : -p.benefitAmountPerYear[uitkering];
+  if (werk && uit) uit = Math.max(0, uit - loon);
+  const totaal = loon + uit;
+  const belasting = Math.max(
+    0,
+    schijftarief(p, totaal) - algemeneHeffingskorting(p, totaal) - (loon ? arbeidskorting(p, loon) : 0)
+  );
+  const r = { Deelnemer: loon + uit - belasting, Rijk: belasting, Gemeente: 0, UWV: 0, SVB: 0, reeel: loon };
+  if (uit) {
+    r[p.benefitPayer[uitkering]] -= uit;
+    if (uitkering === "Bijstandsuitkering") {
+      r.Gemeente += p.bijstandUitvoeringskostenPerYear;
+      r.reeel += p.bijstandUitvoeringskostenPerYear;
+    }
+  }
+  r.vrijwilligerswerk = vrijwilligersuren * p.weeksPerYear * p.volunteerValuePerHour;
+  r.reeel += r.vrijwilligerswerk;
+  return r;
+};
+
+const close = (actual, expected, waar) => assert.ok(Math.abs(actual - expected) < 0.01, `${waar}: ${actual} != ${expected}`);
+
+const CASES = [
+  {
+    naam: "1: bijstand zonder werk naar 12-20 uur met aanvulling",
+    t0: { uitkering: "Bijstandsuitkering" },
+    t1: { werk: "12 tot 20 uur per week", uitkering: "Bijstandsuitkering" },
+    verwacht: { Deelnemer: [15173.44, 17110.56], Rijk: [3594.56, 1657.44], Gemeente: [-22268, -7268], reeel: [-3500, 11500] },
+  },
+  {
+    naam: "2: bijstand zonder werk naar 20-35 uur",
+    t0: { uitkering: "Bijstandsuitkering" },
+    t1: { werk: "20 tot 35 uur per week", uitkering: "Bijstandsuitkering" },
+    verwacht: { Deelnemer: [15173.44, 27109.02], Rijk: [3594.56, 1890.98], Gemeente: [-22268, 0], reeel: [-3500, 29000] },
+  },
+  {
+    naam: "3: bijstand zonder werk naar voltijd mbo",
+    t0: { uitkering: "Bijstandsuitkering" },
+    t1: { werk: "Voltijd", opleiding: "MBO 2-4/havovwo", uitkering: "Bijstandsuitkering" },
+    verwacht: { Deelnemer: [15173.44, 42260.85], Rijk: [3594.56, 14039.15], Gemeente: [-22268, 0], reeel: [-3500, 56300] },
+  },
+  {
+    naam: "4: bijstand naar bijstand met 8 uur vrijwilligerswerk",
+    t0: { uitkering: "Bijstandsuitkering" },
+    t1: { uitkering: "Bijstandsuitkering", vrijwilligersuren: 8 },
+    verwacht: { Deelnemer: [15173.44, 15173.44], Gemeente: [-22268, -22268], vrijwilligerswerk: [0, 4576], reeel: [-3500, 1076] },
+  },
+  {
+    naam: "5: Wajong naar 12-20 uur, half inzetbaar",
+    t0: { uitkering: "Wajong" },
+    t1: { werk: "12 tot 20 uur per week", inzetbaar: 0.5, uitkering: "Wajong" },
+    verwacht: { Deelnemer: [14584.27, 15208.57], Rijk: [3266.73, 2642.43], UWV: [-17851, -10351], reeel: [0, 7500] },
+  },
+  {
+    naam: "6: 12-20 uur naar 20-35 uur zonder uitkering",
+    t0: { werk: "12 tot 20 uur per week" },
+    t1: { werk: "20 tot 35 uur per week" },
+    verwacht: { Deelnemer: [14689.62, 27109.02], Rijk: [310.38, 1890.98], reeel: [15000, 29000] },
+  },
+];
+
+for (const { naam, t0, t1, verwacht } of CASES) {
+  test(`2026.3 testgeval ${naam}`, () => {
+    const s0 = situatie(PARAMETERS_2026_3, t0);
+    const s1 = situatie(PARAMETERS_2026_3, t1);
+    for (const [veld, [v0, v1]] of Object.entries(verwacht)) {
+      close(s0[veld], v0, `${veld} 0-meting`);
+      close(s1[veld], v1, `${veld} 1-meting`);
+    }
+  });
+}
+
+test("2026.3: every benefitType has an amount and a payer, and benefitShare is gone", () => {
+  const p = PARAMETERS_2026_3;
+  for (const type of p.options.benefitType.filter((t) => t !== "Geen")) {
+    assert.ok(p.benefitAmountPerYear[type] < 0, type);
+    assert.ok(p.calculation.stakeholders.includes(p.benefitPayer[type]), type);
+  }
+  assert.equal(p.options.benefitShare, undefined);
+  assert.equal(p.benefitRules.shareAppliesTo, undefined);
+});
+
+test("2026.3: treden keep name and description, without a fixed valuation", () => {
+  for (const lvl of PARAMETERS_2026_3.ladderLevels) {
+    assert.deepEqual(Object.keys(lvl), ["trede", "label", "description"]);
+  }
+});
+
+test("2026.3: every bron reference resolves", () => {
+  const p = PARAMETERS_2026_3;
+  const known = new Set(Object.keys(p.bronnen));
+  for (const [key, b] of Object.entries(p.bronnen)) assert.equal(key, b.id);
+  const refs = Object.values(p.sourceRefs).flatMap((v) => (Array.isArray(v) ? v : Object.values(v).flat()));
+  for (const id of refs) assert.ok(known.has(id), `unknown bron id referenced: ${id}`);
+  for (const type of Object.keys(p.benefitAmountPerYear)) assert.ok(p.sourceRefs.benefitAmountPerYear[type], type);
+});
+
+test("2026.1 and 2026.2 are unchanged by 2026.3", () => {
+  assert.equal(PARAMETERS_2026_2.volunteerValuePerHour, 10);
+  assert.equal(PARAMETERS_2026_2.bijstandUitvoeringskostenPerYear, -2900);
+  assert.equal(PARAMETERS_2026_2.ladderLevels[0].valuePerYear, -21150);
 });
