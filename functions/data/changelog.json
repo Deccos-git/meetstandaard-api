@@ -195,6 +195,21 @@
     ],
     "arbeidsparticipatie": [
       {
+        "versie": "1.1",
+        "datum": "2026-10-28",
+        "soort": "publicatie",
+        "samenvatting": "Stellingen gelijk aan de gedeelde stellingenset (besluit 2026-10-23) en de monetarisering uit de herziening van 2026-10-22: 20 effecten, 79 stellingen, 365 proxyregels.",
+        "wijzigingen": [
+          "Mentale gezondheid (EFF-01): 'Ik accepteer mezelf zoals ik ben' vervalt; nieuw #4 'Ik heb vaak stress' en #5 'Ik voel me vaak hopeloos', beide negatief geformuleerd.",
+          "Zingeving (EFF-06) #2: 'Ik heb het gevoel dat ik iets goeds doe' (de typfout uit 1.0 is hersteld).",
+          "Financiële gezondheid (EFF-20): 'Ik herken belangrijke post en weet wat ik moet doen' vervalt; de hulpvraag schuift naar #3; nieuw #4 'Ik kan goed rondkomen van mijn/ons totale inkomen'.",
+          "Monetarisering herzien in de kennisbank op 2026-10-22 (lintpunten, basiskans niet-werken op niveau 4, informele inzet tegen €11): bedragen wijzigen bij 19 van de 20 effecten, 301 naar 365 proxyregels. Effect-ids en uids zijn gelijk aan 1.0."
+        ],
+        "besluiten": [],
+        "feedback": [],
+        "commit": ""
+      },
+      {
         "versie": "1.0",
         "datum": "2026-10-20",
         "soort": "publicatie",

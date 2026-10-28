@@ -9,6 +9,7 @@ import milieuCirculariteit010 from "./data/interventiebibliotheek-milieu-circula
 import milieuCirculariteit011 from "./data/interventiebibliotheek-milieu-circulariteit-0.11.json" with { type: "json" };
 import arbeidsparticipatie09 from "./data/meetstandaard-arbeidsparticipatie-0.9.json" with { type: "json" };
 import arbeidsparticipatie10 from "./data/meetstandaard-arbeidsparticipatie-1.0.json" with { type: "json" };
+import arbeidsparticipatie11 from "./data/meetstandaard-arbeidsparticipatie-1.1.json" with { type: "json" };
 import gelijkeKansen10 from "./data/meetstandaard-gelijke-kansen-1.0.json" with { type: "json" };
 import arbeidsvaardigheden09 from "./data/meetstandaard-arbeidsvaardigheden-0.9.json" with { type: "json" };
 import wijkbedrijven01 from "./data/meetstandaard-wijkbedrijven-0.1.json" with { type: "json" };
@@ -69,7 +70,7 @@ export const STANDAARDEN = {
     sector: "arbeidsparticipatie",
     label: "Arbeidsparticipatie",
     collection: "MeetstandaardArbeidsparticipatie",
-    documenten: [arbeidsparticipatie09, arbeidsparticipatie10],
+    documenten: [arbeidsparticipatie09, arbeidsparticipatie10, arbeidsparticipatie11],
   },
   // Snapshot of a standaard that still lives as a sector tag on the shared
   // `effects` collection, so its version comes from the API rather than from a
@@ -88,6 +89,7 @@ export const MEETSTANDAARD_ENERGIEARMOEDE_0_11 = energiearmoede011;
 export const MEETSTANDAARD_ENERGIEARMOEDE_0_12 = energiearmoede012;
 export const MEETSTANDAARD_ENERGIEARMOEDE_0_13 = energiearmoede013;
 export const MEETSTANDAARD_ARBEIDSPARTICIPATIE_1_0 = arbeidsparticipatie10;
+export const MEETSTANDAARD_ARBEIDSPARTICIPATIE_1_1 = arbeidsparticipatie11;
 export const MEETSTANDAARD_WIJKBEDRIJVEN_0_1 = wijkbedrijven01;
 export const MEETSTANDAARD_WIJKBEDRIJVEN_0_2 = wijkbedrijven02;
 export const MEETSTANDAARD_WIJKBEDRIJVEN_0_3 = wijkbedrijven03;
