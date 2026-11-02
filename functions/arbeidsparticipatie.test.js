@@ -143,10 +143,9 @@ test("halve bijstand naast werk kost de helft van de norm plus volledige uitvoer
 // --- 2026.3: het rekenmodel van de kennisbank ---
 
 // Reference implementation of `calculation.steps`, reading only the parameters.
-// It mirrors situatie() in the MSI rekenmodel (bouw_outputmeting.py); the six
-// cases below are the ones in output/api-wijziging-participatieladder-2026-10-20.md.
-const schijftarief = (p, inkomen) => progressiveTax(p, inkomen);
-
+// It mirrors situatie(), vrije_tijd() and posten() in the MSI rekenmodel
+// (sectoren/arbeidsparticipatie/output/build/bouw_outputmeting.py). The expected
+// posten below were computed by that model itself (2026-11-02), not by this code.
 const algemeneHeffingskorting = (p, inkomen) => {
   const { max, afbouwVanaf, afbouwPercentage } = p.taxCredits.algemeneHeffingskorting;
   return Math.max(0, max - Math.max(0, inkomen - afbouwVanaf) * afbouwPercentage);
@@ -157,79 +156,532 @@ const arbeidskorting = (p, loon) => {
   return Math.max(0, schijf.base + schijf.rate * (loon - schijf.from));
 };
 
-const situatie = (p, { werk, opleiding = "Geen startkwalificatie", inzetbaar = 1, uitkering = "Geen", vrijwilligersuren = 0 }) => {
+const beroepsniveau = (p, opleiding) => p.options.educationLevel.indexOf(opleiding);
+
+const loonwinst = (p, opleiding, doel) => {
+  if (!doel) return 0;
+  const { targetLevel, successRate, hoursBand } = p.wageGainFromEducation;
+  const niveau = targetLevel[doel];
+  if (beroepsniveau(p, niveau) <= beroepsniveau(p, opleiding)) return 0;
+  const loon = p.incomeByEducationAndHoursBand;
+  return successRate[niveau] * (loon[niveau][hoursBand] - loon[opleiding][hoursBand]);
+};
+
+const situatie = (
+  p,
+  { werk, opleiding = "Geen startkwalificatie", inzetbaar = 1, uitkering, vrijwilligersuren = 0, lks = false, dagbesteding, dagdelen = 0, opleidingDoel }
+) => {
   const loon = werk ? p.incomeByEducationAndHoursBand[opleiding][werk] * inzetbaar : 0;
-  let uit = uitkering === "Geen" ? 0 : -p.benefitAmountPerYear[uitkering];
+  let uit = uitkering ? -p.benefitAmountPerYear[uitkering] : 0;
   if (werk && uit) uit = Math.max(0, uit - loon);
   const totaal = loon + uit;
   const belasting = Math.max(
     0,
-    schijftarief(p, totaal) - algemeneHeffingskorting(p, totaal) - (loon ? arbeidskorting(p, loon) : 0)
+    progressiveTax(p, totaal) - algemeneHeffingskorting(p, totaal) - (loon ? arbeidskorting(p, loon) : 0)
   );
-  const r = { Deelnemer: loon + uit - belasting, Rijk: belasting, Gemeente: 0, UWV: 0, SVB: 0, reeel: loon };
-  if (uit) {
-    r[p.benefitPayer[uitkering]] -= uit;
-    if (uitkering === "Bijstandsuitkering") {
-      r.Gemeente += p.bijstandUitvoeringskostenPerYear;
-      r.reeel += p.bijstandUitvoeringskostenPerYear;
-    }
-  }
-  r.vrijwilligerswerk = vrijwilligersuren * p.weeksPerYear * p.volunteerValuePerHour;
-  r.reeel += r.vrijwilligerswerk;
-  return r;
+  const dag = dagbesteding ? p.dagbestedingPerDagdeel[dagbesteding] : null;
+  return {
+    loon,
+    uitkering: uit,
+    uitkeringPayer: uit ? p.benefitPayer[uitkering] : null,
+    belasting,
+    deelnemerNetto: loon + uit - belasting,
+    uitvoering: uit && uitkering === "Bijstandsuitkering" ? -p.bijstandUitvoeringskostenPerYear : 0,
+    lks: lks ? -p.loonkostensubsidiePerYear : 0,
+    dagbesteding: dag ? -dag.amount * dagdelen * p.weeksPerYear : 0,
+    dagbestedingPayer: dag ? dag.payer : null,
+    vrijwilligerswerk: vrijwilligersuren * p.weeksPerYear * p.volunteerValuePerHour,
+    loonwinst: loonwinst(p, opleiding, opleidingDoel),
+  };
 };
 
-const close = (actual, expected, waar) => assert.ok(Math.abs(actual - expected) < 0.01, `${waar}: ${actual} != ${expected}`);
+const vrijeTijd = (p, a, b) => {
+  const dLoon = b.loon - a.loon;
+  if (Math.abs(dLoon) < 0.5) return 0;
+  const f = !a.loon && dLoon > 0 ? p.freeTime.factorEntrant : p.freeTime.factorExtraHours;
+  const dUitkering = a.uitkering - b.uitkering;
+  const dNetto = b.deelnemerNetto - a.deelnemerNetto + dUitkering;
+  return dLoon > 0 ? -Math.max(0, f * dNetto - dUitkering) : Math.max(0, f * -dNetto + dUitkering);
+};
+
+// [stakeholder, post, verschil]; typeWaardering and overdracht come from p.posts.
+const posten = (p, a, b) => {
+  const rijen = [
+    ["Deelnemer", "Bruto loon", b.loon - a.loon],
+    ["Deelnemer", "Verwachte loonwinst na opleiding", b.loonwinst - a.loonwinst],
+    ["Deelnemer", "Belasting en premies", -(b.belasting - a.belasting)],
+    ["Deelnemer", "Uitkering", b.uitkering - a.uitkering],
+    ["Deelnemer", "Opgegeven vrije tijd", vrijeTijd(p, a, b)],
+    ["Rijk", "Belasting en premies", b.belasting - a.belasting],
+  ];
+  const perPayer = (veld, payer) => {
+    const som = new Map();
+    for (const [m, teken] of [[a, 1], [b, -1]]) {
+      if (m[payer]) som.set(m[payer], (som.get(m[payer]) ?? 0) + teken * m[veld]);
+    }
+    return [...som];
+  };
+  for (const [sh, w] of perPayer("uitkering", "uitkeringPayer")) rijen.push([sh, "Uitkering", w]);
+  rijen.push(["Gemeente", "Uitvoeringskosten bijstand", a.uitvoering - b.uitvoering]);
+  rijen.push(["Gemeente", "Loonkostensubsidie", a.lks - b.lks]);
+  rijen.push(["Werkgever", "Loonkostensubsidie", b.lks - a.lks]);
+  for (const [sh, w] of perPayer("dagbesteding", "dagbestedingPayer")) rijen.push([sh, "Dagbesteding", w]);
+  rijen.push([p.volunteerValueStakeholder, "Vrijwilligerswerk", b.vrijwilligerswerk - a.vrijwilligerswerk]);
+  return rijen.filter(([, , w]) => Math.abs(w) >= 0.5);
+};
+
+const postType = (p, sh, post) => {
+  const kandidaten = p.posts.filter((x) => x.post === post);
+  return kandidaten.find((x) => x.stakeholder === sh) ?? kandidaten.find((x) => !p.calculation.stakeholders.includes(x.stakeholder));
+};
 
 const CASES = [
   {
-    naam: "1: bijstand zonder werk naar 12-20 uur met aanvulling",
-    t0: { uitkering: "Bijstandsuitkering" },
-    t1: { werk: "12 tot 20 uur per week", uitkering: "Bijstandsuitkering" },
-    verwacht: { Deelnemer: [15173.44, 17110.56], Rijk: [3594.56, 1657.44], Gemeente: [-22268, -7268], reeel: [-3500, 11500] },
+    "naam": "bijstand naar voltijd werk mbo",
+    "t0": {
+      "opleiding": "MBO 2-4/havovwo",
+      "uitkering": "Bijstandsuitkering"
+    },
+    "t1": {
+      "werk": "Voltijd",
+      "opleiding": "MBO 2-4/havovwo",
+      "uitkering": "Bijstandsuitkering"
+    },
+    "posten": [
+      [
+        "Deelnemer",
+        "Bruto loon",
+        "direct financieel",
+        false,
+        42682.0
+      ],
+      [
+        "Deelnemer",
+        "Belasting en premies",
+        "direct financieel",
+        true,
+        -3817.98
+      ],
+      [
+        "Deelnemer",
+        "Uitkering",
+        "direct financieel",
+        true,
+        -18768.0
+      ],
+      [
+        "Deelnemer",
+        "Opgegeven vrije tijd",
+        "niet-financieel",
+        false,
+        -8436.81
+      ],
+      [
+        "Rijk",
+        "Belasting en premies",
+        "direct financieel",
+        true,
+        3817.98
+      ],
+      [
+        "Gemeente",
+        "Uitkering",
+        "direct financieel",
+        true,
+        18768.0
+      ],
+      [
+        "Gemeente",
+        "Uitvoeringskosten bijstand",
+        "direct financieel",
+        false,
+        3500.0
+      ]
+    ]
   },
   {
-    naam: "2: bijstand zonder werk naar 20-35 uur",
-    t0: { uitkering: "Bijstandsuitkering" },
-    t1: { werk: "20 tot 35 uur per week", uitkering: "Bijstandsuitkering" },
-    verwacht: { Deelnemer: [15173.44, 27109.02], Rijk: [3594.56, 1890.98], Gemeente: [-22268, 0], reeel: [-3500, 29000] },
+    "naam": "bijstand naar 12-20 uur met aanvulling",
+    "t0": {
+      "uitkering": "Bijstandsuitkering"
+    },
+    "t1": {
+      "werk": "12 tot 20 uur per week",
+      "uitkering": "Bijstandsuitkering"
+    },
+    "posten": [
+      [
+        "Deelnemer",
+        "Bruto loon",
+        "direct financieel",
+        false,
+        14061.0
+      ],
+      [
+        "Deelnemer",
+        "Belasting en premies",
+        "direct financieel",
+        true,
+        1645.95
+      ],
+      [
+        "Deelnemer",
+        "Uitkering",
+        "direct financieel",
+        true,
+        -14061.0
+      ],
+      [
+        "Rijk",
+        "Belasting en premies",
+        "direct financieel",
+        true,
+        -1645.95
+      ],
+      [
+        "Gemeente",
+        "Uitkering",
+        "direct financieel",
+        true,
+        14061.0
+      ]
+    ]
   },
   {
-    naam: "3: bijstand zonder werk naar voltijd mbo",
-    t0: { uitkering: "Bijstandsuitkering" },
-    t1: { werk: "Voltijd", opleiding: "MBO 2-4/havovwo", uitkering: "Bijstandsuitkering" },
-    verwacht: { Deelnemer: [15173.44, 42260.85], Rijk: [3594.56, 14039.15], Gemeente: [-22268, 0], reeel: [-3500, 56300] },
+    "naam": "werk 12-20 naar 20-35 uur",
+    "t0": {
+      "werk": "12 tot 20 uur per week"
+    },
+    "t1": {
+      "werk": "20 tot 35 uur per week"
+    },
+    "posten": [
+      [
+        "Deelnemer",
+        "Bruto loon",
+        "direct financieel",
+        false,
+        10106.0
+      ],
+      [
+        "Deelnemer",
+        "Belasting en premies",
+        "direct financieel",
+        true,
+        -479.13
+      ],
+      [
+        "Deelnemer",
+        "Opgegeven vrije tijd",
+        "niet-financieel",
+        false,
+        -8664.19
+      ],
+      [
+        "Rijk",
+        "Belasting en premies",
+        "direct financieel",
+        true,
+        479.13
+      ]
+    ]
   },
   {
-    naam: "4: bijstand naar bijstand met 8 uur vrijwilligerswerk",
-    t0: { uitkering: "Bijstandsuitkering" },
-    t1: { uitkering: "Bijstandsuitkering", vrijwilligersuren: 8 },
-    verwacht: { Deelnemer: [15173.44, 15173.44], Gemeente: [-22268, -22268], vrijwilligerswerk: [0, 4576], reeel: [-3500, 1076] },
+    "naam": "bijstand naar mbo-opleiding met bijstand",
+    "t0": {
+      "uitkering": "Bijstandsuitkering"
+    },
+    "t1": {
+      "uitkering": "Bijstandsuitkering",
+      "opleidingDoel": "MBO 2-4/havovwo"
+    },
+    "posten": [
+      [
+        "Deelnemer",
+        "Verwachte loonwinst na opleiding",
+        "indirect financieel",
+        false,
+        4822.32
+      ]
+    ]
   },
   {
-    naam: "5: Wajong naar 12-20 uur, half inzetbaar",
-    t0: { uitkering: "Wajong" },
-    t1: { werk: "12 tot 20 uur per week", inzetbaar: 0.5, uitkering: "Wajong" },
-    verwacht: { Deelnemer: [14584.27, 15208.57], Rijk: [3266.73, 2642.43], UWV: [-17851, -10351], reeel: [0, 7500] },
+    "naam": "mbo-opleiding met bijstand naar mbo-diploma en werk 20-35",
+    "t0": {
+      "uitkering": "Bijstandsuitkering",
+      "opleidingDoel": "MBO 2-4/havovwo"
+    },
+    "t1": {
+      "werk": "20 tot 35 uur per week",
+      "opleiding": "MBO 2-4/havovwo",
+      "uitkering": "Bijstandsuitkering"
+    },
+    "posten": [
+      [
+        "Deelnemer",
+        "Bruto loon",
+        "direct financieel",
+        false,
+        30888.0
+      ],
+      [
+        "Deelnemer",
+        "Verwachte loonwinst na opleiding",
+        "indirect financieel",
+        false,
+        -4822.32
+      ],
+      [
+        "Deelnemer",
+        "Belasting en premies",
+        "direct financieel",
+        true,
+        991.73
+      ],
+      [
+        "Deelnemer",
+        "Uitkering",
+        "direct financieel",
+        true,
+        -18768.0
+      ],
+      [
+        "Deelnemer",
+        "Opgegeven vrije tijd",
+        "niet-financieel",
+        false,
+        -3547.81
+      ],
+      [
+        "Rijk",
+        "Belasting en premies",
+        "direct financieel",
+        true,
+        -991.73
+      ],
+      [
+        "Gemeente",
+        "Uitkering",
+        "direct financieel",
+        true,
+        18768.0
+      ],
+      [
+        "Gemeente",
+        "Uitvoeringskosten bijstand",
+        "direct financieel",
+        false,
+        3500.0
+      ]
+    ]
   },
   {
-    naam: "6: 12-20 uur naar 20-35 uur zonder uitkering",
-    t0: { werk: "12 tot 20 uur per week" },
-    t1: { werk: "20 tot 35 uur per week" },
-    verwacht: { Deelnemer: [14689.62, 27109.02], Rijk: [310.38, 1890.98], reeel: [15000, 29000] },
+    "naam": "Wajong naar 12-20 uur half inzetbaar",
+    "t0": {
+      "uitkering": "Wajong"
+    },
+    "t1": {
+      "werk": "12 tot 20 uur per week",
+      "inzetbaar": 0.5,
+      "uitkering": "Wajong"
+    },
+    "posten": [
+      [
+        "Deelnemer",
+        "Bruto loon",
+        "direct financieel",
+        false,
+        7030.5
+      ],
+      [
+        "Deelnemer",
+        "Belasting en premies",
+        "direct financieel",
+        true,
+        585.22
+      ],
+      [
+        "Deelnemer",
+        "Uitkering",
+        "direct financieel",
+        true,
+        -7030.5
+      ],
+      [
+        "Rijk",
+        "Belasting en premies",
+        "direct financieel",
+        true,
+        -585.22
+      ],
+      [
+        "UWV",
+        "Uitkering",
+        "direct financieel",
+        true,
+        7030.5
+      ]
+    ]
   },
+  {
+    "naam": "bijstand naar bijstand met 8 uur vrijwilligerswerk",
+    "t0": {
+      "uitkering": "Bijstandsuitkering"
+    },
+    "t1": {
+      "uitkering": "Bijstandsuitkering",
+      "vrijwilligersuren": 8
+    },
+    "posten": [
+      [
+        "Maatschappij",
+        "Vrijwilligerswerk",
+        "niet-financieel",
+        false,
+        4576
+      ]
+    ]
+  },
+  {
+    "naam": "Wlz-dagbesteding 4 dagdelen naar werk 12-20 met loonkostensubsidie",
+    "t0": {
+      "dagbesteding": "Wlz",
+      "dagdelen": 4
+    },
+    "t1": {
+      "werk": "12 tot 20 uur per week",
+      "lks": true
+    },
+    "posten": [
+      [
+        "Deelnemer",
+        "Bruto loon",
+        "direct financieel",
+        false,
+        14061.0
+      ],
+      [
+        "Deelnemer",
+        "Belasting en premies",
+        "direct financieel",
+        true,
+        -265.86
+      ],
+      [
+        "Deelnemer",
+        "Opgegeven vrije tijd",
+        "niet-financieel",
+        false,
+        -9656.6
+      ],
+      [
+        "Rijk",
+        "Belasting en premies",
+        "direct financieel",
+        true,
+        265.86
+      ],
+      [
+        "Gemeente",
+        "Loonkostensubsidie",
+        "direct financieel",
+        true,
+        -13144.0
+      ],
+      [
+        "Werkgever",
+        "Loonkostensubsidie",
+        "direct financieel",
+        true,
+        13144.0
+      ],
+      [
+        "Rijk",
+        "Dagbesteding",
+        "direct financieel",
+        false,
+        16640.0
+      ]
+    ]
+  },
+  {
+    "naam": "voltijd naar 12-20 uur",
+    "t0": {
+      "werk": "Voltijd"
+    },
+    "t1": {
+      "werk": "12 tot 20 uur per week"
+    },
+    "posten": [
+      [
+        "Deelnemer",
+        "Bruto loon",
+        "direct financieel",
+        false,
+        -19333.0
+      ],
+      [
+        "Deelnemer",
+        "Belasting en premies",
+        "direct financieel",
+        true,
+        3344.33
+      ],
+      [
+        "Deelnemer",
+        "Opgegeven vrije tijd",
+        "niet-financieel",
+        false,
+        14389.8
+      ],
+      [
+        "Rijk",
+        "Belasting en premies",
+        "direct financieel",
+        true,
+        -3344.33
+      ]
+    ]
+  }
 ];
 
-for (const { naam, t0, t1, verwacht } of CASES) {
+for (const { naam, t0, t1, posten: verwacht } of CASES) {
   test(`2026.3 testgeval ${naam}`, () => {
-    const s0 = situatie(PARAMETERS_2026_3, t0);
-    const s1 = situatie(PARAMETERS_2026_3, t1);
-    for (const [veld, [v0, v1]] of Object.entries(verwacht)) {
-      close(s0[veld], v0, `${veld} 0-meting`);
-      close(s1[veld], v1, `${veld} 1-meting`);
-    }
+    const p = PARAMETERS_2026_3;
+    const uitkomst = posten(p, situatie(p, t0), situatie(p, t1));
+    assert.deepEqual(
+      uitkomst.map(([sh, post]) => `${sh} / ${post}`),
+      verwacht.map(([sh, post]) => `${sh} / ${post}`)
+    );
+    uitkomst.forEach(([sh, post, w], i) => {
+      const [, , typeWaardering, overdracht, bedrag] = verwacht[i];
+      assert.ok(Math.abs(w - bedrag) < 0.01, `${sh} / ${post}: ${w} != ${bedrag}`);
+      const type = postType(p, sh, post);
+      assert.equal(type.typeWaardering, typeWaardering, `${sh} / ${post}`);
+      assert.equal(type.overdracht, overdracht, `${sh} / ${post}`);
+    });
+    // De overdrachten vallen in de som tegen elkaar weg.
+    const overdrachten = uitkomst.filter(([sh, post]) => postType(p, sh, post).overdracht);
+    assert.ok(Math.abs(overdrachten.reduce((s, [, , w]) => s + w, 0)) < 0.01);
   });
 }
+
+test("2026.3: income is hourly wage × hours × 52, rounded", () => {
+  const p = PARAMETERS_2026_3;
+  for (const [opleiding, perBand] of Object.entries(p.incomeByEducationAndHoursBand)) {
+    for (const [band, loon] of Object.entries(perBand)) {
+      assert.equal(loon, Math.round(p.hourlyWageByEducation[opleiding] * p.hoursPerWeekByBand[band] * p.weeksPerYear), `${opleiding} ${band}`);
+    }
+  }
+});
+
+test("2026.3: dagdelen are whole numbers 1 to 10, every post has a known type", () => {
+  const p = PARAMETERS_2026_3;
+  assert.deepEqual(p.options.dagdelenPerWeek, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+  for (const post of p.posts) {
+    assert.ok(["direct financieel", "indirect financieel", "niet-financieel"].includes(post.typeWaardering), post.post);
+  }
+  assert.equal(p.volunteerValueStakeholder, "Maatschappij");
+});
 
 test("2026.3: every benefitType has an amount and a payer, and benefitShare is gone", () => {
   const p = PARAMETERS_2026_3;

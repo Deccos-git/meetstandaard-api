@@ -255,10 +255,17 @@ export const PARAMETERS_2026_2 = {
 //   4  vrijwilligerswaarde €11 per uur
 //   5  uitvoeringskosten bijstand €3.500
 //   6  leeftijdsovergang, herkend aan de geboortedatum (tab Gegevens)
+//   7  bruto loon = mediaan uurloon van het beroepsniveau bij de opleiding × uren × 52
 //   8  WIA en Wajong apart, bedragen uit het parameterregister
+//   9  verschil per stakeholder en per post, met typeWaardering; overdrachten bij
+//      betaler en ontvanger
+//   10 opgegeven vrije tijd van de deelnemer (niet-financieel)
+//   11 verwachte loonwinst van wie een opleiding volgt (indirect financieel)
 // plus de regelingen en kosten die het rekenmodel kent: WW, IOAW, AOW,
 // loonkostensubsidie en dagbesteding. Beschut werk staat in het parameterblad
 // van het rekenmodel maar het model rekent er niet mee, dus het staat hier niet.
+// Besluiten 2026-11-02 (vragen Deccos): dagdelen 1 t/m 10, typeWaardering bij
+// elke post, vrijwilligerswerk bij de Maatschappij.
 // Lopende metingen blijven op 2026.2.
 const BRONNEN_2026_3 = {
   ...PARAMETERS_2026_1.bronnen,
@@ -299,6 +306,36 @@ const BRONNEN_2026_3 = {
     year: 2025,
     url: null,
   },
+  "cbs-uurloon-beroepsniveau": {
+    id: "cbs-uurloon-beroepsniveau",
+    title: "Werknemers; uurloon en beroep, mediaan bruto uurloon 2025 (voorlopig)",
+    publisher: "CBS",
+    year: 2025,
+    dataset: "86355NED",
+    url: "https://opendata.cbs.nl/#/CBS/nl/dataset/86355NED/table",
+  },
+  "werkwijzer-mkba-sociaal-domein": {
+    id: "werkwijzer-mkba-sociaal-domein",
+    title: "Werkwijzer voor kosten-batenanalyse in het sociale domein, p. 78-80, tabel 6.1 (waardering vrije tijd)",
+    publisher: "SEO Economisch Onderzoek",
+    year: 2016,
+    url: null,
+  },
+  "duo-slaagkans-mbo": {
+    id: "duo-slaagkans-mbo",
+    title: "Jaarresultaat mbo 2024/2025, alle niveaus (voorlopig)",
+    publisher: "DUO, via OCW in cijfers",
+    year: 2025,
+    url: null,
+  },
+  "vh-slaagkans-hbo": {
+    id: "vh-slaagkans-hbo",
+    title: "Diplomarendement hbo-bachelor voltijd na 8 jaar, cohort 2015",
+    publisher: "Vereniging Hogescholen",
+    year: null,
+    url: null,
+    note: "Publicatiejaar niet in het rekenmodel vastgelegd.",
+  },
   "maatschappelijke-prijslijst-dagbesteding": {
     id: "maatschappelijke-prijslijst-dagbesteding",
     title: "Maatschappelijke prijslijst — dagbesteding per dagdeel (Wmo, Jeugdwet, Wlz)",
@@ -313,10 +350,13 @@ export const PARAMETERS_2026_3 = {
     version: "2026.3",
     taxYear: 2026,
     source: "Rekenmodel participatieladder, MSI-kennisbank (bouw_outputmeting.py)",
-    updatedAt: "2026-10-20",
+    updatedAt: "2026-11-02",
   },
   weeksPerYear: 52,
   volunteerValuePerHour: 11,
+  // Wijziging 9 en besluit 2026-11-02: de waarde van vrijwilligerswerk is van de
+  // Maatschappij, niet van de Gemeente.
+  volunteerValueStakeholder: "Maatschappij",
 
   taxBrackets: PARAMETERS_2026_1.taxBrackets,
   // Wijziging 2. belasting = schijftarief(loon + uitkering)
@@ -334,7 +374,56 @@ export const PARAMETERS_2026_3 = {
     ],
   },
 
-  incomeByEducationAndHoursBand: PARAMETERS_2026_1.incomeByEducationAndHoursBand,
+  // Wijziging 7. Bruto loon = hourlyWageByEducation × hoursPerWeekByBand × 52,
+  // afgerond op hele euro's; gelijk aan incomeByEducationAndHoursBand. Was:
+  // CBS-gemiddeld persoonlijk inkomen (85277NED) over alle werkenden.
+  hourlyWageByEducation: {
+    "Geen startkwalificatie": 16.9, // beroepsniveau 1
+    "MBO 2-4/havovwo": 21.6, // beroepsniveau 2
+    "HBO/WO": 28.4, // beroepsniveau 3; niveau 4 (€36,90) voorzichtigheidshalve niet
+  },
+  // Midden van de urenklasse; voltijd 38 uur is een aanname van het rekenmodel.
+  hoursPerWeekByBand: {
+    "minder dan 12 uur per week": 8,
+    "12 tot 20 uur per week": 16,
+    "20 tot 35 uur per week": 27.5,
+    Voltijd: 38,
+  },
+  incomeByEducationAndHoursBand: {
+    "Geen startkwalificatie": {
+      "minder dan 12 uur per week": 7030,
+      "12 tot 20 uur per week": 14061,
+      "20 tot 35 uur per week": 24167,
+      Voltijd: 33394,
+    },
+    "MBO 2-4/havovwo": {
+      "minder dan 12 uur per week": 8986,
+      "12 tot 20 uur per week": 17971,
+      "20 tot 35 uur per week": 30888,
+      Voltijd: 42682,
+    },
+    "HBO/WO": {
+      "minder dan 12 uur per week": 11814,
+      "12 tot 20 uur per week": 23629,
+      "20 tot 35 uur per week": 40612,
+      Voltijd: 56118,
+    },
+  },
+
+  // Wijziging 11. Wie een opleiding volgt, krijgt de verwachte loonwinst:
+  // slaagkans × (loon op het doelniveau − loon op het huidige niveau), beide bij
+  // `hoursBand`. Alleen als het doelniveau hoger is dan de hoogst afgeronde
+  // opleiding; entree levert geen loonwinst.
+  wageGainFromEducation: {
+    targetLevel: { Entree: "Geen startkwalificatie", "MBO 2-4/havovwo": "MBO 2-4/havovwo", "HBO/WO": "HBO/WO" },
+    successRate: { "MBO 2-4/havovwo": 0.7175, "HBO/WO": 0.704 },
+    hoursBand: "20 tot 35 uur per week",
+  },
+
+  // Wijziging 10. Werkwijzer MKBA sociaal domein: de netto compensatie voor
+  // opgegeven vrije tijd én weggevallen uitkering is voor 70% (toetreder) of 90%
+  // (extra uren) vrije tijd waard.
+  freeTime: { factorEntrant: 0.7, factorExtraHours: 0.9 },
 
   // Wijziging 8: WIA en Wajong apart. Kosten negatief, zoals in 2026.1.
   benefitAmountPerYear: {
@@ -363,21 +452,48 @@ export const PARAMETERS_2026_3 = {
     Wlz: { amount: -80, payer: "Rijk" },
   },
 
+  // Wijziging 9 en besluit 2026-11-02: de posten waarin het verschil tussen 0- en
+  // 1-meting wordt gerapporteerd. Een overdracht staat bij betaler en ontvanger,
+  // telt per stakeholder mee onder zijn type en valt alleen in het totaal weg. De
+  // som van alle posten is de maatschappelijke waarde.
+  posts: [
+    { stakeholder: "Deelnemer", post: "Bruto loon", typeWaardering: "direct financieel", overdracht: false },
+    { stakeholder: "Deelnemer", post: "Verwachte loonwinst na opleiding", typeWaardering: "indirect financieel", overdracht: false },
+    { stakeholder: "Deelnemer", post: "Belasting en premies", typeWaardering: "direct financieel", overdracht: true },
+    { stakeholder: "Deelnemer", post: "Uitkering", typeWaardering: "direct financieel", overdracht: true },
+    { stakeholder: "Deelnemer", post: "Opgegeven vrije tijd", typeWaardering: "niet-financieel", overdracht: false },
+    { stakeholder: "Rijk", post: "Belasting en premies", typeWaardering: "direct financieel", overdracht: true },
+    { stakeholder: "benefitPayer", post: "Uitkering", typeWaardering: "direct financieel", overdracht: true },
+    { stakeholder: "Gemeente", post: "Uitvoeringskosten bijstand", typeWaardering: "direct financieel", overdracht: false },
+    { stakeholder: "Gemeente", post: "Loonkostensubsidie", typeWaardering: "direct financieel", overdracht: true },
+    { stakeholder: "Werkgever", post: "Loonkostensubsidie", typeWaardering: "direct financieel", overdracht: true },
+    { stakeholder: "dagbestedingPayer", post: "Dagbesteding", typeWaardering: "direct financieel", overdracht: false },
+    { stakeholder: "Maatschappij", post: "Vrijwilligerswerk", typeWaardering: "niet-financieel", overdracht: false },
+  ],
+
   calculation: {
-    stakeholders: ["Deelnemer", "Rijk", "Gemeente", "UWV", "SVB", "Werkgever"],
+    stakeholders: ["Deelnemer", "Rijk", "Gemeente", "UWV", "SVB", "Werkgever", "Maatschappij"],
     steps: [
-      "loon = incomeByEducationAndHoursBand[educationLevel][hoursBand] × employabilityFactor (0 zonder werk)",
+      "loon = incomeByEducationAndHoursBand[educationLevel][hoursBand] × employabilityFactor (0 zonder werk); educationLevel is de hoogst afgeronde opleiding",
       "uitkering = |benefitAmountPerYear[benefitType]|; met werk: max(0, uitkering − loon) (wijziging 3b)",
       "belasting = max(0, schijftarief(loon + uitkering) − algemeneHeffingskorting(loon + uitkering) − arbeidskorting(loon)); arbeidskorting alleen bij loon > 0 (wijziging 1 en 2)",
       "Deelnemer = loon + uitkering − belasting; Rijk = belasting; benefitPayer[benefitType] = −uitkering",
       "bij bijstand (uitkering > 0): Gemeente += bijstandUitvoeringskostenPerYear",
       "bij loonkostensubsidie: Gemeente += loonkostensubsidiePerYear, Werkgever −= loonkostensubsidiePerYear",
       "bij dagbesteding: payer += amount × dagdelenPerWeek × weeksPerYear",
-      "vrijwilligerswaarde = volunteerHoursPerWeek × volunteerValuePerHour × weeksPerYear (Gemeente, niet-financieel)",
-      "reëleWaarde = loon + vrijwilligerswaarde + uitvoeringskosten bijstand + dagbestedingskosten (kosten negatief); belasting, uitkering en loonkostensubsidie zijn overdrachten",
+      "vrijwilligerswaarde = volunteerHoursPerWeek × volunteerValuePerHour × weeksPerYear (Maatschappij, niet-financieel)",
+      "loonwinst = bij een opleiding met doelniveau hoger dan educationLevel: successRate[doel] × (income[doel][hoursBand] − income[educationLevel][hoursBand]); anders 0",
+      "per post: verschil = waarde 1-meting − waarde 0-meting, met de stakeholders uit `posts`",
+      "opgegeven vrije tijd (alleen bij een verschil in bruto loon): Δuitkering = uitkering₀ − uitkering₁; Δnetto = (Deelnemer₁ − Deelnemer₀) + Δuitkering; f = factorEntrant als loon₀ = 0 en het loon stijgt, anders factorExtraHours; bij meer loon: −max(0, f × Δnetto − Δuitkering), bij minder loon: max(0, f × −Δnetto + Δuitkering)",
+      "maatschappelijke waarde = som van alle posten (de overdrachten vallen daarin tegen elkaar weg)",
     ],
-    // Wijziging 3: niet optellen tot één totaal; dat telt hetzelfde geld meermaals.
-    result: "per stakeholder het verschil 1-meting − 0-meting, plus het verschil in reëleWaarde",
+    // Wijziging 3 en 9: rapporteer per stakeholder en per post; tel overdrachten
+    // niet bij een maatschappelijk totaal op.
+    result: "per stakeholder en per post het verschil 1-meting − 0-meting; de som van alle posten is de maatschappelijke waarde",
+    // Besluit 2026-10-22: op het verschil gelden dezelfde rekenregels als bij de
+    // effecten (impactclaim, tijdshorizon, drop-off, disconto). Die horen bij de
+    // meetlaag, niet bij deze parameters; de bedragen hier zijn bruto jaarbedragen.
+    rekenregels: "impactclaim 40%, tijdshorizon uit de matrix van duur en intensiteit, 25% drop-off, 2,8% disconto, op elke post (MSI gedeeld/wiki/methodiek/rekenregels-monetarisering.md)",
     // Wijziging 6.
     ageTransition: {
       rule: "Passeert een deelnemer tussen 0- en 1-meting de leeftijdsgrens van een regeling, dan krijgen beide metingen de uitkeringsgrondslag van de 1-meting; alleen het verschil dat niet uit de leeftijdsovergang volgt telt mee.",
@@ -404,6 +520,11 @@ export const PARAMETERS_2026_3 = {
     benefitType: ["Geen", "Bijstandsuitkering", "WW", "WAO/WIA/WAZ", "Wajong", "IOAW", "AOW"],
     loonkostensubsidie: [false, true],
     dagbesteding: ["Geen", "Wmo", "Jeugdwet", "Wlz"],
+    // Besluit 2026-11-02: hele dagdelen, maximaal vijf dagen van twee dagdelen.
+    // Alleen gevraagd als dagbesteding niet "Geen" is; dan telt het als 0.
+    dagdelenPerWeek: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+    // Wijziging 11: naar welk niveau leidt de opleiding die de deelnemer volgt.
+    educationTarget: ["Entree", "MBO 2-4/havovwo", "HBO/WO"],
   },
 
   benefitRules: {
@@ -417,7 +538,10 @@ export const PARAMETERS_2026_3 = {
   bronnen: BRONNEN_2026_3,
 
   sourceRefs: {
-    incomeByEducationAndHoursBand: ["cbs-inkomen"],
+    incomeByEducationAndHoursBand: ["cbs-uurloon-beroepsniveau"],
+    hourlyWageByEducation: ["cbs-uurloon-beroepsniveau"],
+    wageGainFromEducation: { "MBO 2-4/havovwo": ["duo-slaagkans-mbo"], "HBO/WO": ["vh-slaagkans-hbo"] },
+    freeTime: ["werkwijzer-mkba-sociaal-domein"],
     taxBrackets: ["belastingdienst-heffingskortingen-2026"],
     taxCredits: ["belastingdienst-heffingskortingen-2026"],
     volunteerValuePerHour: ["msi-parameterregister"],
