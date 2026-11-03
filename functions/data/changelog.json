@@ -263,6 +263,24 @@
     ],
     "participatieladder": [
       {
+        "versie": "2026.3",
+        "datum": "2026-11-03",
+        "soort": "publicatie",
+        "samenvatting": "Rekenmodel van de MSI-kennisbank (bouw_outputmeting.py, 2026-11-02): de waarde per deelnemer volgt uit posten per stakeholder in plaats van een vast bedrag per trede.",
+        "wijzigingen": [
+          "`posts[]` (12 posten) met per post stakeholder, `typeWaardering` en overdracht; `ladderLevels` dragen geen bedragen meer.",
+          "Loon = uurloon per beroepsniveau (`hourlyWageByEducation`) × uren per urenband (`hoursPerWeekByBand`) × 52; aanvullende uitkering = max(0, uitkering − loon); inkomstenbelasting met schijven, algemene heffingskorting en arbeidskorting (`taxCredits`).",
+          "Uitkeringen per soort (`benefitAmountPerYear`, `benefitPayer`): bijstand, WW, WAO/WIA/WAZ, Wajong, IOAW en AOW. De oude optie WAO/WIA/WAZ/WAJONG leest als WAO/WIA/WAZ (`benefitRules.legacyBenefitType`).",
+          "Nieuwe posten: loonkostensubsidie (−13.144), dagbesteding per dagdeel (Wmo 49, Jeugdwet 78, Wlz 80), vrijwilligerswerk €11 per uur naar Maatschappij, waarde vrije tijd (factor 0,7 / 0,9) en loonwinst door opleiding (`wageGainFromEducation`, slaagkans 0,7175 mbo / 0,704 hbo).",
+          "Leeftijdsovergang via geboortedatum: grenzen 18 jaar en AOW-leeftijd 67 (`calculation.ageTransition`).",
+          "Rekenregels (impactclaim, horizon, drop-off, disconto) worden niet in de parameters toegepast maar door de meetlaag; `calculation.rekenregels` beschrijft ze.",
+          "Bedragen wijken af van 2026.2: lees een 0-meting op 2026.2 en een 1-meting op 2026.3 niet als effect zonder herberekening op dezelfde versie."
+        ],
+        "besluiten": [],
+        "feedback": [],
+        "commit": "bb614ce"
+      },
+      {
         "versie": "2026.2",
         "datum": "2026-10-13",
         "soort": "publicatie",
