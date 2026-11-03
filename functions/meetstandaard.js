@@ -4,12 +4,14 @@ import energiearmoede010 from "./data/meetstandaard-energiearmoede-0.10.json" wi
 import energiearmoede011 from "./data/meetstandaard-energiearmoede-0.11.json" with { type: "json" };
 import energiearmoede012 from "./data/meetstandaard-energiearmoede-0.12.json" with { type: "json" };
 import energiearmoede013 from "./data/meetstandaard-energiearmoede-0.13.json" with { type: "json" };
+import energiearmoede014 from "./data/meetstandaard-energiearmoede-0.14.json" with { type: "json" };
 import milieuCirculariteit09 from "./data/interventiebibliotheek-milieu-circulariteit-0.9.json" with { type: "json" };
 import milieuCirculariteit010 from "./data/interventiebibliotheek-milieu-circulariteit-0.10.json" with { type: "json" };
 import milieuCirculariteit011 from "./data/interventiebibliotheek-milieu-circulariteit-0.11.json" with { type: "json" };
 import arbeidsparticipatie09 from "./data/meetstandaard-arbeidsparticipatie-0.9.json" with { type: "json" };
 import arbeidsparticipatie10 from "./data/meetstandaard-arbeidsparticipatie-1.0.json" with { type: "json" };
 import arbeidsparticipatie11 from "./data/meetstandaard-arbeidsparticipatie-1.1.json" with { type: "json" };
+import arbeidsparticipatie12 from "./data/meetstandaard-arbeidsparticipatie-1.2.json" with { type: "json" };
 import gelijkeKansen10 from "./data/meetstandaard-gelijke-kansen-1.0.json" with { type: "json" };
 import arbeidsvaardigheden09 from "./data/meetstandaard-arbeidsvaardigheden-0.9.json" with { type: "json" };
 import wijkbedrijven01 from "./data/meetstandaard-wijkbedrijven-0.1.json" with { type: "json" };
@@ -42,7 +44,7 @@ export const STANDAARDEN = {
     sector: "energiearmoede",
     label: "Energiearmoede",
     collection: "MeetstandaardEnergiearmoede",
-    documenten: [energiearmoede09, energiearmoede010, energiearmoede011, energiearmoede012, energiearmoede013],
+    documenten: [energiearmoede09, energiearmoede010, energiearmoede011, energiearmoede012, energiearmoede013, energiearmoede014],
   },
   arbeidsvaardigheden: {
     sector: "arbeidsvaardigheden",
@@ -70,7 +72,7 @@ export const STANDAARDEN = {
     sector: "arbeidsparticipatie",
     label: "Arbeidsparticipatie",
     collection: "MeetstandaardArbeidsparticipatie",
-    documenten: [arbeidsparticipatie09, arbeidsparticipatie10, arbeidsparticipatie11],
+    documenten: [arbeidsparticipatie09, arbeidsparticipatie10, arbeidsparticipatie11, arbeidsparticipatie12],
   },
   // Snapshot of a standaard that still lives as a sector tag on the shared
   // `effects` collection, so its version comes from the API rather than from a
@@ -88,8 +90,10 @@ export const MEETSTANDAARD_ENERGIEARMOEDE_0_10 = energiearmoede010;
 export const MEETSTANDAARD_ENERGIEARMOEDE_0_11 = energiearmoede011;
 export const MEETSTANDAARD_ENERGIEARMOEDE_0_12 = energiearmoede012;
 export const MEETSTANDAARD_ENERGIEARMOEDE_0_13 = energiearmoede013;
+export const MEETSTANDAARD_ENERGIEARMOEDE_0_14 = energiearmoede014;
 export const MEETSTANDAARD_ARBEIDSPARTICIPATIE_1_0 = arbeidsparticipatie10;
 export const MEETSTANDAARD_ARBEIDSPARTICIPATIE_1_1 = arbeidsparticipatie11;
+export const MEETSTANDAARD_ARBEIDSPARTICIPATIE_1_2 = arbeidsparticipatie12;
 export const MEETSTANDAARD_WIJKBEDRIJVEN_0_1 = wijkbedrijven01;
 export const MEETSTANDAARD_WIJKBEDRIJVEN_0_2 = wijkbedrijven02;
 export const MEETSTANDAARD_WIJKBEDRIJVEN_0_3 = wijkbedrijven03;

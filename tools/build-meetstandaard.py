@@ -73,9 +73,17 @@ def with_optional(record, row, fields):
 
 
 def slug_from_path(path, fallback):
-    """'wiki/effecten/fysieke-gezondheid.md' -> 'fysieke-gezondheid'."""
+    """'wiki/effecten/fysieke-gezondheid.md' -> 'fysieke-gezondheid'.
+
+    The path may also close a sentence ('... Zie wiki/effecten/co2-reductie.md.',
+    energiearmoede since 2026-10-26); falling back to the effect name there would
+    change the uid and break the series.
+    """
     if path and path.endswith(".md"):
         return path.rsplit("/", 1)[-1][: -len(".md")]
+    found = re.findall(r"wiki/effecten/([a-z0-9-]+)\.md\.?$", (path or "").strip())
+    if found:
+        return found[-1]
     return slugify(fallback)
 
 

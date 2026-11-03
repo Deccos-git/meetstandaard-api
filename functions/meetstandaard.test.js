@@ -7,6 +7,7 @@ import {
   MEETSTANDAARD_ENERGIEARMOEDE_0_11,
   MEETSTANDAARD_ENERGIEARMOEDE_0_12,
   MEETSTANDAARD_ENERGIEARMOEDE_0_13,
+  MEETSTANDAARD_ENERGIEARMOEDE_0_14,
   MEETSTANDAARD_WIJKBEDRIJVEN_0_1,
   MEETSTANDAARD_WIJKBEDRIJVEN_0_2,
   MEETSTANDAARD_WIJKBEDRIJVEN_0_3,
@@ -25,6 +26,7 @@ for (const doc of [
   MEETSTANDAARD_ENERGIEARMOEDE_0_11,
   MEETSTANDAARD_ENERGIEARMOEDE_0_12,
   MEETSTANDAARD_ENERGIEARMOEDE_0_13,
+  MEETSTANDAARD_ENERGIEARMOEDE_0_14,
 ]) {
   const versie = doc.meta.version;
 
@@ -86,8 +88,9 @@ for (const doc of [
   // rows sit at exactly 0 and legitimately have no stakeholder to attribute to.
   test(`${versie}: every value-carrying proxyregel is traceable`, () => {
     const proxies = doc.effecten.flatMap((e) => e.monetarisering.niveaus.flatMap((n) => n.proxies));
-    // 0.13 adds proxyregels from Bart Maas' onderbouwing (MSI log 2026-10-19).
-    assert.equal(proxies.length, versie === "0.13" ? 209 : 198);
+    // 0.13 adds proxyregels from Bart Maas' onderbouwing (MSI log 2026-10-19);
+    // 0.14 those from aligning with arbeidsparticipatie (MSI log 2026-10-22).
+    assert.equal(proxies.length, { "0.13": 209, "0.14": 263 }[versie] ?? 198);
 
     for (const proxy of proxies) {
       assert.ok(proxy.bedragTekst, `proxy "${proxy.proxy}" has no bedrag`);
@@ -176,7 +179,12 @@ const COLLECTION = STANDAARDEN.energiearmoede.collection;
 
 // From 0.11 overlap is shown, never corrected: no factor may come back in through
 // a regenerated sheet 8, and every proxy must say how strong its overlap is.
-for (const doc of [MEETSTANDAARD_ENERGIEARMOEDE_0_11, MEETSTANDAARD_ENERGIEARMOEDE_0_12, MEETSTANDAARD_ENERGIEARMOEDE_0_13]) {
+for (const doc of [
+  MEETSTANDAARD_ENERGIEARMOEDE_0_11,
+  MEETSTANDAARD_ENERGIEARMOEDE_0_12,
+  MEETSTANDAARD_ENERGIEARMOEDE_0_13,
+  MEETSTANDAARD_ENERGIEARMOEDE_0_14,
+]) {
   test(`${doc.meta.version}: aggregatie shows overlap without correcting it`, () => {
     const { overlapgroepen } = doc.aggregatie;
     assert.ok(overlapgroepen.length > 0);
@@ -281,6 +289,56 @@ test("0.13: rekenregels, organisatievragen and kwalificering are published", () 
   assert.equal(doc.organisatievragen.length, 12);
   assert.equal(doc.kwalificering.length, 3);
   for (const vraag of doc.kwalificering) assert.ok(vraag.stelling && vraag.bron, `kwalificering ${vraag.nummer}`);
+});
+
+// --- 0.14 (2026-11-03) ---
+
+// 0.14 aligns the six shared effecten with arbeidsparticipatie (2026-10-22) and
+// turns CO2 into an outputmeting. A consumer keeps its series on uid, so no uid
+// may move; stellingen change only where the decision of 2026-10-23 says so.
+const stellingenVan = (doc, id) => doc.effecten.find((e) => e.id === id).stellingen.map((s) => s.stelling);
+
+test("0.14: same 13 effecten as 0.13, same ids and uids", () => {
+  const nu = MEETSTANDAARD_ENERGIEARMOEDE_0_14.effecten;
+  const vorige = MEETSTANDAARD_ENERGIEARMOEDE_0_13.effecten;
+  assert.deepEqual(nu.map((e) => e.id), vorige.map((e) => e.id));
+  assert.deepEqual(nu.map((e) => e.uid), vorige.map((e) => e.uid));
+});
+
+test("0.14: stellingen change only in mentale (EFF-02) and financiële gezondheid (EFF-03)", () => {
+  const anders = MEETSTANDAARD_ENERGIEARMOEDE_0_14.effecten
+    .filter((e) => JSON.stringify(stellingenVan(MEETSTANDAARD_ENERGIEARMOEDE_0_14, e.id)) !== JSON.stringify(stellingenVan(MEETSTANDAARD_ENERGIEARMOEDE_0_13, e.id)))
+    .map((e) => e.id);
+  assert.deepEqual(anders, ["EFF-02", "EFF-03"]);
+  assert.deepEqual(stellingenVan(MEETSTANDAARD_ENERGIEARMOEDE_0_14, "EFF-02"), [
+    "Ik kan mijn aandacht er niet goed bij houden",
+    "Ik kan goed omgaan met mijn problemen",
+    "Ik voel me vaak tevreden",
+    "Ik heb vaak stress",
+    "Ik voel me vaak hopeloos",
+  ]);
+  assert.equal(stellingenVan(MEETSTANDAARD_ENERGIEARMOEDE_0_14, "EFF-03")[2], "Als ik iets over mijn financiën niet begrijp dan weet ik waar ik hulp kan krijgen");
+});
+
+test("0.14: CO2 (EFF-09) and participatie (EFF-11) are outputmetingen without stellingen", () => {
+  for (const id of ["EFF-09", "EFF-11"]) {
+    const effect = MEETSTANDAARD_ENERGIEARMOEDE_0_14.effecten.find((e) => e.id === id);
+    assert.match(effect.typeEffect, /^outputmeting/, id);
+    assert.equal(effect.stellingen.length, 0, id);
+  }
+});
+
+test("0.14: every proxy carries its onderbouwing and type waardering; EFF-07 niveau 5 is a saving in euros", () => {
+  for (const effect of MEETSTANDAARD_ENERGIEARMOEDE_0_14.effecten) {
+    for (const niveau of effect.monetarisering.niveaus) {
+      for (const proxy of niveau.proxies) {
+        assert.ok(proxy.onderbouwing, `${effect.id} ${niveau.niveau} "${proxy.proxy}"`);
+        assert.ok(proxy.typeWaardering, `${effect.id} ${niveau.niveau} "${proxy.proxy}"`);
+      }
+    }
+  }
+  const effect = MEETSTANDAARD_ENERGIEARMOEDE_0_14.effecten.find((e) => e.id === "EFF-07");
+  assert.ok(effect.monetarisering.niveaus.find((n) => n.niveau === "5").totaleWaardeIndicatief > 0);
 });
 
 // Niveau 1 was missing from every Likert effect in 0.9 to 0.11 (MSI log 2026-10-15).
