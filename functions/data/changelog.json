@@ -3,6 +3,24 @@
   "standaarden": {
     "energiearmoede": [
       {
+        "versie": "0.14",
+        "datum": "2026-11-03",
+        "soort": "publicatie",
+        "samenvatting": "De zes gedeelde effecten gelijkgetrokken met arbeidsparticipatie, CO2 als outputmeting. Stellingen wijzigen bij mentale en financiële gezondheid; bedragen wijzigen bij elf van de dertien effecten. 263 proxyregels (was 209).",
+        "wijzigingen": [
+          "Mentale gezondheid (EFF-02): 'Ik heb vaak stress door de energierekening' en 'Ik voel me vaak hopeloos door de energierekening' worden 'Ik heb vaak stress' en 'Ik voel me vaak hopeloos'; nieuw #2 'Ik kan goed omgaan met mijn problemen'; 'Ik slaap vaak slecht' vervalt. Stellingen, volgorde en schaal gelijk aan arbeidsparticipatie EFF-01 (besluit 2026-10-23).",
+          "Financiële gezondheid (EFF-03): 'Ik maak me vaak zorgen over mijn geld' vervalt; nieuw #3 'Als ik iets over mijn financiën niet begrijp dan weet ik waar ik hulp kan krijgen'; #4 wordt 'Ik kan goed rondkomen van mijn/ons totale inkomen'. Gelijk aan arbeidsparticipatie EFF-20.",
+          "Fysieke, mentale en financiële gezondheid, arbeidsvaardigheden, persoonlijke ontwikkeling en integratie: situatieschetsen, posten en bedragen gelijk aan arbeidsparticipatie (kennisbank 2026-10-22); bij fysieke gezondheid sectorspecifieke luchtwegposten.",
+          "Duurzaam energiegebruik (EFF-07): niveau 5 is nu een besparing van €211,48 per jaar (was €0); niveau 1 −€1.483 (was −€3.509).",
+          "CO2-reductie (EFF-09) is een outputmeting: geen stellingen, de waarde volgt per uitgevoerde maatregel uit kengetal × emissiefactor × milieuprijs. Slug en uid blijven `co2-reductie`.",
+          "`monetariseerbaarheid` is null bij alle effecten (kolom vervallen in de kennisbank); `crossSectorBenchmarkbaar` zegt nu met welke sector en welke stellingen een effect vergelijkbaar is.",
+          "Metingen op 0.12 of 0.13 blijven vergelijkbaar op de stellingen die gelijk zijn, maar een uitkomst in euro's verschilt per versie: reken een meting door met één versie."
+        ],
+        "besluiten": [],
+        "feedback": [],
+        "commit": "deebea7"
+      },
+      {
         "versie": "0.13",
         "datum": "2026-10-20",
         "soort": "publicatie",
@@ -194,6 +212,20 @@
       }
     ],
     "arbeidsparticipatie": [
+      {
+        "versie": "1.2",
+        "datum": "2026-11-03",
+        "soort": "publicatie",
+        "samenvatting": "Alleen bedragen: gemist brutoloon op minimumloon en belasting met heffingskortingen (kennisbank 2026-10-26). Effecten, uids en stellingen gelijk aan 1.1; een consument hoeft geen vragen te migreren.",
+        "wijzigingen": [
+          "Niveaubedragen gewijzigd bij EFF-01, 02, 04, 09, 10, 11, 14, 15, 16, 17 en 19; bijvoorbeeld EFF-09 niveau 1 −€22.411 (was −€26.563) en EFF-17 niveau 1 −€13.170 (was −€17.322).",
+          "Gemist brutoloon bij niet-werken rekent met het minimumloon; gederfde belasting en premies met schijven, algemene heffingskorting en arbeidskorting. Daardoor dalen vooral de belastingposten (Rijk) en hun tegenposten (Deelnemer).",
+          "365 proxyregels, gelijk aan 1.1."
+        ],
+        "besluiten": [],
+        "feedback": [],
+        "commit": "deebea7"
+      },
       {
         "versie": "1.1",
         "datum": "2026-10-28",
