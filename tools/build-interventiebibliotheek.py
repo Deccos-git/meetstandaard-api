@@ -301,6 +301,10 @@ def build_interventies(wb, a):
                     kosten=row.get("Kosten"),
                     installatietijdMinuten=to_number(row.get("Installatietijd in minuten")),
                     nietCo2Monetair=row.get("Niet-CO2 monetair (laag C)"),
+                    # From 0.12: why an intervention without an amount has none, in
+                    # plain language for a reader. Null when there is an amount, and in
+                    # workbooks from before the column existed.
+                    waaromGeenBedrag=row.get("Waarom geen bedrag"),
                     wikipagina=row.get("Wikipagina"),
                     kengetallen=kengetallen,
                     berekend=berekend,

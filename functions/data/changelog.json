@@ -118,6 +118,23 @@
     ],
     "milieu-circulariteit": [
       {
+        "versie": "0.12",
+        "datum": "2026-11-26",
+        "soort": "publicatie",
+        "samenvatting": "Bij elke interventie zonder bedrag staat nu in gewone taal waarom. De deursluiter (ET19) heeft een kengetal; het nachttarief (EG11) is casusgebonden. Verder gelijk aan 0.11.",
+        "wijzigingen": [
+          "Nieuw veld per interventie: `waaromGeenBedrag`, een korte uitleg voor een lezer bij de 53 interventies zonder bedrag (bijvoorbeeld: maakt een andere maatregel mogelijk, hangt te sterk af van de situatie, bespaart geen energie, of nog geen betrouwbaar getal). Bij een interventie met een bedrag is het `null`.",
+          "ET19 Deursluiter: 60 m3 gas per woning per jaar (Milieu Centraal, Kluswijzer deurveer en deurdranger, KW-2023-1, mei 2023), eenheid nu per woning, bestendiging 1 zoals alle fysieke maatregelen. Totale waarde 97,65 euro per jaar (81,00 huishouden + 16,65 maatschappelijk). Overlap hoog met EG15: per woning ET19 of EG15, niet allebei.",
+          "EG11 Apparaten op nachttarief: status casusgebonden (was direct brongetal). Bespaart geen energie; het geldvoordeel hangt af van het contract. Geen bedrag.",
+          "EG15: afbakening en overlapmotivering noemen ET19.",
+          "`aannames`: vijf parameters uit de rekenregels fysieke maatregelen (impactclaim 40%, drop-off 25% per jaar, discontovoet 2,8%, tijdshorizon 5 en 15 jaar), met een regel in de `leeswijzer`. `berekend` rekent er nog niet mee.",
+          "Geen ander kengetal of bedrag is veranderd."
+        ],
+        "besluiten": [],
+        "feedback": [],
+        "commit": "04fb10d"
+      },
+      {
         "versie": "0.11",
         "datum": "2026-10-13",
         "soort": "publicatie",

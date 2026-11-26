@@ -8,6 +8,7 @@ import energiearmoede014 from "./data/meetstandaard-energiearmoede-0.14.json" wi
 import milieuCirculariteit09 from "./data/interventiebibliotheek-milieu-circulariteit-0.9.json" with { type: "json" };
 import milieuCirculariteit010 from "./data/interventiebibliotheek-milieu-circulariteit-0.10.json" with { type: "json" };
 import milieuCirculariteit011 from "./data/interventiebibliotheek-milieu-circulariteit-0.11.json" with { type: "json" };
+import milieuCirculariteit012 from "./data/interventiebibliotheek-milieu-circulariteit-0.12.json" with { type: "json" };
 import arbeidsparticipatie09 from "./data/meetstandaard-arbeidsparticipatie-0.9.json" with { type: "json" };
 import arbeidsparticipatie10 from "./data/meetstandaard-arbeidsparticipatie-1.0.json" with { type: "json" };
 import arbeidsparticipatie11 from "./data/meetstandaard-arbeidsparticipatie-1.1.json" with { type: "json" };
@@ -56,7 +57,7 @@ export const STANDAARDEN = {
     sector: "milieu-circulariteit",
     label: "Milieu & circulariteit",
     collection: "MeetstandaardMilieuCirculariteit",
-    documenten: [milieuCirculariteit09, milieuCirculariteit010, milieuCirculariteit011],
+    documenten: [milieuCirculariteit09, milieuCirculariteit010, milieuCirculariteit011, milieuCirculariteit012],
   },
   wijkbedrijven: {
     sector: "wijkbedrijven",
