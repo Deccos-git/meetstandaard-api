@@ -87,6 +87,11 @@ const InterventiesPubliek = ({ doc }) => {
                   {i.monetarisatiebron && (
                     <div className="publiek-notitie">Bron: {i.monetarisatiebron}</div>
                   )}
+                  {/* From 0.12: a row without an amount says why, so "niet
+                      bepaald" never stands alone. */}
+                  {i.waaromGeenBedrag && (
+                    <div className="publiek-notitie">Waarom geen bedrag: {i.waaromGeenBedrag}</div>
+                  )}
                 </td>
                 <td>{i.eenheid}</td>
                 {jaarcijfers ? (
